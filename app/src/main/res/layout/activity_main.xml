@@ -10,12 +10,13 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="353dp"
+        android:layout_height="654dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             <ImageView
                 android:id="@+id/LoginImage"
                 android:layout_width="match_parent"
-                android:layout_height="160dp" />
+                android:layout_height="141dp" />
 
             <TextView
                 android:id="@+id/errortext"
@@ -35,15 +36,16 @@
 
             <TextView
                 android:id="@+id/Username"
-                android:layout_width="390dp"
-                android:layout_height="72dp"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Username"
-                android:textSize="50px" />
+                android:textColor="@android:color/black"
+                android:textSize="60px" />
 
             <EditText
                 android:id="@+id/inputUsername"
-                android:layout_width="390dp"
+                android:layout_width="351dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -55,15 +57,16 @@
 
             <TextView
                 android:id="@+id/Password"
-                android:layout_width="390dp"
-                android:layout_height="72dp"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Password"
-                android:textSize="50px" />
+                android:textColor="@android:color/black"
+                android:textSize="60px" />
 
             <EditText
                 android:id="@+id/inputPassword"
-                android:layout_width="390dp"
+                android:layout_width="351dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -92,12 +95,37 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:clickable="true"
+                android:focusable="true"
                 android:text="Nuovo utente? Iscriviti!"
-                android:textSize="40px" />
+                android:textColor="@color/color_button"
+                android:textSize="40px"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="46dp" />
+                android:layout_height="19dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#BAEDE8F3">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="185dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginEnd="72dp"
+                    android:layout_marginBottom="14dp"
+                    android:text="@string/logo"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_button"
+                    android:textSize="34px"
+                    android:textStyle="bold|italic" />
+            </RelativeLayout>
 
 
         </LinearLayout>

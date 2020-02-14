@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="logo"><u>(Y)ourBook © all right reserved Created by Fabrizio Sau, Andrea Fulghesu</u></string>
 </resources>
