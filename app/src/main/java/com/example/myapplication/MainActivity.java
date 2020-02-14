@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int sau;
     private int fulghesu;
+    private int giorgio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
