@@ -8,6 +8,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     private int sau;
+    private int fulghesu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
