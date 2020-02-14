@@ -20,12 +20,12 @@ public class Login extends AppCompatActivity {
 
     public static final String USER_EXTRA ="com.example.faber.bonusIum";
 
-    User user= null;
     EditText username, password;
     Button accedi;
     String formUsername, formPassword;
     TextView registrazione;
     TextView errorText;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
