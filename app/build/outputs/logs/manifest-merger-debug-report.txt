@@ -72,10 +72,10 @@ activity#com.example.myapplication.Registrazione
 ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:13:9-51
 	android:name
 		ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:13:19-48
-activity#com.example.myapplication.MainActivity
+activity#com.example.myapplication.Login
 ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:14:9-20:20
 	android:name
-		ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:14:19-47
+		ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:14:19-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\Progetto IUM\app\src\main\AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
