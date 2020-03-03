@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.inputPassword);
         accedi = findViewById(R.id.accedi);
         registrazione = findViewById(R.id.registrazione);
-        errorText = findViewById(R.id.errortext);
 
         accedi.setOnClickListener(new View.OnClickListener() {
             @Override
