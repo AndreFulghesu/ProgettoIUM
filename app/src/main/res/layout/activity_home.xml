@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    tools:context=".Home">
 
 
 
@@ -57,7 +57,7 @@
 
 
             <Button
-                android:id="@+id/HomeButton1"
+                android:id="@+id/continuaLettura"
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -73,7 +73,7 @@
                 android:background="@android:color/white" />
 
             <Button
-                android:id="@+id/HomeButton2"
+                android:id="@+id/catalogo"
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -89,7 +89,7 @@
                 android:background="@android:color/white" />
 
             <Button
-                android:id="@+id/HomeButton3"
+                android:id="@+id/myLibro"
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -112,7 +112,7 @@
                 android:background="#3D679B"/>
 
             <Button
-                android:id="@+id/HomeLogout"
+                android:id="@+id/homeLogout"
                 android:layout_width="180dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
