@@ -18,11 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme.NoActionBar" >
         <activity android:name="com.example.myapplication.Home" />
         <activity android:name="com.example.myapplication.Registrazione" />
         <activity android:name="com.example.myapplication.LeggiLibro" />
-s
         <activity android:name="com.example.myapplication.Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
