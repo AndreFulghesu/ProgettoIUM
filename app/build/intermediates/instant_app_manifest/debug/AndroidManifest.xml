@@ -21,6 +21,8 @@
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.myapplication.Home" />
         <activity android:name="com.example.myapplication.Registrazione" />
+        <activity android:name="com.example.myapplication.LeggiLibro" />
+s
         <activity android:name="com.example.myapplication.Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

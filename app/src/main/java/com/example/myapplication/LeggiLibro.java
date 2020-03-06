@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class LeggiLibro extends AppCompatActivity {
+
+    private int dimText = 14;
 
     String book = "Harry Potter\n" +
             "\n" +
@@ -28,8 +32,21 @@ public class LeggiLibro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leggi_libro);
 
-        TextView textBook = findViewById(R.id.textBook);
-
+        final TextView textBook = findViewById(R.id.textBook);
+        Button piu = findViewById(R.id.dimTextPiu);
+        Button meno = findViewById(R.id.dimTextMeno);
         textBook.setText(book);
-    }
+            piu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    textBook.setTextSize(dimText + 2);
+                }
+            });
+            meno.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    textBook.setTextSize(dimText - 2);
+                }
+            });
+        }
 }

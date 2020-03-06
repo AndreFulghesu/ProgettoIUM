@@ -26,5 +26,16 @@ public class Home extends AppCompatActivity
                 startActivity(continuaLettura);
             }
         });
+        catalogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        myBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         }
 }
