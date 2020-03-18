@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".Registrazione">
 
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="355dp"
-        android:layout_height="620dp"
+        android:layout_width="370dp"
+        android:layout_height="663dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
-                android:text="TextView"
+                android:text="@string/registrazione"
                 android:textAlignment="center"
                 android:textColor="#3D679B"
                 android:textStyle="italic"
@@ -102,11 +102,30 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
+
+            <TextView
+                android:id="@+id/UsernameReg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Username"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/UsernameReg2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/PasswordReg"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="Password"
+
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="20dp"
@@ -116,8 +135,8 @@
                 android:id="@+id/PassworReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword"
+                android:ems="10" />
 
             <TextView
                 android:id="@+id/ConfermaPasswordReg"
@@ -134,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
 
             <Space
                 android:layout_width="match_parent"
@@ -185,7 +204,6 @@
                     android:textStyle="italic" />
 
             </RelativeLayout>
-
 
 
         </LinearLayout>

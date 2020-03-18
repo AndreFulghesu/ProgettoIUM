@@ -23,15 +23,11 @@ public class UserFactory {
 
     public List<User> getUsers(){
 
-        User user1 = new User ("Faber", "1234", "Cagliari", "01/01/1111");
-        User user2 = new User ("User", "1234", "Cagliari", "01/01/1111");
-        User user3 = new User ("User2", "1234", "Cagliari", "01/01/1111");
-        User user4 = new User ("User3", "1234", "Cagliari", "01/01/1111");
+        User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
+
 
         users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
+
 
         return this.users;
     }
@@ -78,4 +74,3 @@ public class UserFactory {
     }
 
 }
-

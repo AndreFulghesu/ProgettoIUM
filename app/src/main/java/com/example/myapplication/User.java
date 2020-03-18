@@ -5,16 +5,19 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String username;
+    private String nome;
+    private String cognome;
+    private String email;
     private String password;
-    private String citta;
-    private String dataDiNascita;
 
 
-    public User (String username, String password, String citta, String dataDiNascita) {
+
+    public User (String nome, String cognome, String username, String email, String password ) {
         this.setUsername(username);
+        this.setNome(nome);
+        this.setCognome(cognome);
+        this.setEmail(email);
         this.setPassword(password);
-        this.setCitta(citta);
-        this.setDataDiNascita(dataDiNascita);
     }
 
     public String getUsername() {
@@ -33,19 +36,17 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getCitta() {
-        return citta;
-    }
+    public void setNome (String nome) {this.nome = nome;}
 
-    public void setCitta(String citta) {
-        this.citta = citta;
-    }
+    public String getNome () { return this.nome; }
 
-    public String getDataDiNascita() {
-        return dataDiNascita;
-    }
+    public void setEmail (String email) { this.email = email; }
 
-    public void setDataDiNascita(String dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
-    }
+    public String getEmail () { return this.email; }
+
+    public void setCognome (String cognome) { this.cognome = cognome; }
+
+    public String getCognome () { return this.cognome; }
+
+
 }
