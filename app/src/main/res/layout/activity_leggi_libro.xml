@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/feedback2"
+        android:id="@+id/readFeedback"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

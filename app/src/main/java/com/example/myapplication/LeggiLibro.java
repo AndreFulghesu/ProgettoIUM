@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -36,21 +37,27 @@ public class LeggiLibro extends AppCompatActivity {
         final TextView textBook = findViewById(R.id.textBook);
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
+        Button feedback = findViewById(R.id.feedback);
         textBook.setText(book);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
-            piu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    float newDim = textBook.getTextSize();
-                    textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim + 4);
-                }
-            });
-            meno.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    float newDim = textBook.getTextSize();
-                    textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4);
-                }
-            });
-        }
+        piu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float newDim = textBook.getTextSize();
+                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim + 4); }
+        });
+        meno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float newDim = textBook.getTextSize();
+                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4); }
+        });
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
+                startActivity(writeFeedback);
+            }
+        });
+    }
 }
