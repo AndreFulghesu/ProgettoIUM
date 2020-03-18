@@ -8,6 +8,10 @@
         android:minSdkVersion="22"
         android:targetSdkVersion="29" />
 
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true" />
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 public class LeggiLibro extends AppCompatActivity {
 
-    private int dimText = 14;
+    private float dimText = 50;
 
     String book = "Harry Potter\n" +
             "\n" +
@@ -36,16 +37,19 @@ public class LeggiLibro extends AppCompatActivity {
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
         textBook.setText(book);
+        textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
             piu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    textBook.setTextSize(dimText + 2);
+                    float newDim = textBook.getTextSize();
+                    textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim + 4);
                 }
             });
             meno.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    textBook.setTextSize(dimText - 2);
+                    float newDim = textBook.getTextSize();
+                    textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4);
                 }
             });
         }
