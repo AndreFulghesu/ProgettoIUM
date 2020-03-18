@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
                             password.setError("Password errata.");
                         }
                     } else {
-                        errorText.setText ("Utente non esistente.");
+                        username.setError ("Utente non esistente.");
                     }
                 }
             }
