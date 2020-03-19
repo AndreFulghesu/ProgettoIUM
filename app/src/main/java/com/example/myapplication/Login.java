@@ -35,6 +35,10 @@ public class Login extends AppCompatActivity {
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Registrazione.USER_EXTRA);
 
+        User utenteProva = new User("Giorgio","Delirio","Gio20","gio@gmail.com","1234");
+        UserFactory.getInstance().addUser(utenteProva);
+
+
         if (obj != null) {
             User newUser = (User) obj;
             UserFactory.getInstance().addUser(newUser);

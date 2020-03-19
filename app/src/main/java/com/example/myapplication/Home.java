@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity
@@ -18,6 +19,7 @@ public class Home extends AppCompatActivity
         Button continuaLettura = findViewById(R.id.continuaLettura);
         Button catalogo = findViewById(R.id.catalogo);
         Button myBook = findViewById(R.id.myLibro);
+        Button logout = findViewById(R.id.homeLogout);
 
         continuaLettura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +31,8 @@ public class Home extends AppCompatActivity
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent gotoCatalogo = new Intent(Home.this, Catalogo.class);
+                startActivity(gotoCatalogo);
             }
         });
         myBook.setOnClickListener(new View.OnClickListener() {
@@ -37,5 +41,15 @@ public class Home extends AppCompatActivity
 
             }
         });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent login = new Intent(Home.this, Login.class);
+                startActivity(login);
+            }
+        });
+
+
         }
 }
