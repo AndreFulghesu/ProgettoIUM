@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Catalogo">
+
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="347dp"
+        android:layout_height="598dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.316">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#3D679B">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Catalogo Libri"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/white" />
+
+
+            <ImageView
+                android:id="@+id/homeIcon2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_line_weight_black_24dp" />
+
+
+            <View
+                android:id="@+id/viewHome"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#3D679B" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    app:srcCompat="@drawable/ic_library_books_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Le cronache del Sud"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="179dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Autore:Carlo Fumagalli"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Genere:Fantasy" />
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/white"
+                        android:textColor="@android:color/white"
+                        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewCatalogo1"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#3D679B" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@android:color/white" />
+
+            <View
+                android:id="@+id/viewCatalogo4"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#3D679B" />
+
+            ///inizio secondo libro
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    app:srcCompat="@drawable/ic_library_books_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Il rapimento falso"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="179dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Autore:Roberto Benigni"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="Genere:Giallo" />
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@android:color/white"
+                        android:textColor="@android:color/white"
+                        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/viewCatalogo2"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="#3D679B" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@android:color/white" />
+
+            ///inizio terzo libro
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/white" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#3D679B">
+
+                <TextView
+                    android:id="@+id/footer"
+                    android:layout_width="193dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="70dp"
+                    android:text="@string/logo"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
