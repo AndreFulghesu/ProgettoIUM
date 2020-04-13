@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Catalogo"></activity>
+        <activity android:name=".MyProfile"></activity>
+        <activity android:name=".Catalogo" />
         <activity android:name=".Commenti" />
         <activity android:name=".FormCommento" />
         <activity android:name=".Home" />
