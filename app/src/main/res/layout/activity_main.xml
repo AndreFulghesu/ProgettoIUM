@@ -97,15 +97,19 @@
                 android:layout_height="10dp"
                 android:background="@android:color/white" />
 
-            <TextView
-                android:id="@+id/textView3"
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="or"
-                android:textAlignment="center"
-                android:textColor="#3D679B"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="10dp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:background="@drawable/generic_button" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
 
             <TextView
                 android:id="@+id/registrazione"
