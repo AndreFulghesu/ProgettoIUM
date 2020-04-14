@@ -45,7 +45,7 @@
             <View
                 android:id="@+id/viewHome"
                 android:layout_width="wrap_content"
-                android:layout_height="5dp"
+                android:layout_height="3dp"
                 android:background="#3D679B" />
 
             <Space

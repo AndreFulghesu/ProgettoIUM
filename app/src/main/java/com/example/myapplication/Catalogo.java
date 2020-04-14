@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ListView;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Catalogo extends AppCompatActivity {
 
@@ -16,6 +18,11 @@ public class Catalogo extends AppCompatActivity {
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Registrazione.USER_EXTRA);
+
+        ListView lst= findViewById(R.id.booklist);
+        List<Book> books = BookFactory.getInstance().getBooks();
+        CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
+        lst.setAdapter(adapter);
 
         if (obj != null) {
             User newUser = (User) obj;

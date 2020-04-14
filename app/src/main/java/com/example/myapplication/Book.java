@@ -61,7 +61,7 @@ public class Book {
     }
 
     public int getImgId() {
-        return imgId;
+        return this.imgId;
     }
 
     public void setImgId(Genres genre) {
