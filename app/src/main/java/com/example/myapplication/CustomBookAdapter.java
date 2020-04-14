@@ -25,8 +25,25 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         Book book = getItem(position);
         bookTitle.setText(book.getTitle());
         bookAuthor.setText(book.getAuthor().getUsername());
-        bookGenre.setImageResource(book.getImgId());
+        if (findImg(book)!=-1) {
+            bookGenre.setImageResource(findImg(book));
+        }
         goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
         return view;
+    }
+    public int findImg(Book book) {
+        switch(book.getGenre()) {
+            case FANTASY:
+                return R.drawable.dragon;
+            case STORICO:
+                return R.drawable.museum;
+            case THRILLER:
+                return R.drawable.knife;
+            case POLIZIESCO:
+                return R.drawable.policeman;
+            case FANTASCIENZA:
+                return R.drawable.robot;
+        }
+        return -1;
     }
 }

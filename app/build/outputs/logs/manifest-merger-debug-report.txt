@@ -71,7 +71,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Fa
 	android:theme
 		ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:15:9-52
 activity#com.example.myapplication.ContinuaLettura
-ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-62
+ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-53
 	android:name
 		ADDED from C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:19-50
 activity#com.example.myapplication.MyProfile
