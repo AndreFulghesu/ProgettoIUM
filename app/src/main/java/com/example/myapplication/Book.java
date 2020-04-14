@@ -53,7 +53,7 @@ public class Book {
     }
 
     public User getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(User author) {

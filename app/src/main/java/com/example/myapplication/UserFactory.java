@@ -24,9 +24,11 @@ public class UserFactory {
     public List<User> getUsers(){
 
         User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
+        User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu_a@yahoo.it","98765");
 
 
         users.add(user1);
+        users.add(user2);
 
 
         return this.users;
