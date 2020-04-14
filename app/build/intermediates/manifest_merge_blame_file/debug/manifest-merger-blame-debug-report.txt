@@ -6,67 +6,73 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="22"
-8-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml
+8-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml
+9-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml
 10
 11    <supports-screens
-11-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:5:5-7:40
+11-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:5:5-7:40
 12        android:largeScreens="true"
-12-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:6:9-36
+12-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:6:9-36
 13        android:normalScreens="true" />
-13-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:7:9-37
+13-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:7:9-37
 14
 15    <application
-15-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:9:5-29:19
+15-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:9:5-31:19
 16        android:allowBackup="true"
-16-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:10:9-35
+16-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:10:9-35
 17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-17-->[androidx.core:core:1.1.0] C:\Users\Andrea Fulghesu\.gradle\caches\transforms-2\files-2.1\1cd7eff88f5e86d0249af2958bf465f0\core-1.1.0\AndroidManifest.xml:24:18-86
+17-->[androidx.core:core:1.1.0] C:\Users\Faber\.gradle\caches\transforms-2\files-2.1\1cd7eff88f5e86d0249af2958bf465f0\core-1.1.0\AndroidManifest.xml:24:18-86
 18        android:debuggable="true"
 19        android:icon="@mipmap/ic_launcher"
-19-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:11:9-43
+19-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:11:9-43
 20        android:label="@string/app_name"
-20-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:12:9-41
+20-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:12:9-41
 21        android:roundIcon="@mipmap/ic_launcher_round"
-21-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:13:9-54
+21-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:13:9-54
 22        android:supportsRtl="true"
-22-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:14:9-35
+22-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:14:9-35
 23        android:testOnly="true"
 24        android:theme="@style/AppTheme.NoActionBar" >
-24-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:15:9-52
-25        <activity android:name="com.example.myapplication.Catalogo" />
-25-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-55
-25-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:16:19-43
-26        <activity android:name="com.example.myapplication.Commenti" />
-26-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:17:9-46
-26-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:17:19-43
-27        <activity android:name="com.example.myapplication.FormCommento" />
-27-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:18:9-50
-27-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:18:19-47
-28        <activity android:name="com.example.myapplication.Home" />
-28-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:19:9-42
-28-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:19:19-39
-29        <activity android:name="com.example.myapplication.Registrazione" />
-29-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-51
-29-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-48
-30        <activity android:name="com.example.myapplication.LeggiLibro" />
-30-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:21:9-48
-30-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:21:19-45
-31        <activity android:name="com.example.myapplication.Login" >
-31-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:22:9-28:20
-31-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:22:19-40
-32            <intent-filter>
-32-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:23:13-27:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:24:17-69
-33-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:24:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:26:17-77
-35-->C:\Users\Andrea Fulghesu\Desktop\Progetto IUM\ProgettoIUM\app\src\main\AndroidManifest.xml:26:27-74
-36            </intent-filter>
-37        </activity>
-38    </application>
-39
-40</manifest>
+24-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:15:9-52
+25        <activity android:name="com.example.myapplication.ContinuaLettura" />
+25-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-62
+25-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:19-50
+26        <activity android:name="com.example.myapplication.MyProfile" />
+26-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:17:9-47
+26-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:17:19-44
+27        <activity android:name="com.example.myapplication.Catalogo" />
+27-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:18:9-46
+27-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:18:19-43
+28        <activity android:name="com.example.myapplication.Commenti" />
+28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:9-46
+28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:19-43
+29        <activity android:name="com.example.myapplication.FormCommento" />
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-50
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-47
+30        <activity android:name="com.example.myapplication.Home" />
+30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:9-42
+30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:19-39
+31        <activity android:name="com.example.myapplication.Registrazione" />
+31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:9-51
+31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:19-48
+32        <activity android:name="com.example.myapplication.LeggiLibro" />
+32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:9-48
+32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:19-45
+33        <activity android:name="com.example.myapplication.Login" >
+33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:9-30:20
+33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:19-40
+34            <intent-filter>
+34-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:25:13-29:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:26:17-69
+35-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:26:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:28:17-77
+37-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:28:27-74
+38            </intent-filter>
+39        </activity>
+40    </application>
+41
+42</manifest>

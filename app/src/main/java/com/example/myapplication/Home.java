@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotoCatalogo = new Intent(Home.this, Catalogo.class);
+                Intent gotoCatalogo = new Intent(Home.this, ContinuaLettura.class);
                 startActivity(gotoCatalogo);
             }
         });

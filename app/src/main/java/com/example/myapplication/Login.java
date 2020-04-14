@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
     Button accedi;
     String formUsername, formPassword;
     TextView registrazione;
-    TextView errorText;
     User user;
 
     @Override

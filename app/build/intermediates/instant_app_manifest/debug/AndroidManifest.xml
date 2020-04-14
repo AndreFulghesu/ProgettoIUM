@@ -23,6 +23,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name="com.example.myapplication.ContinuaLettura" />
+        <activity android:name="com.example.myapplication.MyProfile" />
         <activity android:name="com.example.myapplication.Catalogo" />
         <activity android:name="com.example.myapplication.Commenti" />
         <activity android:name="com.example.myapplication.FormCommento" />
