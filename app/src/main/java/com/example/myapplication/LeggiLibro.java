@@ -11,10 +11,13 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 public class LeggiLibro extends AppCompatActivity {
 
     private float dimText = 50;
 
+    String textChapter;
     String book = "Harry Potter\n" +
             "\n" +
             "L'opera è divisa in sette libri, tanti quanti gli anni di studio a Hogwarts, l'ultimo dei quali non conseguito dai protagonisti della storia (Harry Potter stesso e i suoi migliori amici Ron Weasley e Hermione Granger, la quale però poi tornerà ad Hogwarts per terminare i suoi studi). Tutto inizia con Albus Silente, il Preside della scuola di Hogwarts, costretto ad affidare il piccolo Harry Potter, rimasto orfano, ai suoi zii materni, Vernon Dursley e Petunia Evans, data l'assenza di altri parenti. Silente stesso è riluttante nel compiere tale scelta, avendo constatato che i Dursley non sono amabili né affettuosi, per quanto nobile il suo intento di garantire al piccolo mago un luogo sicuro dove vivere: infatti Harry è protetto da un'antica magia tenuta in vita dalla presenza di un consanguineo della madre (evocatrice della magia in questione): finché vivrà nello stesso luogo di tale parente, egli non potrà essere colpito dal rivale Lord Voldemort. Le angherie che Harry subisce da parte degli zii e del cugino Dudley riempiono la sua vita per dieci anni, fino a quando apprende di essere un mago grazie al Mezzogigante (nonché il guardiacaccia della scuola di Hogwarts) Rubeus Hagrid, il quale gli racconta che i suoi genitori sono stati assassinati dal più grande mago oscuro di tutti i tempi, Lord Voldemort. Di tutto ciò Harry è all'oscuro, in quanto i Dursley gli hanno sempre tenuto nascoste le vicende, raccontandogli che i suoi genitori erano morti in un incidente d'auto al quale lui era l'unico sopravvissuto. L'undicenne Harry scopre così di aver diritto a frequentare Hogwarts, la scuola di magia e stregoneria del Regno Unito. Prosegue i suoi studi di magia per sei anni fino allo scontro finale con Lord Voldemort, responsabile di altre numerose morti oltre a quella dei suoi genitori.\n" +
@@ -33,12 +36,24 @@ public class LeggiLibro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leggi_libro);
+        Intent intent = getIntent();
+        Serializable obj = intent.getSerializableExtra("bookId");
+        Serializable obj2 = intent.getSerializableExtra("chapterId");
+
+        if (obj != null) {
+            Book thisBook = BookFactory.getInstance().getBookById((int)obj);
+            if (obj2 != null) {
+                textChapter = thisBook.getChapter((int)obj2).getText();
+            } else {
+                textChapter = thisBook.getChapter(1).getText();
+            }
+        }
 
         final TextView textBook = findViewById(R.id.textBook);
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
         Button feedback = findViewById(R.id.feedback);
-        textBook.setText(book);
+        textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
         piu.setOnClickListener(new View.OnClickListener() {
             @Override

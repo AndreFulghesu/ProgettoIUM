@@ -61,4 +61,13 @@ public class Book {
     public List<Chapter> getChapters() {
         return chapters;
     }
+    public Chapter getChapter(int chapId) {
+        List<Chapter> chapters = getChapters();
+        for (Chapter c: chapters){
+            if (c.getChaptNum() == chapId) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

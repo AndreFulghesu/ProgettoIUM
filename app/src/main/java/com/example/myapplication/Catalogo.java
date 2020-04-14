@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.Serializable;
@@ -23,6 +25,14 @@ public class Catalogo extends AppCompatActivity {
         List<Book> books = BookFactory.getInstance().getBooks();
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         lst.setAdapter(adapter);
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent readBook = new Intent (Catalogo.this, LeggiLibro.class);
+                readBook.putExtra("bookId", position+1);
+                startActivity(readBook);
+            }
+        });
 
         if (obj != null) {
             User newUser = (User) obj;
