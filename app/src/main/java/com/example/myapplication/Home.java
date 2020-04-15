@@ -11,6 +11,8 @@ import android.widget.Button;
 public class Home extends AppCompatActivity
 {
 
+    public static final String USER_EXTRA ="com.example.faber.bonusIum";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

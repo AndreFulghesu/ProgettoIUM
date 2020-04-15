@@ -17,6 +17,8 @@ import java.io.Serializable;
 public class LeggiLibro extends AppCompatActivity {
 
     private float dimText = 50;
+    public static final String USER_EXTRA ="com.example.faber.bonusIum";
+    User newUser;
 
     String textChapter;
     String book = "Harry Potter\n" +
@@ -40,6 +42,14 @@ public class LeggiLibro extends AppCompatActivity {
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
         Serializable obj2 = intent.getSerializableExtra("chapterId");
+        Serializable obj3 = intent.getSerializableExtra(Registrazione.USER_EXTRA);
+
+        if (obj3 != null) {
+            User newUser = (User) obj3;
+            UserFactory.getInstance().addUser(newUser);
+            System.out.println(newUser.getUsername());
+            UserFactory.getInstance().printUsers();
+        }
 
         if (obj != null) {
             Book thisBook = BookFactory.getInstance().getBookById((int)obj);
@@ -81,7 +91,9 @@ public class LeggiLibro extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent catalogo = new Intent(LeggiLibro.this, Catalogo.class);
+                catalogo.putExtra(USER_EXTRA, newUser);
+                startActivity(catalogo);
             }
         });
     }

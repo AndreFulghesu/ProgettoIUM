@@ -13,16 +13,19 @@ import java.util.List;
 
 public class Catalogo extends AppCompatActivity {
 
+    List<Book> books = BookFactory.getInstance().getBooks();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
-        Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra(Registrazione.USER_EXTRA);
-
         ListView lst= findViewById(R.id.booklist);
-        List<Book> books = BookFactory.getInstance().getBooks();
+
+
+        Intent intent = getIntent();
+        Serializable obj = intent.getSerializableExtra(Home.USER_EXTRA);
+
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         lst.setAdapter(adapter);
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,6 +43,8 @@ public class Catalogo extends AppCompatActivity {
             System.out.println(newUser.getUsername());
             UserFactory.getInstance().printUsers();
         }
+
+
 
     }
 }
