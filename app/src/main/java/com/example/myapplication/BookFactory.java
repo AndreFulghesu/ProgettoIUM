@@ -7,7 +7,7 @@ class BookFactory {
 
     private static BookFactory singleton;
 
-    private List<Book> books = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     private BookFactory(){}
 
@@ -18,7 +18,7 @@ class BookFactory {
         return singleton;
     }
 
-    public List<Book> getBooks(){
+    public ArrayList<Book> getBooks(){
         Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByName("Faber123"));
         Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByName("Andre97"));
 
@@ -30,7 +30,7 @@ class BookFactory {
         return this.books;
     }
     public Book getBookById (int id) {
-        List<Book> books = this.getBooks();
+        ArrayList<Book> books = this.getBooks();
         for (Book b : books) {
             if (b.getId() == id) {
                 return b;

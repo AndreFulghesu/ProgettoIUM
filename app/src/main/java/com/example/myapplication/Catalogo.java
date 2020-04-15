@@ -9,11 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Catalogo extends AppCompatActivity {
 
-    List<Book> books = BookFactory.getInstance().getBooks();
+    ArrayList<Book> books= BookFactory.getInstance().getBooks();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,13 @@ public class Catalogo extends AppCompatActivity {
 
         ListView lst= findViewById(R.id.booklist);
 
-
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Home.USER_EXTRA);
 
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
+        books.clear();
+        books = BookFactory.getInstance().getBooks();
+        adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

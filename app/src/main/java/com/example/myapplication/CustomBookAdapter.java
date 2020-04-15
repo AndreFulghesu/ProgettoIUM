@@ -7,29 +7,45 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBookAdapter extends ArrayAdapter<Book> {
-    public CustomBookAdapter(Context context, int textViewResourceId, List<Book> objects) {
+
+    Context context;
+    ArrayList<Book> books;
+
+    public CustomBookAdapter(Context context, int textViewResourceId, ArrayList<Book> objects) {
         super(context, textViewResourceId, objects);
+        this.context= context;
+        this.books = objects;
     }
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) getContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.bookitem, null);
-        TextView bookTitle = view.findViewById(R.id.booktitle);
-        TextView bookAuthor = view.findViewById(R.id.bookauthor);
-        ImageView bookGenre = view.findViewById(R.id.bookgenreimg);
-        ImageView goToBook = view.findViewById(R.id.gotobook);
-        Book book = getItem(position);
-        bookTitle.setText(book.getTitle());
-        bookAuthor.setText(book.getAuthor().getUsername());
-        if (findImg(book)!=-1) {
-            bookGenre.setImageResource(findImg(book));
+        ViewHolder viewHolder;
+        View view;
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.bookitem, null);
+            viewHolder= new ViewHolder();
+            viewHolder.bookTitle = convertView.findViewById(R.id.booktitle);
+            viewHolder.bookAuthor = convertView.findViewById(R.id.bookauthor);
+            viewHolder.bookGenre = convertView.findViewById(R.id.bookgenreimg);
+            viewHolder.goToBook = convertView.findViewById(R.id.gotobook);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
-        return view;
+        Book book = getItem(position);
+        viewHolder.bookTitle.setText(book.getTitle());
+        viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
+        if (findImg(book)!=-1) {
+            viewHolder.bookGenre.setImageResource(findImg(book));
+        }
+        viewHolder.goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
+        return convertView;
     }
     public int findImg(Book book) {
         switch(book.getGenre()) {
@@ -46,4 +62,9 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
         return -1;
     }
+    private class ViewHolder{
+        TextView bookTitle, bookAuthor;
+        ImageView bookGenre, goToBook;
+    }
 }
+
