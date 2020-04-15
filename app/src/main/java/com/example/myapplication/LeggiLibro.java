@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -53,6 +54,8 @@ public class LeggiLibro extends AppCompatActivity {
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
         Button feedback = findViewById(R.id.feedback);
+        ImageView back =findViewById(R.id.frecciaIndietro);
+
         textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
         piu.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +75,13 @@ public class LeggiLibro extends AppCompatActivity {
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
                 startActivity(writeFeedback);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
