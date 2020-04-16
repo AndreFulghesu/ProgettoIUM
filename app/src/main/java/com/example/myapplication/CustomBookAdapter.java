@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustomBookAdapter extends ArrayAdapter<Book> {
 
@@ -34,6 +33,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder.bookAuthor = convertView.findViewById(R.id.bookauthor);
             viewHolder.bookGenre = convertView.findViewById(R.id.bookgenreimg);
             viewHolder.goToBook = convertView.findViewById(R.id.gotobook);
+            viewHolder.star = convertView.findViewById(R.id.starimg);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -44,6 +44,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         if (findImg(book)!=-1) {
             viewHolder.bookGenre.setImageResource(findImg(book));
         }
+        viewHolder.star.setImageResource(R.drawable.star);
         viewHolder.goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
         return convertView;
     }
@@ -64,7 +65,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
     }
     private class ViewHolder{
         TextView bookTitle, bookAuthor;
-        ImageView bookGenre, goToBook;
+        ImageView bookGenre, goToBook, star;
     }
 }
 
