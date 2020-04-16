@@ -13,18 +13,19 @@
 
 
 
+
         <ImageView
-            android:id="@+id/bookgenreimg"
+            android:id="@+id/starImg"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            app:srcCompat="@drawable/ic_library_books_black_24dp"
-            android:padding="5dp"/>
+            android:layout_gravity="right"
+            android:padding="5dp"
+            app:srcCompat="@drawable/ic_library_books_black_24dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
 
             <TextView
@@ -33,10 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="sans-serif-smallcaps"
+                android:padding="5dp"
                 android:text="Le cronache del Sud"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:padding="5dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/bookauthor"
@@ -44,23 +45,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="sans-serif-smallcaps"
+                android:padding="5dp"
                 android:text="Autore:Carlo Fumagalli"
                 android:textSize="14dp"
-                android:textStyle="bold"
-                android:padding="5dp"/>
+                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/gotobook"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginLeft="200dp"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/white"
-                android:textColor="@android:color/white"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bookgenreimg"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="30dp"
+            app:srcCompat="@drawable/ic_star_black_36dp"
+            android:padding="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="-42dp"
+            android:layout_marginBottom="19dp"
+            android:padding="3dp"
+            android:textSize="16dp"
+            android:text="4.5" />
+
+
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/gotobook"
+        android:layout_width="134dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/white"
+        android:textColor="@android:color/white"
+        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
 
 </RelativeLayout>
