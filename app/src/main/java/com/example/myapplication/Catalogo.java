@@ -21,7 +21,7 @@ public class Catalogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
-        ListView lst= findViewById(R.id.booklist);
+        final ListView lst= findViewById(R.id.booklist);
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Home.USER_EXTRA);
@@ -34,8 +34,9 @@ public class Catalogo extends AppCompatActivity {
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent readBook = new Intent (Catalogo.this, LeggiLibro.class);
-                readBook.putExtra("bookId", position+1);
+                Book bk = (Book) lst.getItemAtPosition(position);
+                Intent readBook = new Intent (Catalogo.this, ChapterList.class);
+                readBook.putExtra("bookId", bk.getId());
                 startActivity(readBook);
             }
         });
