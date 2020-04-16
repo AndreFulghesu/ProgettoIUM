@@ -14,8 +14,13 @@ import java.util.ArrayList;
 
 public class CustomChapterAdapter extends ArrayAdapter<String> {
 
+    Context context;
+    ArrayList<String> strings;
+
     public CustomChapterAdapter(Context context, int resource, ArrayList<String> objects) {
         super(context, resource, objects);
+        this.context = context;
+        this.strings = objects;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class CustomChapterAdapter extends ArrayAdapter<String> {
         viewHolder.star.setImageResource(R.drawable.star);
         return convertView;
     }
-    private static class ViewHolder{
+    private class ViewHolder{
         TextView cNumber, rateNumber;
         ImageView star;
     }

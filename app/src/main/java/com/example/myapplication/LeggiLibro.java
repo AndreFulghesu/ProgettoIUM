@@ -21,7 +21,7 @@ public class LeggiLibro extends AppCompatActivity {
     User newUser;
 
     String textChapter;
-    int bookId;
+    int bookId, chapId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,21 @@ public class LeggiLibro extends AppCompatActivity {
         }
 
         if (obj != null) {
-            bookId = (int) obj;
-            Book thisBook = BookFactory.getInstance().getBookById((int)obj);
-            if (obj2 != null) {
-                textChapter = thisBook.getChapter((int)obj2).getText();
-            } else {
-                textChapter = thisBook.getChapter(1).getText();
+            try {
+                bookId = (int) obj;
+                Book thisBook = BookFactory.getInstance().getBookById(bookId);
+                if (obj2 != null) {
+                    try {
+                        chapId = (int) obj2;
+                        textChapter = thisBook.getChapter(chapId).getText();
+                    } catch (NullPointerException e) {
+                        textChapter = thisBook.getChapter(1).getText();
+
+                    }
+                }
+            } catch (NullPointerException ex) {
+                Intent goToCatalogo = new Intent (LeggiLibro.this, Catalogo.class);
+                startActivity(goToCatalogo);
             }
         }
 

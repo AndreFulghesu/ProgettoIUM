@@ -31,6 +31,7 @@ public class Catalogo extends AppCompatActivity {
         books = BookFactory.getInstance().getBooks();
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
+
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
