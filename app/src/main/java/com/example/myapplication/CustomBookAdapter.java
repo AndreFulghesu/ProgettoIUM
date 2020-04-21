@@ -44,7 +44,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         if (findImg(book)!=-1) {
             viewHolder.bookGenre.setImageResource(findImg(book));
         }
-        viewHolder.star.setImageResource(R.drawable.star);
+        viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
         return convertView;
     }

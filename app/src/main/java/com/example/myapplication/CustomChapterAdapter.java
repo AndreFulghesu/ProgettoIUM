@@ -41,7 +41,7 @@ public class CustomChapterAdapter extends ArrayAdapter<String> {
         String cNumber = getItem(position);
         viewHolder.rateNumber.setText("4.5");
         viewHolder.cNumber.setText(cNumber);
-        viewHolder.star.setImageResource(R.drawable.star);
+        viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         return convertView;
     }
     private class ViewHolder{
