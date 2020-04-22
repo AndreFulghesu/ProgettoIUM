@@ -50,7 +50,7 @@ public class FormCommento extends AppCompatActivity {
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent feedbacks = new Intent(FormCommento.this, Commenti.class);
+                Intent feedbacks = new Intent(FormCommento.this, CommentList.class);
                 startActivity(feedbacks);
             }
         });

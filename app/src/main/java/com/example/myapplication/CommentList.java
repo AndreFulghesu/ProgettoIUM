@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class Commenti extends AppCompatActivity {
+public class CommentList extends AppCompatActivity {
 
     ListView lista;
     ArrayList<String> elenco = new ArrayList<>();

@@ -5,6 +5,7 @@ public class Chapter {
     private int chaptNum;
     private String text;
 
+
     public Chapter(int bookId, int chaptNum, String text){
         this.setBookId(bookId);
         this.setChaptNum(chaptNum);
