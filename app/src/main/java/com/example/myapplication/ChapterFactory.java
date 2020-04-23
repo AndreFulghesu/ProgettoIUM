@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChapterFactory {
 
@@ -72,7 +71,7 @@ public class ChapterFactory {
     }
 
     public Chapter getChapterByChapNum (int chapNum, int bookId) {
-        List<Chapter> chapters = this.getChapters();
+        ArrayList<Chapter> chapters = this.getChapters();
         for (Chapter c : chapters) {
             if (c.getBookId()==bookId && c.getChaptNum()==chapNum) {
                 return c;
@@ -80,15 +79,4 @@ public class ChapterFactory {
         }
         return null;
     }
-    public ArrayList<String> chaptersToString(int bookId) {
-        ArrayList<String> list= new ArrayList<>();
-        ArrayList<Chapter> chaps = this.getChaptersByBookId(bookId);
-        int counter = 1;
-        for (Chapter c: chaps){
-            list.add("Capitolo " + counter);
-            counter++;
-            System.out.println("Bookid: " + bookId + "\tChapid: " + c.getChaptNum());
-        }
-        System.out.println("Fine lista");
-        return list;
-    }}
+}

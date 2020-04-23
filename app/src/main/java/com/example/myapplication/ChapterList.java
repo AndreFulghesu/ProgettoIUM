@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChapterList extends AppCompatActivity {
-    ArrayList<String> chapsString = ChapterFactory.getInstance().chaptersToString(1);
+
+    ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
+    int bookId = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,17 +27,20 @@ public class ChapterList extends AppCompatActivity {
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
-        int bookId = -1;
 
         if (obj != null) {
             bookId = (int) obj;
         }
 
-        CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapsString);
-        chapsString.clear();
-        chapsString = ChapterFactory.getInstance().chaptersToString(bookId);
+        CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapters);
+        chapters.clear();
+        chapters = ChapterFactory.getInstance().getChaptersByBookId(bookId);
+        for (Chapter c : chapters) {
+            System.out.println("Book: "+ bookId + "\tChap: "+ c.getChaptNum());
+        }
         adapter.notifyDataSetChanged();
         chapterList.setAdapter(adapter);
+
         final int finalBookId = bookId;
         chapterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

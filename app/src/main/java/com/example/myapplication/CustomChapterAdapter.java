@@ -8,19 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.Chapter;
-
 import java.util.ArrayList;
 
-public class CustomChapterAdapter extends ArrayAdapter<String> {
+public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
 
     Context context;
-    ArrayList<String> strings;
+    ArrayList<Chapter> chaps;
 
-    public CustomChapterAdapter(Context context, int resource, ArrayList<String> objects) {
+    public CustomChapterAdapter(Context context, int resource, ArrayList<Chapter> objects) {
         super(context, resource, objects);
         this.context = context;
-        this.strings = objects;
+        this.chaps = objects;
     }
 
     @Override
@@ -38,9 +36,11 @@ public class CustomChapterAdapter extends ArrayAdapter<String> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        String cNumber = getItem(position);
+        Chapter chap = getItem(position);
         viewHolder.rateNumber.setText("4.5");
-        viewHolder.cNumber.setText(cNumber);
+        assert chap != null;
+        String str = "Capitolo" + chap.getChaptNum();
+        viewHolder.cNumber.setText(str);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         return convertView;
     }
