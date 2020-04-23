@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +70,10 @@ public class CommentList extends AppCompatActivity {
         //inizio gestione layout della lista
 
         elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        for (Comment c : elencoCommenti){
+            System.out.println(c.getText());
+        }
+
         MyAdapter adatt = new MyAdapter(this, elencoCommenti);
         elencoCommenti.clear();
         elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
@@ -87,10 +93,10 @@ public class CommentList extends AppCompatActivity {
 
     }
 
-    class MyAdapter extends ArrayAdapter<String> {
+    class MyAdapter extends ArrayAdapter<Comment> {
 
         Context contesto;
-        ArrayList<Comment> elenco_commenti = new ArrayList<>();
+        ArrayList<Comment> elenco_commenti;
 
         MyAdapter (Context c, ArrayList<Comment> commenti){
             super(c,R.layout.row);
@@ -102,11 +108,19 @@ public class CommentList extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = inflater.inflate(R.layout.row,parent,false);
+
+            View row = null;
+
+            if (convertView == null) {
+                LayoutInflater inflater = ((Activity) contesto).getLayoutInflater();
+                row = inflater.inflate(R.layout.row, parent, false);
+                //Make sure the textview exists in this xml
+            } else {
+                row = convertView;
+            }
+            Log.d("SeenDroid", String.format("Get view %d", position));
             TextView autore = row.findViewById(R.id.autore);
             TextView descrizione = row.findViewById(R.id.contenuto);
-
             if (elenco_commenti.get(0) == null){
                 descrizione.setText("Nessun commento");
                 return row;
@@ -114,7 +128,6 @@ public class CommentList extends AppCompatActivity {
 
             autore.setText(elenco_commenti.get(position).getUserAuthor().getNome() + " " + elenco_commenti.get(position).getUserAuthor().getCognome());
             descrizione.setText(elenco_commenti.get(position).getText());
-
 
             return row;
 

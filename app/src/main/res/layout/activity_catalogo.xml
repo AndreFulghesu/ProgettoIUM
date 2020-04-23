@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/scrollView3"
-        android:layout_width="380dp"
-        android:layout_height="638dp"
+        android:layout_width="402dp"
+        android:layout_height="659dp"
         android:background="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
