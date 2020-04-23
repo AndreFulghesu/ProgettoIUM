@@ -5,56 +5,97 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CommentList extends AppCompatActivity {
 
     ListView lista;
-    ArrayList<String> elenco = new ArrayList<>();
-    ArrayList<String> descrizioni = new ArrayList<>();
+    User actualUser;
+    ArrayList<Comment> elencoCommenti = new ArrayList<>();
+    Chapter capitoloCorrente;
+    Book libroCorrente;
+    private int bookId,chapterId;
+    TextView numberCap, titleBook;
+    public static final String USER_EXTRA ="com.example.faber.bonusIum";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_commenti);
 
         lista = findViewById(R.id.lista1);
+        numberCap = findViewById(R.id.numberCap);
+        titleBook = findViewById(R.id.titleBook);
+        ImageView back =findViewById(R.id.frecciaIndietro);
 
-        elenco.add("Gianni vitale");
-        elenco.add("gesu il nazareno");
-        elenco.add("fabrizio sau");
-        elenco.add("Sviluppatore1");
+        Intent intent = getIntent();
+        Serializable obj = intent.getSerializableExtra("bookId");
+        Serializable obj2 = intent.getSerializableExtra("chapterId");
+        Serializable obj3 = intent.getSerializableExtra(Registrazione.USER_EXTRA);
 
-        descrizioni.add("commento molto molto bello");
-        descrizioni.add("io sicuramente potevo scriverlo meglio");
-        descrizioni.add("io ho scritto un libro bellissimo invece, ma ho voglia di scrivere un commento molto ma molto esteso" +
-                "per vedere se quei bastardi di sviluppatori hanno gestito bene la cosa");
-        descrizioni.add("Oh no ma guarda che bello");
+        if (obj != null){
+            bookId = (int) obj;
+        }
+
+        if (obj2 != null){
+            chapterId = (int) obj2;
+        }
+
+        if (obj3 != null){
+            actualUser = (User)obj3;
+        }
+
+        //gestione visualizzazione numero capitolo e titolo libro
+        capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapterId,bookId);
+        numberCap.setText("CAPITOLO " + capitoloCorrente.getChaptNum());
+
+        libroCorrente = BookFactory.getInstance().getBookById(bookId);
+        titleBook.setText(libroCorrente.getTitle());
 
 
-        MyAdapter adatt = new MyAdapter(this, elenco, descrizioni);
+        //inizio gestione layout della lista
+
+        elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        MyAdapter adatt = new MyAdapter(this, elencoCommenti);
+        elencoCommenti.clear();
+        elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        adatt.notifyDataSetChanged();
         lista.setAdapter(adatt);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent leggiLibro = new Intent(CommentList.this, LeggiLibro.class);
+                leggiLibro.putExtra(USER_EXTRA, actualUser);
+                leggiLibro.putExtra("bookId", bookId);
+                leggiLibro.putExtra("ChapterId",chapterId);
+                startActivity(leggiLibro);
+            }
+        });
 
     }
 
     class MyAdapter extends ArrayAdapter<String> {
 
         Context contesto;
-        ArrayList<String> elenco_autori = new ArrayList<>();
-        ArrayList<String> elenco_descrizione = new ArrayList<>();
+        ArrayList<Comment> elenco_commenti = new ArrayList<>();
 
-        MyAdapter (Context c, ArrayList<String> autori, ArrayList<String> descrizione){
-            super(c,R.layout.row,R.id.autore,autori);
+        MyAdapter (Context c, ArrayList<Comment> commenti){
+            super(c,R.layout.row);
             this.contesto = c;
-            this.elenco_autori = autori;
-            this.elenco_descrizione = descrizione;
+            this.elenco_commenti = commenti;
 
         }
 
@@ -66,8 +107,13 @@ public class CommentList extends AppCompatActivity {
             TextView autore = row.findViewById(R.id.autore);
             TextView descrizione = row.findViewById(R.id.contenuto);
 
-            autore.setText(elenco_autori.get(position));
-            descrizione.setText(elenco_descrizione.get(position));
+            if (elenco_commenti.get(0) == null){
+                descrizione.setText("Nessun commento");
+                return row;
+            }
+
+            autore.setText(elenco_commenti.get(position).getUserAuthor().getNome() + " " + elenco_commenti.get(position).getUserAuthor().getCognome());
+            descrizione.setText(elenco_commenti.get(position).getText());
 
 
             return row;

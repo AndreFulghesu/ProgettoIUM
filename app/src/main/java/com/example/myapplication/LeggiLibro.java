@@ -63,6 +63,7 @@ public class LeggiLibro extends AppCompatActivity {
         Button meno = findViewById(R.id.dimTextMeno);
         Button feedback = findViewById(R.id.feedback);
         ImageView back =findViewById(R.id.frecciaIndietro);
+        Button readFeedback = findViewById(R.id.readFeedback);
 
         textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
@@ -93,6 +94,18 @@ public class LeggiLibro extends AppCompatActivity {
                 catalogo.putExtra(USER_EXTRA, newUser);
                 catalogo.putExtra("bookId", bookId);
                 startActivity(catalogo);
+            }
+        });
+
+        readFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
+                commenti.putExtra(USER_EXTRA,newUser);
+                commenti.putExtra("bookId",bookId);
+                commenti.putExtra("chapterId",chapId);
+                startActivity(commenti);
+
             }
         });
     }
