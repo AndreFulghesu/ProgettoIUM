@@ -36,7 +36,8 @@ public class ChapterFactory {
                 "\n" +
                 "I libri della Rowling sono stati confrontati con Le cronache di Narnia (The Chronicles of Narnia) di C. S. Lewis[5], Il Signore degli Anelli (The Lord of the Rings) di J. R. R. Tolkien[5], il Ciclo di Earthsea di Ursula K. Le Guin[6], i romanzi di Diana Wynne Jones[7], di Philip Pullman[8] e di Jill Murphy[9].");
 
-        Chapter chap2 = new Chapter(2, 1, "Assassinio sull'Orient Express (Murder on the Orient Express) è un film del 2017 diretto, co-prodotto e interpretato da Kenneth Branagh."+
+        Chapter chap2 = new Chapter(1, 2, "Testo provvisorio per un capitolo che non verrà mai pubblicato.\n");
+        Chapter chap3 = new Chapter(2, 1, "Assassinio sull'Orient Express (Murder on the Orient Express) è un film del 2017 diretto, co-prodotto e interpretato da Kenneth Branagh."+
 
                 "Basato sull'omonimo romanzo del 1934 di Agatha Christie, il film è la seconda trasposizione cinematografica del libro dopo quella omonima del 1974 diretta da Sidney Lumet. È scritto da Michael Green e prodotto da Branagh, Ridley Scott (con la sua Scott Free Productions)," +
                 " Mark Gordon e Simon Kinberg: il film è stato girato in pellicola Ultra Panavision 70 mm, utilizzata recentemente in altri film importanti come The Hateful Eight.[1] La colonna sonora è curata da Patrick Doyle."+
@@ -45,7 +46,7 @@ public class ChapterFactory {
 
                 "Assassinio sull'Orient Express è stato distribuito nelle sale cinematografiche statunitensi il 10 novembre 2017 dalla 20th Century Fox, mentre in quelle italiane ha esordito il 30 novembre 2017 distribuito da 20th Century Fox Italia.");
 
-        Chapter chap3 = new Chapter(2, 2, "Gerusalemme, 1934. Il detective belga Hercule Poirot risolve un furto alla Basilica del Santo Sepolcro. Poirot è ossessionato dall'equilibrio e dall'ordine nella vita: in grado di vedere il mondo"+
+        Chapter chap4 = new Chapter(2, 2, "Gerusalemme, 1934. Il detective belga Hercule Poirot risolve un furto alla Basilica del Santo Sepolcro. Poirot è ossessionato dall'equilibrio e dall'ordine nella vita: in grado di vedere il mondo"+
                 "per come dovrebbe essere e non per come è, considera questa sua capacità molto utile nel risolvere i casi specie quando si tratta di smascherare una bugia. A seguito del caso a Gerusalemme, "+
                 "Poirot desidera riposare a Istanbul, ma deve tornare inaspettatamente a Londra per un altro caso. Il suo amico Bouc, direttore dell'Orient Express, gli offre una cabina sul suo treno."+
                 "Sull'Orient Express conosce un sinistro uomo d'affari - Samuel Ratchett - che desidera assumerlo come sua guardia del corpo durante i tre giorni di viaggio che deve compiere, poiché Ratchett ha ricevuto " +
@@ -56,6 +57,7 @@ public class ChapterFactory {
         chapters.add(chap1);
         chapters.add(chap2);
         chapters.add(chap3);
+        chapters.add(chap4);
         return this.chapters;
     }
 
