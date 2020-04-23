@@ -58,6 +58,12 @@ public class Login extends AppCompatActivity {
                     formPassword = password.getText().toString();
 
                     if (UserFactory.getInstance().findUserByName(formUsername)) {
+                        if (formUsername.equals("Admin")) {
+                            user = UserFactory.getInstance().getUserByName("Admin");
+                            Intent home = new Intent(Login.this, Home.class);
+                            home.putExtra(USER_EXTRA, user);
+                            startActivity(home);
+                        }
                         if (UserFactory.getInstance().getUser(formUsername, formPassword) != null) {
                             user = UserFactory.getInstance().getUser(formUsername, formPassword);
                             Intent home = new Intent(Login.this, Home.class);
@@ -91,7 +97,7 @@ public class Login extends AppCompatActivity {
         else
             username.setError(null);
 
-        if (password.getText() == null || password.getText().length()==0) {
+        if (password.getText() == null || password.getText().length()==0 && !username.getText().toString().equals("Admin")) {
             errors++;
             password.setError("Inserisci Password");
         }

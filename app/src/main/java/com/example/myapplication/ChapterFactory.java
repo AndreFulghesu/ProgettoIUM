@@ -8,7 +8,7 @@ public class ChapterFactory {
     private static ChapterFactory singleton;
 
 
-    private List<Chapter> chapters = new ArrayList<>();
+    private ArrayList<Chapter> chapters = new ArrayList<>();
 
 
     private ChapterFactory(){
@@ -21,7 +21,7 @@ public class ChapterFactory {
         return singleton;
     }
 
-    public List<Chapter> getChapters(){
+    public ArrayList<Chapter> getChapters(){
 
         Chapter chap1= new Chapter(1, 1, "Harry Potter\n" +
                 "\n" +
@@ -60,9 +60,9 @@ public class ChapterFactory {
         return this.chapters;
     }
 
-    public List<Chapter> getChaptersByBookId (int id) {
-        List<Chapter> chaptersBook = new ArrayList<>();
-        List<Chapter> chapters = this.getChapters();
+    public ArrayList<Chapter> getChaptersByBookId (int id) {
+        ArrayList<Chapter> chaptersBook = new ArrayList<>();
+        ArrayList<Chapter> chapters = this.getChapters();
         for (Chapter c : chapters) {
             if (c.getBookId()==id) {
                 chaptersBook.add(c);
@@ -80,5 +80,15 @@ public class ChapterFactory {
         }
         return null;
     }
-
-}
+    public ArrayList<String> chaptersToString(int bookId) {
+        ArrayList<String> list= new ArrayList<>();
+        ArrayList<Chapter> chaps = this.getChaptersByBookId(bookId);
+        int counter = 1;
+        for (Chapter c: chaps){
+            list.add("Capitolo " + counter);
+            counter++;
+            System.out.println("Bookid: " + bookId + "\tChapid: " + c.getChaptNum());
+        }
+        System.out.println("Fine lista");
+        return list;
+    }}

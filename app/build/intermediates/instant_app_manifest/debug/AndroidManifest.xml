@@ -27,7 +27,7 @@
         <activity android:name="com.example.myapplication.ContinuaLettura" />
         <activity android:name="com.example.myapplication.MyProfile" />
         <activity android:name="com.example.myapplication.Catalogo" />
-        <activity android:name="com.example.myapplication.Commenti" />
+        <activity android:name="com.example.myapplication.CommentList" />
         <activity android:name="com.example.myapplication.FormCommento" />
         <activity android:name="com.example.myapplication.Home" />
         <activity android:name="com.example.myapplication.Registrazione" />

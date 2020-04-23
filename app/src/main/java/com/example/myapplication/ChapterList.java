@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChapterList extends AppCompatActivity {
-    List<Chapter> chapters= ChapterFactory.getInstance().getChaptersByBookId(1);
-    ArrayList<String> chapsString = chaptersToString(chapters);
+    ArrayList<String> chapsString = ChapterFactory.getInstance().chaptersToString(1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +31,8 @@ public class ChapterList extends AppCompatActivity {
         }
 
         CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapsString);
-        chapters.clear();
-        chapters = ChapterFactory.getInstance().getChaptersByBookId(bookId);
+        chapsString.clear();
+        chapsString = ChapterFactory.getInstance().chaptersToString(bookId);
         adapter.notifyDataSetChanged();
         chapterList.setAdapter(adapter);
         final int finalBookId = bookId;
@@ -47,15 +46,5 @@ public class ChapterList extends AppCompatActivity {
                 startActivity(readBook);
             }
         });
-    }
-    public ArrayList<String> chaptersToString(List<Chapter> chaps) {
-        ArrayList<String> list= new ArrayList<>();
-        int counter = 1;
-        for (Chapter c: chaps){
-            list.add("Capitolo " + counter);
-            counter++;
-            System.out.println(c.getChaptNum());
-        }
-        return list;
     }
 }

@@ -47,9 +47,9 @@
 28        <activity android:name="com.example.myapplication.Catalogo" />
 28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:9-46
 28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:19-43
-29        <activity android:name="com.example.myapplication.Commenti" />
-29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-46
-29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-43
+29        <activity android:name="com.example.myapplication.CommentList" />
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-49
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-46
 30        <activity android:name="com.example.myapplication.FormCommento" />
 30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:9-50
 30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:19-47
