@@ -39,7 +39,7 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
         Chapter chap = getItem(position);
         viewHolder.rateNumber.setText("4.5");
         assert chap != null;
-        String str = "Capitolo" + chap.getChaptNum();
+        String str = "Capitolo " + chap.getChaptNum();
         viewHolder.cNumber.setText(str);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         return convertView;

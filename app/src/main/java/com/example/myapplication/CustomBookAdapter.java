@@ -60,6 +60,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
                 return R.drawable.policeman;
             case FANTASCIENZA:
                 return R.drawable.robot;
+            case HORROR:
+                return R.drawable.ghost;
         }
         return -1;
     }

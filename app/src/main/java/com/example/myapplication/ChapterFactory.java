@@ -54,11 +54,13 @@ public class ChapterFactory {
                 " non solo perché non lo considera un innocente, ma soprattutto perché non vuole essere coinvolto da un individuo come lui. Quella stessa notte Poirot sente strani rumori provenienti dallo scompartimento di Ratchett e vede " +
                 "qualcuno con un kimono rosso correre lungo il corridoio. Durante la medesima notte, una valanga fa deragliare il treno, costringendolo a fermarsi in attesa di soccorso dalla stazione più vicina.");
 
+        Chapter chap5 = new Chapter(3, 1, "Un giorno Fulghenzio incontrò quattro Gigi ricoperti di filigrane d'oro, ma non si fermò a salutarli.\nFine.");
+
         chapters.add(chap1);
         chapters.add(chap2);
         chapters.add(chap3);
         chapters.add(chap4);
-
+        chapters.add(chap5);
 
         return this.chapters;
     }

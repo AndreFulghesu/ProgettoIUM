@@ -8,7 +8,7 @@ public class Book {
     private Genres genre;
     private int id;
     private User author;
-    private List<Chapter> chapters;
+    private ArrayList<Chapter> chapters;
 
     public Book(String title, String plot, Genres genre, int id, User author){
         setTitle(title);
@@ -58,11 +58,13 @@ public class Book {
     public void setAuthor(User author) {
         this.author = author;
     }
-    public List<Chapter> getChapters() {
+
+    public ArrayList<Chapter> getChapters() {
         return chapters;
     }
+
     public Chapter getChapter(int chapId) {
-        List<Chapter> chapters = getChapters();
+        ArrayList<Chapter> chapters = getChapters();
         for (Chapter c: chapters){
             if (c.getChaptNum() == chapId) {
                 return c;
