@@ -1,9 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,6 +24,16 @@ public class Catalogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Catalogo Libri");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         final ListView lst= findViewById(R.id.booklist);
 
@@ -49,7 +63,31 @@ public class Catalogo extends AppCompatActivity {
             UserFactory.getInstance().printUsers();
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu1, menu);
+        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
+        MenuItem itemLogout = menu.findItem(R.id.menulogout);
+        itemProfile.setTitle("Il mio Profilo");
+        itemLogout.setTitle("Logout");
 
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menulogout:
+                Intent intent = new Intent (Catalogo.this, Login.class);
+                startActivity(intent);
+                break;
+            case R.id.menuprofilo:
+                Intent intent1 = new Intent (Catalogo.this, MyProfile.class);
+                startActivity(intent1);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

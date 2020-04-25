@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     String formUsername, formPassword;
     TextView registrazione;
     User user;
-
+    Boolean debugLogin = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,12 @@ public class Login extends AppCompatActivity {
         User utenteProva = new User("Giorgio","Delirio","Gio20","gio@gmail.com","1234");
         UserFactory.getInstance().addUser(utenteProva);
 
+        if (debugLogin) {
+            User user = UserFactory.getInstance().getUserByName("Faber123");
+            Intent intent1 = new Intent(Login.this, Home.class);
+            intent1.putExtra(USER_EXTRA, user);
+            startActivity(intent1);
+        }
 
         if (obj != null) {
             User newUser = (User) obj;

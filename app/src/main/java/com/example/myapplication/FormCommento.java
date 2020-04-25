@@ -1,26 +1,59 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 public class FormCommento extends AppCompatActivity {
+
+    int bookId, chapId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_commento);
 
+        Intent intent = getIntent();
+        Serializable objBook = intent.getSerializableExtra("bookId");
+        Serializable objChap = intent.getSerializableExtra("chapId");
+        if (objBook!=null) {
+            bookId = (int) objBook;
+        }
+        if (objChap!=null) {
+            chapId= (int) objChap;
+        }
+
         RatingBar bar = findViewById(R.id.ratingBar);
         final TextView rateMessage = findViewById(R.id.rateMessage);
         EditText feedbackMessage = findViewById(R.id.feedbackMessage);
         Button feedbackSubmit = findViewById(R.id.feedbackSubmit);
+
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.formcommentobar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goBack = new Intent(FormCommento.this, LeggiLibro.class);
+                goBack.putExtra("bookId", bookId);
+                goBack.putExtra("chapId", chapId);
+                startActivity(goBack);
+            }
+        });
+        getSupportActionBar().setTitle(null);
+
 
         bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -54,5 +87,31 @@ public class FormCommento extends AppCompatActivity {
                 startActivity(feedbacks);
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu1, menu);
+        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
+        MenuItem itemLogout = menu.findItem(R.id.menulogout);
+        itemProfile.setTitle("Il mio Profilo");
+        itemLogout.setTitle("Logout");
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menulogout:
+                Intent intent = new Intent (FormCommento.this, Login.class);
+                startActivity(intent);
+                break;
+            case R.id.menuprofilo:
+                Intent intent1 = new Intent (FormCommento.this, MyProfile.class);
+                startActivity(intent1);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

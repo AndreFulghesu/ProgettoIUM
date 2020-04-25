@@ -40,7 +40,6 @@ public class CommentList extends AppCompatActivity {
         lista = findViewById(R.id.lista1);
         numberCap = findViewById(R.id.numberCap);
         titleBook = findViewById(R.id.titleBook);
-        ImageView back =findViewById(R.id.frecciaIndietro);
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
@@ -79,17 +78,6 @@ public class CommentList extends AppCompatActivity {
         elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
         adatt.notifyDataSetChanged();
         lista.setAdapter(adatt);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent leggiLibro = new Intent(CommentList.this, LeggiLibro.class);
-                leggiLibro.putExtra(USER_EXTRA, actualUser);
-                leggiLibro.putExtra("bookId", bookId);
-                leggiLibro.putExtra("ChapterId",chapterId);
-                startActivity(leggiLibro);
-            }
-        });
 
     }
 

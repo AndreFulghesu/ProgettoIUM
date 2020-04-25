@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,10 +32,9 @@ public class LeggiLibro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leggi_libro);
         Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra("bookId");
-        Serializable obj2 = intent.getSerializableExtra("chapterId");
+        Serializable objBook = intent.getSerializableExtra("bookId");
+        Serializable objChap = intent.getSerializableExtra("chapterId");
         Serializable obj3 = intent.getSerializableExtra(Registrazione.USER_EXTRA);
-
         if (obj3 != null) {
             User newUser = (User) obj3;
             UserFactory.getInstance().addUser(newUser);
@@ -39,13 +42,13 @@ public class LeggiLibro extends AppCompatActivity {
             UserFactory.getInstance().printUsers();
         }
 
-        if (obj != null) {
+        if (objBook != null) {
             try {
-                bookId = (int) obj;
+                bookId = (int) objBook;
                 Book thisBook = BookFactory.getInstance().getBookById(bookId);
-                if (obj2 != null) {
+                if (objChap != null) {
                     try {
-                        chapId = (int) obj2;
+                        chapId = (int) objChap;
                         textChapter = thisBook.getChapter(chapId).getText();
                     } catch (NullPointerException e) {
                         textChapter = thisBook.getChapter(1).getText();
@@ -58,11 +61,25 @@ public class LeggiLibro extends AppCompatActivity {
             }
         }
 
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goBack = new Intent (LeggiLibro.this, ChapterList.class);
+                goBack.putExtra("bookId", bookId);
+                startActivity(goBack);
+            }
+        });
+
+
+        getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
+
         final TextView textBook = findViewById(R.id.textBook);
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
         Button feedback = findViewById(R.id.feedback);
-        ImageView back =findViewById(R.id.frecciaIndietro);
         Button readFeedback = findViewById(R.id.readFeedback);
 
         textBook.setText(textChapter);
@@ -71,29 +88,21 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 float newDim = textBook.getTextSize();
-                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim + 4); }
+                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim + 4);
+            }
         });
         meno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 float newDim = textBook.getTextSize();
-                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4); }
+                textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4);
+            }
         });
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
                 startActivity(writeFeedback);
-            }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent catalogo = new Intent(LeggiLibro.this, ChapterList.class);
-                catalogo.putExtra(USER_EXTRA, newUser);
-                catalogo.putExtra("bookId", bookId);
-                startActivity(catalogo);
             }
         });
 
@@ -108,5 +117,32 @@ public class LeggiLibro extends AppCompatActivity {
 
             }
         });
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu1, menu);
+        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
+        MenuItem itemLogout = menu.findItem(R.id.menulogout);
+        itemProfile.setTitle("Il mio Profilo");
+        itemLogout.setTitle("Logout");
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menulogout:
+                Intent intent = new Intent (LeggiLibro.this, Login.class);
+                startActivity(intent);
+                break;
+            case R.id.menuprofilo:
+                Intent intent1 = new Intent (LeggiLibro.this, MyProfile.class);
+                startActivity(intent1);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

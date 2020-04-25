@@ -23,13 +23,13 @@ public class Home extends AppCompatActivity
         Button myBook = findViewById(R.id.myLibro);
         Button logout = findViewById(R.id.homeLogout);
 
-        continuaLettura.setOnClickListener(new View.OnClickListener() {
+        /**continuaLettura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent continuaLettura = new Intent(Home.this, LeggiLibro.class);
                 startActivity(continuaLettura);
             }
-        });
+        });**/
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
