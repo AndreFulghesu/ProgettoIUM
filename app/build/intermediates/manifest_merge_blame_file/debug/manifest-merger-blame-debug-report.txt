@@ -18,7 +18,7 @@
 13-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:7:9-37
 14
 15    <application
-15-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:9:5-32:19
+15-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:9:5-35:19
 16        android:allowBackup="true"
 16-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:10:9-35
 17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -35,47 +35,54 @@
 23        android:testOnly="true"
 24        android:theme="@style/AppTheme.NoActionBar" >
 24-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:15:9-52
-25        <activity android:name="com.example.myapplication.ChapterList" />
-25-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-58
-25-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:19-46
-26        <activity android:name="com.example.myapplication.ContinuaLettura" />
-26-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:17:9-53
-26-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:17:19-50
-27        <activity android:name="com.example.myapplication.MyProfile" />
-27-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:18:9-47
-27-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:18:19-44
-28        <activity android:name="com.example.myapplication.Catalogo" />
-28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:9-46
-28-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:19-43
-29        <activity android:name="com.example.myapplication.CommentList" />
-29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-49
-29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-46
-30        <activity android:name="com.example.myapplication.FormCommento" />
-30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:9-50
-30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:19-47
-31        <activity android:name="com.example.myapplication.Home" />
-31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:9-42
-31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:19-39
-32        <activity android:name="com.example.myapplication.Registrazione" />
-32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:9-51
-32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:19-48
-33        <activity android:name="com.example.myapplication.LeggiLibro" />
-33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:9-48
-33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:19-45
-34        <activity android:name="com.example.myapplication.Login" >
-34-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:25:9-31:20
-34-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:25:19-40
-35            <intent-filter>
-35-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:26:13-30:29
-36                <action android:name="android.intent.action.MAIN" />
-36-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:27:17-69
-36-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:27:25-66
-37
-38                <category android:name="android.intent.category.LAUNCHER" />
-38-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:29:17-77
-38-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:29:27-74
-39            </intent-filter>
-40        </activity>
-41    </application>
-42
-43</manifest>
+25        <activity
+25-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:9-18:20
+26            android:name="com.example.myapplication.PlotPopUp"
+26-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:16:19-44
+27            android:theme="@style/AppTheme.PlotPopUp" >
+27-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:17:13-54
+28        </activity>
+29        <activity android:name="com.example.myapplication.ChapterList" />
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:9-49
+29-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:19:19-46
+30        <activity android:name="com.example.myapplication.ContinuaLettura" />
+30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:9-53
+30-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:20:19-50
+31        <activity android:name="com.example.myapplication.MyProfile" />
+31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:9-47
+31-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:21:19-44
+32        <activity android:name="com.example.myapplication.Catalogo" />
+32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:9-46
+32-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:22:19-43
+33        <activity android:name="com.example.myapplication.CommentList" />
+33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:9-49
+33-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:23:19-46
+34        <activity android:name="com.example.myapplication.FormCommento" />
+34-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:9-50
+34-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:24:19-47
+35        <activity android:name="com.example.myapplication.Home" />
+35-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:25:9-42
+35-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:25:19-39
+36        <activity android:name="com.example.myapplication.Registrazione" />
+36-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:26:9-51
+36-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:26:19-48
+37        <activity android:name="com.example.myapplication.LeggiLibro" />
+37-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:27:9-48
+37-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:27:19-45
+38        <activity android:name="com.example.myapplication.Login" >
+38-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:28:9-34:20
+38-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:28:19-40
+39            <intent-filter>
+39-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:29:13-33:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:30:17-69
+40-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:30:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:32:17-77
+42-->C:\Users\Faber\Desktop\ProgettoIUM-master\ProgettoIUM-master\ProgettoIUM\app\src\main\AndroidManifest.xml:32:27-74
+43            </intent-filter>
+44        </activity>
+45    </application>
+46
+47</manifest>

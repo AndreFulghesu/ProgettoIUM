@@ -23,6 +23,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme.NoActionBar" >
+        <activity
+            android:name="com.example.myapplication.PlotPopUp"
+            android:theme="@style/AppTheme.PlotPopUp" >
+        </activity>
         <activity android:name="com.example.myapplication.ChapterList" />
         <activity android:name="com.example.myapplication.ContinuaLettura" />
         <activity android:name="com.example.myapplication.MyProfile" />

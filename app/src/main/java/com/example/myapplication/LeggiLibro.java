@@ -125,8 +125,6 @@ public class LeggiLibro extends AppCompatActivity {
         inflater.inflate(R.menu.menu1, menu);
         MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
         MenuItem itemLogout = menu.findItem(R.id.menulogout);
-        itemProfile.setTitle("Il mio Profilo");
-        itemLogout.setTitle("Logout");
 
         return true;
     }
@@ -141,6 +139,8 @@ public class LeggiLibro extends AppCompatActivity {
             case R.id.menuprofilo:
                 Intent intent1 = new Intent (LeggiLibro.this, MyProfile.class);
                 startActivity(intent1);
+                break;
+            case R.id.report:
                 break;
         }
         return super.onOptionsItemSelected(item);

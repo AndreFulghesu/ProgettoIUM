@@ -3,7 +3,10 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,26 +14,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ChapterList extends AppCompatActivity {
 
+    Dialog plotDialog;
     ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
     User user;
     int bookId;
+    Boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter_list);
+        plotDialog = new Dialog(this);
+
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
         Serializable objUser = intent.getSerializableExtra("USER");
 
-        if (objUser!= null) {
+        if (objUser != null) {
             user = (User) objUser;
         }
 
@@ -45,8 +53,8 @@ public class ChapterList extends AppCompatActivity {
             }
         });
 
-        for (Chapter c: chapters) {
-            System.out.println("Stampa pre Gigi Book: "+ c.getBookId() + "\tChap: "+ c.getChaptNum());
+        for (Chapter c : chapters) {
+            System.out.println("Stampa pre Gigi Book: " + c.getBookId() + "\tChap: " + c.getChaptNum());
         }
 
         final ListView chapterList = findViewById(R.id.chapterlist);
@@ -69,37 +77,60 @@ public class ChapterList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = BookFactory.getInstance().getBookById(finalBookId);
-                Intent readBook = new Intent (ChapterList.this, LeggiLibro.class);
+                Intent readBook = new Intent(ChapterList.this, LeggiLibro.class);
                 readBook.putExtra("bookId", bk.getId());
-                readBook.putExtra("chapterId", position+1);
+                readBook.putExtra("chapterId", position + 1);
                 startActivity(readBook);
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
+        inflater.inflate(R.menu.menu2, menu);
         MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
         MenuItem itemLogout = menu.findItem(R.id.menulogout);
-        itemProfile.setTitle("Il mio Profilo");
-        itemLogout.setTitle("Logout");
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.bookPlot:
+                Intent seePlot = new Intent(ChapterList.this, PlotPopUp.class);
+                seePlot.putExtra("bookId", bookId);
+                startActivity(seePlot);
+                break;
             case R.id.menulogout:
-                Intent intent = new Intent (ChapterList.this, Login.class);
-                startActivity(intent);
+                Intent login = new Intent(ChapterList.this, Login.class);
+                startActivity(login);
                 break;
             case R.id.menuprofilo:
-                Intent intent1 = new Intent (ChapterList.this, MyProfile.class);
-                startActivity(intent1);
+                Intent myProfile = new Intent(ChapterList.this, MyProfile.class);
+                startActivity(myProfile);
                 break;
+            case R.id.report:
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**public void ShowPopup() {
+        TextView closePopup;
+        TextView plotText;
+        plotDialog.setContentView(R.layout.plot_popup);
+        closePopup = plotDialog.findViewById(R.id.popupclose);
+        plotText = plotDialog.findViewById(R.id.plottext);
+        plotText.setText(BookFactory.getInstance().getBookById(bookId).getPlot());
+        closePopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plotDialog.dismiss();
+            }
+        });
+        plotDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        plotDialog.show();
+    }**/
 }
