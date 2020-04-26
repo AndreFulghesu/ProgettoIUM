@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/scrollView3"
-        android:layout_width="402dp"
-        android:layout_height="659dp"
+        android:layout_width="415dp"
+        android:layout_height="786dp"
         android:background="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +28,10 @@
 
 
             <include
-                layout="@layout/toolbar"
                 android:id="@+id/catalogoToolbar"
-                />
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="67dp" />
 
             <Space
                 android:layout_width="match_parent"

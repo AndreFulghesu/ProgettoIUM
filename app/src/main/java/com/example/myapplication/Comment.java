@@ -8,10 +8,11 @@ public class Comment {
     private int bookId;
 
 
-    public Comment (String text,int chapterId,int bookId, User author_comment) {
+    public Comment(String text, int chapterId, int bookId, User author_comment) {
         setText(text);
         setCahpterId(chapterId);
         setBookId(bookId);
+        setUserAuthor(author_comment);
     }
 
     public void setText(String text){

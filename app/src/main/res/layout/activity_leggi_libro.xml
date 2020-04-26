@@ -6,20 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".LeggiLibro">
 
-    <RelativeLayout
-        android:layout_width="418dp"
-        android:layout_height="71dp"
-        android:background="#3D679B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            layout="@layout/toolbar"
-            android:id="@+id/leggilibrobar"
-            />
+    <include
+        android:id="@+id/leggilibrobar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp" />
 
-    </RelativeLayout>
+
 
     <ScrollView
         android:id="@+id/textViewer"

@@ -25,7 +25,7 @@ public class CommentList extends AppCompatActivity {
 
     ListView lista;
     User actualUser;
-    ArrayList<Comment> elencoCommenti = new ArrayList<>();
+    ArrayList<Comment> myComments = new ArrayList<>();
     Chapter capitoloCorrente;
     Book libroCorrente;
     private int bookId,chapterId;
@@ -37,9 +37,9 @@ public class CommentList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commenti);
 
-        lista = findViewById(R.id.lista1);
-        numberCap = findViewById(R.id.numberCap);
-        titleBook = findViewById(R.id.titleBook);
+        lista = findViewById(R.id.listaCommenti);
+        numberCap = findViewById(R.id.testoCapitolo);
+        titleBook = findViewById(R.id.testoLibro);
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
@@ -58,6 +58,21 @@ public class CommentList extends AppCompatActivity {
             actualUser = (User)obj3;
         }
 
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.commentiToolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goBack = new Intent(CommentList.this, LeggiLibro.class);
+                startActivity(goBack);
+            }
+        });
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setTitle("Commenti ");
+
+
         //gestione visualizzazione numero capitolo e titolo libro
         capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapterId,bookId);
         numberCap.setText("CAPITOLO " + capitoloCorrente.getChaptNum());
@@ -68,57 +83,16 @@ public class CommentList extends AppCompatActivity {
 
         //inizio gestione layout della lista
 
-        elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
-        for (Comment c : elencoCommenti){
-            System.out.println(c.getText());
+        myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        for (Comment c : myComments){
+            System.out.println(" "+c.getText());
         }
+        lista = findViewById(R.id.listaCommenti);
 
-        MyAdapter adatt = new MyAdapter(this, elencoCommenti);
-        elencoCommenti.clear();
-        elencoCommenti = CommentFactory.getInstance().getCommentId(chapterId,bookId);
-        adatt.notifyDataSetChanged();
-        lista.setAdapter(adatt);
+        CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
+        lista.setAdapter(adapter);
 
     }
 
-    class MyAdapter extends ArrayAdapter<Comment> {
 
-        Context contesto;
-        ArrayList<Comment> elenco_commenti;
-
-        MyAdapter (Context c, ArrayList<Comment> commenti){
-            super(c,R.layout.row);
-            this.contesto = c;
-            this.elenco_commenti = commenti;
-
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-            View row = null;
-
-            if (convertView == null) {
-                LayoutInflater inflater = ((Activity) contesto).getLayoutInflater();
-                row = inflater.inflate(R.layout.row, parent, false);
-                //Make sure the textview exists in this xml
-            } else {
-                row = convertView;
-            }
-            Log.d("SeenDroid", String.format("Get view %d", position));
-            TextView autore = row.findViewById(R.id.autore);
-            TextView descrizione = row.findViewById(R.id.contenuto);
-            if (elenco_commenti.get(0) == null){
-                descrizione.setText("Nessun commento");
-                return row;
-            }
-
-            autore.setText(elenco_commenti.get(position).getUserAuthor().getNome() + " " + elenco_commenti.get(position).getUserAuthor().getCognome());
-            descrizione.setText(elenco_commenti.get(position).getText());
-
-            return row;
-
-        }
-    }
 }
