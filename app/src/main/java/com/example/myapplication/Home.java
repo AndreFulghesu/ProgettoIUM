@@ -8,15 +8,24 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.widget.Button;
 
+import java.io.Serializable;
+
 public class Home extends AppCompatActivity
 {
 
-    public static final String USER_EXTRA ="com.example.faber.bonusIum";
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent = getIntent();
+        Serializable objUser = intent.getSerializableExtra("User");
+
+        if (objUser!= null) {
+            user = (User) objUser;
+        }
 
         Button continuaLettura = findViewById(R.id.continuaLettura);
         Button catalogo = findViewById(R.id.catalogo);
@@ -34,6 +43,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent gotoCatalogo = new Intent(Home.this, Catalogo.class);
+                gotoCatalogo.putExtra("User", user);
                 startActivity(gotoCatalogo);
             }
         });

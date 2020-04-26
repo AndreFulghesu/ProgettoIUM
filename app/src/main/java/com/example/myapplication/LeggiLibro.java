@@ -33,8 +33,8 @@ public class LeggiLibro extends AppCompatActivity {
         setContentView(R.layout.activity_leggi_libro);
         Intent intent = getIntent();
         Serializable objBook = intent.getSerializableExtra("bookId");
-        Serializable objChap = intent.getSerializableExtra("chapterId");
-        Serializable obj3 = intent.getSerializableExtra(Registrazione.USER_EXTRA);
+        Serializable objChap = intent.getSerializableExtra("chapId");
+        Serializable obj3 = intent.getSerializableExtra("User");
         if (obj3 != null) {
             User newUser = (User) obj3;
             UserFactory.getInstance().addUser(newUser);
@@ -69,6 +69,8 @@ public class LeggiLibro extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goBack = new Intent (LeggiLibro.this, ChapterList.class);
                 goBack.putExtra("bookId", bookId);
+                goBack.putExtra("User", newUser);
+                goBack.putExtra("chapId", chapId);
                 startActivity(goBack);
             }
         });
@@ -102,6 +104,9 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
+                writeFeedback.putExtra("User",newUser);
+                writeFeedback.putExtra("bookId",bookId);
+                writeFeedback.putExtra("chapId",chapId);
                 startActivity(writeFeedback);
             }
         });
@@ -110,9 +115,9 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
-                commenti.putExtra(USER_EXTRA,newUser);
+                commenti.putExtra("User",newUser);
                 commenti.putExtra("bookId",bookId);
-                commenti.putExtra("chapterId",chapId);
+                commenti.putExtra("chapId",chapId);
                 startActivity(commenti);
 
             }

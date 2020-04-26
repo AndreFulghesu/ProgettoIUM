@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CustomCommentAdapter extends ArrayAdapter<Comment> {
@@ -35,9 +36,10 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        viewHolder.commento.setText(commenti.get(position).getText());
-        viewHolder.commentAuthor.setText(commenti.get(position).getUserAuthor().getNome() + " " + commenti.get(position).getUserAuthor().getCognome());
+        Comment c = getItem(position);
+        System.out.println("In Adapter " + c.getUserAuthor().getUsername());
+        viewHolder.commento.setText(c.getText());
+        viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 
         return convertView;
     }

@@ -46,8 +46,8 @@ public class CommentList extends AppCompatActivity {
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
-        Serializable obj2 = intent.getSerializableExtra("chapterId");
-        Serializable obj3 = intent.getSerializableExtra(Registrazione.USER_EXTRA);
+        Serializable obj2 = intent.getSerializableExtra("chapId");
+        Serializable obj3 = intent.getSerializableExtra("User");
 
         if (obj != null){
             bookId = (int) obj;
@@ -68,6 +68,9 @@ public class CommentList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(CommentList.this, LeggiLibro.class);
+                goBack.putExtra("User", actualUser);
+                goBack.putExtra("bookId", bookId);
+                goBack.putExtra("chapId", chapterId);
                 startActivity(goBack);
             }
         });

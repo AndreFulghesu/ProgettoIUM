@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class PlotPopUp extends Activity {
 
     int bookId;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,11 @@ public class PlotPopUp extends Activity {
         setContentView(R.layout.plot_popup);
 
         Intent intent = getIntent();
-        final Serializable bookObj = intent.getSerializableExtra("bookId");
+        Serializable bookObj = intent.getSerializableExtra("bookId");
+        Serializable userObj = intent.getSerializableExtra("User");
+        if (userObj!=null) {
+            user = (User) userObj;
+        }
         if (bookObj != null) {
             bookId = (int) bookObj;
         }
@@ -40,6 +45,7 @@ public class PlotPopUp extends Activity {
             public void onClick(View v) {
                 Intent goBack = new Intent(PlotPopUp.this, ChapterList.class);
                 goBack.putExtra("bookId", bookId);
+                goBack.putExtra("User", user);
                 goBack.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(goBack);
             }

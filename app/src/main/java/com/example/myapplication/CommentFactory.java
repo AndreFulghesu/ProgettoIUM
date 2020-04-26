@@ -24,16 +24,16 @@ public class CommentFactory {
     public ArrayList<Comment> getComments () {
 
         //commenti per il libro 1
-        Comment com1 = new Comment ("Questo libro e' molto bello",1,1,UserFactory.getInstance().getUserByName("Faber123"));
-        Comment com2 = new Comment ("A me invece e' piaciuto poco",1,1,UserFactory.getInstance().getUserByName("Andre97"));
-        Comment com3 = new Comment ("Veramente entusiasmante",2,1,UserFactory.getInstance().getUserByName("Faber123"));
-        Comment com4 = new Comment ("Circa...",2,1,UserFactory.getInstance().getUserByName("Andre97"));
+        Comment com1 = new Comment ("Questo libro e' molto bello", 5, 1,1,UserFactory.getInstance().getUserByName("Faber123"));
+        Comment com2 = new Comment ("A me invece e' piaciuto poco", 2, 1,1,UserFactory.getInstance().getUserByName("Andre97"));
+        Comment com3 = new Comment ("Veramente entusiasmante", 4, 2,1,UserFactory.getInstance().getUserByName("Faber123"));
+        Comment com4 = new Comment ("Circa...",3, 2,1,UserFactory.getInstance().getUserByName("Andre97"));
 
         //commenti per il libro 2
-        Comment com5 = new Comment ("Non male come scrittura",1,2,UserFactory.getInstance().getUserByName("Gio34"));
-        Comment com6 = new Comment ("Poteva essere scritto meglio",1,2,UserFactory.getInstance().getUserByName("Faber123"));
-        Comment com7 = new Comment ("Mmmmm non mi convince",2,2,UserFactory.getInstance().getUserByName("Gio34"));
-        Comment com8 = new Comment ("Circa...",2,2,UserFactory.getInstance().getUserByName("Andre97"));
+        Comment com5 = new Comment ("Non male come scrittura", 4, 1,2,UserFactory.getInstance().getUserByName("Gio34"));
+        Comment com6 = new Comment ("Poteva essere scritto meglio", 2, 1,2,UserFactory.getInstance().getUserByName("Faber123"));
+        Comment com7 = new Comment ("Mmmmm non mi convince", 1, 2,2,UserFactory.getInstance().getUserByName("Gio34"));
+        Comment com8 = new Comment ("Circa...",3, 2,2,UserFactory.getInstance().getUserByName("Andre97"));
 
         comments.add(com1);
         comments.add(com2);
@@ -60,10 +60,10 @@ public class CommentFactory {
             }
         }
         return commentsChapter;
-
-
     }
-
+    void addComment (Comment c) {
+        this.comments.add(c);
+    }
 
 }
 

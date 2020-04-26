@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
         if (debugLogin) {
             User user = UserFactory.getInstance().getUserByName("Faber123");
             Intent intent1 = new Intent(Login.this, Home.class);
-            intent1.putExtra(USER_EXTRA, user);
+            intent1.putExtra("User", user);
             startActivity(intent1);
         }
 
@@ -64,16 +64,10 @@ public class Login extends AppCompatActivity {
                     formPassword = password.getText().toString();
 
                     if (UserFactory.getInstance().findUserByName(formUsername)) {
-                        if (formUsername.equals("Admin")) {
-                            user = UserFactory.getInstance().getUserByName("Admin");
-                            Intent home = new Intent(Login.this, Home.class);
-                            home.putExtra(USER_EXTRA, user);
-                            startActivity(home);
-                        }
                         if (UserFactory.getInstance().getUser(formUsername, formPassword) != null) {
                             user = UserFactory.getInstance().getUser(formUsername, formPassword);
                             Intent home = new Intent(Login.this, Home.class);
-                            home.putExtra(USER_EXTRA, user);
+                            home.putExtra("User", user);
                             startActivity(home);
                         } else {
                             password.setError("Password errata.");
@@ -103,7 +97,7 @@ public class Login extends AppCompatActivity {
         else
             username.setError(null);
 
-        if (password.getText() == null || password.getText().length()==0 && !username.getText().toString().equals("Admin")) {
+        if (password.getText() == null || password.getText().length()==0) {
             errors++;
             password.setError("Inserisci Password");
         }

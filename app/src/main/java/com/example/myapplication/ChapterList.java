@@ -36,7 +36,7 @@ public class ChapterList extends AppCompatActivity {
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("bookId");
-        Serializable objUser = intent.getSerializableExtra("USER");
+        Serializable objUser = intent.getSerializableExtra("User");
 
         if (objUser != null) {
             user = (User) objUser;
@@ -49,13 +49,11 @@ public class ChapterList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(ChapterList.this, Catalogo.class);
+                goBack.putExtra("User", user);
+                goBack.putExtra("bookId", bookId);
                 startActivity(goBack);
             }
         });
-
-        for (Chapter c : chapters) {
-            System.out.println("Stampa pre Gigi Book: " + c.getBookId() + "\tChap: " + c.getChaptNum());
-        }
 
         final ListView chapterList = findViewById(R.id.chapterlist);
 
@@ -78,8 +76,10 @@ public class ChapterList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = BookFactory.getInstance().getBookById(finalBookId);
                 Intent readBook = new Intent(ChapterList.this, LeggiLibro.class);
+
                 readBook.putExtra("bookId", bk.getId());
-                readBook.putExtra("chapterId", position + 1);
+                readBook.putExtra("chapId", position + 1);
+                readBook.putExtra("User", user);
                 startActivity(readBook);
             }
         });
@@ -100,6 +100,7 @@ public class ChapterList extends AppCompatActivity {
             case R.id.bookPlot:
                 Intent seePlot = new Intent(ChapterList.this, PlotPopUp.class);
                 seePlot.putExtra("bookId", bookId);
+                seePlot.putExtra("User", user);
                 startActivity(seePlot);
                 break;
             case R.id.menulogout:
@@ -116,21 +117,4 @@ public class ChapterList extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /**public void ShowPopup() {
-        TextView closePopup;
-        TextView plotText;
-        plotDialog.setContentView(R.layout.plot_popup);
-        closePopup = plotDialog.findViewById(R.id.popupclose);
-        plotText = plotDialog.findViewById(R.id.plottext);
-        plotText.setText(BookFactory.getInstance().getBookById(bookId).getPlot());
-        closePopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                plotDialog.dismiss();
-            }
-        });
-        plotDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        plotDialog.show();
-    }**/
 }

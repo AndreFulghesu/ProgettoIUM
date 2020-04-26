@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class FormCommento extends AppCompatActivity {
 
     int bookId, chapId;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,15 @@ public class FormCommento extends AppCompatActivity {
         Intent intent = getIntent();
         Serializable objBook = intent.getSerializableExtra("bookId");
         Serializable objChap = intent.getSerializableExtra("chapId");
+        Serializable objUser = intent.getSerializableExtra("User");
         if (objBook!=null) {
             bookId = (int) objBook;
         }
         if (objChap!=null) {
             chapId= (int) objChap;
+        }
+        if (objUser != null) {
+            user = (User) objUser;
         }
 
         RatingBar bar = findViewById(R.id.ratingBar);
@@ -47,6 +52,7 @@ public class FormCommento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(FormCommento.this, LeggiLibro.class);
+                goBack.putExtra("User", user);
                 goBack.putExtra("bookId", bookId);
                 goBack.putExtra("chapId", chapId);
                 startActivity(goBack);
@@ -80,10 +86,17 @@ public class FormCommento extends AppCompatActivity {
                 }
             }
         });
+        int vote = bar.getNumStars();
+        final String feedback = feedbackMessage.getText().toString();
+        Comment comment = new Comment(feedback, vote, chapId, bookId, user);
+        CommentFactory.getInstance().addComment(comment);
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent feedbacks = new Intent(FormCommento.this, CommentList.class);
+                Intent feedbacks = new Intent(FormCommento.this, LeggiLibro.class);
+                feedbacks.putExtra("User", user);
+                feedbacks.putExtra("bookId", bookId);
+                feedbacks.putExtra("chapId", chapId);
                 startActivity(feedbacks);
             }
         });

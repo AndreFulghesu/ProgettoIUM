@@ -6,13 +6,15 @@ public class Comment {
     private String text;
     private int chapterId;
     private int bookId;
+    private int vote;
 
 
-    public Comment(String text, int chapterId, int bookId, User author_comment) {
+    public Comment(String text, int vote, int chapterId, int bookId, User author_comment) {
         setText(text);
         setCahpterId(chapterId);
         setBookId(bookId);
         setUserAuthor(author_comment);
+        setVote(vote);
     }
 
     public void setText(String text){
@@ -47,5 +49,11 @@ public class Comment {
         return this.author_comment;
     }
 
+    public int getVote() {
+        return vote;
+    }
 
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
 }

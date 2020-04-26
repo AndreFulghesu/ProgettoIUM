@@ -19,6 +19,7 @@ import java.util.List;
 public class Catalogo extends AppCompatActivity {
 
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +32,19 @@ public class Catalogo extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent goBack = new Intent(Catalogo.this, Home.class);
+                goBack.putExtra("User", user);
+                startActivity(goBack);
             }
         });
 
         final ListView lst= findViewById(R.id.booklist);
 
         Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra(Home.USER_EXTRA);
+        Serializable obj = intent.getSerializableExtra("User");
+        if (obj != null) {
+            user = (User) obj;
+        }
 
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         books.clear();
@@ -51,17 +57,11 @@ public class Catalogo extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = (Book) lst.getItemAtPosition(position);
                 Intent readBook = new Intent (Catalogo.this, ChapterList.class);
+                readBook.putExtra("User", user);
                 readBook.putExtra("bookId", bk.getId());
                 startActivity(readBook);
             }
         });
-
-        if (obj != null) {
-            User newUser = (User) obj;
-            UserFactory.getInstance().addUser(newUser);
-            System.out.println(newUser.getUsername());
-            UserFactory.getInstance().printUsers();
-        }
 
     }
     @Override
@@ -83,6 +83,7 @@ public class Catalogo extends AppCompatActivity {
                 break;
             case R.id.menuprofilo:
                 Intent intent1 = new Intent (Catalogo.this, MyProfile.class);
+                intent1.putExtra("User", user);
                 startActivity(intent1);
                 break;
             case R.id.report:
