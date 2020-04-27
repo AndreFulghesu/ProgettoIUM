@@ -8,8 +8,8 @@
 
 
     <ScrollView
-        android:layout_width="396dp"
-        android:layout_height="646dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +21,8 @@
             android:orientation="vertical">
 
             <include
-                layout="@layout/toolbar"
                 android:id="@+id/myprofilebar"
-                />
+                layout="@layout/toolbar" />
 
             <Space
                 android:layout_width="match_parent"
@@ -54,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_person_black_36dp"
                 android:text=" Nome e Cognome:"
+                android:padding="5dp"
                 android:textColor="#5C5757"
                 android:textSize="20sp" />
 
@@ -61,11 +61,32 @@
                 android:id="@+id/NomeCognome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+
+                android:textStyle="italic"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/ic_person_black_36dp"
+                android:text=" Username:"
+                android:textColor="#5C5757"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/UsernameProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:textStyle="italic"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:drawableLeft="@drawable/ic_email_black_36dp"
                 android:text=" Email:"
                 android:textColor="#5C5757"
@@ -75,6 +96,8 @@
                 android:id="@+id/Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:textStyle="italic"
                 android:textSize="20sp" />
 
 

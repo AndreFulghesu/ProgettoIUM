@@ -29,7 +29,7 @@ public class Home extends AppCompatActivity
 
         Button continuaLettura = findViewById(R.id.continuaLettura);
         Button catalogo = findViewById(R.id.catalogo);
-        Button myBook = findViewById(R.id.myLibro);
+        Button myProfile = findViewById(R.id.myProfile);
         Button logout = findViewById(R.id.homeLogout);
 
         /**continuaLettura.setOnClickListener(new View.OnClickListener() {
@@ -47,9 +47,12 @@ public class Home extends AppCompatActivity
                 startActivity(gotoCatalogo);
             }
         });
-        myBook.setOnClickListener(new View.OnClickListener() {
+        myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent profile = new Intent(Home.this, MyProfile.class);
+                profile.putExtra("User", user);
+                startActivity(profile);
 
             }
         });

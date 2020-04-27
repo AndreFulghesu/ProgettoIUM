@@ -25,6 +25,8 @@ public class Catalogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
+
+
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catalogo Libri");
