@@ -28,7 +28,7 @@ public class CommentList extends AppCompatActivity {
 
     ListView lista;
     User actualUser;
-    ArrayList<Comment> myComments = new ArrayList<>();
+    ArrayList<Comment> myComments = CommentFactory.getInstance().getComments();
     Chapter capitoloCorrente;
     Book libroCorrente;
     private int bookId,chapterId;
@@ -89,13 +89,22 @@ public class CommentList extends AppCompatActivity {
 
         //inizio gestione layout della lista
 
-        myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        //myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        /*
         for (Comment c : myComments){
             System.out.println(" "+c.getText());
         }
-        lista = findViewById(R.id.listaCommenti);
+
+         */
+
 
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
+        myComments.clear();
+        myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        adapter.clear();
+        adapter.addAll(myComments);
+        adapter.notifyDataSetChanged();
+
         lista.setAdapter(adapter);
 
     }

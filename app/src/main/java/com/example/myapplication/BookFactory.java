@@ -23,6 +23,7 @@ class BookFactory {
         Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByName("Andre97"));
         Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByName("Gio34"));
 
+
         books.add(b1);
         books.add(b2);
         books.add(b3);

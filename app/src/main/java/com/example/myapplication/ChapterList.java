@@ -42,6 +42,11 @@ public class ChapterList extends AppCompatActivity {
             user = (User) objUser;
         }
 
+        if (obj != null) {
+            bookId = (int) obj;
+        }
+
+
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
@@ -56,11 +61,8 @@ public class ChapterList extends AppCompatActivity {
         });
 
         final ListView chapterList = findViewById(R.id.chapterlist);
-
-        if (obj != null) {
-            bookId = (int) obj;
-        }
         getSupportActionBar().setTitle("Capitoli: " + BookFactory.getInstance().getBookById(bookId).getTitle());
+
 
         CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapters);
         chapters.clear();
@@ -109,6 +111,9 @@ public class ChapterList extends AppCompatActivity {
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent(ChapterList.this, MyProfile.class);
+                myProfile.putExtra("User",user);
+                myProfile.putExtra("riferimento",1);
+                myProfile.putExtra("bookId",bookId);
                 startActivity(myProfile);
                 break;
             case R.id.report:

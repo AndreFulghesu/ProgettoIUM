@@ -52,6 +52,7 @@ public class Home extends AppCompatActivity
             public void onClick(View v) {
                 Intent profile = new Intent(Home.this, MyProfile.class);
                 profile.putExtra("User", user);
+                profile.putExtra("riferimento",1);
                 startActivity(profile);
 
             }

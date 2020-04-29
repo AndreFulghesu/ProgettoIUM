@@ -84,9 +84,11 @@ public class Catalogo extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.menuprofilo:
-                Intent intent1 = new Intent (Catalogo.this, MyProfile.class);
-                intent1.putExtra("User", user);
-                startActivity(intent1);
+                Intent myProfile = new Intent (Catalogo.this, MyProfile.class);
+                myProfile.putExtra("User", user);
+                myProfile.putExtra("User",user);
+                myProfile.putExtra("riferimento",0);
+                startActivity(myProfile);
                 break;
             case R.id.report:
                 break;
