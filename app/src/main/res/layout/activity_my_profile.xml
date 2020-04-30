@@ -100,6 +100,73 @@
                 android:textStyle="italic"
                 android:textSize="20sp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/ic_lock_black_36dp"
+                android:text=" Password:"
+                android:textColor="#5C5757"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/PasswordProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:textStyle="italic"
+                android:textSize="20sp"
+                android:inputType="textPassword"/>
+
+            <CheckBox
+                android:id="@+id/showPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mostra Password"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/ic_mood_black_36dp"
+                android:text=" Valutazione Media:"
+                android:textColor="#5C5757"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/star1"
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_star_black_36dp" />
+
+                <ImageView
+                    android:id="@+id/star2"
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_star_black_36dp" />
+
+                <ImageView
+                    android:id="@+id/star3"
+                    android:layout_width="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_star_black_36dp" />
+
+
+
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

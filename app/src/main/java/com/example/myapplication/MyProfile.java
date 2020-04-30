@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -12,8 +16,10 @@ import java.io.Serializable;
 public class MyProfile extends AppCompatActivity {
 
     User user;
-    TextView nome_cognome,email,username;
+    TextView nome_cognome,email,username,password;
     int riferimento,bookId;
+    CheckBox show;
+    private static int contator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +55,25 @@ public class MyProfile extends AppCompatActivity {
         nome_cognome = findViewById(R.id.NomeCognome);
         email = findViewById(R.id.Email);
         username = findViewById(R.id.UsernameProfile);
+        password = findViewById(R.id.PasswordProfile);
+        show = findViewById(R.id.showPass);
 
         nome_cognome.setText(user.getNome() + " " + user.getCognome());
         username.setText(user.getUsername());
         email.setText(user.getEmail());
+        password.setText(user.getPassword());
+
+
+       show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked){
+                   password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+               }else{
+                   password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+               }
+           }
+       });
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
