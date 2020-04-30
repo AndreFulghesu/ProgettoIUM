@@ -37,7 +37,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Comment c = getItem(position);
-        System.out.println("In Adapter " + c.getUserAuthor().getUsername());
         viewHolder.commento.setText(c.getText());
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 

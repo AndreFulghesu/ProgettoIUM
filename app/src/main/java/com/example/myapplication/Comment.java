@@ -11,7 +11,7 @@ public class Comment {
 
     public Comment(String text, int vote, int chapterId, int bookId, User author_comment) {
         setText(text);
-        setCahpterId(chapterId);
+        setChapterId(chapterId);
         setBookId(bookId);
         setUserAuthor(author_comment);
         setVote(vote);
@@ -25,11 +25,11 @@ public class Comment {
         return this.text;
     }
 
-    public void setCahpterId (int chapterId){
+    public void setChapterId (int chapterId){
         this.chapterId = chapterId;
     }
 
-    public int getCahpterId (){
+    public int getChapterId (){
         return this.chapterId;
     }
 

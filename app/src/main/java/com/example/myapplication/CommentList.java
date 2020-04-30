@@ -100,7 +100,7 @@ public class CommentList extends AppCompatActivity {
 
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
         myComments.clear();
-        myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
+        myComments = CommentFactory.getInstance().getCommentById(chapterId,bookId);
         adapter.clear();
         adapter.addAll(myComments);
         adapter.notifyDataSetChanged();

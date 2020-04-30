@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FormCommento extends AppCompatActivity {
 
@@ -40,9 +41,9 @@ public class FormCommento extends AppCompatActivity {
             user = (User) objUser;
         }
 
-        RatingBar bar = findViewById(R.id.ratingBar);
+        final RatingBar bar = findViewById(R.id.ratingBar);
         final TextView rateMessage = findViewById(R.id.rateMessage);
-        EditText feedbackMessage = findViewById(R.id.feedbackMessage);
+        final EditText feedbackMessage = findViewById(R.id.feedbackMessage);
         Button feedbackSubmit = findViewById(R.id.feedbackSubmit);
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.formcommentobar);
@@ -58,7 +59,7 @@ public class FormCommento extends AppCompatActivity {
                 startActivity(goBack);
             }
         });
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
 
 
         bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -86,14 +87,15 @@ public class FormCommento extends AppCompatActivity {
                 }
             }
         });
-        int vote = bar.getNumStars();
-        final String feedback = feedbackMessage.getText().toString();
-        Comment comment = new Comment(feedback, vote, chapId, bookId, user);
-        CommentFactory.getInstance().addComment(comment);
+
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent feedbacks = new Intent(FormCommento.this, LeggiLibro.class);
+                int vote = bar.getNumStars();
+                String feedback = feedbackMessage.getText().toString();
+                Comment comment = new Comment(feedback, vote, chapId, bookId, user);
+                CommentFactory.getInstance().addComment(comment);
+                Intent feedbacks = new Intent(FormCommento.this, CommentList.class);
                 feedbacks.putExtra("User", user);
                 feedbacks.putExtra("bookId", bookId);
                 feedbacks.putExtra("chapId", chapId);

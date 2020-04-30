@@ -21,9 +21,7 @@ import java.io.Serializable;
 public class LeggiLibro extends AppCompatActivity {
 
     private float dimText = 50;
-    public static final String USER_EXTRA ="com.example.faber.bonusIum";
-    User newUser;
-
+    User user;
     String textChapter;
     int bookId, chapId;
 
@@ -36,10 +34,7 @@ public class LeggiLibro extends AppCompatActivity {
         Serializable objChap = intent.getSerializableExtra("chapId");
         Serializable obj3 = intent.getSerializableExtra("User");
         if (obj3 != null) {
-            User newUser = (User) obj3;
-            UserFactory.getInstance().addUser(newUser);
-            System.out.println(newUser.getUsername());
-            UserFactory.getInstance().printUsers();
+            User user = (User) obj3;
         }
 
         if (objBook != null) {
@@ -69,7 +64,7 @@ public class LeggiLibro extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goBack = new Intent (LeggiLibro.this, ChapterList.class);
                 goBack.putExtra("bookId", bookId);
-                goBack.putExtra("User", newUser);
+                goBack.putExtra("User", user);
                 goBack.putExtra("chapId", chapId);
                 startActivity(goBack);
             }
@@ -104,7 +99,7 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
-                writeFeedback.putExtra("User",newUser);
+                writeFeedback.putExtra("User",user);
                 writeFeedback.putExtra("bookId",bookId);
                 writeFeedback.putExtra("chapId",chapId);
                 startActivity(writeFeedback);
@@ -115,7 +110,7 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
-                commenti.putExtra("User",newUser);
+                commenti.putExtra("User",user);
                 commenti.putExtra("bookId",bookId);
                 commenti.putExtra("chapId",chapId);
                 startActivity(commenti);
@@ -128,9 +123,6 @@ public class LeggiLibro extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu1, menu);
-        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
-        MenuItem itemLogout = menu.findItem(R.id.menulogout);
-
         return true;
     }
 

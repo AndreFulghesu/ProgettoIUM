@@ -45,24 +45,27 @@ public class CommentFactory {
         comments.add(com7);
         comments.add(com8);
 
-        return comments;
+        return this.comments;
 
     }
 
 
-    public ArrayList<Comment> getCommentId (int idChapter, int idBook){
+    public ArrayList<Comment> getCommentById (int idChapter, int idBook){
 
         ArrayList<Comment> commentsChapter = new ArrayList<>();
         List<Comment> comments = this.getComments();
         for (Comment c : comments) {
-            if (c.getCahpterId()==idChapter && c.getBookId()==idBook) {
+            if (c.getChapterId()==idChapter && c.getBookId()==idBook) {
                 commentsChapter.add(c);
             }
         }
         return commentsChapter;
     }
     void addComment (Comment c) {
-        this.comments.add(c);
+        ArrayList<Comment> newC;
+        newC = getComments();
+        newC.add(c);
+        comments = newC;
     }
 
 }
