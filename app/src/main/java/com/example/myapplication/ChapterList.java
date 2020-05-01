@@ -20,12 +20,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ChapterList extends AppCompatActivity {
-
     Dialog plotDialog;
     ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
     User user;
     int bookId;
-    Boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,12 @@ public class ChapterList extends AppCompatActivity {
         Serializable obj = intent.getSerializableExtra("bookId");
         Serializable objUser = intent.getSerializableExtra("User");
 
-        if (objUser != null) {
-            user = (User) objUser;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
 
         if (obj != null) {
@@ -109,6 +111,8 @@ public class ChapterList extends AppCompatActivity {
                 break;
             case R.id.menulogout:
                 Intent login = new Intent(ChapterList.this, Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
                 startActivity(login);
                 break;
             case R.id.menuprofilo:

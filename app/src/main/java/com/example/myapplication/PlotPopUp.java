@@ -24,8 +24,12 @@ public class PlotPopUp extends Activity {
         Intent intent = getIntent();
         Serializable bookObj = intent.getSerializableExtra("bookId");
         Serializable userObj = intent.getSerializableExtra("User");
-        if (userObj!=null) {
-            user = (User) userObj;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
         if (bookObj != null) {
             bookId = (int) bookObj;

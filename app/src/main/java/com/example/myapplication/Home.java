@@ -20,12 +20,14 @@ public class Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent = getIntent();
-        Serializable objUser = intent.getSerializableExtra("User");
-
-        if (objUser!= null) {
-            user = (User) objUser;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
+        System.out.println("Utente nello Shared " + userSession.getUserSession());
 
         Button continuaLettura = findViewById(R.id.continuaLettura);
         Button catalogo = findViewById(R.id.catalogo);
@@ -33,11 +35,11 @@ public class Home extends AppCompatActivity
         Button logout = findViewById(R.id.homeLogout);
 
         /**continuaLettura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent continuaLettura = new Intent(Home.this, LeggiLibro.class);
-                startActivity(continuaLettura);
-            }
+        @Override
+        public void onClick(View v) {
+        Intent continuaLettura = new Intent(Home.this, LeggiLibro.class);
+        startActivity(continuaLettura);
+        }
         });**/
 
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
@@ -47,7 +49,6 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent gotoCatalogo = new Intent(Home.this, Catalogo.class);
-                gotoCatalogo.putExtra("User", user);
                 startActivity(gotoCatalogo);
             }
         });
@@ -55,7 +56,6 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent profile = new Intent(Home.this, MyProfile.class);
-                profile.putExtra("User", user);
                 profile.putExtra("riferimento",1);
                 startActivity(profile);
 
@@ -66,10 +66,11 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v){
                 Intent login = new Intent(Home.this, Login.class);
+                userSession.invalidateSession();
                 startActivity(login);
             }
         });
 
 
-        }
+    }
 }

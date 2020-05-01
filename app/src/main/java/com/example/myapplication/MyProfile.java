@@ -38,8 +38,12 @@ public class MyProfile extends AppCompatActivity {
         Serializable rifer = intent.getSerializableExtra("riferimento");
         Serializable obj3 = intent.getSerializableExtra("booId");
 
-        if (objUser!= null) {
-            user = (User) objUser;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
 
         if (rifer != null){
@@ -64,16 +68,16 @@ public class MyProfile extends AppCompatActivity {
         password.setText(user.getPassword());
 
 
-       show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-           @Override
-           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               if (isChecked){
-                   password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-               }else{
-                   password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-               }
-           }
-       });
+        show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                }else{
+                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+            }
+        });
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

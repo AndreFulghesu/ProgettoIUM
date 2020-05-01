@@ -34,8 +34,12 @@ public class LeggiLibro extends AppCompatActivity {
         Serializable objChap = intent.getSerializableExtra("chapId");
         Serializable obj3 = intent.getSerializableExtra("User");
 
-        if (obj3 != null) {
-            user = (User) obj3;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
 
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
@@ -134,6 +138,8 @@ public class LeggiLibro extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menulogout:
                 Intent intent = new Intent (LeggiLibro.this, Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
                 startActivity(intent);
                 break;
             case R.id.menuprofilo:

@@ -44,8 +44,12 @@ public class Catalogo extends AppCompatActivity {
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("User");
-        if (obj != null) {
-            user = (User) obj;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
 
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
@@ -83,12 +87,13 @@ public class Catalogo extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menulogout:
                 Intent intent = new Intent (Catalogo.this, Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
                 startActivity(intent);
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent (Catalogo.this, MyProfile.class);
                 myProfile.putExtra("User", user);
-                myProfile.putExtra("User",user);
                 myProfile.putExtra("riferimento",0);
                 startActivity(myProfile);
                 break;

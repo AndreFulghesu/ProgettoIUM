@@ -56,7 +56,7 @@ public class UserFactory {
         return false;
     }
 
-    public User getUserByName (String name) {
+    public User getUserByUsername (String name) {
         List<User> users = this.getUsers();
         for (User u : users) {
             if (u.getUsername().equals(name)) {

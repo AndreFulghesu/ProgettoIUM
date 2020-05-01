@@ -27,7 +27,7 @@ import java.util.List;
 public class CommentList extends AppCompatActivity {
 
     ListView lista;
-    User actualUser;
+    User user;
     ArrayList<Comment> myComments = CommentFactory.getInstance().getComments();
     Chapter capitoloCorrente;
     Book libroCorrente;
@@ -57,8 +57,12 @@ public class CommentList extends AppCompatActivity {
             chapterId = (int) obj2;
         }
 
-        if (obj3 != null){
-            actualUser = (User)obj3;
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
         }
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.commentiToolbar);
@@ -68,7 +72,7 @@ public class CommentList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(CommentList.this, LeggiLibro.class);
-                goBack.putExtra("User", actualUser);
+                goBack.putExtra("User", user);
                 goBack.putExtra("bookId", bookId);
                 goBack.putExtra("chapId", chapterId);
                 startActivity(goBack);
@@ -125,10 +129,13 @@ public class CommentList extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menulogout:
                 Intent intent = new Intent (CommentList.this, Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
                 startActivity(intent);
                 break;
             case R.id.menuprofilo:
                 Intent intent1 = new Intent (CommentList.this, MyProfile.class);
+                intent1.putExtra("User", user);
                 startActivity(intent1);
                 break;
             case R.id.report:

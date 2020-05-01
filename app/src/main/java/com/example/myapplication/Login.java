@@ -31,20 +31,29 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final UserSession userSession = new UserSession(this);
+
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra(Registrazione.USER_EXTRA);
 
         User utenteProva = new User("Giorgio","Delirio","Gio20","gio@gmail.com","1234");
         UserFactory.getInstance().addUser(utenteProva);
 
-        /*
-        if (debugLogin) {
-            User user = UserFactory.getInstance().getUserByName("Faber123");
-            Intent intent1 = new Intent(Login.this, Home.class);
-            intent1.putExtra("User", user);
-            startActivity(intent1);
+        /**if (debugLogin) {
+         User user = UserFactory.getInstance().getUserByName("Faber123");
+         Intent intent1 = new Intent(Login.this, Home.class);
+         userSession.saveUserSession("Faber123");
+         intent1.putExtra("User", user);
+         startActivity(intent1);
+         }**/
+
+        UserSession logSession = new UserSession(getApplicationContext());
+        if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())){
+            System.out.println("In login " + UserFactory.getInstance().getUserByUsername(logSession.getUserSession()));
+            Intent sessionLogin = new Intent(Login.this, Home.class);
+            startActivity(sessionLogin);
         }
-        */
+
 
 
         if (obj != null) {
@@ -72,7 +81,7 @@ public class Login extends AppCompatActivity {
                         if (UserFactory.getInstance().getUser(formUsername, formPassword) != null) {
                             user = UserFactory.getInstance().getUser(formUsername, formPassword);
                             Intent home = new Intent(Login.this, Home.class);
-                            home.putExtra("User", user);
+                            userSession.saveUserSession(formUsername);
                             startActivity(home);
                         } else {
                             password.setError("Password errata.");
