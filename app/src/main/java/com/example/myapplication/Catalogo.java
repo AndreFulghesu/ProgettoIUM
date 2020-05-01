@@ -48,6 +48,8 @@ public class Catalogo extends AppCompatActivity {
             user = (User) obj;
         }
 
+        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
+
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         books.clear();
         books = BookFactory.getInstance().getBooks();

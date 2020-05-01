@@ -46,6 +46,8 @@ public class ChapterList extends AppCompatActivity {
             bookId = (int) obj;
         }
 
+        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
+
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);

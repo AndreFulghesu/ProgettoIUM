@@ -33,9 +33,12 @@ public class LeggiLibro extends AppCompatActivity {
         Serializable objBook = intent.getSerializableExtra("bookId");
         Serializable objChap = intent.getSerializableExtra("chapId");
         Serializable obj3 = intent.getSerializableExtra("User");
+
         if (obj3 != null) {
-            User user = (User) obj3;
+            user = (User) obj3;
         }
+
+        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
         if (objBook != null) {
             try {

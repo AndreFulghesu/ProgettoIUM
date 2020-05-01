@@ -39,6 +39,10 @@ public class Home extends AppCompatActivity
                 startActivity(continuaLettura);
             }
         });**/
+
+        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
+
+
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

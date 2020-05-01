@@ -90,12 +90,15 @@ public class CommentList extends AppCompatActivity {
         //inizio gestione layout della lista
 
         //myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
-        /*
+
         for (Comment c : myComments){
-            System.out.println(" "+c.getText());
+            System.out.println("Commento: "+c.getText());
+            //System.out.println("Autore: "+c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
         }
 
-         */
+
+
+
 
 
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);

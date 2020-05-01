@@ -9,6 +9,7 @@ public class CommentFactory {
 
 
     private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Comment> newComments = new ArrayList<>();
 
 
     private CommentFactory(){
@@ -45,6 +46,11 @@ public class CommentFactory {
         comments.add(com7);
         comments.add(com8);
 
+        for (int i =0;i<newComments.size();i++){
+
+            comments.add(newComments.get(i));
+        }
+
         return this.comments;
 
     }
@@ -62,10 +68,8 @@ public class CommentFactory {
         return commentsChapter;
     }
     void addComment (Comment c) {
-        ArrayList<Comment> newC;
-        newC = getComments();
-        newC.add(c);
-        comments = newC;
+
+        this.newComments.add(c);
     }
 
 }

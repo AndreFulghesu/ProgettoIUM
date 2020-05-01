@@ -37,12 +37,15 @@ public class Login extends AppCompatActivity {
         User utenteProva = new User("Giorgio","Delirio","Gio20","gio@gmail.com","1234");
         UserFactory.getInstance().addUser(utenteProva);
 
+        /*
         if (debugLogin) {
             User user = UserFactory.getInstance().getUserByName("Faber123");
             Intent intent1 = new Intent(Login.this, Home.class);
             intent1.putExtra("User", user);
             startActivity(intent1);
         }
+        */
+
 
         if (obj != null) {
             User newUser = (User) obj;
@@ -55,6 +58,8 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.inputPassword);
         accedi = findViewById(R.id.accedi);
         registrazione = findViewById(R.id.registrazione);
+
+
 
         accedi.setOnClickListener(new View.OnClickListener() {
             @Override

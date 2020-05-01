@@ -48,7 +48,7 @@
                 android:ems="10"
                 android:drawableLeft="@drawable/ic_person_black_36dp"
                 android:layout_marginBottom="5dp"
-                android:text="Username"
+                android:hint="Username"
                 android:inputType="textPersonName" />
 
             <Space
@@ -65,7 +65,7 @@
                 android:ems="10"
                 android:drawableLeft="@drawable/ic_lock_black_36dp"
                 android:layout_marginBottom="5dp"
-                android:text="Password"
+                android:hint="Password"
                 android:inputType="textPassword" />
 
 

@@ -41,6 +41,8 @@ public class FormCommento extends AppCompatActivity {
             user = (User) objUser;
         }
 
+        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
+
         final RatingBar bar = findViewById(R.id.ratingBar);
         final TextView rateMessage = findViewById(R.id.rateMessage);
         final EditText feedbackMessage = findViewById(R.id.feedbackMessage);
