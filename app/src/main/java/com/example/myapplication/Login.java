@@ -46,13 +46,15 @@ public class Login extends AppCompatActivity {
          intent1.putExtra("User", user);
          startActivity(intent1);
          }**/
-
+        /*
         UserSession logSession = new UserSession(getApplicationContext());
         if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())){
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(logSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
+
+         */
 
 
 
@@ -79,11 +81,14 @@ public class Login extends AppCompatActivity {
 
                     if (UserFactory.getInstance().findUserByName(formUsername)) {
                         if (UserFactory.getInstance().getUser(formUsername, formPassword) != null) {
+
                             user = UserFactory.getInstance().getUser(formUsername, formPassword);
                             Intent home = new Intent(Login.this, Home.class);
                             userSession.saveUserSession(formUsername);
                             startActivity(home);
                         } else {
+                            username.setText(formUsername = username.getText().toString());
+                            password.setText("");
                             password.setError("Password errata.");
                         }
                     } else {
