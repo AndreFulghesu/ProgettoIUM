@@ -10,6 +10,8 @@
     >
 
 
+
+
     <include
         android:id="@+id/homepage"
         layout="@layout/activity_home"
