@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/autore"
-        android:textColor="#000"
+        android:textColor="?attr/textColor"
         android:textStyle="bold"
         android:layout_margin="5dp"
         android:textSize="20dp"/>
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/contenuto"
-        android:textColor="#000"
+        android:textColor="?attr/textColor"
         android:textStyle="bold"
         android:layout_margin="5dp"
         android:textSize="15dp"/>

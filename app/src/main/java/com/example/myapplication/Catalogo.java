@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,31 +24,54 @@ public class Catalogo extends AppCompatActivity {
 
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
     User user;
+    DrawerLayout drawer;
+    Switch navSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogo);
+        final UserSession userSession = new UserSession(this);
 
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
+        setContentView(R.layout.drawer_catalogo);
+
+        drawer = findViewById(R.id.drawerCatalogo);
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catalogo Libri");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(Catalogo.this, Home.class);
-                goBack.putExtra("User", user);
-                startActivity(goBack);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
-
+        /**navSwitch = findViewById(R.id.nav_darkmode);
+        if (userSession.getTheme() == false) {
+            navSwitch.setChecked(false);
+        } else {
+            navSwitch.setChecked(true);
+        }**/
         final ListView lst= findViewById(R.id.booklist);
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("User");
-        final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -59,7 +86,6 @@ public class Catalogo extends AppCompatActivity {
         books = BookFactory.getInstance().getBooks();
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
-
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,16 +102,31 @@ public class Catalogo extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu1, menu);
-        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
-        MenuItem itemLogout = menu.findItem(R.id.menulogout);
-
         return true;
     }
-
+    private void setDarkModeSwitchListener(){
+        navSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(true);
+                    Intent changeTheme = new Intent (getApplicationContext(), Catalogo.this.getClass());
+                    startActivity(changeTheme);
+                }
+                else {
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(false);
+                    Intent changeTheme = new Intent (getApplicationContext(), Catalogo.this.getClass());
+                    startActivity(changeTheme);
+                }
+            }
+        });
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menulogout:
+            case R.id.nav_logout:
                 Intent intent = new Intent (Catalogo.this, Login.class);
                 UserSession session = new UserSession(this);
                 session.invalidateSession();

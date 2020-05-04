@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,12 +35,24 @@ public class CommentList extends AppCompatActivity {
     Book libroCorrente;
     private int bookId,chapterId;
     TextView numberCap, titleBook;
+    DrawerLayout drawer;
     public static final String USER_EXTRA ="com.example.faber.bonusIum";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commenti);
+        final UserSession userSession = new UserSession(this);
+
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
+        setContentView(R.layout.drawer_commenti);
+        drawer = findViewById(R.id.drawerCommenti);
 
         lista = findViewById(R.id.listaCommenti);
         numberCap = findViewById(R.id.testoCapitolo);
@@ -57,7 +71,6 @@ public class CommentList extends AppCompatActivity {
             chapterId = (int) obj2;
         }
 
-        final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -67,19 +80,21 @@ public class CommentList extends AppCompatActivity {
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.commentiToolbar);
         setSupportActionBar(toolbar);
-
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(CommentList.this, LeggiLibro.class);
-                goBack.putExtra("User", user);
-                goBack.putExtra("bookId", bookId);
-                goBack.putExtra("chapId", chapterId);
-                startActivity(goBack);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
 
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setTitle("Commenti ");
 
 

@@ -21,12 +21,30 @@ public class Home extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final UserSession userSession = new UserSession(this);
+
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
         setContentView(R.layout.drawer_home);
 
 
         drawer = findViewById(R.id.drawerHome);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
         getSupportActionBar().setTitle("HomePage");
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -36,15 +54,12 @@ public class Home extends AppCompatActivity
             }
         });
 
-
-        final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
             System.out.println("Errore trasmissione sessione");
             finish();
         }
-        System.out.println("Utente nello Shared " + userSession.getUserSession());
 
         ImageView continuaLettura = findViewById(R.id.continuaLettura);
         ImageView catalogo = findViewById(R.id.catalogo);

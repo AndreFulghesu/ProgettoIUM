@@ -5,15 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="?attr/backgroundColor"
     tools:context=".Catalogo">
-
 
     <LinearLayout
         android:id="@+id/scrollView3"
         android:layout_width="415dp"
         android:layout_height="786dp"
-        android:background="@android:color/background_light"
+        android:background="?attr/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -24,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="?attr/backgroundColor"
             android:orientation="vertical">
 
 
@@ -37,7 +36,7 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@android:color/white" />
+                android:background="?attr/backgroundColor" />
 
 
             <ImageView
@@ -51,22 +50,23 @@
                 android:id="@+id/viewHome"
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
-                android:background="#3D679B" />
+                android:background="?attr/spaceColor" />
 
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:background="@android:color/white" />
+                android:background="?attr/backgroundColor" />
 
             <ListView
                 android:id="@+id/booklist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@color/color_button"
+                android:divider="?attr/spaceColor"
                 android:dividerHeight="3dp" />
         </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

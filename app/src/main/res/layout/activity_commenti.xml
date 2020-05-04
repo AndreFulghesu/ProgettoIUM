@@ -4,90 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="?attr/backgroundColor"
     tools:context=".CommentList">
 
     <LinearLayout
-        android:id="@+id/scrollView3"
-        android:layout_width="410dp"
-        android:layout_height="786dp"
-        android:background="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316">
+    android:id="@+id/scrollView3"
+    android:layout_width="410dp"
+    android:layout_height="786dp"
+    android:background="?attr/backgroundColor"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.493"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.316">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundColor"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/commentiToolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="67dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="?attr/backgroundColor" />
+
+        <TextView
+            android:id="@+id/testoCapitolo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:text="CAPITOLO"
+            android:textColor="?attr/textColor"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/testoLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="?attr/textColor"
+            android:text="Harry Potter"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
 
-            <include
-                android:id="@+id/commentiToolbar"
-                layout="@layout/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="67dp" />
+        <ImageView
+            android:id="@+id/homeIcon2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_comment_black_24dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:id="@+id/testoCapitolo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="CAPITOLO"
-                android:textColor="#000"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/testoLibro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Harry Potter"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
+        <View
+            android:id="@+id/viewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:backgroundTint="?attr/spaceColor"
+            android:background="#3D679B" />
 
 
-            <ImageView
-                android:id="@+id/homeIcon2"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_comment_black_24dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="?attr/backgroundColor" />
 
-            <View
-                android:id="@+id/viewHome"
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
-                android:background="#3D679B" />
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="@android:color/white" />
-
-            <ListView
-                android:id="@+id/listaCommenti"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@color/color_button"
-                android:dividerHeight="1dp" />
-        </LinearLayout>
-
+        <ListView
+            android:id="@+id/listaCommenti"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="?attr/spaceColor"
+            android:dividerHeight="1dp" />
     </LinearLayout>
+
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

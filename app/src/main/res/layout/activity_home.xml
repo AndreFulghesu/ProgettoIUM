@@ -2,17 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="?attr/backgroundColor"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <include
             android:id="@+id/catalogoToolbar"
@@ -23,7 +21,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
 
         <ImageView
             android:id="@+id/homeIcon"
@@ -35,50 +33,52 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#3D679B"/>
+            android:background="#3D679B"
+            android:backgroundTint="?attr/spaceColor" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
 
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/flat"/>
+                    android:src="@drawable/flat" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Catalogo Libri"
+                        android:textAlignment="center"
+                        android:textColor="?attr/textColor"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/catalogo"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:id="@+id/catalogo"
-                        android:src="@drawable/ic_arrow_forward_black_24dp"/>
+                        android:src="@drawable/ic_arrow_forward_black_24dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -86,44 +86,45 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp"/>
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/person"/>
+                    android:src="@drawable/person" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Il mio Profilo"
+                        android:textAlignment="center"
+                        android:textColor="?attr/textColor"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/myProfile"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:id="@+id/myProfile"
-                        android:src="@drawable/ic_arrow_forward_black_24dp"/>
+                        android:src="@drawable/ic_arrow_forward_black_24dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -131,45 +132,46 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp"/>
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
 
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/keepreading"/>
+                    android:src="@drawable/keepreading" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Continua a leggere"
+                        android:textAlignment="center"
+                        android:textColor="?attr/textColor"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/continuaLettura"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:id="@+id/continuaLettura"
-                        android:src="@drawable/ic_arrow_forward_black_24dp"/>
+                        android:src="@drawable/ic_arrow_forward_black_24dp" />
 
                 </LinearLayout>
             </LinearLayout>

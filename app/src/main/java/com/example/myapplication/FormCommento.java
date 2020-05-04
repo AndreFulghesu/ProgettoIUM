@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,11 +23,23 @@ public class FormCommento extends AppCompatActivity {
 
     int bookId, chapId;
     User user;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_commento);
+        final UserSession userSession = new UserSession(this);
+
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
+        setContentView(R.layout.drawer_formcommento);
+        drawer = findViewById(R.id.drawerFormCommento);
 
         Intent intent = getIntent();
         Serializable objBook = intent.getSerializableExtra("bookId");
@@ -37,7 +51,6 @@ public class FormCommento extends AppCompatActivity {
         if (objChap!=null) {
             chapId= (int) objChap;
         }
-        final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -54,15 +67,19 @@ public class FormCommento extends AppCompatActivity {
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.formcommentobar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(FormCommento.this, LeggiLibro.class);
-                goBack.putExtra("User", user);
-                goBack.putExtra("bookId", bookId);
-                goBack.putExtra("chapId", chapId);
-                startActivity(goBack);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
         getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());

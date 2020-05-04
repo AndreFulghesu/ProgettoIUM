@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_report"
+            android:icon="@drawable/ic_report_problem_black_24dp"
+            android:title ="Segnala un problema"
+            />
+        <item
+            android:id="@+id/nav_darkmode"
+            android:title="Dark Mode"
+            android:icon="@drawable/ic_brightness_2_black_24dp"
+            app:actionLayout="@layout/switch_drawer"
+            />
+        <item android:id="@+id/nav_logout"
+            android:icon="@drawable/logout_24dp"
+            android:title ="Logout"
+            />
+    </group>
+    <item android:title="Communicate">
+        <menu>
+            <item android:id="@+id/nav_aboutus"
+                android:icon="@drawable/about_us_24dp"
+                android:title ="About us"
+                />
+            <item android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title ="Condividi l'app"
+                />
+        </menu>
+    </item>
+
+</menu>

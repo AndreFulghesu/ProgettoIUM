@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".LeggiLibro">
 
 
@@ -14,31 +15,32 @@
         android:layout_height="58dp" />
 
 
-
     <ScrollView
         android:id="@+id/textViewer"
-        android:layout_width="404dp"
-        android:layout_height="404dp"
+        android:layout_width="379dp"
+        android:layout_height="473dp"
+        android:background="?attr/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/backgroundColor"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textBook"
                 android:layout_width="match_parent"
-                android:ellipsize="end"
-                android:padding="16dp"
-                android:layout_gravity="fill_horizontal"
-                android:gravity="fill_horizontal"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_gravity="fill_horizontal"
+                android:ellipsize="end"
+                android:gravity="fill_horizontal"
+                android:padding="16dp"
+                android:text="TextView"
+                android:textColor="?attr/textColor" />
         </LinearLayout>
     </ScrollView>
 

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?attr/backgroundColor"
     android:layout_height="60dp">
 
     <LinearLayout
@@ -15,6 +16,7 @@
             android:id="@+id/stringchapter"
             android:layout_width="205dp"
             android:layout_height="match_parent"
+            android:textColor="?attr/textColor"
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="30sp"
@@ -38,10 +40,10 @@
             android:id="@+id/ratingNumber"
             android:layout_width="wrap_content"
             android:layout_height="37dp"
+            android:textColor="?attr/textColor"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="4.5"
             android:textSize="20sp" />
     </LinearLayout>
-
 </LinearLayout>

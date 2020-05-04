@@ -1,11 +1,29 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="spaceColor">#3D679B</item>
+        <item name="backgroundColor">@drawable/gradient</item>
+        <item name="textColor">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@style/ChangeThemeAnimation</item>
+    </style>
+
+    <style name="darkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="spaceColor">#29405C</item>
+        <item name="backgroundColor">#4C4949</item>
+        <item name="textColor">@android:color/white</item>
+    </style>
+
+    <style name="ChangeThemeAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -15,10 +33,12 @@
     </style>
 
     <!-- ToolBar -->
-    <style name="ToolBarStyle" parent="Theme.AppCompat">
+    <style name="ToolBarStyle" parent="Theme.AppCompat.Light">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/black</item>
+        <item name="backToolbar">@color/color_gradient2</item>
+        <item name="android:actionOverflowMenuStyle">@android:color/black</item>
     </style>
 
     <style name="AppTheme.PlotPopUp">

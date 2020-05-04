@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -24,11 +26,23 @@ public class ChapterList extends AppCompatActivity {
     ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
     User user;
     int bookId;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chapter_list);
+        final UserSession userSession = new UserSession(this);
+
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
+        setContentView(R.layout.drawer_chapterlist);
+        drawer = findViewById(R.id.drawerChapterList);
         plotDialog = new Dialog(this);
 
 
@@ -36,7 +50,6 @@ public class ChapterList extends AppCompatActivity {
         Serializable obj = intent.getSerializableExtra("bookId");
         Serializable objUser = intent.getSerializableExtra("User");
 
-        final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -53,14 +66,18 @@ public class ChapterList extends AppCompatActivity {
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(ChapterList.this, Catalogo.class);
-                goBack.putExtra("User", user);
-                goBack.putExtra("bookId", bookId);
-                startActivity(goBack);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
 
