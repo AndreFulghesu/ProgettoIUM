@@ -72,4 +72,20 @@ public class Book {
         }
         return null;
     }
+
+    public float getAverage (){
+        float average=0;
+        int contatore=0;
+        float total = 0;
+        for(Chapter c : chapters){
+
+            total += c.getValutation();
+            contatore++;
+        }
+
+        average = total/contatore;
+        return average;
+
+    }
+
 }

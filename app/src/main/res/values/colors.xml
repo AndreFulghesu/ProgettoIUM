@@ -9,4 +9,11 @@
     <color name="toolbarGrey">#323030</color>
     <color name="color_white">#ffff</color>
     <color name="primary_blue">#3D679B</color>
+
+    <color name="red">#FF0000</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#32CD32</color>
+    <color name="blue">#0000FF</color>
+
 </resources>

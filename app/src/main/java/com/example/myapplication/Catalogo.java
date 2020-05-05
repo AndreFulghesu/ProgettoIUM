@@ -41,6 +41,11 @@ public class Catalogo extends AppCompatActivity {
             System.out.println("TEMA SCURO");
 
         }
+
+        for (Book b : books){
+            System.out.println("Media libro " +b.getAverage());
+        }
+
         setContentView(R.layout.drawer_catalogo);
 
         drawer = findViewById(R.id.drawerCatalogo);
