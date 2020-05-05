@@ -140,6 +140,7 @@ public class Catalogo extends AppCompatActivity {
                 break;
             case R.id.report:
                 break;
+
         }
         return super.onOptionsItemSelected(item);
     }

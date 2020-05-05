@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.Button;
@@ -106,5 +108,27 @@ public class Home extends AppCompatActivity
          */
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_logout:
+                Intent intent = new Intent (Home.this, Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
+                startActivity(intent);
+                break;
+            case R.id.menuprofilo:
+                Intent myProfile = new Intent (Home.this, MyProfile.class);
+                myProfile.putExtra("User", user);
+                myProfile.putExtra("riferimento",0);
+                startActivity(myProfile);
+                break;
+            case R.id.report:
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
