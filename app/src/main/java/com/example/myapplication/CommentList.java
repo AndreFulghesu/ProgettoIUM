@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentList extends AppCompatActivity {
-
+    final int classValue = 5;
     ListView lista;
     User user;
     ArrayList<Comment> myComments = CommentFactory.getInstance().getComments();

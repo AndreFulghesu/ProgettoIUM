@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import java.io.Serializable;
 
 public class Home extends AppCompatActivity
 {
+    final int classValue = 1;
     DrawerLayout drawer;
     User user;
 
@@ -35,7 +38,6 @@ public class Home extends AppCompatActivity
 
         }
         setContentView(R.layout.drawer_home);
-
 
         drawer = findViewById(R.id.drawerHome);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
@@ -76,13 +78,12 @@ public class Home extends AppCompatActivity
         }
         });**/
 
-        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
-
-
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gotoCatalogo = new Intent(Home.this, Catalogo.class);
+                userSession.setCallingActivity(classValue);
+                System.out.println(getApplicationContext().getClass().getName());
                 startActivity(gotoCatalogo);
             }
         });
@@ -121,7 +122,7 @@ public class Home extends AppCompatActivity
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent (Home.this, MyProfile.class);
-                myProfile.putExtra("User", user);
+                UserSession uSes = new UserSession(getApplicationContext());
                 myProfile.putExtra("riferimento",0);
                 startActivity(myProfile);
                 break;
@@ -130,5 +131,24 @@ public class Home extends AppCompatActivity
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("(Y)ouBook")
+                .setMessage("Sei sicuro di voler uscire dall'applicazione?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                        System.exit(0);
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

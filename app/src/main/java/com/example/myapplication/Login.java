@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 
@@ -46,31 +48,17 @@ public class Login extends AppCompatActivity {
          intent1.putExtra("User", user);
          startActivity(intent1);
          }**/
-        /*
         UserSession logSession = new UserSession(getApplicationContext());
-        if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())){
+        if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())) {
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(logSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
-        }
-
-         */
-
-
-
-        if (obj != null) {
-            User newUser = (User) obj;
-            UserFactory.getInstance().addUser(newUser);
-            System.out.println(newUser.getUsername());
-            UserFactory.getInstance().printUsers();
         }
 
         username= findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
         accedi = findViewById(R.id.accedi);
         registrazione = findViewById(R.id.registrazione);
-
-
 
         accedi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +113,22 @@ public class Login extends AppCompatActivity {
 
         return errors==0; // ritorna true se non ci sono errori
 
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("(Y)ouBook")
+                .setMessage("Sei sicuro di voler uscire dall'applicazione?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

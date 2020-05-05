@@ -22,6 +22,7 @@ import java.io.Serializable;
 
 public class LeggiLibro extends AppCompatActivity {
 
+    final int classValue = 4;
     private float dimText = 50;
     User user;
     String textChapter;
@@ -122,6 +123,7 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
+                userSession.setCallingActivity(classValue);
                 writeFeedback.putExtra("User",user);
                 writeFeedback.putExtra("bookId",bookId);
                 writeFeedback.putExtra("chapId",chapId);
@@ -133,6 +135,7 @@ public class LeggiLibro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
+                userSession.setCallingActivity(classValue);
                 commenti.putExtra("User",user);
                 commenti.putExtra("bookId",bookId);
                 commenti.putExtra("chapId",chapId);
@@ -166,5 +169,16 @@ public class LeggiLibro extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        if (callingActivity != null) {
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            goBack.putExtra("bookId", bookId);
+            startActivity(goBack);
+        }
     }
 }

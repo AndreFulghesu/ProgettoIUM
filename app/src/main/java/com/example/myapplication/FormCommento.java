@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FormCommento extends AppCompatActivity {
-
+    final int classValue = 6;
     int bookId, chapId;
     User user;
     DrawerLayout drawer;

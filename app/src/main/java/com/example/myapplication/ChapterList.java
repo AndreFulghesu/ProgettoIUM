@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ChapterList extends AppCompatActivity {
+    final int classValue = 3;
     Dialog plotDialog;
     ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
     User user;
@@ -99,7 +100,7 @@ public class ChapterList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = BookFactory.getInstance().getBookById(finalBookId);
                 Intent readBook = new Intent(ChapterList.this, LeggiLibro.class);
-
+                userSession.setCallingActivity(classValue);
                 readBook.putExtra("bookId", bk.getId());
                 readBook.putExtra("chapId", position + 1);
                 readBook.putExtra("User", user);
@@ -144,5 +145,15 @@ public class ChapterList extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        if (callingActivity != null) {
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            startActivity(goBack);
+        }
     }
 }

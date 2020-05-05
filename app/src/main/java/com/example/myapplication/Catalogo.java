@@ -22,6 +22,7 @@ import java.util.List;
 
 public class Catalogo extends AppCompatActivity {
 
+    final int classValue = 2;
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
     User user;
     DrawerLayout drawer;
@@ -91,6 +92,7 @@ public class Catalogo extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = (Book) lst.getItemAtPosition(position);
                 Intent readBook = new Intent (Catalogo.this, ChapterList.class);
+                userSession.setCallingActivity(classValue);
                 readBook.putExtra("User", user);
                 readBook.putExtra("bookId", bk.getId());
                 startActivity(readBook);
@@ -143,5 +145,15 @@ public class Catalogo extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        if (callingActivity != null) {
+            Intent goBack = new Intent(this.getApplicationContext(), callingActivity);
+            startActivity(goBack);
+        }
     }
 }
