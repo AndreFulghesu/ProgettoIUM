@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="color_button">#3D679B</color>
     <color name="color_gradient2" tools:ignore="ReferenceType">@drawable/gradient2</color>
+    <color name="color_gradient3" tools:ignore="ReferenceType">@drawable/gradient3</color>
     <color name="color_black">#000</color>
     <color name="toolbarGrey">#323030</color>
     <color name="color_white">#ffff</color>

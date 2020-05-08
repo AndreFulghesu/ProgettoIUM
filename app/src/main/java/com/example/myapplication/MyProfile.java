@@ -1,10 +1,16 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,12 +25,27 @@ public class MyProfile extends AppCompatActivity {
     TextView nome_cognome,email,username,password;
     int riferimento,bookId;
     CheckBox show;
+    DrawerLayout drawer;
     private static int contator;
+    final int classValue = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+
+
+        final UserSession userSession = new UserSession(this);
+        if (userSession.getTheme() == false) {
+            setTheme(R.style.AppTheme);
+            System.out.println("TEMA NORMALE");
+        } else {
+            setTheme(R.style.darkTheme);
+            System.out.println("TEMA SCURO");
+
+        }
+        setContentView(R.layout.drawer_profile);
+
+        drawer = findViewById(R.id.drawerProfile);
 
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.myprofilebar);
@@ -32,27 +53,29 @@ public class MyProfile extends AppCompatActivity {
         getSupportActionBar().setTitle("Il mio Profilo");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
+        if (userSession.getTheme() == false) {
+            toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
+        } else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        }
 
-        Intent intent = getIntent();
-        Serializable objUser = intent.getSerializableExtra("User");
-        Serializable rifer = intent.getSerializableExtra("riferimento");
-        Serializable obj3 = intent.getSerializableExtra("booId");
 
-        final UserSession userSession = new UserSession(this);
+        getSupportActionBar().setTitle("Mio Profilo");
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
             System.out.println("Errore trasmissione sessione");
             finish();
-        }
-
-        if (rifer != null){
-            riferimento = (int)rifer;
-            System.out.println(riferimento);
-        }
-
-        if (obj3 !=null){
-            bookId = (int)obj3;
         }
 
 
@@ -80,31 +103,35 @@ public class MyProfile extends AppCompatActivity {
         });
 
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                switch (riferimento) {
-
-                    case 0:
-                        Intent goBack0 = new Intent(MyProfile.this, Catalogo.class);
-                        goBack0.putExtra("User", user);
-                        startActivity(goBack0);
-                        break;
-
-                    default:
-
-                        Intent goBack1 = new Intent(MyProfile.this, Home.class);
-                        goBack1.putExtra("User", user);
-                        startActivity(goBack1);
-                        break;
 
 
-                }
+    }
 
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu1, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_logout:
+                Intent intent = new Intent (MyProfile.this, Home.class);
+                UserSession uSes = new UserSession(getApplicationContext());
+                uSes.setCallingActivity(classValue);
+                startActivity(intent);
+                break;
+            case R.id.menuprofilo:
+                Intent myProfile = new Intent (MyProfile.this, MyProfile.class);
+                UserSession uSes2 = new UserSession(getApplicationContext());
+                startActivity(myProfile);
+                break;
+            case R.id.report:
+                break;
 
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

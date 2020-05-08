@@ -91,7 +91,8 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent profile = new Intent(Home.this, MyProfile.class);
-                profile.putExtra("riferimento",1);
+                userSession.setCallingActivity(classValue);
+                System.out.println(getApplicationContext().getClass().getName());
                 startActivity(profile);
 
             }

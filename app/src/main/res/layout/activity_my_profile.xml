@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyProfile">
+    android:background="?attr/backgroundColor">
 
 
     <ScrollView
@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,7 +23,9 @@
 
             <include
                 android:id="@+id/myprofilebar"
-                layout="@layout/toolbar" />
+                layout="@layout/toolbar"
+                android:layout_width="391dp"
+                android:layout_height="wrap_content" />
 
             <Space
                 android:layout_width="match_parent"
