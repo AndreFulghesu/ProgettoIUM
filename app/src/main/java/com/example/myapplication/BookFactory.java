@@ -42,5 +42,33 @@ class BookFactory {
         return null;
     }
 
+    public ArrayList<Book> getBookByUser (User user){
+
+        ArrayList<Book> getBooksUser = new ArrayList<>();
+        ArrayList<Book> totalLibrery = this.getBooks();
+        for(Book b : totalLibrery){
+            if (b.getAuthor().getUsername().equals(user.getUsername())){
+                getBooksUser.add(b);
+            }
+        }
+
+        return getBooksUser;
+
+    }
+
+    public float getValutationTotalBookUser (User user) {
+
+        float average =0;
+        int contatore = 0;
+        ArrayList<Book> getBooksUser = this.getBookByUser(user);
+
+        for (Book b : getBooksUser) {
+            average += b.getAverage();
+            contatore++;
+        }
+
+        return average/contatore;
+
+    }
 
 }

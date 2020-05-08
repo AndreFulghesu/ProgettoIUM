@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -22,11 +23,10 @@ import java.io.Serializable;
 public class MyProfile extends AppCompatActivity {
 
     User user;
-    TextView nome_cognome,email,username,password;
-    int riferimento,bookId;
+    TextView nome_cognome,email,username,password,averageUser;
+    ImageView starAverageUser;
     CheckBox show;
     DrawerLayout drawer;
-    private static int contator;
     final int classValue = 1;
 
     @Override
@@ -47,12 +47,9 @@ public class MyProfile extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawerProfile);
 
-
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.myprofilebar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Il mio Profilo");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-
         if (userSession.getTheme() == false) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
@@ -62,7 +59,9 @@ public class MyProfile extends AppCompatActivity {
         }
 
 
-        getSupportActionBar().setTitle("Mio Profilo");
+
+
+
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,11 +83,18 @@ public class MyProfile extends AppCompatActivity {
         username = findViewById(R.id.UsernameProfile);
         password = findViewById(R.id.PasswordProfile);
         show = findViewById(R.id.showPass);
+        averageUser = findViewById(R.id.averageUser);
+        starAverageUser = findViewById(R.id.starAverageUser);
 
         nome_cognome.setText(user.getNome() + " " + user.getCognome());
         username.setText(user.getUsername());
         email.setText(user.getEmail());
         password.setText(user.getPassword());
+        float valutation= BookFactory.getInstance().getValutationTotalBookUser(user);
+        averageUser.setText(""+roundDown5(valutation));
+
+
+        setStarColor(valutation,starAverageUser);
 
 
         show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -107,12 +113,15 @@ public class MyProfile extends AppCompatActivity {
 
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu1, menu);
         return true;
     }
+
+     */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -134,4 +143,34 @@ public class MyProfile extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void setStarColor (float valutation, ImageView star){
+        if(valutation==5){
+            star.setColorFilter(getResources().getColor(R.color.blue));
+
+        }else {
+            if (valutation > 4.2f) {
+                star.setColorFilter(getResources().getColor(R.color.green));
+            } else {
+                if (valutation >= 3.2f && valutation <= 4.2f) {
+                    star.setColorFilter(getResources().getColor(R.color.yellow));
+                } else {
+                    if (valutation > 2f && valutation < 3.2f) {
+                        star.setColorFilter(getResources().getColor(R.color.orange));
+                    } else {
+                        if (valutation > 0f && valutation < 2) {
+                            star.setColorFilter(getResources().getColor(R.color.red));
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    public static double roundDown5(float d) {
+        return Math.floor(d * 1e2) / 1e2;
+    }
+
+
 }
