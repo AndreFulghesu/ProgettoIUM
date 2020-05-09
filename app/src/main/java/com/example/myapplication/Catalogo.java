@@ -100,6 +100,7 @@ public class Catalogo extends AppCompatActivity {
                 userSession.setCallingActivity(classValue);
                 readBook.putExtra("User", user);
                 readBook.putExtra("bookId", bk.getId());
+                userSession.setBookId(bk.getId());
                 startActivity(readBook);
             }
         });
@@ -155,7 +156,7 @@ public class Catalogo extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
-        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
             Intent goBack = new Intent(this.getApplicationContext(), callingActivity);
             startActivity(goBack);

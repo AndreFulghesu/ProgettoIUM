@@ -58,10 +58,16 @@ public class ChapterList extends AppCompatActivity {
             finish();
         }
 
-        if (obj != null) {
+        /***if (obj != null) {
             bookId = (int) obj;
+        }***/
+        try {
+            bookId = userSession.getBookId();
+            Book book = BookFactory.getInstance().getBookById(bookId);
+        } catch (NullPointerException e) {
+            System.out.println("Errore passaggio bookId in sessione.");
+            startActivity(new Intent (getApplicationContext(), Home.class));
         }
-
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
 
@@ -103,6 +109,7 @@ public class ChapterList extends AppCompatActivity {
                 userSession.setCallingActivity(classValue);
                 readBook.putExtra("bookId", bk.getId());
                 readBook.putExtra("chapId", position + 1);
+                userSession.setChapId(position + 1);
                 readBook.putExtra("User", user);
                 startActivity(readBook);
             }
@@ -150,7 +157,7 @@ public class ChapterList extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
-        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             startActivity(goBack);

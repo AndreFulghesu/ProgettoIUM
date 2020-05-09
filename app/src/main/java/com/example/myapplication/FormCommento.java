@@ -45,11 +45,19 @@ public class FormCommento extends AppCompatActivity {
         Serializable objBook = intent.getSerializableExtra("bookId");
         Serializable objChap = intent.getSerializableExtra("chapId");
         Serializable objUser = intent.getSerializableExtra("User");
-        if (objBook!=null) {
-            bookId = (int) objBook;
-        }
-        if (objChap!=null) {
-            chapId= (int) objChap;
+        try {
+            bookId = userSession.getBookId();
+            Book thisBook = BookFactory.getInstance().getBookById(bookId);
+            try {
+                chapId = userSession.getChapId();
+                Chapter thisChap = ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId);
+            } catch (NullPointerException e) {
+                Intent goToChapterList = new Intent (getApplicationContext(), ChapterList.class);
+                startActivity(goToChapterList);
+            }
+        } catch (NullPointerException ex) {
+            Intent goToCatalogo = new Intent (getApplicationContext(), Catalogo.class);
+            startActivity(goToCatalogo);
         }
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
@@ -153,5 +161,16 @@ public class FormCommento extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 2);
+        if (callingActivity != null) {
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            goBack.putExtra("bookId", bookId);
+            goBack.putExtra("chapId", chapId);
+            startActivity(goBack);
+        }
     }
 }

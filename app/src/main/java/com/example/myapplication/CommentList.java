@@ -33,7 +33,7 @@ public class CommentList extends AppCompatActivity {
     ArrayList<Comment> myComments = CommentFactory.getInstance().getComments();
     Chapter capitoloCorrente;
     Book libroCorrente;
-    private int bookId,chapterId;
+    private int bookId,chapId;
     TextView numberCap, titleBook;
     DrawerLayout drawer;
     public static final String USER_EXTRA ="com.example.faber.bonusIum";
@@ -63,12 +63,19 @@ public class CommentList extends AppCompatActivity {
         Serializable obj2 = intent.getSerializableExtra("chapId");
         Serializable obj3 = intent.getSerializableExtra("User");
 
-        if (obj != null){
-            bookId = (int) obj;
-        }
-
-        if (obj2 != null){
-            chapterId = (int) obj2;
+        try {
+            bookId = userSession.getBookId();
+            Book thisBook = BookFactory.getInstance().getBookById(bookId);
+            try {
+                chapId = userSession.getChapId();
+                Chapter thisChap = ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId);
+            } catch (NullPointerException e) {
+                Intent goToChapterList = new Intent (getApplicationContext(), ChapterList.class);
+                startActivity(goToChapterList);
+            }
+        } catch (NullPointerException ex) {
+            Intent goToCatalogo = new Intent (getApplicationContext(), Catalogo.class);
+            startActivity(goToCatalogo);
         }
 
         try {
@@ -99,7 +106,7 @@ public class CommentList extends AppCompatActivity {
 
 
         //gestione visualizzazione numero capitolo e titolo libro
-        capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapterId,bookId);
+        capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
         numberCap.setText("CAPITOLO " + capitoloCorrente.getChaptNum());
 
         libroCorrente = BookFactory.getInstance().getBookById(bookId);
@@ -122,7 +129,7 @@ public class CommentList extends AppCompatActivity {
 
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
         myComments.clear();
-        myComments = CommentFactory.getInstance().getCommentById(chapterId,bookId);
+        myComments = CommentFactory.getInstance().getCommentById(chapId,bookId);
         adapter.clear();
         adapter.addAll(myComments);
         adapter.notifyDataSetChanged();
@@ -158,5 +165,15 @@ public class CommentList extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 1);
+        if (callingActivity != null) {
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            goBack.putExtra("bookId", bookId);
+            goBack.putExtra("chapId", chapId);
+            startActivity(goBack);
+        }
+    }
 }

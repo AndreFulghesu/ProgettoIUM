@@ -58,23 +58,18 @@ public class LeggiLibro extends AppCompatActivity {
 
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
-        if (objBook != null) {
+        try {
+            bookId = userSession.getBookId();
+            Book thisBook = BookFactory.getInstance().getBookById(bookId);
             try {
-                bookId = (int) objBook;
-                Book thisBook = BookFactory.getInstance().getBookById(bookId);
-                if (objChap != null) {
-                    try {
-                        chapId = (int) objChap;
-                        textChapter = thisBook.getChapter(chapId).getText();
-                    } catch (NullPointerException e) {
-                        textChapter = thisBook.getChapter(1).getText();
-
-                    }
-                }
-            } catch (NullPointerException ex) {
-                Intent goToCatalogo = new Intent (LeggiLibro.this, Catalogo.class);
-                startActivity(goToCatalogo);
+                chapId = userSession.getChapId();
+                textChapter = thisBook.getChapter(chapId).getText();
+            } catch (NullPointerException e) {
+                textChapter = thisBook.getChapter(1).getText();
             }
+        } catch (NullPointerException ex) {
+            Intent goToCatalogo = new Intent (LeggiLibro.this, Catalogo.class);
+            startActivity(goToCatalogo);
         }
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
@@ -174,7 +169,7 @@ public class LeggiLibro extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
-        Class callingActivity = userSession.getActivityFromValue(userSession.getCallingActivityValue());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             goBack.putExtra("bookId", bookId);

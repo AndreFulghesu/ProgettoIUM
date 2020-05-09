@@ -13,6 +13,9 @@ public class UserSession {
     private String IS_LOGGED ="isLogged";
     private String DARK_THEME = "dark_theme";
     private String CALLING_ACTIVITY = "calling_activity";
+    private String BOOK_ID = "bookId";
+    private String CHAPTER_ID = "chapId";
+
     public UserSession(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = prefs.edit();
@@ -33,6 +36,19 @@ public class UserSession {
         editor.remove(DARK_THEME).commit();
         editor.remove(CALLING_ACTIVITY).commit();
         editor.putBoolean(IS_LOGGED, false).commit();
+    }
+
+    public void setBookId (int bookId) {
+        editor.putInt(BOOK_ID, bookId).commit();
+    }
+    public int getBookId() {
+        return prefs.getInt(BOOK_ID, -1);
+    }
+    public void setChapId (int chapId) {
+        editor.putInt(CHAPTER_ID, chapId).commit();
+    }
+    public int getChapId() {
+        return prefs.getInt(CHAPTER_ID, -1);
     }
 
     public void setTheme(Boolean switchTheme) {
@@ -90,5 +106,4 @@ public class UserSession {
                 return null;
         }
     }
-
 }
