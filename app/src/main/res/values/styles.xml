@@ -47,4 +47,13 @@
     </style>
 
 
+    <!-- Search Bar -->
+    <style name="ActionButton" parent="Theme.AppCompat.Light">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+
 </resources>

@@ -9,23 +9,33 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Home extends AppCompatActivity
 {
     final int classValue = 1;
     DrawerLayout drawer;
     User user;
+    MaterialSearchView searchView;
+    ListView listView;
+    ArrayList<Book> books = BookFactory.getInstance().getBooks();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         final UserSession userSession = new UserSession(this);
 
@@ -40,6 +50,10 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.drawer_home);
 
         drawer = findViewById(R.id.drawerHome);
+        searchView = findViewById(R.id.search_view);
+        listView = findViewById(R.id.listView);
+
+
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {
@@ -64,6 +78,71 @@ public class Home extends AppCompatActivity
             System.out.println("Errore trasmissione sessione");
             finish();
         }
+
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                listView = findViewById(R.id.listView);
+                BookAdapterSearch adapter = new BookAdapterSearch(Home.this, R.layout.book_searched, books);
+                books.clear();
+                listView.setAdapter(adapter);
+
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) { return false; }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<Book> filtered = new ArrayList<>();
+                books.clear();
+                books = BookFactory.getInstance().getBooks();
+                if (newText != null && !newText.isEmpty()) {
+                    for (Book b : books) {
+                        if (b.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                            System.out.println(b.getTitle());
+                            filtered.add(b);
+                        }
+                    }
+                    BookAdapterSearch adapter = new BookAdapterSearch(Home.this, R.layout.book_searched, filtered);
+                    listView.setAdapter(adapter);
+                } else {
+                    BookAdapterSearch adapter = new BookAdapterSearch(Home.this, R.layout.book_searched, filtered);
+                    books.clear();
+                    books = BookFactory.getInstance().getBooks();
+                    adapter.notifyDataSetChanged();
+                    listView.setAdapter(adapter);
+                }
+                return true;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book bk = (Book) listView.getItemAtPosition(position);
+                Intent readBook = new Intent (Home.this, ChapterList.class);
+                userSession.setCallingActivity(classValue);
+                readBook.putExtra("User", user);
+                readBook.putExtra("bookId", bk.getId());
+                userSession.setBookId(bk.getId());
+                startActivity(readBook);
+            }
+        });
+
+
+
+
+
+
 
         ImageView continuaLettura = findViewById(R.id.continuaLettura);
         ImageView catalogo = findViewById(R.id.catalogo);
@@ -151,5 +230,16 @@ public class Home extends AppCompatActivity
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_search,menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(searchItem);
+
+
+        return true;
     }
 }

@@ -49,11 +49,14 @@ public class Login extends AppCompatActivity {
          startActivity(intent1);
          }**/
         UserSession logSession = new UserSession(getApplicationContext());
+
         if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())) {
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(logSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
+
+
 
         username= findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
