@@ -28,11 +28,17 @@ public class LeggiLibro extends AppCompatActivity {
     String textChapter;
     int bookId, chapId;
     DrawerLayout drawer;
+    Button schermo_intero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final UserSession userSession = new UserSession(this);
+
+        //help me here
+        //collega questa roba allo schermo intero e passa il testo del libro 
+
+        schermo_intero = findViewById(R.id.schermoIntero);
 
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
@@ -44,10 +50,6 @@ public class LeggiLibro extends AppCompatActivity {
         }
         setContentView(R.layout.drawer_leggilibro);
         drawer = findViewById(R.id.drawerLeggiLibro);
-        Intent intent = getIntent();
-        Serializable objBook = intent.getSerializableExtra("bookId");
-        Serializable objChap = intent.getSerializableExtra("chapId");
-        Serializable obj3 = intent.getSerializableExtra("User");
 
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
