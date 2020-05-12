@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Search..."
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search_blue_36dp"
+        android:padding="5dp"
+        app:theme="@style/ActionButton"
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/menuprofilo"
         android:title ="profilo"

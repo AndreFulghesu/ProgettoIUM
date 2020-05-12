@@ -24,8 +24,13 @@ public class UserSession {
     public void saveUserSession(String username) {
         editor.putString(SESSION_USER, username).commit();
         editor.putBoolean(IS_LOGGED, true).commit();
-        editor.putBoolean(DARK_THEME, false).commit();
-        setTheme(true);
+        if (username.equals("Faber123")) {
+            editor.putBoolean(DARK_THEME, true).commit();
+            setTheme(false);
+        } else {
+            editor.putBoolean(DARK_THEME, false).commit();
+            setTheme(true);
+        }
     }
     public Boolean isLogged() {
         return prefs.getBoolean(IS_LOGGED, false);
@@ -52,7 +57,7 @@ public class UserSession {
     }
 
     public void setTheme(Boolean switchTheme) {
-        editor.putBoolean(DARK_THEME, switchTheme);
+        editor.putBoolean(DARK_THEME, switchTheme).commit();
     }
 
     public Boolean getTheme() {return prefs.getBoolean(DARK_THEME, false);}
@@ -83,6 +88,8 @@ public class UserSession {
                 return CommentList.class;
             case FORMCOMMENTO:
                 return FormCommento.class;
+            case MYPROFILE:
+                return MyProfile.class;
             default:
                 return null;
         }
@@ -102,6 +109,8 @@ public class UserSession {
                 return ActivitiesEnum.COMMENTI;
             case 6:
                 return ActivitiesEnum.FORMCOMMENTO;
+            case 7:
+                return ActivitiesEnum.MYPROFILE;
             default:
                 return null;
         }

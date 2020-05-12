@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,17 +20,28 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Catalogo extends AppCompatActivity {
+public class Catalogo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
 
     final int classValue = 2;
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
     User user;
+
     DrawerLayout drawer;
-    Switch navSwitch;
+    Menu drawerMenu;
+    MenuItem menuItem;
+    SwitchCompat dmSwitch;
+    NavigationView navigationView;
+    MaterialSearchView searchView;
+    View actionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +83,8 @@ public class Catalogo extends AppCompatActivity {
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-        /**navSwitch = findViewById(R.id.nav_darkmode);
-        if (userSession.getTheme() == false) {
-            navSwitch.setChecked(false);
-        } else {
-            navSwitch.setChecked(true);
-        }**/
         final ListView lst= findViewById(R.id.booklist);
 
-        Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra("User");
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -85,21 +92,97 @@ public class Catalogo extends AppCompatActivity {
             finish();
         }
 
-        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_menu_catalogo);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawerMenu = navigationView.getMenu();
+        menuItem = drawerMenu.findItem(R.id.nav_darkmode);
+        actionView = MenuItemCompat.getActionView(menuItem);
+
+        dmSwitch = actionView.findViewById(R.id.darkmode_switch);
+        if (userSession.getTheme()){
+            dmSwitch.setChecked(true);
+        } else {
+            dmSwitch.setChecked(false);
+        }
+        dmSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!userSession.getTheme()){
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(true);
+                    Intent changeTheme = new Intent (getApplicationContext(), userSession.getActivityFromValue(classValue));
+                    startActivity(changeTheme);
+                }
+                else {
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(false);
+                    Intent changeTheme = new Intent (getApplicationContext(), userSession.getActivityFromValue(classValue));
+                    startActivity(changeTheme);
+                }
+            }
+        });
 
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         books.clear();
         books = BookFactory.getInstance().getBooks();
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
+
+        searchView = findViewById(R.id.search_view);
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                CustomBookAdapter adapter = new CustomBookAdapter(getApplicationContext(), R.layout.bookitem, books);
+                books.clear();
+                lst.setAdapter(adapter);
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) { return false; }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<Book> filtered = new ArrayList<>();
+                books.clear();
+                books = BookFactory.getInstance().getBooks();
+                if (newText != null && !newText.isEmpty()) {
+                    for (Book b : books) {
+                        if (b.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                            System.out.println(b.getTitle());
+                            filtered.add(b);
+                        }
+                    }
+                    BookAdapterSearch adapter = new BookAdapterSearch(Catalogo.this, R.layout.bookitem, filtered);
+                    lst.setAdapter(adapter);
+                } else {
+                    BookAdapterSearch adapter = new BookAdapterSearch(Catalogo.this, R.layout.bookitem  , filtered);
+                    books.clear();
+                    books = BookFactory.getInstance().getBooks();
+                    adapter.notifyDataSetChanged();
+                    lst.setAdapter(adapter);
+                }
+                return true;
+            }
+        });
+
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book bk = (Book) lst.getItemAtPosition(position);
                 Intent readBook = new Intent (Catalogo.this, ChapterList.class);
                 userSession.setCallingActivity(classValue);
-                readBook.putExtra("User", user);
-                readBook.putExtra("bookId", bk.getId());
                 userSession.setBookId(bk.getId());
                 startActivity(readBook);
             }
@@ -109,40 +192,22 @@ public class Catalogo extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(searchItem);
         return true;
-    }
-    private void setDarkModeSwitchListener(){
-        navSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    UserSession userSession = new UserSession(getApplicationContext());
-                    userSession.setTheme(true);
-                    Intent changeTheme = new Intent (getApplicationContext(), Catalogo.this.getClass());
-                    startActivity(changeTheme);
-                }
-                else {
-                    UserSession userSession = new UserSession(getApplicationContext());
-                    userSession.setTheme(false);
-                    Intent changeTheme = new Intent (getApplicationContext(), Catalogo.this.getClass());
-                    startActivity(changeTheme);
-                }
-            }
-        });
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_logout:
-                Intent intent = new Intent (Catalogo.this, Login.class);
+                Intent intent = new Intent (getApplicationContext(), Login.class);
                 UserSession session = new UserSession(this);
                 session.invalidateSession();
                 startActivity(intent);
                 break;
             case R.id.menuprofilo:
-                Intent myProfile = new Intent (Catalogo.this, MyProfile.class);
-                myProfile.putExtra("User", user);
+                Intent myProfile = new Intent (getApplicationContext(), MyProfile.class);
                 myProfile.putExtra("riferimento",0);
                 startActivity(myProfile);
                 break;
@@ -161,5 +226,27 @@ public class Catalogo extends AppCompatActivity {
             Intent goBack = new Intent(this.getApplicationContext(), callingActivity);
             startActivity(goBack);
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_report:
+                break;
+            case R.id. nav_darkmode:
+                break;
+            case R.id.nav_logout:
+                Intent logOut = new Intent (getApplicationContext(), Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
+                startActivity(logOut);
+                break;
+            case R.id.nav_aboutus:
+                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }

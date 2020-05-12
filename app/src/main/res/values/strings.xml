@@ -4,4 +4,6 @@
     <string name="logo">(Y)ourBook © all right reserved Created by Fabrizio Sau, Andrea Fulghesu</string>
     <string name="registrazione">Unisciti alla più grande comunità di lettori</string>
     <string name="benvenuto">Un nuovo modo di vedere la lettura</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

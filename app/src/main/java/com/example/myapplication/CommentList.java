@@ -2,13 +2,17 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,11 +27,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommentList extends AppCompatActivity {
+public class CommentList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     final int classValue = 5;
     ListView lista;
     User user;
@@ -37,7 +43,11 @@ public class CommentList extends AppCompatActivity {
     private int bookId,chapId;
     TextView numberCap, titleBook;
     DrawerLayout drawer;
-    public static final String USER_EXTRA ="com.example.faber.bonusIum";
+    Menu drawerMenu;
+    MenuItem menuItem;
+    SwitchCompat dmSwitch;
+    NavigationView navigationView;
+    View actionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +115,39 @@ public class CommentList extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Commenti ");
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_menu_commenti);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawerMenu = navigationView.getMenu();
+        menuItem = drawerMenu.findItem(R.id.nav_darkmode);
+        actionView = MenuItemCompat.getActionView(menuItem);
+
+        dmSwitch = actionView.findViewById(R.id.darkmode_switch);
+        if (userSession.getTheme()){
+            dmSwitch.setChecked(true);
+        } else {
+            dmSwitch.setChecked(false);
+        }
+        dmSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!userSession.getTheme()){
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(true);
+                    Intent changeTheme = new Intent (getApplicationContext(), userSession.getActivityFromValue(classValue));
+                    startActivity(changeTheme);
+                }
+                else {
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(false);
+                    Intent changeTheme = new Intent (getApplicationContext(), userSession.getActivityFromValue(classValue));
+                    startActivity(changeTheme);
+                }
+            }
+        });
 
         //gestione visualizzazione numero capitolo e titolo libro
         capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
@@ -174,5 +217,26 @@ public class CommentList extends AppCompatActivity {
             userSession.setBookId(bookId);
             startActivity(goBack);
         }
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_report:
+                break;
+            case R.id. nav_darkmode:
+                break;
+            case R.id.nav_logout:
+                Intent logOut = new Intent (getApplicationContext(), Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
+                startActivity(logOut);
+                break;
+            case R.id.nav_aboutus:
+                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }
