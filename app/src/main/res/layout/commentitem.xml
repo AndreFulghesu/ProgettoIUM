@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="?attr/backgroundColor"
@@ -26,4 +27,29 @@
         android:padding="10dp"
         android:layout_margin="5dp"
         android:textSize="13dp"/>
+
+
+    <!--
+    <Button
+        android:id="@+id/favourite"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/ic_favorite_red_36dp"/>
+        -->
+
+    <com.like.LikeButton
+        app:icon_type="heart"
+        app:icon_size="15dp"
+        android:id="@+id/favourite"
+        android:layout_width="wrap_content"
+        app:liked="false"
+        app:anim_scale_factor="2.5"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"/>
+
+
 </LinearLayout>

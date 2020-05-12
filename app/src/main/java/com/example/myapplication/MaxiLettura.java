@@ -17,12 +17,12 @@ import java.io.Serializable;
 public class MaxiLettura extends AppCompatActivity {
 
     TextView testoIntero;
-    String testo;
-    // step 1: add some instance
+    final int classValue = 6;
     private float mScale = 1f;
     private ScaleGestureDetector mScaleDetector;
     GestureDetector gestureDetector;
-    private int bookId;
+    Chapter attuale;
+    private int bookId,chapId;
 
 
     @Override
@@ -31,6 +31,8 @@ public class MaxiLettura extends AppCompatActivity {
         setContentView(R.layout.activity_maxi_lettura);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        testoIntero = findViewById(R.id.testoIntero);
+
 
         final UserSession userSession = new UserSession(this);
 
@@ -43,10 +45,16 @@ public class MaxiLettura extends AppCompatActivity {
 
         }
 
+        try {
+            bookId = userSession.getBookId();
+            chapId = userSession.getChapId();
+            attuale = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
+        } catch (NullPointerException e) {
+            System.out.println("Errore passaggio bookId in sessione.");
+            startActivity(new Intent (getApplicationContext(), Home.class));
+        }
 
-
-
-
+        testoIntero.setText(attuale.getText());
 
         gestureDetector = new GestureDetector(this, new GestureListener());
 
@@ -97,6 +105,18 @@ public class MaxiLettura extends AppCompatActivity {
         public boolean onDoubleTap(MotionEvent e) {
 
             return true;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        UserSession userSession = new UserSession(getApplicationContext());
+        Class callingActivity = userSession.getActivityFromValue(classValue - 2);
+        if (callingActivity != null) {
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            goBack.putExtra("bookId", bookId);
+            goBack.putExtra("chapId", chapId);
+            startActivity(goBack);
         }
     }
 }

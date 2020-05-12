@@ -124,7 +124,7 @@ public class FormCommento extends AppCompatActivity {
             public void onClick(View v) {
                 int vote = bar.getNumStars();
                 String feedback = feedbackMessage.getText().toString();
-                Comment comment = new Comment(feedback, vote, chapId, bookId, user);
+                Comment comment = new Comment(feedback, vote, chapId, bookId, user,false);
                 CommentFactory.getInstance().addComment(comment);
                 Intent feedbacks = new Intent(FormCommento.this, CommentList.class);
                 feedbacks.putExtra("User", user);

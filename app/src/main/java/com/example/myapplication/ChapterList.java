@@ -48,8 +48,6 @@ public class ChapterList extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra("bookId");
-        Serializable objUser = intent.getSerializableExtra("User");
 
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());

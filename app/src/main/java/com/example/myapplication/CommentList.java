@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -122,11 +123,6 @@ public class CommentList extends AppCompatActivity {
             //System.out.println("Autore: "+c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
         }
 
-
-
-
-
-
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
         myComments.clear();
         myComments = CommentFactory.getInstance().getCommentById(chapId,bookId);
@@ -137,6 +133,7 @@ public class CommentList extends AppCompatActivity {
         lista.setAdapter(adapter);
 
     }
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -145,6 +142,8 @@ public class CommentList extends AppCompatActivity {
         MenuItem itemLogout = menu.findItem(R.id.menulogout);
         return true;
     }
+
+     */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -171,8 +170,8 @@ public class CommentList extends AppCompatActivity {
         Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
-            goBack.putExtra("bookId", bookId);
-            goBack.putExtra("chapId", chapId);
+            userSession.setChapId(chapId);
+            userSession.setBookId(bookId);
             startActivity(goBack);
         }
     }

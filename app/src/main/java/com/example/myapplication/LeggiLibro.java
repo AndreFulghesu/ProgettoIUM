@@ -28,7 +28,6 @@ public class LeggiLibro extends AppCompatActivity {
     String textChapter;
     int bookId, chapId;
     DrawerLayout drawer;
-    Button schermo_intero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class LeggiLibro extends AppCompatActivity {
         //help me here
         //collega questa roba allo schermo intero e passa il testo del libro 
 
-        schermo_intero = findViewById(R.id.schermoIntero);
+
 
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
@@ -99,6 +98,7 @@ public class LeggiLibro extends AppCompatActivity {
         Button meno = findViewById(R.id.dimTextMeno);
         Button feedback = findViewById(R.id.feedback);
         Button readFeedback = findViewById(R.id.readFeedback);
+        Button schermo_intero = findViewById(R.id.schermoIntero);
 
         textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
@@ -137,6 +137,18 @@ public class LeggiLibro extends AppCompatActivity {
                 commenti.putExtra("bookId",bookId);
                 commenti.putExtra("chapId",chapId);
                 startActivity(commenti);
+
+            }
+        });
+
+        schermo_intero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent maxiSchermo = new Intent(LeggiLibro.this,MaxiLettura.class);
+                userSession.setCallingActivity(classValue);
+                userSession.setBookId(bookId);
+                userSession.setChapId(chapId);
+                startActivity(maxiSchermo);
 
             }
         });

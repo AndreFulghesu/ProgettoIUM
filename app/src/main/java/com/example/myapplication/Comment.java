@@ -7,15 +7,21 @@ public class Comment {
     private int chapterId;
     private int bookId;
     private int vote;
+    private boolean like;
 
 
-    public Comment(String text, int vote, int chapterId, int bookId, User author_comment) {
+    public Comment(String text, int vote, int chapterId, int bookId, User author_comment,boolean like) {
         setText(text);
         setChapterId(chapterId);
         setBookId(bookId);
         setUserAuthor(author_comment);
         setVote(vote);
+        setLike(like);
     }
+
+    public void setLike (boolean b) { this.like = b;}
+
+    public boolean getLike () { return this.like; }
 
     public void setText(String text){
         this.text = text;
