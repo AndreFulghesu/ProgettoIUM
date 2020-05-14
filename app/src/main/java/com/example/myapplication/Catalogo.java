@@ -26,6 +26,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Catalogo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +63,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         for (Book b : books){
             System.out.println("Media libro " +b.getAverage());
         }
+
 
         setContentView(R.layout.drawer_catalogo);
 
@@ -153,6 +155,9 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             } else {
                 System.out.println("Lista non modificata");
                 BookFactory.getInstance().sortBooksByEvaluation(books);
+                for(Book b : books){
+                    System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
+                }
                 books = BookFactory.getInstance().getBooks();
             }
         } else {
@@ -163,6 +168,9 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 adapter.addAll(books);
             } else {
                 System.out.println("Lista non modificata");
+                for(Book b : books){
+                    System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
+                }
                 books = BookFactory.getInstance().getBooks();
             }
         }

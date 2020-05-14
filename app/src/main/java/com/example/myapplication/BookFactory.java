@@ -88,7 +88,11 @@ class BookFactory {
     }
 
     public ArrayList<Book> sortBooksByEvaluation(ArrayList<Book> books) {
-        Collections.sort(books, Book.evaluationComparator);
+        Collections.sort(books);
+        System.out.println("Libri ordinati:");
+        for(Book b : books){
+            System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
+        }
         return books;
     }
 

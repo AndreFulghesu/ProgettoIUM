@@ -27,6 +27,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -58,6 +59,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             System.out.println("TEMA SCURO");
 
         }
+
+
+        System.out.println("lista normale");
+        Collections.sort(books);
+        System.out.println("lista ordinata per media");
+        for (Book b : books){
+            System.out.println("Media libro " +b.getAverage());
+        }
+
         setContentView(R.layout.drawer_home);
 
         drawer = findViewById(R.id.drawerHome);

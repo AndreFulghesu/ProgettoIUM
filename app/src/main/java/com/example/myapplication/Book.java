@@ -87,15 +87,32 @@ public class Book implements Comparable<Book>{
         average = total/contatore;
         return average;
 
-    }public static Comparator<Book> evaluationComparator = new Comparator<Book>() {
+    }
+
+    /*
+    public static Comparator<Book> evaluationComparator = new Comparator<Book>() {
         @Override
         public int compare(Book o1, Book o2) {
             return o1.compareTo(o2);
         }
     };
 
+     */
+
+
+
     @Override
     public int compareTo(Book o) {
-        return (int) (this.getAverage()-o.getAverage());
+
+
+        if (this.getAverage() > o.getAverage()){
+            return 1;
+        }else{
+            if (this.getAverage() == o.getAverage()){
+                return 0;
+            }
+        }
+
+        return -1;
     }
 }
