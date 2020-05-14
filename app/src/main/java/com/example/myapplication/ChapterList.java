@@ -80,6 +80,11 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
 
+
+        System.out.println("Views del libro sono in chapter list : "+BookFactory.getInstance().getBookById(bookId).getViews());
+
+
+
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {

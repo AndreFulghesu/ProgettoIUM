@@ -61,6 +61,9 @@
                     android:layout_marginLeft="70dp"
                     android:textColor="@android:color/white"
                     app:srcCompat="@drawable/ic_remove_red_eye_black_24dp" />
+
+
+
                 <TextView
                     android:id="@+id/viewsTextView"
                     android:textColor="#000"

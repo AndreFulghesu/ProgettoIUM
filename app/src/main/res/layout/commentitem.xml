@@ -40,16 +40,23 @@
         -->
 
     <com.like.LikeButton
-        app:icon_type="heart"
-        app:icon_size="15dp"
-        android:id="@+id/favourite"
-        android:layout_width="wrap_content"
-        app:liked="false"
-        app:anim_scale_factor="2.5"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:icon_type="Star"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_gravity="bottom|end"
+        app:circle_start_color="@color/blue"
+        app:like_drawable="@drawable/ic_favorite_red_36dp"
+        app:unlike_drawable="@drawable/ic_favorite_shadows_36dp"
+        app:dots_primary_color="@color/colorAccent"
+        app:dots_secondary_color="@color/colorPrimary"
+        app:circle_end_color="@color/yellow"
+        app:icon_size="26dp"
+        app:liked="false"
+        android:id="@+id/favourite"
+        app:anim_scale_factor="2.5"
+        app:is_enabled="true"
+        />
 
 
 </LinearLayout>

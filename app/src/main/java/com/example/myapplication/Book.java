@@ -9,7 +9,7 @@ public class Book implements Comparable<Book>{
     private Genres genre;
     private int id;
     private User author;
-    private int views;
+    private int  views = 0;
     private ArrayList<Chapter> chapters;
 
     public Book(String title, String plot, Genres genre, int id, User author){
@@ -18,7 +18,6 @@ public class Book implements Comparable<Book>{
         setGenre(genre);
         setId(id);
         setAuthor(author);
-        setViews(0);
         chapters = ChapterFactory.getInstance().getChaptersByBookId(id);
     }
 
@@ -118,8 +117,8 @@ public class Book implements Comparable<Book>{
         return 1;
     }
 
-    public int getViews() {
-        return views;
+    public String getViews() {
+        return ""+this.views;
     }
 
     public void setViews(int views) {
