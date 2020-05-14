@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-public class MaxiLettura extends AppCompatActivity {
+public class  MaxiLettura extends AppCompatActivity {
 
     TextView testoIntero;
     final int classValue = 6;
@@ -23,7 +23,7 @@ public class MaxiLettura extends AppCompatActivity {
     GestureDetector gestureDetector;
     Chapter attuale;
     private int bookId,chapId;
-
+    long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +56,9 @@ public class MaxiLettura extends AppCompatActivity {
 
         testoIntero.setText(attuale.getText());
 
+        startTime = System.currentTimeMillis();
+
         gestureDetector = new GestureDetector(this, new GestureListener());
-
-
 
         mScaleDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
@@ -116,6 +116,10 @@ public class MaxiLettura extends AppCompatActivity {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             goBack.putExtra("bookId", bookId);
             goBack.putExtra("chapId", chapId);
+            long endTime = System.currentTimeMillis() - startTime;
+            if (endTime> 30000) {
+                BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+            }
             startActivity(goBack);
         }
     }

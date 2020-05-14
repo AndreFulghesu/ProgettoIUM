@@ -39,16 +39,12 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     SwitchCompat dmSwitch;
     NavigationView navigationView;
     View actionView;
+    long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final UserSession userSession = new UserSession(this);
-
-        //help me here
-        //collega questa roba allo schermo intero e passa il testo del libro 
-
-
 
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
@@ -146,6 +142,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
+        startTime = System.currentTimeMillis();
         piu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +165,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 writeFeedback.putExtra("User",user);
                 writeFeedback.putExtra("bookId",bookId);
                 writeFeedback.putExtra("chapId",chapId);
+                long endTime = System.currentTimeMillis() - startTime;
+                if (endTime> 30000) {
+                    BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+                }
                 startActivity(writeFeedback);
             }
         });
@@ -180,11 +181,14 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 commenti.putExtra("User",user);
                 commenti.putExtra("bookId",bookId);
                 commenti.putExtra("chapId",chapId);
+                long endTime = System.currentTimeMillis() - startTime;
+                if (endTime> 30000) {
+                    BookFactory.getInstance().getBookById(bookId).incrementViews();
+                }
                 startActivity(commenti);
 
             }
         });
-
         schermo_intero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +196,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 userSession.setCallingActivity(classValue);
                 userSession.setBookId(bookId);
                 userSession.setChapId(chapId);
+                long endTime = System.currentTimeMillis() - startTime;
+                if (endTime> 30000) {
+                    BookFactory.getInstance().getBookById(bookId).incrementViews();
+                }
                 startActivity(maxiSchermo);
 
             }
@@ -232,6 +240,12 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             goBack.putExtra("bookId", bookId);
             startActivity(goBack);
+            long endTime = System.currentTimeMillis() - startTime;
+            System.out.println("Tempo trascorso: " + endTime);
+            if (endTime> 30000) {
+                BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+                System.out.println("Numero di views: " + BookFactory.getInstance().getBookById(bookId).getViews());
+            }
         }
     }
     @Override

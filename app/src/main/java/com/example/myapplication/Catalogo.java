@@ -149,16 +149,17 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             if (genreFilter != null) {
                 System.out.println("Lista modificata per genere");
                 books = BookFactory.getInstance().getBooksByGenre(genreFilter);
-                BookFactory.getInstance().sortBooksByEvaluation(books);
+                Collections.sort(books);
                 adapter.clear();
                 adapter.addAll(books);
             } else {
                 System.out.println("Lista non modificata");
-                BookFactory.getInstance().sortBooksByEvaluation(books);
+                Collections.sort(books);
                 for(Book b : books){
                     System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
                 }
                 books = BookFactory.getInstance().getBooks();
+                Collections.sort(books);
             }
         } else {
             if (genreFilter != null) {

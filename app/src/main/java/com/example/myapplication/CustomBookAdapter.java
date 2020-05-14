@@ -33,7 +33,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder.bookTitle = convertView.findViewById(R.id.booktitle);
             viewHolder.bookAuthor = convertView.findViewById(R.id.bookauthor);
             viewHolder.bookGenre = convertView.findViewById(R.id.bookgenreimg);
-            viewHolder.goToBook = convertView.findViewById(R.id.gotobook);
+            viewHolder.eyeImage = convertView.findViewById(R.id.eye_views);
+            viewHolder.views = convertView.findViewById(R.id.viewsTextView);
             viewHolder.star = convertView.findViewById(R.id.starimg);
             viewHolder.averageValutation = convertView.findViewById(R.id.averageValutation);
             setStarColor(book.getAverage(),viewHolder.star);
@@ -45,11 +46,12 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
 
         viewHolder.bookTitle.setText(book.getTitle());
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
+        viewHolder.views.setText(String.valueOf(book.getViews()));
         if (findImg(book)!=-1) {
             viewHolder.bookGenre.setImageResource(findImg(book));
         }
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.goToBook.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
+        viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
         viewHolder.averageValutation.setText("" +roundDown5(book.getAverage()));
 
 
@@ -74,8 +76,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         return -1;
     }
     private class ViewHolder{
-        TextView bookTitle, bookAuthor, averageValutation;
-        ImageView bookGenre, goToBook, star;
+        TextView bookTitle, bookAuthor, averageValutation, views;
+        ImageView bookGenre, eyeImage, star;
     }
 
     public void setStarColor (float valutation, ImageView star){
