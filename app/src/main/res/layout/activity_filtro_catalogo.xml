@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FiltroCatalogo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/backgroundColor"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="?attr/backgroundColor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="?attr/backgroundColor"
+                android:text="Ordina per:"
+                android:textSize="25dp" />
+
+            <Spinner
+                android:id="@+id/spinner_ordinamento"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="?attr/backgroundColor" />
+
+            <ListView
+                android:id="@+id/filtro_listview"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/backgroundColor"
+                android:dividerHeight="3dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="?attr/backgroundColor"
+                android:text="Filtra per genere"
+                android:textSize="25dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/fantasy_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="FANTASY"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/fantascienza_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="FANTASCIENZA"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/horror_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="HORROR"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/thriller_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="THRILLER"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/storico_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="STORICO"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/poliziesco_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="20dp"
+                    android:text="POLIZIESCO"
+                    android:textSize="18dp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/salvaFiltri"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/generic_button"
+                android:text="Apporta Le modifiche"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

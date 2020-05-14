@@ -34,6 +34,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     final int classValue = 2;
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
     User user;
+    Genres genreFilter;
+    int ordNum;
 
     DrawerLayout drawer;
     Menu drawerMenu;
@@ -126,9 +128,44 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
 
+        Intent intent = getIntent();
+        Serializable obj = intent.getSerializableExtra("ORDINAMENTO");
+        Serializable objGenre = intent.getSerializableExtra("GENERE_FILTRAGGIO");
+
+        if (obj != null) {
+            ordNum = (int) obj;
+            System.out.println(ordNum);
+        }
+        if (objGenre != null) {
+            genreFilter = (Genres) objGenre;
+            System.out.println(genreFilter.toString());
+        }
+
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         books.clear();
-        books = BookFactory.getInstance().getBooks();
+        if (ordNum == 1) {
+            if (genreFilter != null) {
+                System.out.println("Lista modificata per genere");
+                books = BookFactory.getInstance().getBooksByGenre(genreFilter);
+                BookFactory.getInstance().sortBooksByEvaluation(books);
+                adapter.clear();
+                adapter.addAll(books);
+            } else {
+                System.out.println("Lista non modificata");
+                BookFactory.getInstance().sortBooksByEvaluation(books);
+                books = BookFactory.getInstance().getBooks();
+            }
+        } else {
+            if (genreFilter != null) {
+                System.out.println("Lista modificata per genere");
+                books = BookFactory.getInstance().getBooksByGenre(genreFilter);
+                adapter.clear();
+                adapter.addAll(books);
+            } else {
+                System.out.println("Lista non modificata");
+                books = BookFactory.getInstance().getBooks();
+            }
+        }
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
 
@@ -192,7 +229,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.menu1, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         searchView.setMenuItem(searchItem);
         return true;
@@ -200,20 +237,16 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_logout:
-                Intent intent = new Intent (getApplicationContext(), Login.class);
-                UserSession session = new UserSession(this);
-                session.invalidateSession();
-                startActivity(intent);
+            case R.id.filtralibri:
+                Intent filtraLibri = new Intent (Catalogo.this, FiltroCatalogo.class);
+                filtraLibri.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(filtraLibri);
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent (getApplicationContext(), MyProfile.class);
                 myProfile.putExtra("riferimento",0);
                 startActivity(myProfile);
                 break;
-            case R.id.report:
-                break;
-
         }
         return super.onOptionsItemSelected(item);
     }

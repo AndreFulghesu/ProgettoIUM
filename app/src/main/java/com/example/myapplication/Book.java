@@ -1,8 +1,9 @@
 package com.example.myapplication;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Book {
+public class Book implements Comparable<Book>{
     private String title;
     private String plot;
     private Genres genre;
@@ -86,6 +87,15 @@ public class Book {
         average = total/contatore;
         return average;
 
-    }
+    }public static Comparator<Book> evaluationComparator = new Comparator<Book>() {
+        @Override
+        public int compare(Book o1, Book o2) {
+            return o1.compareTo(o2);
+        }
+    };
 
+    @Override
+    public int compareTo(Book o) {
+        return (int) (this.getAverage()-o.getAverage());
+    }
 }

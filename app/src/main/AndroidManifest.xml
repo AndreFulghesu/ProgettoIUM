@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MaxiLettura"></activity>
+        <activity android:name=".FiltroCatalogo"></activity>
+        <activity android:name=".MaxiLettura" />
         <activity
             android:name=".PlotPopUp"
-            android:theme="@style/AppTheme.PlotPopUp"></activity>
+            android:theme="@style/AppTheme.PlotPopUp" />
         <activity android:name=".ChapterList" />
         <activity android:name=".ContinuaLettura" />
         <activity android:name=".MyProfile" />

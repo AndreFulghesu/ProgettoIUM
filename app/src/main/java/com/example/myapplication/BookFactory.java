@@ -1,6 +1,12 @@
 package com.example.myapplication;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 class BookFactory {
@@ -69,6 +75,21 @@ class BookFactory {
 
         return average/contatore;
 
+    }
+    public ArrayList<Book> getBooksByGenre(Genres genre) {
+        ArrayList<Book> books = this.getBooks();
+        ArrayList<Book> booksPerGenre = new ArrayList<>();
+        for (Book b : books) {
+            if (b.getGenre().equals(genre)) {
+                booksPerGenre.add(b);
+            }
+        }
+        return booksPerGenre;
+    }
+
+    public ArrayList<Book> sortBooksByEvaluation(ArrayList<Book> books) {
+        Collections.sort(books, Book.evaluationComparator);
+        return books;
     }
 
 }

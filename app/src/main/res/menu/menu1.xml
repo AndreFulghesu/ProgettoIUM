@@ -9,22 +9,19 @@
         android:icon="@drawable/ic_search_blue_36dp"
         android:padding="5dp"
         app:theme="@style/ActionButton"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/menuprofilo"
-        android:title ="profilo"
+        android:title ="Il Mio Profilo"
         android:icon="@drawable/profile_asset"
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/report"
-        android:title ="Segnala un problema"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menulogout"
-        android:title="Logout"
-        app:showAsAction="never"
+        android:title="Filtra i risultati"
+        android:id="@+id/filtralibri"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        app:showAsAction="ifRoom"
         />
 
 </menu>
