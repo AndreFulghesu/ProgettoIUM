@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Catalogo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 2;
     ArrayList<Book> books= BookFactory.getInstance().getBooks();
     User user;
@@ -49,8 +49,10 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
@@ -60,14 +62,11 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
 
         }
 
-        for (Book b : books){
-            System.out.println("Media libro " +b.getAverage());
-        }
-
-
         setContentView(R.layout.drawer_catalogo);
 
         drawer = findViewById(R.id.drawerCatalogo);
+
+        /**Gestione del layout della Toolbar**/
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
@@ -81,6 +80,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+        /**Gestione apertura menu laterale**/
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,13 +89,14 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         });
         final ListView lst= findViewById(R.id.booklist);
 
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
             System.out.println("Errore trasmissione sessione");
             finish();
         }
-
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -129,6 +130,10 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 }
             }
         });
+        /**Fine gestione switch per il cambio tema**/
+
+        /**Gestione dell'ordinamento delle liste di libri in base ad eventuali
+         *  cambiamenti di parametri nella activityu FiltroCatalogo**/
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("ORDINAMENTO");
@@ -142,6 +147,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             genreFilter = (Genres) objGenre;
             System.out.println(genreFilter.toString());
         }
+
+        /**Gestione dell'adapter per la ListView dei libri**/
 
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
         books.clear();
@@ -178,8 +185,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
 
+        /**Gestione della barra di ricerca nel catalogo dei libri**/
         searchView = findViewById(R.id.search_view);
-
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -193,7 +200,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 lst.setAdapter(adapter);
             }
         });
-
+        /**Gestione della ricerca e della restituzione dei libri ricercati,
+         * basata sul pattern matching**/
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) { return false; }
@@ -223,6 +231,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
 
+        /**Gestione del comportamento del sistema alla pressione da parte
+         * dell'utente su un elemento della ListView**/
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -235,6 +245,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         });
 
     }
+    /**Gestione del menu nella toolbar**/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -243,6 +254,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         searchView.setMenuItem(searchItem);
         return true;
     }
+    /**Gestione del comportamento del sistema alla pressione da parte
+     * dell'utente su un elemento del menu nella toolbar**/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -259,7 +272,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /**Gestione del cambio di activity quando l'utente preme il tasto indietro**/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
@@ -270,6 +283,8 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

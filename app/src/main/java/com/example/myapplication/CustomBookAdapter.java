@@ -47,7 +47,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         viewHolder.bookTitle.setText(book.getTitle());
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
         System.out.println("Sono nell adapter  "+book.getViews());
-        viewHolder.views.setText(book.getViews());
+        viewHolder.views.setText(""+book.getViews());
 
         if (findImg(book)!=-1) {
             viewHolder.bookGenre.setImageResource(findImg(book));

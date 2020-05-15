@@ -31,6 +31,8 @@ import java.util.Collections;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 1;
     DrawerLayout drawer;
     User user;
@@ -48,9 +50,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
@@ -60,21 +63,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         }
 
-
-        System.out.println("lista normale");
-        Collections.sort(books);
-        System.out.println("lista ordinata per media");
-        for (Book b : books){
-            System.out.println("Media libro " +b.getAverage());
-        }
-
         setContentView(R.layout.drawer_home);
 
+        /**Gestione collegamento tra variabili ed elementi del layot**/
         drawer = findViewById(R.id.drawerHome);
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.listView);
 
-
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {
@@ -92,7 +88,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -100,6 +96,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             finish();
         }
 
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -133,7 +130,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }
         });
+        /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione della barra di ricerca nel catalogo dei libri**/
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -149,7 +148,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             }
         });
-
+         /**Gestione della ricerca e della restituzione dei libri ricercati,
+        * basata sul pattern matching**/
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) { return false; }
@@ -192,12 +192,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
-
-
-
-
-
-
+        /**Gestione collegamento tra variabili ed elementi del layot**/
         ImageView continuaLettura = findViewById(R.id.continuaLettura);
         ImageView catalogo = findViewById(R.id.catalogo);
         ImageView myProfile = findViewById(R.id.myProfile);
@@ -210,7 +205,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         startActivity(continuaLettura);
         }
         });**/
-
+        /**Gestione cambio di activity nel caso in cui l'utente
+         * abbia premuto Catalogo**/
         catalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -220,6 +216,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(gotoCatalogo);
             }
         });
+        /**Gestione cambio di activity nel caso in cui l'utente
+         * abbia premuto Il Mio Profilo**/
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -242,7 +240,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
          */
     }
-
+    /**Gestione del comportamento del sistema alla pressione da parte
+     * dell'utente su un elemento del menu nella toolbar**/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -264,6 +263,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         return super.onOptionsItemSelected(item);
     }
+    /**Gestione dell'uscita dall'applicazione nel caso in cui si torni indietro**/
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -283,7 +283,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 .setNegativeButton("No", null)
                 .show();
     }
-
+    /**Gestione della barra di ricerca nella toolbar**/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -293,6 +293,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         return true;
     }
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

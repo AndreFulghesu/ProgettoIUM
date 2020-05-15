@@ -20,7 +20,7 @@ import java.io.Serializable;
 
 public class Login extends AppCompatActivity {
 
-    public static final String USER_EXTRA ="com.example.faber.bonusIum";
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
 
     EditText username, password;
     Button accedi;
@@ -33,35 +33,23 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**Gestione della sessione nel caso in cui l'utente sia ancora loggato**/
+
         final UserSession userSession = new UserSession(this);
-
-        Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra(Registrazione.USER_EXTRA);
-
-        User utenteProva = new User("Giorgio","Delirio","Gio20","gio@gmail.com","1234");
-        UserFactory.getInstance().addUser(utenteProva);
-
-        /**if (debugLogin) {
-         User user = UserFactory.getInstance().getUserByName("Faber123");
-         Intent intent1 = new Intent(Login.this, Home.class);
-         userSession.saveUserSession("Faber123");
-         intent1.putExtra("User", user);
-         startActivity(intent1);
-         }**/
-        UserSession logSession = new UserSession(getApplicationContext());
-
-        if (logSession.isLogged() && UserFactory.getInstance().findUserByName(logSession.getUserSession())) {
-            System.out.println("In login " + UserFactory.getInstance().getUserByUsername(logSession.getUserSession()));
+        if (userSession.isLogged() && UserFactory.getInstance().findUserByName(userSession.getUserSession())) {
+            System.out.println("In login " + UserFactory.getInstance().getUserByUsername(userSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
 
-
+        /**Gestione elementi interfaccia**/
 
         username= findViewById(R.id.inputUsername);
         password = findViewById(R.id.inputPassword);
         accedi = findViewById(R.id.accedi);
         registrazione = findViewById(R.id.registrazione);
+
+        /**Gestione controllo degli input dei dati utente in caso di pressione del bottone Accedi**/
 
         accedi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +76,7 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+        /**Gestione camnbio activity alla pressione della TextView Registrazione**/
         registrazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +85,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+    /**Controllo e gestione di mancato input nei campi username e password**/
     private boolean checkInput(){
 
         int errors=0;
@@ -117,6 +107,7 @@ public class Login extends AppCompatActivity {
         return errors==0; // ritorna true se non ci sono errori
 
     }
+    /**Gestione dell'uscita dall'applicazione nel caso in cui si torni indietro**/
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

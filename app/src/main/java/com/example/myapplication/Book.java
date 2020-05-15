@@ -117,8 +117,8 @@ public class Book implements Comparable<Book>{
         return 1;
     }
 
-    public String getViews() {
-        return ""+this.views;
+    public int getViews() {
+        return this.views;
     }
 
     public void setViews(int views) {
