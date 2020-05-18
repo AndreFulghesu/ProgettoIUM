@@ -81,7 +81,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
 
 
 
-        System.out.println("Views del libro sono in chapter list : "+BookFactory.getInstance().getBookById(bookId).getViews());
+        //System.out.println("Views del libro sono in chapter list : "+BookFactory.getInstance().getBookById(bookId).getViews());
 
 
 

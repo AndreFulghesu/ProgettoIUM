@@ -148,9 +148,25 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         }
 
         /**Gestione dell'adapter per la ListView dei libri**/
+        /*
+        for(int i =0;i<books.size();i++){
+            System.out.println("Stampa visual libri  "+books.get(i).getViews() + " Nome: " + books.get(i).getTitle());
+        }
 
-        CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
+         */
+        for (Book b : books){
+            System.out.println("Libro: "+b.getTitle()+""+ "Views "+b.getViews());
+        }
+
         books.clear();
+        CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
+        books = BookFactory.getInstance().getBooks();
+        adapter.clear();
+        adapter.addAll(books);
+        adapter.notifyDataSetChanged();
+        lst.setAdapter(adapter);
+
+
         if (ordNum == 1) {
             if (genreFilter != null) {
                 System.out.println("Lista modificata per genere");
@@ -161,9 +177,12 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             } else {
                 System.out.println("Lista non modificata");
                 Collections.sort(books);
+                /*
                 for(Book b : books){
                     System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
                 }
+
+                 */
                 books = BookFactory.getInstance().getBooks();
                 Collections.sort(books);
             }
@@ -181,8 +200,9 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 books = BookFactory.getInstance().getBooks();
             }
         }
-        adapter.notifyDataSetChanged();
-        lst.setAdapter(adapter);
+
+
+
 
         /**Gestione della barra di ricerca nel catalogo dei libri**/
         searchView = findViewById(R.id.search_view);

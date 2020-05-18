@@ -178,9 +178,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
                 userSession.setCallingActivity(classValue);
-                commenti.putExtra("User",user);
-                commenti.putExtra("bookId",bookId);
-                commenti.putExtra("chapId",chapId);
                 long endTime = System.currentTimeMillis() - startTime;
                 if (endTime> 30000) {
                     BookFactory.getInstance().getBookById(bookId).incrementViews();
@@ -233,7 +230,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             System.out.println("Tempo trascorso: " + endTime);
             if (endTime> 1000) {
                 BookFactory.getInstance().addViewsBook(BookFactory.getInstance().getBookById(bookId));
-                System.out.println("Numero di views: sono nel tasto indietro  " + BookFactory.getInstance().getBookById(bookId).getViews());
+                //System.out.println("Numero di views: sono nel tasto indietro  " + BookFactory.getInstance().getBookById(bookId).getViews());
             }
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             startActivity(goBack);

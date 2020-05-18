@@ -16,6 +16,11 @@ class BookFactory {
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Book> booksModified = new ArrayList<>();
 
+    Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
+    Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
+    Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByUsername("Gio34"),0);
+    Book b4 = new Book("Fabrizio during his sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo",Genres.STORICO,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
+
     private BookFactory(){}
 
     public static BookFactory getInstance(){
@@ -26,18 +31,15 @@ class BookFactory {
     }
 
     public ArrayList<Book> getBooks(){
-        Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
-        Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
-        Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByUsername("Gio34"),0);
-        Book b4 = new Book("Fabrizio during his sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo",Genres.STORICO,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
 
+        books.clear();
 
         books.add(b1);
         books.add(b2);
         books.add(b3);
         books.add(b4);
 
-        for (int i =0; i<booksModified.size();i++){
+        for (int i =0; i<booksModified.size()-1;i++){
             if (books.get(i).getId() == booksModified.get(i).getId()) {
                 books.remove(i);
                 books.add(booksModified.get(i));
@@ -107,7 +109,55 @@ class BookFactory {
 
     public void addViewsBook (Book book) {
 
+        /*
+        for (Book b : booksModified){
+            int index =+1;
+            if (b.getId() != book.getId()){
+                //scorre per vedere se il libro da aggiornare è nuovo
+                //ho preferito questa tipologia di algoritmo perché facendo il contrario non fungeva
+            }
+        }
 
+         */
+        int views;
+
+        /*
+        if(!booksModified.contains(book)) {
+            booksModified.add(book);
+            booksModified.get(booksModified.size()-1).incrementViews();
+        }else{
+            for(int i =0; i<booksModified.size();i++){
+                if (book.getId() == booksModified.get(i).getId()){
+                    views =booksModified.get(i).getViews();
+                    booksModified.remove(i);
+                    book.setViews(views);
+                    book.incrementViews();
+                    booksModified.add(book);
+                }
+            }
+        }
+
+         */
+        if(booksModified != null) {
+            for (int i = 0; i < booksModified.size(); i++) {
+                if (booksModified.get(i).getId() == book.getId()) {
+                    booksModified.get(i).incrementViews();
+                    break;
+                }
+            }
+        }
+
+        if (!contiene(book,booksModified)){
+            booksModified.add(book);
+            booksModified.get(booksModified.size()-1).incrementViews();
+        }
+
+
+        for(Book b : booksModified){
+            System.out.println("Nome: "+b.getTitle()+ " Numero views libro : "+b.getViews());
+        }
+
+        /*
         // aggiungo il libro alla lista di quelli modificati
         booksModified.add(book);
 
@@ -117,6 +167,20 @@ class BookFactory {
                 booksModified.get(i).incrementViews();
             }
         }
+
+         */
+
+    }
+
+    public boolean contiene (Book book, ArrayList<Book> elenco){
+
+        for (int i =0; i<elenco.size();i++){
+            if (book.getId() == elenco.get(i).getId()){
+                return true;
+            }
+        }
+
+        return false;
 
     }
 
