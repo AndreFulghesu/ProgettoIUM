@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -111,10 +112,22 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         });
         /**Fine gestione switch per il cambio tema**/
 
-        ListView continueLst= findViewById(R.id.continuebooklist);
+        final ListView continueLst= findViewById(R.id.continuebooklist);
         ArrayList<Pair<Book, Chapter>> books = user.getListaLibriIziziati();
         ContinuaLetturaAdapter adapter = new ContinuaLetturaAdapter(this, R.layout.continua_lettura_item, books);
         continueLst.setAdapter(adapter);
+
+        continueLst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Pair<Book, Chapter>  element = (Pair<Book, Chapter>) continueLst.getItemAtPosition(position);
+                Intent readBook = new Intent (getApplicationContext(), LeggiLibro.class);
+                userSession.setCallingActivity(classValue);
+                userSession.setBookId(element.first.getId());
+                userSession.setChapId(element.second.getChaptNum());
+                startActivity(readBook);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
