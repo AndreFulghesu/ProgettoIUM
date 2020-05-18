@@ -62,13 +62,8 @@
                 android:divider="?attr/spaceColor"
                 android:dividerHeight="3dp" />
 
-
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-
 
 </ScrollView>

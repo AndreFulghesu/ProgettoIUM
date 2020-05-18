@@ -8,78 +8,62 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.util.Pair;
+
 import java.util.ArrayList;
 
-public class CustomBookAdapter extends ArrayAdapter<Book> {
+public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
 
     Context context;
-    ArrayList<Book> books;
+    ArrayList<Pair<Book, Chapter>> books;
+    String text;
 
-    public CustomBookAdapter(Context context, int textViewResourceId, ArrayList<Book> objects) {
+    public ContinuaLetturaAdapter(Context context, int textViewResourceId, ArrayList<Pair<Book, Chapter>> objects) {
         super(context, textViewResourceId, objects);
         this.context= context;
         this.books = objects;
     }
+
+    public ContinuaLetturaAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
+    }
+
     @Override
-    public View getView(int position, View convertView,  ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         View view;
-        Book book = getItem(position);
+        Pair<Book, Chapter> pair = getItem(position);
+        assert pair != null;
+        Book book = pair.first;
+        Chapter chap = pair.second;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.bookitem, null);
+            convertView = inflater.inflate(R.layout.continua_lettura_item, null);
             viewHolder= new ViewHolder();
-            viewHolder.bookTitle = convertView.findViewById(R.id.booktitle);
-            viewHolder.bookAuthor = convertView.findViewById(R.id.bookauthor);
-            viewHolder.bookGenre = convertView.findViewById(R.id.bookgenreimg);
-            viewHolder.eyeImage = convertView.findViewById(R.id.eye_views);
-            viewHolder.views = convertView.findViewById(R.id.viewsTextView);
-            viewHolder.star = convertView.findViewById(R.id.starimg);
-            viewHolder.averageValutation = convertView.findViewById(R.id.averageValutation);
+            viewHolder.bookTitle = convertView.findViewById(R.id.book_name);
+            viewHolder.chapterNum = convertView.findViewById(R.id.chapter_number);
+            viewHolder.star = convertView.findViewById(R.id.star);
+            viewHolder.valutation = convertView.findViewById(R.id.valutation_continue);
             setStarColor(book.getAverage(),viewHolder.star);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         viewHolder.bookTitle.setText(book.getTitle());
-        viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
-        System.out.println("Sono nell adapter dentro "+book.getViews());
-        viewHolder.views.setText("" + book.getViews());
-
-        if (findImg(book)!=-1) {
-            viewHolder.bookGenre.setImageResource(findImg(book));
-        }
+        String chapNumber = "Riprendi la lettura dal capitolo " + chap.getChaptNum();
+        viewHolder.chapterNum.setText(chapNumber);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
-        viewHolder.averageValutation.setText("" +roundDown5(book.getAverage()));
-
-
+        viewHolder.valutation.setText("" +roundDown5(book.getAverage()));
 
         return convertView;
     }
-    public int findImg(Book book) {
-        switch(book.getGenre()) {
-            case FANTASY:
-                return R.drawable.dragon;
-            case STORICO:
-                return R.drawable.museum;
-            case THRILLER:
-                return R.drawable.knife;
-            case POLIZIESCO:
-                return R.drawable.policeman;
-            case FANTASCIENZA:
-                return R.drawable.robot;
-            case HORROR:
-                return R.drawable.ghost;
-        }
-        return -1;
-    }
+
     private class ViewHolder{
-        TextView bookTitle, bookAuthor, averageValutation, views;
-        ImageView bookGenre, eyeImage, star;
+        TextView bookTitle, chapterNum, valutation;
+        ImageView star;
     }
 
     public void setStarColor (float valutation, ImageView star){
@@ -109,9 +93,4 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
     public static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
-
-
-
-
 }
-

@@ -176,34 +176,20 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         lista.setAdapter(adapter);
 
     }
-    /*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
-        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
-        MenuItem itemLogout = menu.findItem(R.id.menulogout);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 
-     */
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menulogout:
-                Intent intent = new Intent (CommentList.this, Login.class);
-                UserSession session = new UserSession(this);
-                session.invalidateSession();
-                startActivity(intent);
-                break;
-            case R.id.menuprofilo:
-                Intent intent1 = new Intent (CommentList.this, MyProfile.class);
-                intent1.putExtra("User", user);
-                startActivity(intent1);
-                break;
-            case R.id.report:
-                break;
+        if (item.getItemId() == R.id.menuprofilo) {
+            Intent intent1 = new Intent(CommentList.this, MyProfile.class);
+            intent1.putExtra("User", user);
+            startActivity(intent1);
         }
         return super.onOptionsItemSelected(item);
     }

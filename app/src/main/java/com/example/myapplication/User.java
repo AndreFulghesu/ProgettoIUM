@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import androidx.core.util.Pair;
 
 public class User implements Serializable {
 
@@ -9,8 +11,7 @@ public class User implements Serializable {
     private String cognome;
     private String email;
     private String password;
-
-
+    private ArrayList<Pair<Book, Chapter>> continuaLetturaList = new ArrayList<>();
 
     public User (String nome, String cognome, String username, String email, String password ) {
         this.setUsername(username);
@@ -48,5 +49,21 @@ public class User implements Serializable {
 
     public String getCognome () { return this.cognome; }
 
-
+    public void addLibroIniziato (Book bk, Chapter chap) {
+        boolean check = false;
+        Pair<Book, Chapter> pair = new Pair<>(bk, chap);
+        for (int i = 0; i < continuaLetturaList.size(); i++) {
+            if (bk.getId() == continuaLetturaList.get(i).first.getId()) {
+                continuaLetturaList.remove(i);
+                continuaLetturaList.add(pair);
+                check = true;
+            }
+        }
+        if (!check) {
+            continuaLetturaList.add(pair);
+        }
+    }
+    public ArrayList<Pair<Book, Chapter>> getListaLibriIziziati(){
+        return continuaLetturaList;
+    }
 }

@@ -209,25 +209,15 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menulogout:
-                Intent intent = new Intent (LeggiLibro.this, Login.class);
-                UserSession session = new UserSession(this);
-                session.invalidateSession();
-                startActivity(intent);
-                break;
-            case R.id.menuprofilo:
-                Intent intent1 = new Intent (LeggiLibro.this, MyProfile.class);
-                startActivity(intent1);
-                break;
-            case R.id.report:
-                break;
+        if (item.getItemId() == R.id.menuprofilo) {
+            Intent intent1 = new Intent(LeggiLibro.this, MyProfile.class);
+            startActivity(intent1);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -237,16 +227,16 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         UserSession userSession = new UserSession(getApplicationContext());
         Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
-            Intent goBack = new Intent(getApplicationContext(), callingActivity);
-            goBack.putExtra("bookId", bookId);
-            startActivity(goBack);
+            UserFactory.getInstance().addLibroIniziato(user, BookFactory.getInstance().getBookById(bookId),
+                    ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId));
             long endTime = System.currentTimeMillis() - startTime;
             System.out.println("Tempo trascorso: " + endTime);
-            if (endTime> 10000) {
-                //BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+            if (endTime> 1000) {
                 BookFactory.getInstance().addViewsBook(BookFactory.getInstance().getBookById(bookId));
                 System.out.println("Numero di views: sono nel tasto indietro  " + BookFactory.getInstance().getBookById(bookId).getViews());
             }
+            Intent goBack = new Intent(getApplicationContext(), callingActivity);
+            startActivity(goBack);
         }
     }
     @Override

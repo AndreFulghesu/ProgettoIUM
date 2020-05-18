@@ -198,13 +198,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         ImageView myProfile = findViewById(R.id.myProfile);
         //ImageView logout = findViewById(R.id.homeLogout);
 
-        /**continuaLettura.setOnClickListener(new View.OnClickListener() {
+        continuaLettura.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-        Intent continuaLettura = new Intent(Home.this, LeggiLibro.class);
-        startActivity(continuaLettura);
-        }
-        });**/
+            Intent continuaLettura = new Intent(Home.this, ContinuaLettura.class);
+            userSession.setCallingActivity(classValue);
+            System.out.println(getApplicationContext().getClass().getName());
+            startActivity(continuaLettura);
+            }
+        });
         /**Gestione cambio di activity nel caso in cui l'utente
          * abbia premuto Catalogo**/
         catalogo.setOnClickListener(new View.OnClickListener() {

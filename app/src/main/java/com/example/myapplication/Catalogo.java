@@ -59,7 +59,6 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         } else {
             setTheme(R.style.darkTheme);
             System.out.println("TEMA SCURO");
-
         }
 
         setContentView(R.layout.drawer_catalogo);

@@ -147,17 +147,12 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         adapter.notifyDataSetChanged();
         chapterList.setAdapter(adapter);
 
-        final int finalBookId = bookId;
         chapterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Book bk = BookFactory.getInstance().getBookById(finalBookId);
                 Intent readBook = new Intent(ChapterList.this, LeggiLibro.class);
                 userSession.setCallingActivity(classValue);
-                readBook.putExtra("bookId", bk.getId());
-                readBook.putExtra("chapId", position + 1);
                 userSession.setChapId(position + 1);
-                readBook.putExtra("User", user);
                 startActivity(readBook);
             }
         });
@@ -167,8 +162,6 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu2, menu);
-        MenuItem itemProfile = menu.findItem(R.id.menuprofilo);
-        MenuItem itemLogout = menu.findItem(R.id.menulogout);
         return true;
     }
 
@@ -180,12 +173,6 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
                 seePlot.putExtra("bookId", bookId);
                 seePlot.putExtra("User", user);
                 startActivity(seePlot);
-                break;
-            case R.id.menulogout:
-                Intent login = new Intent(ChapterList.this, Login.class);
-                UserSession session = new UserSession(this);
-                session.invalidateSession();
-                startActivity(login);
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent(ChapterList.this, MyProfile.class);

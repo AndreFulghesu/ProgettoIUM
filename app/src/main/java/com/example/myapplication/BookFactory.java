@@ -38,14 +38,10 @@ class BookFactory {
         books.add(b4);
 
         for (int i =0; i<booksModified.size();i++){
-
-            if (books.get(i).getTitle().equals(booksModified.get(i).getTitle())) {
-
+            if (books.get(i).getId() == booksModified.get(i).getId()) {
                 books.remove(i);
                 books.add(booksModified.get(i));
             }
-
-
         }
 
         return this.books;
@@ -117,7 +113,7 @@ class BookFactory {
 
         //se il libro passato come argomento trova riscrontro nella lista allora effettua modifica
         for (int i =0 ; i<booksModified.size();i++){
-            if (book.getTitle().equals(booksModified.get(i).getTitle())){
+            if (book.getId() == booksModified.get(i).getId()){
                 booksModified.get(i).incrementViews();
             }
         }
