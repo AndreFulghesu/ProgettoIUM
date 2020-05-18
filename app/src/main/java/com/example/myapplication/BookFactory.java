@@ -14,6 +14,7 @@ class BookFactory {
     private static BookFactory singleton;
 
     private ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Book> booksModified = new ArrayList<>();
 
     private BookFactory(){}
 
@@ -25,16 +26,27 @@ class BookFactory {
     }
 
     public ArrayList<Book> getBooks(){
-        Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"));
-        Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"));
-        Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByUsername("Gio34"));
-        Book b4 = new Book("Fabrizio during his sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo",Genres.STORICO,4,UserFactory.getInstance().getUserByUsername("Andre97"));
+        Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
+        Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
+        Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByUsername("Gio34"),0);
+        Book b4 = new Book("Fabrizio during his sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo",Genres.STORICO,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
 
 
         books.add(b1);
         books.add(b2);
         books.add(b3);
         books.add(b4);
+
+        for (int i =0; i<booksModified.size();i++){
+
+            if (books.get(i).getTitle().equals(booksModified.get(i).getTitle())) {
+
+                books.remove(i);
+                books.add(booksModified.get(i));
+            }
+
+
+        }
 
         return this.books;
     }
@@ -94,6 +106,22 @@ class BookFactory {
             System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
         }
         return books;
+    }
+
+
+    public void addViewsBook (Book book) {
+
+
+        // aggiungo il libro alla lista di quelli modificati
+        booksModified.add(book);
+
+        //se il libro passato come argomento trova riscrontro nella lista allora effettua modifica
+        for (int i =0 ; i<booksModified.size();i++){
+            if (book.getTitle().equals(booksModified.get(i).getTitle())){
+                booksModified.get(i).incrementViews();
+            }
+        }
+
     }
 
 }
