@@ -12,12 +12,13 @@ public class Book implements Comparable<Book>{
     private int  views = 0;
     private ArrayList<Chapter> chapters;
 
-    public Book(String title, String plot, Genres genre, int id, User author){
+    public Book(String title, String plot, Genres genre, int id, User author, int views){
         setTitle(title);
         setPlot(plot);
         setGenre(genre);
         setId(id);
         setAuthor(author);
+        setViews(views);
         chapters = ChapterFactory.getInstance().getChaptersByBookId(id);
     }
 

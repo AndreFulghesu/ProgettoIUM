@@ -243,7 +243,8 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             long endTime = System.currentTimeMillis() - startTime;
             System.out.println("Tempo trascorso: " + endTime);
             if (endTime> 10000) {
-                BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+                //BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();
+                BookFactory.getInstance().addViewsBook(BookFactory.getInstance().getBookById(bookId));
                 System.out.println("Numero di views: sono nel tasto indietro  " + BookFactory.getInstance().getBookById(bookId).getViews());
             }
         }
