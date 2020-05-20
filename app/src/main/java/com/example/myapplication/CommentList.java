@@ -70,9 +70,6 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         titleBook = findViewById(R.id.testoLibro);
 
         Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra("bookId");
-        Serializable obj2 = intent.getSerializableExtra("chapId");
-        Serializable obj3 = intent.getSerializableExtra("User");
 
         try {
             bookId = userSession.getBookId();
@@ -161,9 +158,9 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
 
         //myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
 
-        for (Comment c : myComments){
-            System.out.println("Commento: "+c.getText());
-            //System.out.println("Autore: "+c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
+        ArrayList<Comment> debugging = CommentFactory.getInstance().getCommentById(chapId,bookId);
+        for(Comment c : debugging){
+            System.out.println("Autore Commento: "+c.getUserAuthor().getNome() +" Valutazione: "+c.getVote());
         }
 
         CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
@@ -199,8 +196,6 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         Class callingActivity = userSession.getActivityFromValue(classValue - 1);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
-            userSession.setChapId(chapId);
-            userSession.setBookId(bookId);
             startActivity(goBack);
         }
     }

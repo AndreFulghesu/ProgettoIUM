@@ -64,7 +64,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             finish();
         }
 
-        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
         try {
             bookId = userSession.getBookId();
@@ -79,6 +78,13 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             Intent goToCatalogo = new Intent (LeggiLibro.this, Catalogo.class);
             startActivity(goToCatalogo);
         }
+
+
+        System.out.println("Valutazione capitolo attuale in Leggi Libro: "+ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getValutation());
+
+
+
+
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
         setSupportActionBar(toolbar);
@@ -162,9 +168,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
                 userSession.setCallingActivity(classValue);
-                writeFeedback.putExtra("User",user);
-                writeFeedback.putExtra("bookId",bookId);
-                writeFeedback.putExtra("chapId",chapId);
                 long endTime = System.currentTimeMillis() - startTime;
                 if (endTime> 30000) {
                     BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();

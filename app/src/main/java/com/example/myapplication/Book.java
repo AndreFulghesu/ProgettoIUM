@@ -76,6 +76,7 @@ public class Book implements Comparable<Book>{
         return null;
     }
 
+    /*
     public float getAverage (){
         float average=0;
         int contatore=0;
@@ -91,6 +92,8 @@ public class Book implements Comparable<Book>{
 
     }
 
+     */
+
     /*
     public static Comparator<Book> evaluationComparator = new Comparator<Book>() {
         @Override
@@ -103,20 +106,6 @@ public class Book implements Comparable<Book>{
 
 
 
-    @Override
-    public int compareTo(Book o) {
-
-
-        if (this.getAverage() > o.getAverage()){
-            return -1;
-        }else{
-            if (this.getAverage() == o.getAverage()){
-                return 0;
-            }
-        }
-
-        return 1;
-    }
 
     public int getViews() {
         return this.views;
@@ -127,6 +116,36 @@ public class Book implements Comparable<Book>{
     }
     public void incrementViews () {
         this.views++;
+    }
+
+
+    public int getTotalValutation (){
+        int totalValutation=0;
+        for (Chapter c : this.chapters){
+
+            totalValutation =+ c.getValutation();
+
+        }
+
+        return totalValutation/chapters.size();
+
+
+    }
+
+
+    @Override
+    public int compareTo(Book o) {
+
+
+        if (this.getTotalValutation() > o.getTotalValutation()){
+            return -1;
+        }else{
+            if (this.getTotalValutation() == o.getTotalValutation()){
+                return 0;
+            }
+        }
+
+        return 1;
     }
 
 

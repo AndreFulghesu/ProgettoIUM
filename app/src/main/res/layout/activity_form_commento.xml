@@ -96,6 +96,11 @@
                 android:inputType="textMultiLine"
                 android:lines="5" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="?attr/backgroundColor" />
+
             <Button
                 android:id="@+id/feedbackSubmit"
                 android:layout_width="match_parent"
@@ -105,30 +110,9 @@
                 android:text="Salva Feedback"
                 android:textColor="@android:color/white" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="?attr/backgroundColor" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="#3D679B">
 
-                <TextView
-                    android:id="@+id/footer"
-                    android:layout_width="193dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginEnd="70dp"
-                    android:text="@string/logo"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textStyle="italic" />
 
-            </RelativeLayout>
         </LinearLayout>
 
     </ScrollView>

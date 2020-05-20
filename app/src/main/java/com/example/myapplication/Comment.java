@@ -59,7 +59,7 @@ public class Comment {
         return vote;
     }
 
-    public void setVote(int vote) {
-        this.vote = vote;
-    }
+    public void setVote(int vote) { this.vote = vote;}
+
+
 }

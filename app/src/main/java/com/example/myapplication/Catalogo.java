@@ -194,9 +194,6 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 adapter.addAll(books);
             } else {
                 System.out.println("Lista non modificata");
-                for(Book b : books){
-                    System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
-                }
                 books = BookFactory.getInstance().getBooks();
             }
         }

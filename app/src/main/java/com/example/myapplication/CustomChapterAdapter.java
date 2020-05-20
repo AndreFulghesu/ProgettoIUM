@@ -39,7 +39,7 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.rateNumber.setText(""+chap.getValutation());
+        viewHolder.rateNumber.setText(""+  chap.getValutation());
         assert chap != null;
         String str = "Capitolo " + chap.getChaptNum();
         viewHolder.cNumber.setText(str);

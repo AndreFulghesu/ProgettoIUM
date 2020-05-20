@@ -37,7 +37,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder.views = convertView.findViewById(R.id.viewsTextView);
             viewHolder.star = convertView.findViewById(R.id.starimg);
             viewHolder.averageValutation = convertView.findViewById(R.id.averageValutation);
-            setStarColor(book.getAverage(),viewHolder.star);
+            setStarColor(book.getTotalValutation(),viewHolder.star);
 
             convertView.setTag(viewHolder);
         } else {
@@ -54,7 +54,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
-        viewHolder.averageValutation.setText("" +roundDown5(book.getAverage()));
+        viewHolder.averageValutation.setText("" +book.getTotalValutation());
 
 
 
@@ -82,21 +82,21 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         ImageView bookGenre, eyeImage, star;
     }
 
-    public void setStarColor (float valutation, ImageView star){
+    public void setStarColor (int valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getContext().getResources().getColor(R.color.blue));
 
         }else {
-            if (valutation > 4.2f) {
+            if (valutation == 4) {
                 star.setColorFilter(getContext().getResources().getColor(R.color.green));
             } else {
-                if (valutation >= 3.2f && valutation <= 4.2f) {
+                if (valutation == 3) {
                     star.setColorFilter(getContext().getResources().getColor(R.color.yellow));
                 } else {
-                    if (valutation > 2f && valutation < 3.2f) {
+                    if (valutation == 2) {
                         star.setColorFilter(getContext().getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation == 1) {
                             star.setColorFilter(getContext().getResources().getColor(R.color.red));
                         }
                     }

@@ -36,7 +36,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
             viewHolder.bookAuthor = convertView.findViewById(R.id.nome_autore);
             viewHolder.star = convertView.findViewById(R.id.star);
             viewHolder.valutationSearch = convertView.findViewById(R.id.valutationSearch);
-            setStarColor(book.getAverage(),viewHolder.star);
+            setStarColor(book.getTotalValutation(),viewHolder.star);
 
 
             convertView.setTag(viewHolder);
@@ -53,7 +53,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
 
          */
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.valutationSearch.setText("" +roundDown5(book.getAverage()));
+        viewHolder.valutationSearch.setText("" +book.getTotalValutation());
 
 
 
