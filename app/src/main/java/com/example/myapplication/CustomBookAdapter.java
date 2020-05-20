@@ -46,7 +46,6 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
 
         viewHolder.bookTitle.setText(book.getTitle());
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
-        System.out.println("Sono nell adapter dentro "+book.getViews());
         viewHolder.views.setText("" + book.getViews());
 
         if (findImg(book)!=-1) {
@@ -54,7 +53,9 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
-        viewHolder.averageValutation.setText("" +book.getTotalValutation());
+        float totalValutation = book.getTotalValutation();
+        System.out.println(totalValutation);
+        viewHolder.averageValutation.setText("" + totalValutation);
 
 
 
@@ -82,7 +83,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         ImageView bookGenre, eyeImage, star;
     }
 
-    public void setStarColor (int valutation, ImageView star){
+    public void setStarColor (float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getContext().getResources().getColor(R.color.blue));
 

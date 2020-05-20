@@ -76,37 +76,6 @@ public class Book implements Comparable<Book>{
         return null;
     }
 
-    /*
-    public float getAverage (){
-        float average=0;
-        int contatore=0;
-        float total = 0;
-        for(Chapter c : chapters){
-
-            total += c.getValutation();
-            contatore++;
-        }
-
-        average = total/contatore;
-        return average;
-
-    }
-
-     */
-
-    /*
-    public static Comparator<Book> evaluationComparator = new Comparator<Book>() {
-        @Override
-        public int compare(Book o1, Book o2) {
-            return o1.compareTo(o2);
-        }
-    };
-
-     */
-
-
-
-
     public int getViews() {
         return this.views;
     }
@@ -114,28 +83,24 @@ public class Book implements Comparable<Book>{
     public void setViews(int views) {
         this.views = views;
     }
+
     public void incrementViews () {
         this.views++;
     }
 
-
-    public int getTotalValutation (){
-        int totalValutation=0;
+    public float getTotalValutation (){
+        float totalValutation=0;
+        int counter=0;
         for (Chapter c : this.chapters){
-
-            totalValutation =+ c.getValutation();
-
+            totalValutation = totalValutation + c.getValutation();
+            counter++;
         }
 
-        return totalValutation/chapters.size();
-
-
+        return totalValutation/counter;
     }
-
 
     @Override
     public int compareTo(Book o) {
-
 
         if (this.getTotalValutation() > o.getTotalValutation()){
             return -1;
@@ -147,7 +112,4 @@ public class Book implements Comparable<Book>{
 
         return 1;
     }
-
-
-
 }

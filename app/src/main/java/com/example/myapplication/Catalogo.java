@@ -148,15 +148,6 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         }
 
         /**Gestione dell'adapter per la ListView dei libri**/
-        /*
-        for(int i =0;i<books.size();i++){
-            System.out.println("Stampa visual libri  "+books.get(i).getViews() + " Nome: " + books.get(i).getTitle());
-        }
-
-         */
-        for (Book b : books){
-            System.out.println("Libro: "+b.getTitle()+""+ "Views "+b.getViews());
-        }
 
         books.clear();
         CustomBookAdapter adapter = new CustomBookAdapter(this, R.layout.bookitem, books);
@@ -177,12 +168,6 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             } else {
                 System.out.println("Lista non modificata");
                 Collections.sort(books);
-                /*
-                for(Book b : books){
-                    System.out.println("Nome : " +b.getTitle() +" " + "Media: "+ b.getAverage());
-                }
-
-                 */
                 books = BookFactory.getInstance().getBooks();
                 Collections.sort(books);
             }
