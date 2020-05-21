@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    tools:context=".ChapterList">
+    tools:context=".Catalogo">
 
     <LinearLayout
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="786dp"
-        android:background="?attr/backgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316">
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="?attr/backgroundColor">
+
+        <include
+            android:id="@+id/chapterlistbar"
+            layout="@layout/toolbar"
+            android:layout_width="391dp"
+            android:layout_height="wrap_content" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="692dp"
             android:background="?attr/backgroundColor"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/chapterlistbar"
-                layout="@layout/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="67dp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="20dp"
                 android:background="?attr/backgroundColor" />
 
 
@@ -51,18 +50,15 @@
                 android:background="?attr/spaceColor" />
 
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="@android:color/white" />
-
             <ListView
-                android:id="@+id/chapterlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="?attr/spaceColor"
-                android:dividerHeight="3dp" />
+                android:id="@+id/chapterlist"/>
+
+
         </LinearLayout>
 
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

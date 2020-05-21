@@ -52,10 +52,7 @@ public class Chapter {
             contatore++;
         }
 
-        System.out.println("Totale valutazione dei commenti prima della divisione:   "+valutation);
-        System.out.println("Grandezza lista commenti: "+contatore);
         valutation =valutation / this.commenti.size();
-        System.out.println("Libro numero: "+this.getBookId() + "\nCapitolo numero: "+this.getChaptNum()+ "\nTotale valutazione del capitolo:   "+valutation);
         this.valutation = valutation;
     }
 

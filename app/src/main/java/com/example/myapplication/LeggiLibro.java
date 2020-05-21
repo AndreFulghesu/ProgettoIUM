@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -80,7 +81,14 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         }
 
 
-        System.out.println("Valutazione capitolo attuale in Leggi Libro: "+ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getValutation());
+        final ArrayList<Comment> attuali = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getComment();
+        final Chapter attuale =ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
+        for (Comment c : attuali) {
+            System.out.println("Valutazione commento "+c.getText() + " "+"Valutazione: "+c.getVote());
+        }
+
+        System.out.println("Valutazione capitolo attualeeeeeeeeee "+attuale.getValutation());
+
 
 
 
