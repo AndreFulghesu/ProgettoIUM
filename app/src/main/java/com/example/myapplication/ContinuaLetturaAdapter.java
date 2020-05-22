@@ -56,7 +56,7 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         String chapNumber = "Riprendi la lettura dal capitolo " + chap.getChaptNum();
         viewHolder.chapterNum.setText(chapNumber);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.valutation.setText("" +book.getTotalValutation());
+        viewHolder.valutation.setText("" +roundDown5(book.getTotalValutation()));
 
         return convertView;
     }

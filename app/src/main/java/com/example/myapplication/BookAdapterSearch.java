@@ -53,7 +53,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
 
          */
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.valutationSearch.setText("" +book.getTotalValutation());
+        viewHolder.valutationSearch.setText("" +roundDown5(book.getTotalValutation()));
 
 
 
