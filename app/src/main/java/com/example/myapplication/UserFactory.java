@@ -11,6 +11,10 @@ public class UserFactory {
     private List<User> users = new ArrayList<>();
     private List<User> usersModified = new ArrayList<>();
 
+    User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
+    User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765");
+    User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234");
+
 
     private UserFactory(){
     }
@@ -25,9 +29,7 @@ public class UserFactory {
     public List<User> getUsers(){
 
         ///User admin = new User ("Admin", null, "Admin", null, null);
-        User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
-        User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765");
-        User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234");
+        users.clear();
 
         ///users.add(admin);
         users.add(user1);

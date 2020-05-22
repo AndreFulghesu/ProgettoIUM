@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     android:background="@drawable/gradient3"
     tools:context=".Login">
 
@@ -73,7 +74,23 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="10dp" />
+
+
+            <TextView
+                android:id="@+id/passwordDimenticata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dimenticata"
+                android:textColor="#3D679B"
+                android:gravity="left"
+                android:layout_marginLeft="5dp"
+                android:padding="2dp"
+                android:textSize="15dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
 
             <Button
                 android:id="@+id/accedi"

@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     EditText username, password;
     Button accedi;
     String formUsername, formPassword;
-    TextView registrazione;
+    TextView registrazione,passDimenticata;
     User user;
     Boolean debugLogin = true;
     @Override
@@ -35,12 +35,16 @@ public class Login extends AppCompatActivity {
 
         /**Gestione della sessione nel caso in cui l'utente sia ancora loggato**/
 
+
         final UserSession userSession = new UserSession(this);
+        /*
         if (userSession.isLogged() && UserFactory.getInstance().findUserByName(userSession.getUserSession())) {
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(userSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
+
+         */
 
         /**Gestione elementi interfaccia**/
 
@@ -48,6 +52,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.inputPassword);
         accedi = findViewById(R.id.accedi);
         registrazione = findViewById(R.id.registrazione);
+        passDimenticata = findViewById(R.id.passwordDimenticata);
 
         /**Gestione controllo degli input dei dati utente in caso di pressione del bottone Accedi**/
 
@@ -84,6 +89,18 @@ public class Login extends AppCompatActivity {
                 startActivity(registrazione);
             }
         });
+
+
+        passDimenticata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent passDim = new Intent (Login.this, PasswordDimenticata.class);
+                startActivity(passDim);
+
+            }
+        });
+
+
     }
     /**Controllo e gestione di mancato input nei campi username e password**/
     private boolean checkInput(){
