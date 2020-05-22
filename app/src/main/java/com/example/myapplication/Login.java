@@ -37,14 +37,14 @@ public class Login extends AppCompatActivity {
 
 
         final UserSession userSession = new UserSession(this);
-        /*
+
         if (userSession.isLogged() && UserFactory.getInstance().findUserByName(userSession.getUserSession())) {
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(userSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
 
-         */
+
 
         /**Gestione elementi interfaccia**/
 

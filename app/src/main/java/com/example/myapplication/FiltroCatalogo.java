@@ -25,6 +25,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
     Genres filterGenre;
     int bookId;
     User user;
+    ArrayList<String> choices = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
             bookId = (int) bookObj;
         }
 
-        ArrayList<String> choices = new ArrayList<>();
+
         choices.add("Ordina per suggeriti di sistema (default)");
         choices.add("Ordina per valutazione");
         choices.add("Ordina per numero di visualizzazioni");
@@ -65,7 +66,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
         int height =dm.heightPixels;
         getWindow().setLayout((int) (width*.8), (int)(height*.6));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_dropdown_item, choices);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_dropdown_item, R.id.testoMenu, choices);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         ordSpinner.setAdapter(adapter);
 
