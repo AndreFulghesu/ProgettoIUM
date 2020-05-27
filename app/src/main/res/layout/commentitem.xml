@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="?attr/backgroundColor"
     android:layout_height="match_parent">
 
 
@@ -29,15 +28,6 @@
         android:textSize="13dp"/>
 
 
-    <!--
-    <Button
-        android:id="@+id/favourite"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/ic_favorite_red_36dp"/>
-        -->
 
     <com.like.LikeButton
         android:layout_width="60dp"
@@ -55,8 +45,7 @@
         app:liked="false"
         android:id="@+id/favourite"
         app:anim_scale_factor="2.5"
-        app:is_enabled="true"
-        />
+        app:is_enabled="true" />
 
 
 </LinearLayout>

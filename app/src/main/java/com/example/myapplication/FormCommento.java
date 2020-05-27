@@ -77,10 +77,8 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
         final RatingBar bar = findViewById(R.id.ratingBar);
-        final TextView rateMessage = findViewById(R.id.rateMessage);
         final EditText feedbackMessage = findViewById(R.id.feedbackMessage);
         Button feedbackSubmit = findViewById(R.id.feedbackSubmit);
 
@@ -137,34 +135,9 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        /*
-        bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                rateMessage.setText(String.valueOf(v));
-                switch ((int) ratingBar.getRating()) {
-                    case 1:
-                        rateMessage.setText("Il peggior capitolo che io abbia letto...");
-                        break;
-                    case 2:
-                        rateMessage.setText("Si può migliorare...");
-                        break;
-                    case 3:
-                        rateMessage.setText("Un buon capitolo.");
-                        break;
-                    case 4:
-                        rateMessage.setText("Un ottimo capitolo!");
-                        break;
-                    case 5:
-                        rateMessage.setText("Il miglior capitolo letto ultimamente!");
-                        break;
-                    default:
-                        rateMessage.setText("");
-                }
-            }
-        });
 
-         */
+
+
 
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,8 +177,6 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         Class callingActivity = userSession.getActivityFromValue(classValue - 2);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
-            goBack.putExtra("bookId", bookId);
-            goBack.putExtra("chapId", chapId);
             startActivity(goBack);
         }
 

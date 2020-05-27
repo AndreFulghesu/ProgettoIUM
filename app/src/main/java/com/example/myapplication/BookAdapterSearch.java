@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,12 +47,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
 
         viewHolder.bookTitle.setText(book.getTitle());
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
-        /*
-        if (findImg(book)!=-1) {
-            viewHolder.bookGenre.setImageResource(findImg(book));
-        }
 
-         */
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.valutationSearch.setText("" +roundDown5(book.getTotalValutation()));
 
@@ -60,26 +56,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
         return convertView;
     }
 
-    /*
-    public int findImg(Book book) {
-        switch(book.getGenre()) {
-            case FANTASY:
-                return R.drawable.dragon;
-            case STORICO:
-                return R.drawable.museum;
-            case THRILLER:
-                return R.drawable.knife;
-            case POLIZIESCO:
-                return R.drawable.policeman;
-            case FANTASCIENZA:
-                return R.drawable.robot;
-            case HORROR:
-                return R.drawable.ghost;
-        }
-        return -1;
-    }
 
-     */
     private class ViewHolder{
         TextView bookTitle, bookAuthor, valutationSearch;
         ImageView bookGenre, goToBook, star;

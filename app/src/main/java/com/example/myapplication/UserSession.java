@@ -15,6 +15,7 @@ public class UserSession {
     private String CALLING_ACTIVITY = "calling_activity";
     private String BOOK_ID = "bookId";
     private String CHAPTER_ID = "chapId";
+    private String USER_AUTHOR ="userName_Author";
 
     public UserSession(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -52,6 +53,9 @@ public class UserSession {
     public void setChapId (int chapId) {
         editor.putInt(CHAPTER_ID, chapId).commit();
     }
+    public void setUserAuthor (String username) {editor.putString(USER_AUTHOR,username).commit();}
+
+    public String getUsernameAuthor () { return prefs.getString(USER_AUTHOR,"");}
     public int getChapId() {
         return prefs.getInt(CHAPTER_ID, -1);
     }

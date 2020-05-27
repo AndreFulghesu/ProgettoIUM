@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
 
     Context context;
     ArrayList<Book> books;
+    final int classValue = 2;
 
     public CustomBookAdapter(Context context, int textViewResourceId, ArrayList<Book> objects) {
         super(context, textViewResourceId, objects);
@@ -24,7 +26,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
     public View getView(int position, View convertView,  ViewGroup parent) {
         ViewHolder viewHolder;
         View view;
-        Book book = getItem(position);
+         final Book book = getItem(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,6 +48,20 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
 
         viewHolder.bookTitle.setText(book.getTitle());
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
+        viewHolder.bookAuthor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final UserSession userSession = new UserSession(context);
+                userSession.setCallingActivity(classValue);
+                userSession.setUserAuthor(book.getAuthor().getUsername());
+                context.startActivity(new Intent(context, ProfiloAutore.class));
+
+
+            }
+        });
+
+
+
         viewHolder.views.setText("" + book.getViews());
 
         if (findImg(book)!=-1) {

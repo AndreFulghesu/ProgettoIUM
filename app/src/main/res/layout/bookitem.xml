@@ -46,10 +46,14 @@
                 android:layout_marginLeft="15dp"
                 android:fontFamily="sans-serif-smallcaps"
                 android:padding="5dp"
-                android:textColor="?attr/textColor"
-                android:text="Autore:Carlo Fumagalli"
+                android:textColor="#3D679B"
+                android:text="@string/nome_autore"
                 android:textSize="14dp"
                 android:textStyle="bold" />
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

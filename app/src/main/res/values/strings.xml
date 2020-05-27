@@ -8,4 +8,5 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="tornaLogin"><u>Torna al login</u></string>
+    <string name ="nome_autore"><u>Giorgio Armani</u></string>
 </resources>

@@ -28,7 +28,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
          final ViewHolder viewHolder;
         View view;
         if (convertView == null) {
@@ -45,13 +45,13 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         }
         final Comment c = getItem(position);
         viewHolder.commento.setText(c.getText());
-        //setLikeColor(viewHolder.like,c);
-        viewHolder.like.setLiked(false);
+        viewHolder.like.setLiked(c.getLike());
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 
         viewHolder.like.setOnLikeListener(new OnLikeListener() {
 
             public void liked(LikeButton likeButton) {
+                CommentFactory.getInstance().getComments().get(position).setLike(true);
                 c.setLike(true);
                 viewHolder.like.setLiked(true);
 
@@ -59,6 +59,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
             @Override
             public void unLiked(LikeButton likeButton) {
+                CommentFactory.getInstance().getComments().get(position).setLike(false);
                 c.setLike(false);
                 viewHolder.like.setLiked(false);
 

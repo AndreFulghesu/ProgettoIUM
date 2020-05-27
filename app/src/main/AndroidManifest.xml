@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".PasswordDimenticata"></activity>
+        <activity android:name=".ProfiloAutore"></activity>
+        <activity android:name=".PasswordDimenticata" />
         <activity android:name=".FiltroCatalogo" />
         <activity android:name=".MaxiLettura" />
         <activity

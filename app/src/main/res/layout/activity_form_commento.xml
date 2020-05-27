@@ -61,15 +61,7 @@
                 android:stepSize="1"
                 android:rating="5" />
 
-            <TextView
-                android:id="@+id/rateMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Fantastico!"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+
 
 
             <EditText
@@ -81,9 +73,10 @@
                 android:gravity="top"
                 android:textColor="?attr/textColor"
                 android:hint="Lascia un commento!"
-                android:textColorHint="?attr/textColor"
                 android:inputType="textMultiLine"
-                android:lines="5" />
+                android:lines="5"
+                android:layout_marginBottom="5dp"
+                android:textColorHint="#5F605F"/>
 
 
             <Space
@@ -95,7 +88,7 @@
                 android:layout_width="250dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/generic_button"
                 android:text="Salva Feedback"
                 android:textColor="@android:color/white" />

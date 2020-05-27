@@ -106,35 +106,7 @@ class BookFactory {
 
     public void addViewsBook (Book book) {
 
-        /*
-        for (Book b : booksModified){
-            int index =+1;
-            if (b.getId() != book.getId()){
-                //scorre per vedere se il libro da aggiornare è nuovo
-                //ho preferito questa tipologia di algoritmo perché facendo il contrario non fungeva
-            }
-        }
 
-         */
-        int views;
-
-        /*
-        if(!booksModified.contains(book)) {
-            booksModified.add(book);
-            booksModified.get(booksModified.size()-1).incrementViews();
-        }else{
-            for(int i =0; i<booksModified.size();i++){
-                if (book.getId() == booksModified.get(i).getId()){
-                    views =booksModified.get(i).getViews();
-                    booksModified.remove(i);
-                    book.setViews(views);
-                    book.incrementViews();
-                    booksModified.add(book);
-                }
-            }
-        }
-
-         */
         if(booksModified != null) {
             for (int i = 0; i < booksModified.size(); i++) {
                 if (booksModified.get(i).getId() == book.getId()) {
@@ -154,18 +126,6 @@ class BookFactory {
             System.out.println("Nome: "+b.getTitle()+ " Numero views libro : "+b.getViews());
         }
 
-        /*
-        // aggiungo il libro alla lista di quelli modificati
-        booksModified.add(book);
-
-        //se il libro passato come argomento trova riscrontro nella lista allora effettua modifica
-        for (int i =0 ; i<booksModified.size();i++){
-            if (book.getId() == booksModified.get(i).getId()){
-                booksModified.get(i).incrementViews();
-            }
-        }
-
-         */
 
     }
 
