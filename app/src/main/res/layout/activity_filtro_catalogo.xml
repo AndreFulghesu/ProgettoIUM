@@ -23,28 +23,23 @@
                 android:layout_height="20dp"
                 android:background="?attr/backgroundColor" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:background="?attr/backgroundColor"
                 android:text="Ordina per:"
-                android:id="@+id/ordinaPer"
-                android:textSize="22dp" />
+                android:textSize="25dp" />
 
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spinner_ordinamento"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true" />
-
-            </LinearLayout>
+            <Spinner
+                android:id="@+id/spinner_ordinamento"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                style="@style/spinner_style"
+                android:layout_marginLeft="10dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:background="?attr/backgroundColor" />
 
             <ListView
                 android:id="@+id/filtro_listview"
@@ -62,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
+                android:background="?attr/backgroundColor"
                 android:text="Filtra per genere"
                 android:textSize="25dp" />
 

@@ -9,4 +9,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="tornaLogin"><u>Torna al login</u></string>
     <string name ="nome_autore"><u>Giorgio Armani</u></string>
+    <string name="ringraziamento_report">Vi ringraziamo per il contributo che state dando a noi programmatori e alla nostra Community.
+    Vi preghiamo di fornirci quante più informazioni possibili, al fine di risolvere il problema nel modo più veloce ed efficiente possibile.</string>
 </resources>

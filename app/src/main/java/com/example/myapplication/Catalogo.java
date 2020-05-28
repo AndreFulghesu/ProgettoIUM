@@ -135,13 +135,10 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
          *  cambiamenti di parametri nella activityu FiltroCatalogo**/
 
         Intent intent = getIntent();
-        Serializable obj = intent.getSerializableExtra("ORDINAMENTO");
         Serializable objGenre = intent.getSerializableExtra("GENERE_FILTRAGGIO");
 
-        if (obj != null) {
-            ordNum = (int) obj;
-            System.out.println(ordNum);
-        }
+        ordNum = userSession.getOrdinamento();
+
         if (objGenre != null) {
             genreFilter = (Genres) objGenre;
             System.out.println(genreFilter.toString());

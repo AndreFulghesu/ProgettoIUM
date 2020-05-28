@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Report">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?attr/backgroundColor">
+
+        <include
+            android:id="@+id/reportbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_margin="10dp"
+            android:textColor="?attr/textColor"
+            android:text="@string/ringraziamento_report"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
+            android:layout_margin="10dp"
+            android:text="Indica il tipo di problema:" />
+
+        <Spinner
+            android:id="@+id/spinner_report"
+            style="@style/spinner_style"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="?attr/backgroundColor"
+            android:spinnerMode="dropdown"
+            android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <ListView
+            android:id="@+id/report_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="?attr/textColor"
+            android:background="?attr/backgroundColor"
+            android:dividerHeight="3dp" />
+
+        <TextView
+            android:id="@+id/report_spinner_selected"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:textColor="?attr/textColor"
+            android:text="Hai selezionato: " />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/text_sopra_report_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:textColor="?attr/textColor"
+            android:text="Cerca l'tem:" />
+
+        <SearchView
+            android:id="@+id/search_report_item"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:queryHint="Scrivi qui"
+            android:layout_height="match_parent" />
+
+        <ListView
+            android:id="@+id/report_searched"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:textColor="?attr/textColor"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/reportMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="Descrivi il problema..."
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/textColor" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/reportSubmit"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/generic_button"
+            android:text="Invia Report"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>

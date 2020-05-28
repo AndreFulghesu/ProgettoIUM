@@ -51,7 +51,6 @@ public class Chapter {
             System.out.println("Voto commento: " + c.getVote());
             contatore++;
         }
-
         valutation =valutation / this.commenti.size();
         this.valutation = valutation;
     }

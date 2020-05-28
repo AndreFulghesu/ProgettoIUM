@@ -170,15 +170,10 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         switch (item.getItemId()) {
             case R.id.bookPlot:
                 Intent seePlot = new Intent(ChapterList.this, PlotPopUp.class);
-                seePlot.putExtra("bookId", bookId);
-                seePlot.putExtra("User", user);
                 startActivity(seePlot);
                 break;
             case R.id.menuprofilo:
                 Intent myProfile = new Intent(ChapterList.this, MyProfile.class);
-                myProfile.putExtra("User",user);
-                myProfile.putExtra("riferimento",1);
-                myProfile.putExtra("bookId",bookId);
                 startActivity(myProfile);
                 break;
             case R.id.report:

@@ -22,6 +22,7 @@
             android:theme="@style/AppTheme.PlotPopUp" />
         <activity android:name=".ChapterList" />
         <activity android:name=".ContinuaLettura" />
+        <activity android:name=".Report"/>
         <activity android:name=".MyProfile" />
         <activity android:name=".Catalogo" />
         <activity android:name=".CommentList" />

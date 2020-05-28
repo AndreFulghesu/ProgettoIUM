@@ -23,9 +23,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
 
     int ordinamentoId;
     Genres filterGenre;
-    int bookId;
     User user;
-    ArrayList<String> choices = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +40,6 @@ public class FiltroCatalogo extends AppCompatActivity  {
         Button salvaFiltri = findViewById(R.id.salvaFiltri);
         Intent intent = getIntent();
         Serializable bookObj = intent.getSerializableExtra("bookId");
-        Serializable userObj = intent.getSerializableExtra("User");
         final Spinner ordSpinner = findViewById(R.id.spinner_ordinamento);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
@@ -50,11 +47,8 @@ public class FiltroCatalogo extends AppCompatActivity  {
             System.out.println("Errore trasmissione sessione");
             finish();
         }
-        if (bookObj != null) {
-            bookId = (int) bookObj;
-        }
 
-
+        ArrayList<String> choices = new ArrayList<>();
         choices.add("Ordina per suggeriti di sistema (default)");
         choices.add("Ordina per valutazione");
         choices.add("Ordina per numero di visualizzazioni");
@@ -101,7 +95,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
             public void onClick(View v) {
                 Intent getFilter = new Intent(getApplicationContext(), Catalogo.class);
                 if (ordinamentoId != -1)
-                    getFilter.putExtra("ORDINAMENTO", ordinamentoId);
+                    userSession.setOrdinamento(ordinamentoId);
                 if (filterGenre != null)
                     getFilter.putExtra("GENERE_FILTRAGGIO", filterGenre);
                 startActivity(getFilter);

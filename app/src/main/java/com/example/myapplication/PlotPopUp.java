@@ -27,12 +27,10 @@ public class PlotPopUp extends Activity {
         final UserSession userSession = new UserSession(this);
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+            bookId = userSession.getBookId();
         } catch (NullPointerException e) {
             System.out.println("Errore trasmissione sessione");
             finish();
-        }
-        if (bookObj != null) {
-            bookId = (int) bookObj;
         }
         TextView plotText = findViewById(R.id.plottext);
         plotText.setText(BookFactory.getInstance().getBookById(bookId).getPlot());
@@ -48,8 +46,6 @@ public class PlotPopUp extends Activity {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(PlotPopUp.this, ChapterList.class);
-                goBack.putExtra("bookId", bookId);
-                goBack.putExtra("User", user);
                 goBack.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(goBack);
             }

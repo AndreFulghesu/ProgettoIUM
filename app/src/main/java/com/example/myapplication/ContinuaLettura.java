@@ -35,7 +35,6 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    MaterialSearchView searchView;
     View actionView;
 
     @Override
