@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="40sp"
-    android:textColor="?attr/textColor"
-    android:id="@+id/row_user_searched">
-</TextView>
+    android:layout_height="61dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/image_user_report"/>
+
+    <Space
+        android:layout_width="25dp"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user_name_report"
+        android:text="USERAME"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/remove_user_report"/>
+
+</LinearLayout>

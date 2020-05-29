@@ -8,9 +8,9 @@ public class UserFactory {
     private static UserFactory singleton;
 
 
-    private List<User> users = new ArrayList<>();
-    private List<User> usersModified = new ArrayList<>();
-    private List<User> usersLikeSession = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<User> usersModified = new ArrayList<>();
+    private ArrayList<User> usersLikeSession = new ArrayList<>();
 
     User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
     User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765");
@@ -27,7 +27,7 @@ public class UserFactory {
         return singleton;
     }
 
-    public List<User> getUsers(){
+    public ArrayList<User> getUsers(){
 
         ///User admin = new User ("Admin", null, "Admin", null, null);
         users.clear();

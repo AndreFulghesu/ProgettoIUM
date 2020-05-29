@@ -170,19 +170,19 @@ public class Report extends AppCompatActivity {
                     }
                 } else
                     if (problemId == 1) {
-                        ArrayList<String> filtered = new ArrayList<>();
-                        List<User> users;
+                        ArrayList<User> filtered = new ArrayList<>();
+                        ArrayList<User> users;
                         users = UserFactory.getInstance().getUsers();
                         if (newText != null && !newText.isEmpty()) {
                             for (User u : users) {
                                 if (u.getUsername().toLowerCase().contains(newText.toLowerCase())) {
-                                    filtered.add(u.getUsername());
+                                    filtered.add(u);
                                 }
                             }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.row_filter_spinner, filtered);
+                            CustomUserAdapter adapter = new CustomUserAdapter(getApplicationContext(), R.layout.row_username, filtered);
                             reportSearched.setAdapter(adapter);
                         } else {
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.row_filter_spinner, filtered);
+                            CustomUserAdapter adapter = new CustomUserAdapter(getApplicationContext(), R.layout.row_username, filtered);
                             users.clear();
                             users = UserFactory.getInstance().getUsers();
                             adapter.notifyDataSetChanged();

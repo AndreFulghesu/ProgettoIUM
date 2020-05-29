@@ -29,7 +29,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
     public View getView(int position, View convertView,  ViewGroup parent) {
         ViewHolder viewHolder;
         View view;
-         final Book book = getItem(position);
+        final Book book = getItem(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,12 +60,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
                 userSession.setCallingActivity(classValue);
                 userSession.setUserAuthor(book.getAuthor().getUsername());
                 context.startActivity(new Intent(context, ProfiloAutore.class));
-
-
             }
         });
-
-
 
         viewHolder.views.setText("" + book.getViews());
 
@@ -78,10 +74,9 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         System.out.println(totalValutation);
         viewHolder.averageValutation.setText("" + roundDown5(totalValutation));
 
-
-
         return convertView;
     }
+
     public int findImg(Book book) {
         switch(book.getGenre()) {
             case FANTASY:
@@ -125,15 +120,11 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
                 }
             }
         }
-
     }
 
     public static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
-
-
-
 
 }
 
