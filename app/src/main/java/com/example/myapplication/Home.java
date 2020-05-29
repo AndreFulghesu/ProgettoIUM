@@ -53,8 +53,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        System.out.println("Utente loggato: "+userSession.getUserSession());
+
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
         } else {
@@ -259,8 +261,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 myProfile.putExtra("riferimento",0);
                 startActivity(myProfile);
                 break;
-            case R.id.report:
-                break;
+
 
         }
         return super.onOptionsItemSelected(item);

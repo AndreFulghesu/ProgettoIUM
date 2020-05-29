@@ -14,14 +14,6 @@
         android:icon="@drawable/profile_asset"
         app:showAsAction="ifRoom"
         />
-    <item
-        android:id="@+id/report"
-        android:title ="Segnala un problema"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menulogout"
-        android:title="Logout"
-        app:showAsAction="never"
-        />
+
 
 </menu>

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class MyProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -46,7 +47,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
 
 
         final UserSession userSession = new UserSession(this);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
         } else {
@@ -60,8 +61,8 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.myprofilebar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Il mio Profilo");
-        if (userSession.getTheme() == false) {
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Il mio Profilo");
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {
@@ -152,15 +153,6 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu1, menu);
-        return true;
-    }
-
-     */
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -175,8 +167,6 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 Intent myProfile = new Intent (MyProfile.this, MyProfile.class);
                 UserSession uSes2 = new UserSession(getApplicationContext());
                 startActivity(myProfile);
-                break;
-            case R.id.report:
                 break;
 
         }

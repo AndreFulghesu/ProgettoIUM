@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import androidx.core.util.Pair;
 
 public class User implements Serializable {
@@ -12,6 +14,7 @@ public class User implements Serializable {
     private String email;
     private String password;
     private ArrayList<Pair<Book, Chapter>> continuaLetturaList = new ArrayList<>();
+    private HashMap<Comment,Boolean> commentiLike = new HashMap<>();
 
     public User (String nome, String cognome, String username, String email, String password ) {
         this.setUsername(username);
@@ -19,6 +22,7 @@ public class User implements Serializable {
         this.setCognome(cognome);
         this.setEmail(email);
         this.setPassword(password);
+
     }
 
     public String getUsername() {
@@ -63,7 +67,37 @@ public class User implements Serializable {
             continuaLetturaList.add(pair);
         }
     }
+
     public ArrayList<Pair<Book, Chapter>> getListaLibriIziziati(){
         return continuaLetturaList;
     }
+
+    /*
+    public void setCommentiLike (){
+
+        ArrayList<Comment> elenco_Commenti = CommentFactory.getInstance().getComments();
+        for (Comment c : elenco_Commenti){
+            this.commentiLike.put(c,false);
+        }
+
+    }
+
+     */
+
+    public void addLike (Comment c,Boolean b){
+
+        this.commentiLike.put(c,b);
+    }
+
+    public boolean getLike (Comment c) {
+
+        if( !this.commentiLike.isEmpty()) {
+            return this.commentiLike.get(c);
+        }
+
+        return false;
+    }
+
+    public HashMap<Comment,Boolean> getMapLikes (){ return this.commentiLike; }
+    public void setMapLike (HashMap<Comment,Boolean> nuoviLike){ this.commentiLike =nuoviLike; }
 }

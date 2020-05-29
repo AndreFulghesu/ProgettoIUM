@@ -2,15 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/action_search"
         android:title="Search..."
         android:orderInCategory="100"
         android:icon="@drawable/ic_search_blue_36dp"
         android:padding="5dp"
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layoutDirection="rtl"
+        android:layout_height="wrap_content"
+        android:clickable="true"
         app:theme="@style/ActionButton"
         app:showAsAction="always"
         />
+
     <item
         android:id="@+id/menuprofilo"
         android:title ="Il Mio Profilo"

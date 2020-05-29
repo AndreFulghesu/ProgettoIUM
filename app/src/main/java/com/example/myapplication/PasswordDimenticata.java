@@ -21,7 +21,7 @@ public class PasswordDimenticata extends AppCompatActivity {
 
     Button richiestaPass;
     EditText email,telephoneNumber;
-    TextView alertPass,goLogin;
+    TextView alertPass;
     private boolean permission = false;
 
 
@@ -35,7 +35,6 @@ public class PasswordDimenticata extends AppCompatActivity {
         email = findViewById(R.id.richiestaEmail);
         telephoneNumber = findViewById(R.id.numeroTelefono);
         alertPass = findViewById(R.id.alertPass);
-        goLogin = findViewById(R.id.goLogin);
 
 
         richiestaPass.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +52,6 @@ public class PasswordDimenticata extends AppCompatActivity {
                         Snackbar.make(v, "La richiesta di registrazione è stata inoltrata.\nControlla la tua casella email", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 
-                        goLogin.setVisibility(View.VISIBLE);
                         permission = true;
                         alertPass.setVisibility(View.GONE);
                     }else {
@@ -65,37 +63,7 @@ public class PasswordDimenticata extends AppCompatActivity {
             }
         });
 
-            goLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(permission == false){
-                        new AlertDialog.Builder(PasswordDimenticata.this)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .setTitle("(Y)ouBook")
-                                .setMessage("Sei sicuro di voler tornare indietro senza procedere?")
-                                .setPositiveButton("Si", new DialogInterface.OnClickListener()
-                                {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finishAffinity();
-                                        System.exit(0);
-                                        Intent goLogin = new Intent(PasswordDimenticata.this, Login.class);
-                                        startActivity(goLogin);
-
-                                    }
-
-                                })
-                                .setNegativeButton("No", null)
-                                .show();
-                    }else{
-                        Intent goLogin = new Intent(PasswordDimenticata.this, Login.class);
-                        startActivity(goLogin);
-                    }
-                    }
-
-            });
-
-        }
+    }
 
 
     private Boolean checkInput() {
@@ -129,6 +97,37 @@ public class PasswordDimenticata extends AppCompatActivity {
         }
 
         return false;
+
+    }
+
+
+    /**Gestione dell'uscita dall'applicazione nel caso in cui si torni indietro**/
+    @Override
+    public void onBackPressed() {
+
+        if(!permission){
+            new AlertDialog.Builder(PasswordDimenticata.this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("(Y)ouBook")
+                    .setMessage("Sei sicuro di voler tornare indietro senza procedere?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+                            System.exit(0);
+                            Intent goLogin = new Intent(PasswordDimenticata.this, Login.class);
+                            startActivity(goLogin);
+
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }else{
+            Intent goLogin = new Intent(PasswordDimenticata.this, Login.class);
+            startActivity(goLogin);
+        }
 
     }
 }

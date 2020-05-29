@@ -176,8 +176,6 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
                 Intent myProfile = new Intent(ChapterList.this, MyProfile.class);
                 startActivity(myProfile);
                 break;
-            case R.id.report:
-                break;
 
         }
         return super.onOptionsItemSelected(item);

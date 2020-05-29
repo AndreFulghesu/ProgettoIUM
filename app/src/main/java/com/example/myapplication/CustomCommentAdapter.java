@@ -44,23 +44,36 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final Comment c = getItem(position);
+        final User u =UserFactory.getInstance().getUserByUsername(new UserSession(context).getUserSession());
+
         viewHolder.commento.setText(c.getText());
-        viewHolder.like.setLiked(c.getLike());
+
+        if (UserFactory.getInstance().getUserByUsername(u.getUsername()).getLike(c)) {
+            viewHolder.like.setLiked(true);
+        }else{
+            viewHolder.like.setLiked(false);
+
+        }
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 
         viewHolder.like.setOnLikeListener(new OnLikeListener() {
 
             public void liked(LikeButton likeButton) {
-                CommentFactory.getInstance().getComments().get(position).setLike(true);
-                c.setLike(true);
+                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLike(c,true);
+                UserFactory.getInstance().addUserModified(u);
+                System.out.println("Utente loggato:   "+u.getUsername());
+                //CommentFactory.getInstance().getComments().get(position).setLike(true);
+                //c.setLike(true);
                 viewHolder.like.setLiked(true);
 
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-                CommentFactory.getInstance().getComments().get(position).setLike(false);
-                c.setLike(false);
+                //CommentFactory.getInstance().getComments().get(position).setLike(false);
+                //c.setLike(false);
+                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLike(c,false);
+                System.out.println("Utente loggato:   "+u.getUsername());
                 viewHolder.like.setLiked(false);
 
             }

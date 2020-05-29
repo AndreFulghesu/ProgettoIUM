@@ -10,7 +10,6 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         android:orientation="vertical"
         android:background="?attr/backgroundColor">
 
@@ -52,6 +51,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:background="?attr/backgroundColor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/listaVuota"/>
 
             <ListView
                 android:id="@+id/continuebooklist"

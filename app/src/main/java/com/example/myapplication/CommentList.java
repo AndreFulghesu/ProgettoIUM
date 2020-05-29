@@ -41,7 +41,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
     Chapter capitoloCorrente;
     Book libroCorrente;
     private int bookId,chapId;
-    TextView numberCap, titleBook;
+    TextView numberCap, titleBook, commentiVuoti;
     DrawerLayout drawer;
     Menu drawerMenu;
     MenuItem menuItem;
@@ -68,6 +68,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         lista = findViewById(R.id.listaCommenti);
         numberCap = findViewById(R.id.testoCapitolo);
         titleBook = findViewById(R.id.testoLibro);
+        commentiVuoti = findViewById(R.id.commentiVuoti);
 
         Intent intent = getIntent();
 
@@ -154,23 +155,21 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         titleBook.setText(libroCorrente.getTitle());
 
 
-        //inizio gestione layout della lista
-
-        //myComments = CommentFactory.getInstance().getCommentId(chapterId,bookId);
 
         ArrayList<Comment> debugging = CommentFactory.getInstance().getCommentById(chapId,bookId);
-        for(Comment c : debugging){
-            System.out.println("Autore Commento: "+c.getUserAuthor().getNome() +" Valutazione: "+c.getVote());
+        if (debugging.isEmpty()){
+            commentiVuoti.setText("Non ci sono commenti");
+        }else {
+
+            CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
+            myComments.clear();
+            myComments = CommentFactory.getInstance().getCommentById(chapId, bookId);
+            adapter.clear();
+            adapter.addAll(myComments);
+            adapter.notifyDataSetChanged();
+
+            lista.setAdapter(adapter);
         }
-
-        CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
-        myComments.clear();
-        myComments = CommentFactory.getInstance().getCommentById(chapId,bookId);
-        adapter.clear();
-        adapter.addAll(myComments);
-        adapter.notifyDataSetChanged();
-
-        lista.setAdapter(adapter);
 
     }
 

@@ -38,13 +38,13 @@
         app:circle_start_color="@color/blue"
         app:like_drawable="@drawable/ic_favorite_red_36dp"
         app:unlike_drawable="@drawable/ic_favorite_shadows_36dp"
-        app:dots_primary_color="@color/colorAccent"
-        app:dots_secondary_color="@color/colorPrimary"
-        app:circle_end_color="@color/yellow"
+        app:dots_primary_color="@color/red"
+        app:dots_secondary_color="@color/yellow"
+        app:circle_end_color="@color/orange"
         app:icon_size="26dp"
         app:liked="false"
         android:id="@+id/favourite"
-        app:anim_scale_factor="2.5"
+        app:anim_scale_factor="3"
         app:is_enabled="true" />
 
 

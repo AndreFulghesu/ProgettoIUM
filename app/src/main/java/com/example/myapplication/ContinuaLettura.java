@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -29,7 +30,7 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
 
     User user;
     static int classValue = 8;
-
+    TextView listaVuota;
     DrawerLayout drawer;
     Menu drawerMenu;
     MenuItem menuItem;
@@ -54,6 +55,7 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         setContentView(R.layout.drawer_continua_lettura);
 
         drawer = findViewById(R.id.drawerContinuaLettura);
+        listaVuota = findViewById(R.id.listaVuota);
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.continuaLetturaToolbar);
         setSupportActionBar(toolbar);
@@ -113,8 +115,13 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
 
         final ListView continueLst= findViewById(R.id.continuebooklist);
         ArrayList<Pair<Book, Chapter>> books = user.getListaLibriIziziati();
-        ContinuaLetturaAdapter adapter = new ContinuaLetturaAdapter(this, R.layout.continua_lettura_item, books);
-        continueLst.setAdapter(adapter);
+        if(books.isEmpty()){
+            listaVuota.setText("Non hai iniziato nessun libro");
+        }else {
+
+            ContinuaLetturaAdapter adapter = new ContinuaLetturaAdapter(this, R.layout.continua_lettura_item, books);
+            continueLst.setAdapter(adapter);
+        }
 
         continueLst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

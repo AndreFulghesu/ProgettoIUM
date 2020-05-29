@@ -38,11 +38,14 @@ public class Login extends AppCompatActivity {
 
         final UserSession userSession = new UserSession(this);
 
+        /*
         if (userSession.isLogged() && UserFactory.getInstance().findUserByName(userSession.getUserSession())) {
             System.out.println("In login " + UserFactory.getInstance().getUserByUsername(userSession.getUserSession()));
             Intent sessionLogin = new Intent(Login.this, Home.class);
             startActivity(sessionLogin);
         }
+
+         */
 
 
 
@@ -135,7 +138,10 @@ public class Login extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        moveTaskToBack(true);
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(1);
+
                     }
 
                 })

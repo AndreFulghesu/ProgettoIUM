@@ -10,6 +10,7 @@ public class UserFactory {
 
     private List<User> users = new ArrayList<>();
     private List<User> usersModified = new ArrayList<>();
+    private List<User> usersLikeSession = new ArrayList<>();
 
     User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
     User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765");
@@ -40,6 +41,13 @@ public class UserFactory {
             if (users.get(i).getUsername().equals(usersModified.get(i).getUsername())) {
                 users.remove(i);
                 users.add(usersModified.get(i));
+            }
+
+        }
+
+        for (int i =0; i<usersLikeSession.size();i++){
+            if ((users.get(i).getUsername().equals(usersLikeSession.get(i).getUsername()))){
+                users.get(i).setMapLike(usersLikeSession.get(i).getMapLikes());
             }
         }
 
@@ -104,6 +112,12 @@ public class UserFactory {
         if (!check) {
             usersModified.add(user);
         }
+    }
+
+    public void addUserModified (User u){
+
+        this.usersLikeSession.add(u);
+
     }
 
 }

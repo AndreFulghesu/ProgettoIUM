@@ -2,6 +2,9 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,9 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
 
         viewHolder.bookTitle.setText(book.getTitle());
-        viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
+        SpannableString content = new SpannableString(book.getAuthor().getUsername());
+        content.setSpan(new UnderlineSpan(), 0, book.getAuthor().getUsername().length(), 0);
+        viewHolder.bookAuthor.setText(content);
         viewHolder.bookAuthor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
