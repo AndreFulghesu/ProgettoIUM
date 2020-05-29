@@ -85,6 +85,7 @@
             android:id="@+id/search_report_item"
             android:layout_width="match_parent"
             android:layout_margin="10dp"
+            android:clickable="true"
             android:queryHint="Scrivi qui"
             android:layout_height="match_parent" />
 

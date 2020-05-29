@@ -25,6 +25,7 @@ public class Report extends AppCompatActivity {
     TextView spinnerSelected;
     SearchView searchView;
     ListView reportSearched;
+    Book bookSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +128,18 @@ public class Report extends AppCompatActivity {
         });
         reportSearched = findViewById(R.id.report_searched);
         searchView = findViewById(R.id.search_report_item);
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if (bookSelected != null) {
+                    ArrayList<Book> newFiltered = new ArrayList<>();
+                    newFiltered.add(bookSelected);
+                    BookAdapterSearch adapter = new BookAdapterSearch(getApplicationContext(), R.layout.bookitem, newFiltered);
+                    reportSearched.setAdapter(adapter);
+                }
+                return false;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -184,7 +197,8 @@ public class Report extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<Book> book = new ArrayList<>();
-                book.add((Book) parent.getItemAtPosition(position));
+                bookSelected = (Book) parent.getItemAtPosition(position);
+                book.add(bookSelected);
                 BookAdapterSearch selectedItem = new BookAdapterSearch(getApplicationContext(), R.layout.bookitem, book);
                 reportSearched.setAdapter(selectedItem);
             }
