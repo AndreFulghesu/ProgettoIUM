@@ -70,4 +70,18 @@ public class Chapter {
         return this.commenti;
 
     }
+
+    public void deleteComment (Comment c){
+        if(!this.commenti.isEmpty()) {
+            for (int i = 0; i < this.commenti.size(); i++) {
+                if(this.commenti.get(i).equals(c)){
+                    this.commenti.remove(i);
+                }
+
+            }
+
+            this.setValutation();
+            ChapterFactory.getInstance().addChapterModify(this);
+        }
+    }
 }

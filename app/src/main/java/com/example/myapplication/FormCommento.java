@@ -146,7 +146,6 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
                 System.out.println("Voto nel form commento:  "+vote);
                 String feedback = feedbackMessage.getText().toString();
                 Comment comment = new Comment(feedback, vote, chapId, bookId, user,false);
-                System.out.println("Voto dentro il commento in form commento:  "+comment.getVote());
                 CommentFactory.getInstance().addComment(comment);
                 ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).addComment(comment);
                 ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).setValutation();

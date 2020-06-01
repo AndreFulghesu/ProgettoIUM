@@ -9,6 +9,7 @@ public class ChapterFactory {
 
 
     private ArrayList<Chapter> chapters = new ArrayList<>();
+    private ArrayList<Chapter> chaptersModified = new ArrayList<>();
     Chapter chap1= new Chapter(1, 1,
 
             "L'opera è divisa in sette libri, tanti quanti gli anni di studio a Hogwarts, " +
@@ -103,6 +104,15 @@ public class ChapterFactory {
         chapters.add(chap6);
         chapters.add(chap7);
 
+        if(!chaptersModified.isEmpty()) {
+            for (int i = 0; i < chaptersModified.size(); i++) {
+                if (this.chaptersModified.get(i).getText().equals(this.chapters.get(i).getText())) {
+                    this.chapters.remove(i);
+                    this.chapters.add(i, this.chaptersModified.get(i));
+                }
+            }
+        }
+
         return this.chapters;
     }
 
@@ -126,6 +136,12 @@ public class ChapterFactory {
         }
         return null;
     }
+
+    public void addChapterModify (Chapter c) {
+        this.chaptersModified.add(c);
+    }
+
+
 
 
 

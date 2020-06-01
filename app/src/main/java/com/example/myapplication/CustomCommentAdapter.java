@@ -46,6 +46,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder.commento = convertView.findViewById(R.id.commento);
             viewHolder.commentAuthor = convertView.findViewById(R.id.autore_commento);
             viewHolder.delete_button = convertView.findViewById(R.id.button_delete);
+            viewHolder.delete_button.setVisibility(View.INVISIBLE);
             viewHolder.like = convertView.findViewById(R.id.favourite);
             convertView.setTag(viewHolder);
         } else {
@@ -81,7 +82,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
                                 Comment  toDelete=getItem(position);
                                 remove(getItem(position));
                                 CommentFactory.getInstance().toDelete(toDelete);
-
+                                ChapterFactory.getInstance().getChapterByChapNum(c.getChapterId(),c.getBookId()).deleteComment(c);
 
                             }
 
