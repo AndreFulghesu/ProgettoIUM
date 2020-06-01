@@ -109,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_button"
                 android:text="Lascia un Feedback"
+                android:layout_marginStart="30dp"
                 android:layout_alignParentLeft="true"
                 android:textColor="@android:color/white"
                 android:layout_gravity="left"
@@ -117,6 +118,7 @@
             <Button
                 android:id="@+id/readFeedback"
                 android:layout_width="150dp"
+                android:layout_marginEnd="30dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@color/color_button"

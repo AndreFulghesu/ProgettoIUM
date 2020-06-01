@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.like.LikeButton;
 import com.like.OnLikeListener;
@@ -35,9 +40,12 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.commentitem, null);
+
+
             viewHolder= new ViewHolder();
             viewHolder.commento = convertView.findViewById(R.id.commento);
             viewHolder.commentAuthor = convertView.findViewById(R.id.autore_commento);
+            viewHolder.delete_button = convertView.findViewById(R.id.button_delete);
             viewHolder.like = convertView.findViewById(R.id.favourite);
             convertView.setTag(viewHolder);
         } else {
@@ -54,6 +62,35 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder.like.setLiked(false);
 
         }
+
+        if (u.getUsername().equals(c.getUserAuthor().getUsername())){
+            viewHolder.delete_button.setVisibility(View.VISIBLE);
+        }
+
+        viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(context)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Cancella commento")
+                        .setMessage("Sei sicuro di voler cancellare il commento?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Comment  toDelete=getItem(position);
+                                remove(getItem(position));
+                                CommentFactory.getInstance().toDelete(toDelete);
+
+
+                            }
+
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 
         viewHolder.like.setOnLikeListener(new OnLikeListener() {
@@ -85,6 +122,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
     private class ViewHolder{
         TextView commento, commentAuthor;
         com.like.LikeButton like;
+        ImageView delete_button;
     }
 
     /*

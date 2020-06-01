@@ -61,5 +61,19 @@ public class Comment {
 
     public void setVote(int vote) { this.vote = vote;}
 
+    @Override
+    public boolean equals(Object o){
+        if (this == o ) return true;
+        if (o == null) return false;
+        if(!(o instanceof Comment)) return false;
+
+        Comment other = (Comment)o;
+        if (this.getText().equals(other.getText()) && this.getUserAuthor().getUsername().equals(other.getUserAuthor().getUsername()) && this.getBookId() == other.getBookId()){
+            return true;
+        }
+
+        return false;
+    }
+
 
 }

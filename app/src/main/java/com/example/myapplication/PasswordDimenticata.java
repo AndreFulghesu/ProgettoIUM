@@ -49,7 +49,7 @@ public class PasswordDimenticata extends AppCompatActivity {
 
                     if (checkEmail(email.getText().toString())){
 
-                        Snackbar.make(v, "La richiesta di registrazione è stata inoltrata.\nControlla la tua casella email", Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, "La richiesta è stata inoltrata.\nControlla la tua casella email", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 
                         permission = true;
@@ -91,7 +91,6 @@ public class PasswordDimenticata extends AppCompatActivity {
         List<User> users = UserFactory.getInstance().getUsers();
         for(User u : users){
             if (u.getEmail().equals(email.toLowerCase())){
-                System.out.print("Email database:  "+u.getEmail() + " Email inserita: " + email);
                 return true;
             }
         }

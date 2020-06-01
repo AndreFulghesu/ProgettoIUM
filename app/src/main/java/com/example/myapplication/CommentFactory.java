@@ -10,6 +10,7 @@ public class CommentFactory {
 
     private ArrayList<Comment> comments = new ArrayList<>();
     private ArrayList<Comment> newComments = new ArrayList<>();
+    private ArrayList<Comment> toDelete = new ArrayList<>();
 
     //commenti per il libro 1
     Comment com1 = new Comment ("Questo libro e' molto bello", 5, 1,1,UserFactory.getInstance().getUserByUsername("Faber123"),false);
@@ -68,6 +69,11 @@ public class CommentFactory {
             comments.add(newComments.get(i));
         }
 
+        deleteComments();
+
+
+
+
         return this.comments;
 
     }
@@ -77,6 +83,7 @@ public class CommentFactory {
 
         ArrayList<Comment> commentsChapter = new ArrayList<>();
         ArrayList<Comment> comments = this.getComments();
+        deleteComments();
         for (Comment c : comments) {
             if (c.getChapterId()==idChapter && c.getBookId()==idBook) {
                 commentsChapter.add(c);
@@ -90,6 +97,46 @@ public class CommentFactory {
     }
 
 
+    public void toDelete (Comment c){
+        this.toDelete.add(c);
+        System.out.println("Commento da eliminare aggiunto: "+c.getText());
+
+        /*
+        if (!this.toDelete.isEmpty()) {
+            for (int i = 0; i < this.toDelete.size(); i++) {
+                if (this.toDelete.get(i).equals(this.comments.get(i))) {
+
+                    System.out.println("Commento eliminato: "+this.comments.remove(i).getText());
+                    this.comments.remove(i);
+
+                }
+            }
+        }
+
+         */
+    }
+
+
+    public void deleteComments (){
+        if (!this.toDelete.isEmpty()) {
+            for (int i = 0; i < this.toDelete.size(); i++) {
+
+                for (int j=0;j<this.comments.size();j++) {
+                    if (this.toDelete.get(i).getText().equals(this.comments.get(j).getText()) && this.toDelete.get(i).getUserAuthor().getUsername().equals(this.comments.get(j).getUserAuthor().getUsername())) {
+                        System.out.println("Commento eliminato per davvero: " + this.comments.get(j).getText());
+                        this.comments.remove(j);
+                    }
+                }
+
+            }
+        }
+    }
+
+
 }
+
+
+
+
 
 

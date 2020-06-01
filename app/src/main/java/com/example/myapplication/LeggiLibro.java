@@ -87,12 +87,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             System.out.println("Valutazione commento "+c.getText() + " "+"Valutazione: "+c.getVote());
         }
 
-        System.out.println("Valutazione capitolo attualeeeeeeeeee "+attuale.getValutation());
-
-
-
-
-
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
         setSupportActionBar(toolbar);

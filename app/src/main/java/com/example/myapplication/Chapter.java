@@ -11,6 +11,7 @@ public class Chapter {
 
 
     public Chapter(int bookId, int chaptNum, String text){
+
         this.commenti = CommentFactory.getInstance().getCommentById(chaptNum,bookId);
         this.setBookId(bookId);
         this.setChaptNum(chaptNum);

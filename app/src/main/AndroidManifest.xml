@@ -13,7 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ProfiloAutore"></activity>
+        <activity
+            android:name=".StartActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ProfiloAutore" />
         <activity android:name=".PasswordDimenticata" />
         <activity android:name=".FiltroCatalogo" />
         <activity android:name=".MaxiLettura" />
@@ -22,7 +32,7 @@
             android:theme="@style/AppTheme.PlotPopUp" />
         <activity android:name=".ChapterList" />
         <activity android:name=".ContinuaLettura" />
-        <activity android:name=".Report"/>
+        <activity android:name=".Report" />
         <activity android:name=".MyProfile" />
         <activity android:name=".Catalogo" />
         <activity android:name=".CommentList" />
@@ -30,13 +40,8 @@
         <activity android:name=".Home" />
         <activity android:name=".Registrazione" />
         <activity android:name=".LeggiLibro" />
-        <activity android:name=".Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Login"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
