@@ -45,11 +45,9 @@ public class UserFactory {
 
         }
 
-        for (int i =0; i<usersLikeSession.size();i++){
-            if ((users.get(i).getUsername().equals(usersLikeSession.get(i).getUsername()))){
-                users.get(i).setMapLike(usersLikeSession.get(i).getMapLikes());
-            }
-        }
+
+
+
 
         return this.users;
     }
@@ -114,9 +112,15 @@ public class UserFactory {
         }
     }
 
-    public void addUserModified (User u){
+    public void addUserModifiedLike (User u, Comment c){
 
-        this.usersLikeSession.add(u);
+        for(int i=0;i<usersModified.size();i++){
+            if (u.getUsername().equals(usersModified.get(i).getUsername())){
+                usersModified.get(i).getMapLikes().put(c,true);
+
+            }
+        }
+
 
     }
 

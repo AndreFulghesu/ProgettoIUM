@@ -89,6 +89,16 @@ public class User implements Serializable {
         this.commentiLike.put(c,b);
     }
 
+    /*
+    public void deleteLike (Comment c){
+        this.commentiLike.remove(c);
+        UserFactory.getInstance().addUserModified(this);
+    }
+
+     */
+
+
+
     public boolean getLike (Comment c) {
 
         if( !this.commentiLike.isEmpty()) {

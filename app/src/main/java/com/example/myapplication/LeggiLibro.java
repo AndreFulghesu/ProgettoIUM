@@ -26,6 +26,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -82,7 +85,9 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
 
         final ArrayList<Comment> attuali = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getComment();
-        final Chapter attuale =ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
+        final HashMap<Comment,Boolean> test = user.getMapLikes();
+        
+
         for (Comment c : attuali) {
             System.out.println("Valutazione commento "+c.getText() + " "+"Valutazione: "+c.getVote());
         }
@@ -90,7 +95,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {

@@ -46,7 +46,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder.commento = convertView.findViewById(R.id.commento);
             viewHolder.commentAuthor = convertView.findViewById(R.id.autore_commento);
             viewHolder.delete_button = convertView.findViewById(R.id.button_delete);
-            viewHolder.delete_button.setVisibility(View.INVISIBLE);
             viewHolder.like = convertView.findViewById(R.id.favourite);
             convertView.setTag(viewHolder);
         } else {
@@ -55,7 +54,19 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         final Comment c = getItem(position);
         final User u =UserFactory.getInstance().getUserByUsername(new UserSession(context).getUserSession());
 
+        System.out.println("\nUtente loggato:   "+u.getUsername());
+        System.out.println("\nCommento relativo:   "+c.getUserAuthor().getUsername());
+
+
         viewHolder.commento.setText(c.getText());
+
+
+
+        if (u.getUsername().equals(c.getUserAuthor().getUsername())){
+            viewHolder.delete_button.setVisibility(View.VISIBLE);
+        }else{
+            viewHolder.delete_button.setVisibility(View.INVISIBLE);
+        }
 
         if (UserFactory.getInstance().getUserByUsername(u.getUsername()).getLike(c)) {
             viewHolder.like.setLiked(true);
@@ -64,9 +75,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
         }
 
-        if (u.getUsername().equals(c.getUserAuthor().getUsername())){
-            viewHolder.delete_button.setVisibility(View.VISIBLE);
-        }
+
 
         viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +92,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
                                 remove(getItem(position));
                                 CommentFactory.getInstance().toDelete(toDelete);
                                 ChapterFactory.getInstance().getChapterByChapNum(c.getChapterId(),c.getBookId()).deleteComment(c);
+                                //UserFactory.getInstance().getUserByUsername(u.getUsername()).deleteLike(c);
 
                             }
 
@@ -98,8 +108,8 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
             public void liked(LikeButton likeButton) {
                 UserFactory.getInstance().getUserByUsername(u.getUsername()).addLike(c,true);
-                UserFactory.getInstance().addUserModified(u);
-                System.out.println("Utente loggato:   "+u.getUsername());
+                UserFactory.getInstance().addUserModifiedLike(u,c);
+                System.out.println("Dentro l'adapter ha cambiato il like?   "+u.getMapLikes().get(c));
                 //CommentFactory.getInstance().getComments().get(position).setLike(true);
                 //c.setLike(true);
                 viewHolder.like.setLiked(true);

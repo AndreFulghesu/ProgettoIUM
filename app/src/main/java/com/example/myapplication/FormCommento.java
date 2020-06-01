@@ -35,6 +35,9 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
     SwitchCompat dmSwitch;
     NavigationView navigationView;
     View actionView;
+    RatingBar bar;
+    EditText feedbackMessage;
+    Button feedbackSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +56,13 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawerFormCommento);
 
         Intent intent = getIntent();
-        Serializable objBook = intent.getSerializableExtra("bookId");
-        Serializable objChap = intent.getSerializableExtra("chapId");
-        Serializable objUser = intent.getSerializableExtra("User");
+
         try {
             bookId = userSession.getBookId();
-            Book thisBook = BookFactory.getInstance().getBookById(bookId);
+
             try {
                 chapId = userSession.getChapId();
-                Chapter thisChap = ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId);
+
             } catch (NullPointerException e) {
                 Intent goToChapterList = new Intent (getApplicationContext(), ChapterList.class);
                 startActivity(goToChapterList);
@@ -78,13 +79,13 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         }
 
 
-        final RatingBar bar = findViewById(R.id.ratingBar);
-        final EditText feedbackMessage = findViewById(R.id.feedbackMessage);
-        Button feedbackSubmit = findViewById(R.id.feedbackSubmit);
+        bar = findViewById(R.id.ratingBar);
+        feedbackMessage = findViewById(R.id.feedbackMessage);
+        feedbackSubmit = findViewById(R.id.feedbackSubmit);
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.formcommentobar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
 
@@ -142,8 +143,8 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int vote = bar.getNumStars();
-                System.out.println("Voto nel form commento:  "+vote);
+                int vote = (int)bar.getRating();
+                System.out.println("Voto nel form commentooooooo:   "+vote);
                 String feedback = feedbackMessage.getText().toString();
                 Comment comment = new Comment(feedback, vote, chapId, bookId, user,false);
                 CommentFactory.getInstance().addComment(comment);
