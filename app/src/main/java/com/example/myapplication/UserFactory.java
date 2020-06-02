@@ -37,13 +37,18 @@ public class UserFactory {
         users.add(user2);
         users.add(user3);
 
-        for (int i =0; i<usersModified.size();i++){
-            if (users.get(i).getUsername().equals(usersModified.get(i).getUsername())) {
-                users.remove(i);
-                users.add(usersModified.get(i));
+        if (!usersModified.isEmpty()){
+        for (int i =0; i<usersModified.size();i++) {
+            for (int k = 0; k < users.size(); k++) {
+                if (users.get(k).getUsername().equals(usersModified.get(i).getUsername())) {
+                    users.remove(k);
+                    users.add(k, usersModified.get(i));
+                }
             }
+        }
 
         }
+
 
 
 
@@ -112,15 +117,12 @@ public class UserFactory {
         }
     }
 
-    public void addUserModifiedLike (User u, Comment c){
 
-        for(int i=0;i<usersModified.size();i++){
-            if (u.getUsername().equals(usersModified.get(i).getUsername())){
-                usersModified.get(i).getMapLikes().put(c,true);
 
-            }
-        }
 
+    public void addUserModifiedLike (User u){
+
+        this.usersModified.add(u);
 
     }
 

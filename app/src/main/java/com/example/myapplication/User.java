@@ -16,12 +16,14 @@ public class User implements Serializable {
     private ArrayList<Pair<Book, Chapter>> continuaLetturaList = new ArrayList<>();
     private HashMap<Comment,Boolean> commentiLike = new HashMap<>();
 
+
     public User (String nome, String cognome, String username, String email, String password ) {
         this.setUsername(username);
         this.setNome(nome);
         this.setCognome(cognome);
         this.setEmail(email);
         this.setPassword(password);
+
 
     }
 
@@ -72,22 +74,6 @@ public class User implements Serializable {
         return continuaLetturaList;
     }
 
-    /*
-    public void setCommentiLike (){
-
-        ArrayList<Comment> elenco_Commenti = CommentFactory.getInstance().getComments();
-        for (Comment c : elenco_Commenti){
-            this.commentiLike.put(c,false);
-        }
-
-    }
-
-     */
-
-    public void addLike (Comment c,Boolean b){
-
-        this.commentiLike.put(c,b);
-    }
 
     /*
     public void deleteLike (Comment c){
@@ -99,13 +85,20 @@ public class User implements Serializable {
 
 
 
-    public boolean getLike (Comment c) {
+    public void addLikeComments (Comment c, Boolean b){
 
-        if( !this.commentiLike.isEmpty()) {
-            return this.commentiLike.get(c);
-        }
+        this.commentiLike.put(c,b);
+        UserFactory.getInstance().addUserModifiedLike(this);
 
-        return false;
+    }
+
+    public Boolean getLike (Comment c) {
+
+            if (!this.commentiLike.isEmpty()) {
+                return this.commentiLike.get(c);
+            }
+            return false;
+
     }
 
     public HashMap<Comment,Boolean> getMapLikes (){ return this.commentiLike; }

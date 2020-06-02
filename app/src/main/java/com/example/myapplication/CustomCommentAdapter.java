@@ -68,13 +68,22 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder.delete_button.setVisibility(View.INVISIBLE);
         }
 
-        if (UserFactory.getInstance().getUserByUsername(u.getUsername()).getLike(c)) {
-            viewHolder.like.setLiked(true);
-        }else{
+        if (UserFactory.getInstance().getUserByUsername(u.getUsername()).getLike(c)==null || !UserFactory.getInstance().getUserByUsername(u.getUsername()).getLike(c)) {
             viewHolder.like.setLiked(false);
+        }else{
+            viewHolder.like.setLiked(true);
 
         }
 
+
+
+
+
+
+        for (Comment a : u.getMapLikes().keySet()){
+            System.out.println("\nchiavi commenti nella tabella: "+a.getUserAuthor());
+            System.out.println("\nvalore commenti nella tabella: "+u.getMapLikes().get(a));
+        }
 
 
         viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +101,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
                                 remove(getItem(position));
                                 CommentFactory.getInstance().toDelete(toDelete);
                                 ChapterFactory.getInstance().getChapterByChapNum(c.getChapterId(),c.getBookId()).deleteComment(c);
-                                //UserFactory.getInstance().getUserByUsername(u.getUsername()).deleteLike(c);
 
                             }
 
@@ -107,21 +115,15 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         viewHolder.like.setOnLikeListener(new OnLikeListener() {
 
             public void liked(LikeButton likeButton) {
-                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLike(c,true);
-                UserFactory.getInstance().addUserModifiedLike(u,c);
-                System.out.println("Dentro l'adapter ha cambiato il like?   "+u.getMapLikes().get(c));
-                //CommentFactory.getInstance().getComments().get(position).setLike(true);
-                //c.setLike(true);
+                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLikeComments(c,true);
+
                 viewHolder.like.setLiked(true);
 
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-                //CommentFactory.getInstance().getComments().get(position).setLike(false);
-                //c.setLike(false);
-                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLike(c,false);
-                System.out.println("Utente loggato:   "+u.getUsername());
+                UserFactory.getInstance().getUserByUsername(u.getUsername()).addLikeComments(c,false);
                 viewHolder.like.setLiked(false);
 
             }

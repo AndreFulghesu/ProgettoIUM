@@ -86,7 +86,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         final ArrayList<Comment> attuali = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getComment();
         final HashMap<Comment,Boolean> test = user.getMapLikes();
-        
+
 
         for (Comment c : attuali) {
             System.out.println("Valutazione commento "+c.getText() + " "+"Valutazione: "+c.getVote());

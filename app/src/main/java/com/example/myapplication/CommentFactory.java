@@ -64,9 +64,12 @@ public class CommentFactory {
         comments.add(com11);
         comments.add(com12);
 
-        for (int i =0;i<newComments.size();i++){
 
-            comments.add(newComments.get(i));
+        if (!newComments.isEmpty()) {
+            for (int i = 0; i < newComments.size(); i++) {
+
+                comments.add(newComments.get(i));
+            }
         }
 
         deleteComments();
@@ -123,7 +126,6 @@ public class CommentFactory {
 
                 for (int j=0;j<this.comments.size();j++) {
                     if (this.toDelete.get(i).getText().equals(this.comments.get(j).getText()) && this.toDelete.get(i).getUserAuthor().getUsername().equals(this.comments.get(j).getUserAuthor().getUsername())) {
-                        System.out.println("Commento eliminato per davvero: " + this.comments.get(j).getText());
                         this.comments.remove(j);
                     }
                 }
