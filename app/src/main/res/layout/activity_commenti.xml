@@ -11,13 +11,13 @@
     android:id="@+id/scrollView3"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="?attr/backgroundColor"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <include
             android:id="@+id/commentiToolbar"
@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="CAPITOLO"
+            android:textColor="?attr/textColor"
             android:textSize="18dp" />
 
         <TextView
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="?attr/textColor"
             android:text="Harry Potter"
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textStyle="bold"
+            android:textColor="?attr/textColor"
             android:gravity="center"
             android:id="@+id/commentiVuoti"/>
 

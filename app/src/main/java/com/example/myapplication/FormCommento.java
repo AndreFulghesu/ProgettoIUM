@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -136,10 +137,6 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-
-
-
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,25 +148,11 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
                 ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).addComment(comment);
                 ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).setValutation();
                 userSession.setCallingActivity(classValue);
+                Toast.makeText(getApplicationContext(), "Commento salvato!", Toast.LENGTH_LONG+3).show();
                 Intent feedbacks = new Intent(FormCommento.this, CommentList.class);
                 startActivity(feedbacks);
             }
         });
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu3, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuprofilo) {
-            Intent intent1 = new Intent(FormCommento.this, MyProfile.class);
-            startActivity(intent1);
-        }
-        return super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
@@ -184,8 +167,14 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

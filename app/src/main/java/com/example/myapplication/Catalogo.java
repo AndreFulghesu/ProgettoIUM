@@ -256,17 +256,10 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
      * dell'utente su un elemento del menu nella toolbar**/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.filtralibri:
-                Intent filtraLibri = new Intent (Catalogo.this, FiltroCatalogo.class);
-                filtraLibri.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(filtraLibri);
-                break;
-            case R.id.menuprofilo:
-                Intent myProfile = new Intent (getApplicationContext(), MyProfile.class);
-                myProfile.putExtra("riferimento",0);
-                startActivity(myProfile);
-                break;
+        if (item.getItemId() == R.id.filtralibri) {
+            Intent filtraLibri = new Intent(Catalogo.this, FiltroCatalogo.class);
+            filtraLibri.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(filtraLibri);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -287,8 +280,14 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

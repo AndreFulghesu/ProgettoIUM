@@ -16,13 +16,6 @@
         app:theme="@style/ActionButton"
         app:showAsAction="always"
         />
-
-    <item
-        android:id="@+id/menuprofilo"
-        android:title ="Il Mio Profilo"
-        android:icon="@drawable/profile_asset"
-        app:showAsAction="ifRoom"
-        />
     <item
         android:title="Filtra i risultati"
         android:id="@+id/filtralibri"

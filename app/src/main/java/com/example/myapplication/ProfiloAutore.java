@@ -1,18 +1,29 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.ArrayList;
 
-public class ProfiloAutore extends AppCompatActivity {
+public class ProfiloAutore extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     TextView nomeCognome, usernameAuthor,visiteLibro, valutazioneUtente;
     User user_author;
@@ -23,12 +34,17 @@ public class ProfiloAutore extends AppCompatActivity {
     private float valutation;
     private int num_visual;
 
-
+    DrawerLayout drawer;
+    Menu drawerMenu;
+    MenuItem menuItem;
+    SwitchCompat dmSwitch;
+    NavigationView navigationView;
+    View actionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profilo_autore);
+
         final UserSession userSession = new UserSession(this);
 
 
@@ -40,6 +56,8 @@ public class ProfiloAutore extends AppCompatActivity {
             setTheme(R.style.darkTheme);
             System.out.println("TEMA SCURO");
         }
+
+        setContentView(R.layout.activity_profilo_autore);
 
         /**Gestione del layout della Toolbar**/
 
@@ -55,6 +73,48 @@ public class ProfiloAutore extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_menu_profilo_autore);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawerMenu = navigationView.getMenu();
+        menuItem = drawerMenu.findItem(R.id.nav_darkmode);
+        actionView = MenuItemCompat.getActionView(menuItem);
+
+        dmSwitch = actionView.findViewById(R.id.darkmode_switch);
+        if (userSession.getTheme()){
+            dmSwitch.setChecked(true);
+        } else {
+            dmSwitch.setChecked(false);
+        }
+        dmSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!userSession.getTheme()){
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(true);
+                    Intent changeTheme = new Intent (getApplicationContext(), ProfiloAutore.this.getClass());
+                    startActivity(changeTheme);
+                }
+                else {
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(false);
+                    Intent changeTheme = new Intent (getApplicationContext(), ProfiloAutore.this.getClass());
+                    startActivity(changeTheme);
+                }
+            }
+        });
+        /**Fine gestione switch per il cambio tema**/
 
 
         nomeCognome = findViewById(R.id.NomeCognome);
@@ -162,6 +222,33 @@ public class ProfiloAutore extends AppCompatActivity {
         return views;
 
     }
-
-
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
+                break;
+            case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
+                break;
+            case R.id.nav_logout:
+                Intent logOut = new Intent (getApplicationContext(), Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
+                startActivity(logOut);
+                break;
+            case R.id.nav_aboutus:
+                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 }

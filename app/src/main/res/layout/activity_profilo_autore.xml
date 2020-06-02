@@ -11,7 +11,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="?attr/backgroundColor">
 
 
             <include
@@ -29,7 +30,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/color_button">
+                android:background="?attr/blueWallColor">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,16 +83,9 @@
                             android:textColor="@android:color/background_light"
                             android:textSize="18dp"
                             android:textStyle="italic" />
-
-
                     </LinearLayout>
-
-
                 </LinearLayout>
-
-
             </RelativeLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,7 +104,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/color_gradient2">
+                        android:background="?attr/boxColor">
 
 
                         <TextView
@@ -119,6 +113,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Valutazione Utente:"
+                            android:textColor="?attr/textColor"
                             android:textSize="16dp"
                             android:textStyle="italic" />
 
@@ -135,6 +130,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/stella_valutazione"
                             android:layout_centerHorizontal="true"
+                            android:textColor="?attr/textColor"
                             android:text="4.5"
                             android:textSize="13dp"
                             android:textStyle="italic" />
@@ -155,7 +151,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/color_gradient2">
+                        android:background="?attr/boxColor">
 
 
                         <TextView
@@ -164,6 +160,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Visite Libri: "
+                            android:textColor="?attr/textColor"
                             android:textSize="16dp"
                             android:textStyle="italic" />
 
@@ -180,6 +177,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/visite_libri"
                             android:layout_centerHorizontal="true"
+                            android:textColor="?attr/textColor"
                             android:text="2.775"
                             android:textSize="13dp"
                             android:textStyle="italic" />
@@ -206,9 +204,8 @@
                     android:drawableLeft="@drawable/ic_library_books_black_24dp"
                     android:padding="5dp"
                     android:text=" Lista libri: "
-                    android:textColor="#5C5757"
+                    android:textColor="?attr/textColor"
                     android:textSize="20sp" />
-
 
                 <ListView
                     android:id="@+id/listaLibri"
@@ -216,7 +213,6 @@
                     android:layout_height="match_parent"
                     android:divider="@color/color_gradient2"
                     android:dividerHeight="2dp" />
-
 
             </LinearLayout>
 

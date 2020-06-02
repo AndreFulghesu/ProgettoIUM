@@ -1,24 +1,44 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Report extends AppCompatActivity {
+public class Report extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    DrawerLayout drawer;
+    Menu drawerMenu;
+    MenuItem menuItem;
+    SwitchCompat dmSwitch;
+    NavigationView navigationView;
+    View actionView;
     int problemId;
     User user;
     TextView textSopraBarraRicerca;
@@ -26,6 +46,10 @@ public class Report extends AppCompatActivity {
     SearchView searchView;
     ListView reportSearched;
     Book bookSelected;
+    String stringSelected;
+    Button submitButton;
+    User userSelected;
+    ArrayList<String> activities = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +62,18 @@ public class Report extends AppCompatActivity {
         } else {
             setTheme(R.style.darkTheme);
         }
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.drawer_report);
+
+        activities.add("Pagina di Login");
+        activities.add("Pagina di registrazione");
+        activities.add("Homepage");
+        activities.add("Catalogo dei libri");
+        activities.add("Lista dei capitoli");
+        activities.add("Form di lettura");
+        activities.add("Lettura a schermo intero");
+        activities.add("Form di scrittura commenti");
+        activities.add("Pagina di visualizzazione dei commenti");
+        activities.add("Pagina di visualizzazione profilo");
 
         final Spinner reportSpinner = findViewById(R.id.spinner_report);
 
@@ -58,12 +93,49 @@ public class Report extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
-        /**toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        drawer = findViewById(R.id.drawerReport);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.START);
             }
-        });*/
+        });
+
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_menu_report);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawerMenu = navigationView.getMenu();
+        menuItem = drawerMenu.findItem(R.id.nav_darkmode);
+        actionView = MenuItemCompat.getActionView(menuItem);
+
+        dmSwitch = actionView.findViewById(R.id.darkmode_switch);
+        if (userSession.getTheme()){
+            dmSwitch.setChecked(true);
+        } else {
+            dmSwitch.setChecked(false);
+        }
+        dmSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!userSession.getTheme()){
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(true);
+                    Intent changeTheme = new Intent (getApplicationContext(), Report.this.getClass());
+                    startActivity(changeTheme);
+                }
+                else {
+                    UserSession userSession = new UserSession(getApplicationContext());
+                    userSession.setTheme(false);
+                    Intent changeTheme = new Intent (getApplicationContext(), Report.this.getClass());
+                    startActivity(changeTheme);
+                }
+            }
+        });
+        /**Fine gestione switch per il cambio tema**/
 
         if (objReport != null) {
             problemId = (int) objReport;
@@ -188,6 +260,22 @@ public class Report extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
                             reportSearched.setAdapter(adapter);
                         }
+                    } else
+                    if (problemId == 0) {
+                        ArrayList<String> filtered = new ArrayList<>();
+                        if (newText != null && !newText.isEmpty()) {
+                            for (String s : activities) {
+                                if (s.toLowerCase().contains(newText.toLowerCase())) {
+                                    filtered.add(s);
+                                }
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.basic_string_item, filtered);
+                            reportSearched.setAdapter(adapter);
+                        } else {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.basic_string_item, filtered);
+                            adapter.notifyDataSetChanged();
+                            reportSearched.setAdapter(adapter);
+                        }
                     }
                     return true;
                 }
@@ -196,13 +284,71 @@ public class Report extends AppCompatActivity {
         reportSearched.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Book> book = new ArrayList<>();
-                bookSelected = (Book) parent.getItemAtPosition(position);
-                book.add(bookSelected);
-                BookAdapterSearch selectedItem = new BookAdapterSearch(getApplicationContext(), R.layout.bookitem, book);
-                reportSearched.setAdapter(selectedItem);
+                switch(problemId) {
+                    case 0:
+                        ArrayList<String> act = new ArrayList<>();
+                        stringSelected = (String) parent.getItemAtPosition(position);
+                        act.add(stringSelected);
+                        ArrayAdapter<String> selectedItem = new ArrayAdapter<>(getApplicationContext(), R.layout.basic_string_item, act);
+                        reportSearched.setAdapter(selectedItem);
+                        break;
+                    case 1:
+                        ArrayList<User> user = new ArrayList<>();
+                        userSelected = (User) parent.getItemAtPosition(position);
+                        user.add(userSelected);
+                        CustomUserAdapter selectedItem1 = new CustomUserAdapter(getApplicationContext(), R.layout.basic_string_item, user);
+                        reportSearched.setAdapter(selectedItem1);
+                        break;
+                    case 2:
+                    case 3:
+                    ArrayList<Book> book = new ArrayList<>();
+                    bookSelected = (Book) parent.getItemAtPosition(position);
+                    book.add(bookSelected);
+                    BookAdapterSearch selectedItem2 = new BookAdapterSearch(getApplicationContext(), R.layout.bookitem, book);
+                    reportSearched.setAdapter(selectedItem2);
+                    break;
+                }
+            }
+        });
+        submitButton = findViewById(R.id.reportSubmit);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "La richiesta verrà presto presa in carico!", Toast.LENGTH_LONG+2).show();
+                finish();
             }
         });
 
+    }
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
+                break;
+            case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
+                break;
+            case R.id.nav_logout:
+                Intent logOut = new Intent (getApplicationContext(), Login.class);
+                UserSession session = new UserSession(this);
+                session.invalidateSession();
+                startActivity(logOut);
+                break;
+            case R.id.nav_aboutus:
+                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }

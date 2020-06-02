@@ -22,12 +22,26 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name="com.example.myapplication.NewMaxiLettura" />
+        <activity
+            android:name="com.example.myapplication.StartActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.myapplication.ProfiloAutore" />
+        <activity android:name="com.example.myapplication.PasswordDimenticata" />
+        <activity android:name="com.example.myapplication.FiltroCatalogo" />
+        <activity android:name="com.example.myapplication.MaxiLettura" />
         <activity
             android:name="com.example.myapplication.PlotPopUp"
-            android:theme="@style/AppTheme.PlotPopUp" >
-        </activity>
+            android:theme="@style/AppTheme.PlotPopUp" />
         <activity android:name="com.example.myapplication.ChapterList" />
         <activity android:name="com.example.myapplication.ContinuaLettura" />
+        <activity android:name="com.example.myapplication.Report" />
         <activity android:name="com.example.myapplication.MyProfile" />
         <activity android:name="com.example.myapplication.Catalogo" />
         <activity android:name="com.example.myapplication.CommentList" />
@@ -35,13 +49,11 @@
         <activity android:name="com.example.myapplication.Home" />
         <activity android:name="com.example.myapplication.Registrazione" />
         <activity android:name="com.example.myapplication.LeggiLibro" />
-        <activity android:name="com.example.myapplication.Login" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name="com.example.myapplication.Login" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

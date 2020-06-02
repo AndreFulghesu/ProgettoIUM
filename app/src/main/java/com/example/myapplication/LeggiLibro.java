@@ -199,7 +199,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         schermo_intero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent maxiSchermo = new Intent(LeggiLibro.this,MaxiLettura.class);
+                Intent maxiSchermo = new Intent(LeggiLibro.this, MaxiLettura.class);
                 userSession.setCallingActivity(classValue);
                 userSession.setBookId(bookId);
                 userSession.setChapId(chapId);
@@ -213,21 +213,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         });
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu3, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuprofilo) {
-            Intent intent1 = new Intent(LeggiLibro.this, MyProfile.class);
-            startActivity(intent1);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onBackPressed() {
@@ -240,7 +225,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             System.out.println("Tempo trascorso: " + endTime);
             if (endTime> 1000) {
                 BookFactory.getInstance().addViewsBook(BookFactory.getInstance().getBookById(bookId));
-                //System.out.println("Numero di views: sono nel tasto indietro  " + BookFactory.getInstance().getBookById(bookId).getViews());
             }
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             startActivity(goBack);
@@ -250,8 +234,14 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

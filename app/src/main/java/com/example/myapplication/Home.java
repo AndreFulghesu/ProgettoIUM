@@ -232,37 +232,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             }
         });
-        /*
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent login = new Intent(Home.this, Login.class);
-                userSession.invalidateSession();
-                startActivity(login);
-            }
-        });
-
-         */
     }
     /**Gestione del comportamento del sistema alla pressione da parte
      * dell'utente su un elemento del menu nella toolbar**/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_logout:
-                Intent intent = new Intent (Home.this, Login.class);
-                UserSession session = new UserSession(this);
-                session.invalidateSession();
-                startActivity(intent);
-                break;
-            case R.id.menuprofilo:
-                Intent myProfile = new Intent (Home.this, MyProfile.class);
-                UserSession uSes = new UserSession(getApplicationContext());
-                myProfile.putExtra("riferimento",0);
-                startActivity(myProfile);
-                break;
-
-
+        if (item.getItemId() == R.id.nav_logout) {
+            Intent intent = new Intent(Home.this, Login.class);
+            UserSession session = new UserSession(this);
+            session.invalidateSession();
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -306,6 +285,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

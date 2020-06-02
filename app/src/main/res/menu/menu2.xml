@@ -8,12 +8,4 @@
         android:icon="@drawable/ic_library_books_black_24dp"
         app:showAsAction="ifRoom"
         />
-    <item
-        android:id="@+id/menuprofilo"
-        android:title ="profilo"
-        android:icon="@drawable/profile_asset"
-        app:showAsAction="ifRoom"
-        />
-
-
 </menu>

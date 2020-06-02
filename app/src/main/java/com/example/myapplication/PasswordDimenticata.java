@@ -36,7 +36,6 @@ public class PasswordDimenticata extends AppCompatActivity {
         telephoneNumber = findViewById(R.id.numeroTelefono);
         alertPass = findViewById(R.id.alertPass);
 
-
         richiestaPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,16 +54,13 @@ public class PasswordDimenticata extends AppCompatActivity {
                         permission = true;
                         alertPass.setVisibility(View.GONE);
                     }else {
-
                         email.setError("L'email inserita non corrisponde a nessun utente");
                     }
 
                 }
             }
         });
-
     }
-
 
     private Boolean checkInput() {
         int errors = 0;

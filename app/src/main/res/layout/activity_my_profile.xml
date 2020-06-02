@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +30,7 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@android:color/white" />
+                android:background="?attr/backgroundColor" />
 
 
             <ImageView
@@ -56,7 +57,7 @@
                 android:drawableLeft="@drawable/ic_person_black_36dp"
                 android:text=" Nome e Cognome:"
                 android:padding="5dp"
-                android:textColor="#5C5757"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -64,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="44dp"
-
+                android:textColor="?attr/textColor"
                 android:textStyle="italic"
                 android:textSize="20sp" />
 
@@ -74,7 +75,7 @@
                 android:padding="5dp"
                 android:drawableLeft="@drawable/ic_person_black_36dp"
                 android:text=" Username:"
-                android:textColor="#5C5757"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -83,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="44dp"
                 android:textStyle="italic"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -91,7 +93,7 @@
                 android:padding="5dp"
                 android:drawableLeft="@drawable/ic_email_black_36dp"
                 android:text=" Email:"
-                android:textColor="#5C5757"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -100,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="44dp"
                 android:textStyle="italic"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -108,7 +111,7 @@
                 android:padding="5dp"
                 android:drawableLeft="@drawable/ic_lock_black_36dp"
                 android:text=" Password:"
-                android:textColor="#5C5757"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <TextView
@@ -118,6 +121,7 @@
                 android:layout_marginLeft="44dp"
                 android:textStyle="italic"
                 android:textSize="20sp"
+                android:textColor="?attr/textColor"
                 android:inputType="textPassword"/>
 
             <CheckBox
@@ -133,7 +137,7 @@
                 android:padding="5dp"
                 android:drawableLeft="@drawable/ic_mood_black_36dp"
                 android:text=" Valutazione Media:"
-                android:textColor="#5C5757"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -156,7 +160,8 @@
                     android:id="@+id/averageUser"
                     android:textStyle="italic"
                     android:textSize="20dp"
-                    android:text="4.4"/>
+                    android:text="4.4"
+                    android:textColor="?attr/textColor"/>
 
 
         </LinearLayout>

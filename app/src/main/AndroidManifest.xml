@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".NewMaxiLettura"></activity>
         <activity
             android:name=".StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,8 +40,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Registrazione" />
         <activity android:name=".LeggiLibro" />
-        <activity android:name=".Login"/>
-
+        <activity android:name=".Login" />
 
         <meta-data
             android:name="preloaded_fonts"

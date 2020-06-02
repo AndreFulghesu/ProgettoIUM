@@ -28,13 +28,19 @@ public class  MaxiLettura extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final UserSession userSession = new UserSession(this);
+
+        if (!userSession.getTheme()) {
+            setTheme(R.style.AppTheme);
+        } else {
+            setTheme(R.style.darkTheme);
+        }
+
         setContentView(R.layout.activity_maxi_lettura);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         testoIntero = findViewById(R.id.testoIntero);
-
-
-        final UserSession userSession = new UserSession(this);
 
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);

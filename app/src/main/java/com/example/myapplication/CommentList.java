@@ -154,40 +154,21 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         libroCorrente = BookFactory.getInstance().getBookById(bookId);
         titleBook.setText(libroCorrente.getTitle());
 
-
-
         ArrayList<Comment> debugging = CommentFactory.getInstance().getCommentById(chapId,bookId);
         if (debugging.isEmpty()){
             commentiVuoti.setText("Non ci sono commenti");
-        }else {
-
+        } else {
             CustomCommentAdapter adapter = new CustomCommentAdapter(this, R.layout.commentitem, myComments);
             myComments.clear();
             myComments = CommentFactory.getInstance().getCommentById(chapId, bookId);
             adapter.clear();
             adapter.addAll(myComments);
             adapter.notifyDataSetChanged();
-
             lista.setAdapter(adapter);
+            for (Comment c : debugging) {
+                System.out.println("Debugging: " + c.getText());
+            }
         }
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu3, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuprofilo) {
-            Intent intent1 = new Intent(CommentList.this, MyProfile.class);
-            intent1.putExtra("User", user);
-            startActivity(intent1);
-        }
-        return super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
@@ -202,8 +183,14 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

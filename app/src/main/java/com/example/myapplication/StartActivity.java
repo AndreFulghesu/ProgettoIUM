@@ -38,11 +38,9 @@ public class StartActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 Intent intent = new Intent(StartActivity.this, Login.class);
                 startActivity(intent);
                 finish();
-
             }
         }, timeOut);
 

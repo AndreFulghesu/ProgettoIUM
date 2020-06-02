@@ -167,16 +167,9 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.bookPlot:
-                Intent seePlot = new Intent(ChapterList.this, PlotPopUp.class);
-                startActivity(seePlot);
-                break;
-            case R.id.menuprofilo:
-                Intent myProfile = new Intent(ChapterList.this, MyProfile.class);
-                startActivity(myProfile);
-                break;
-
+        if (item.getItemId() == R.id.bookPlot) {
+            Intent seePlot = new Intent(ChapterList.this, PlotPopUp.class);
+            startActivity(seePlot);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -194,8 +187,14 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

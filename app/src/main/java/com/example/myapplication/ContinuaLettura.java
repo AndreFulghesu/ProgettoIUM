@@ -136,28 +136,15 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         });
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu3, menu);
-        return true;
-    }
-    /**Gestione del comportamento del sistema alla pressione da parte
-     * dell'utente su un elemento del menu nella toolbar**/
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuprofilo) {
-            Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
-            myProfile.putExtra("riferimento", 0);
-            startActivity(myProfile);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    /**Gestione del comportamento del sistema alla pressione di uno
-     * degli elementi del menu laterale**/
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id. nav_darkmode:
                 break;

@@ -163,12 +163,6 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 uSes.setCallingActivity(classValue);
                 startActivity(intent);
                 break;
-            case R.id.menuprofilo:
-                Intent myProfile = new Intent (MyProfile.this, MyProfile.class);
-                UserSession uSes2 = new UserSession(getApplicationContext());
-                startActivity(myProfile);
-                break;
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -203,8 +197,14 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
+                Intent report = new Intent(getApplicationContext(), Report.class);
+                startActivity(report);
                 break;
             case R.id. nav_darkmode:
+                break;
+            case R.id.nav_myprofile:
+                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(myProfile);
                 break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);

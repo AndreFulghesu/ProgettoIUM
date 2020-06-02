@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:background="?attr/backgroundColor"
     android:layout_height="61dp">
 
     <ImageView
@@ -19,6 +20,7 @@
         android:id="@+id/user_name_report"
         android:text="USERAME"
         android:textSize="30dp"
+        android:textColor="?attr/textColor"
         android:gravity="center"
         android:textAlignment="center"/>
 
