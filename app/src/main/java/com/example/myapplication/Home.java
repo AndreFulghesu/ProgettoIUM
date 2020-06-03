@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -51,7 +52,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     SwitchCompat dmSwitch;
     NavigationView navigationView;
     View actionView,navHeader;
-    ImageView profileImg;
+    ImageView profileImage;
+    TextView welcomeHeader;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1000;
     private static final String urlProfileImg = "image/*";
@@ -82,8 +84,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer = findViewById(R.id.drawerHome);
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.listView);
-        profileImg = findViewById(R.id.profileImg);
-
 
         /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
@@ -123,8 +123,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);
         actionView = MenuItemCompat.getActionView(menuItem);
         navHeader = navigationView.getHeaderView(0);
-        profileImg = navHeader.findViewById(R.id.profileImg);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
 
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         dmSwitch = actionView.findViewById(R.id.darkmode_switch);
         if (userSession.getTheme()){
@@ -199,11 +214,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 return true;
             }
         });
-
-
-
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -327,7 +337,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
-            case R.id.select_img:
+            /**case R.id.select_img:
                 //permessi
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
@@ -335,24 +345,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         //mostra popoup per chiedere i permessi
                         requestPermissions(permissions,PERMISSION_CODE);
-
-
                     }else{
                         //permessi esistenti
                         pickImagreFromGallery();
-
                     }
                 }else{
                     //system os is less then marshmellow
                     pickImagreFromGallery();
-
-                }
-
+                }*/
         }
         return true;
     }
 
-    private void pickImagreFromGallery (){
+    /**private void pickImagreFromGallery (){
 
         //pick image
 
@@ -392,5 +397,5 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
 
         }
-    }
+    }*/
 }

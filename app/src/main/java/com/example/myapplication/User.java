@@ -13,17 +13,18 @@ public class User implements Serializable {
     private String cognome;
     private String email;
     private String password;
+    private Sesso sex;
     private ArrayList<Pair<Book, Chapter>> continuaLetturaList = new ArrayList<>();
     private HashMap<Comment,Boolean> commentiLike = new HashMap<>();
 
 
-    public User (String nome, String cognome, String username, String email, String password ) {
+    public User (String nome, String cognome, String username, String email, String password, Sesso sex) {
         this.setUsername(username);
         this.setNome(nome);
         this.setCognome(cognome);
         this.setEmail(email);
         this.setPassword(password);
-
+        this.sex = sex;
 
     }
 
@@ -89,18 +90,28 @@ public class User implements Serializable {
 
         this.commentiLike.put(c,b);
         UserFactory.getInstance().addUserModifiedLike(this);
-
     }
 
     public Boolean getLike (Comment c) {
-
             if (!this.commentiLike.isEmpty()) {
                 return this.commentiLike.get(c);
             }
             return false;
-
     }
 
     public HashMap<Comment,Boolean> getMapLikes (){ return this.commentiLike; }
+
     public void setMapLike (HashMap<Comment,Boolean> nuoviLike){ this.commentiLike =nuoviLike; }
+
+    public void setSex(Sesso sex) {
+        this.sex = sex;
+    }
+
+    public Sesso getSex() {
+        return sex;
+    }
+
+    public enum Sesso {
+        MALE, FEMALE, UNDEFINED
+    }
 }

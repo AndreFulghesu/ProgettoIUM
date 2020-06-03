@@ -12,9 +12,10 @@ public class UserFactory {
     private ArrayList<User> usersModified = new ArrayList<>();
     private ArrayList<User> usersLikeSession = new ArrayList<>();
 
-    User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345");
-    User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765");
-    User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234");
+    User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345", User.Sesso.MALE);
+    User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765", User.Sesso.MALE);
+    User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234", User.Sesso.UNDEFINED);
+    User user4 = new User ("Gianna", "Nannini", "GiaNan66", "gianna@nan.nini", "13579", User.Sesso.FEMALE);
 
 
     private UserFactory(){
@@ -28,7 +29,6 @@ public class UserFactory {
     }
 
     public ArrayList<User> getUsers(){
-
         ///User admin = new User ("Admin", null, "Admin", null, null);
         users.clear();
 
@@ -36,24 +36,18 @@ public class UserFactory {
         users.add(user1);
         users.add(user2);
         users.add(user3);
+        users.add(user4);
 
         if (!usersModified.isEmpty()){
-        for (int i =0; i<usersModified.size();i++) {
-            for (int k = 0; k < users.size(); k++) {
-                if (users.get(k).getUsername().equals(usersModified.get(i).getUsername())) {
-                    users.remove(k);
-                    users.add(k, usersModified.get(i));
+            for (int i =0; i<usersModified.size();i++) {
+                for (int k = 0; k < users.size(); k++) {
+                    if (users.get(k).getUsername().equals(usersModified.get(i).getUsername())) {
+                        users.remove(k);
+                        users.add(k, usersModified.get(i));
+                    }
                 }
             }
         }
-
-        }
-
-
-
-
-
-
         return this.users;
     }
 
@@ -116,9 +110,6 @@ public class UserFactory {
             usersModified.add(user);
         }
     }
-
-
-
 
     public void addUserModifiedLike (User u){
 

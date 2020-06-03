@@ -8,10 +8,6 @@
     android:padding="10dp"
     android:background="?attr/blueWallColor">
 
-
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,30 +44,44 @@
         android:textStyle="italic"
         android:textColor="#FFFF"
         android:textSize="10dp"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="60dp"
+            app:cardElevation="0dp"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_height="70dp">
 
+            <ImageView
+                tool:ignore="ContentDescription"
+                android:src="@drawable/shadow_person"
+                android:scaleType="centerCrop"
+                android:id="@+id/headerProfileImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="70dp"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="60dp"
-        app:cardElevation="0dp"
-        style="@style/Widget.AppCompat.ActionButton"
-        android:layout_height="70dp">
-
-        <ImageView
-
-            tool:ignore="ContentDescription"
-            android:src="@drawable/shadow_person"
-            android:scaleType="centerCrop"
-            android:id="@+id/profileImg"
-            android:layout_width="match_parent"
+        <Space
+            android:layout_width="10dp"
             android:layout_height="match_parent"/>
 
-
-    </androidx.cardview.widget.CardView>
-
-
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/welcomeHeader"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:textStyle="italic"
+            android:textSize="25sp"
+            android:textColor="?attr/textColor"/>
+        
+    </LinearLayout>
 
 </LinearLayout>

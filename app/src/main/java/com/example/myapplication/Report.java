@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -38,11 +39,13 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    View actionView;
+    View actionView, navHeader;
+    ImageView profileImage;
     int problemId;
     User user;
     TextView textSopraBarraRicerca;
     TextView spinnerSelected;
+    TextView welcomeHeader;
     SearchView searchView;
     ListView reportSearched;
     Book bookSelected;
@@ -101,6 +104,14 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             }
         });
 
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+
         /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -136,6 +147,24 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             }
         });
         /**Fine gestione switch per il cambio tema**/
+
+        navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         if (objReport != null) {
             problemId = (int) objReport;
@@ -344,7 +373,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                 startActivity(logOut);
                 break;
             case R.id.nav_aboutus:
-                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Uri uri = Uri.parse("http://www.google.com");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;

@@ -52,16 +52,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
+
             <EditText
                 android:id="@+id/NomeReg1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textColorHint="#5F605F"
                 android:ems="10"
                 android:hint="Nome"
-                android:inputType="textPersonName" />
-
+                android:inputType="textPersonName"
+                android:textColorHint="#5F605F" />
 
             <EditText
                 android:id="@+id/CognomeReg2"
@@ -72,6 +72,42 @@
                 android:ems="10"
                 android:hint="Cognome"
                 android:inputType="textPersonName" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sesso: "
+                android:textSize="20sp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radiogroup_registrazione">
+
+                <RadioButton
+                    android:id="@+id/male_radiobutton"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M"/>
+                <RadioButton
+                    android:id="@+id/female_radiobutton"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="F"/>
+                <RadioButton
+                    android:id="@+id/undefined_radiobutton"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preferisco non dirlo"/>
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/EmailReg2"

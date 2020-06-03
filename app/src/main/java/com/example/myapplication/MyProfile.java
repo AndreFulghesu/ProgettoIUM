@@ -31,14 +31,17 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
 
     User user;
     TextView nome_cognome,email,username,password,averageUser;
-    ImageView starAverageUser;
+    ImageView starAverageUser, myProfileImage;
     CheckBox show;
     DrawerLayout drawer;
     Menu drawerMenu;
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    View actionView;
+    View actionView, navHeader;
+    ImageView profileImage;
+    TextView welcomeHeader;
+
     final int classValue = 7;
 
     @Override
@@ -117,6 +120,23 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 }
             }
         });
+        navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         nome_cognome = findViewById(R.id.NomeCognome);
         email = findViewById(R.id.Email);
@@ -125,6 +145,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         show = findViewById(R.id.showPass);
         averageUser = findViewById(R.id.averageUser);
         starAverageUser = findViewById(R.id.starAverageUser);
+        myProfileImage = findViewById(R.id.myProfileImg);
 
         nome_cognome.setText(user.getNome() + " " + user.getCognome());
         username.setText(user.getUsername());
@@ -133,9 +154,21 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         float valutation= BookFactory.getInstance().getValutationTotalBookUser(user);
         averageUser.setText(""+roundDown5(valutation));
 
+        switch (user.getSex()){
+            case MALE:
+                myProfileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                myProfileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                myProfileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                myProfileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         setStarColor(valutation,starAverageUser);
-
 
         show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -147,12 +180,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 }
             }
         });
-
-
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

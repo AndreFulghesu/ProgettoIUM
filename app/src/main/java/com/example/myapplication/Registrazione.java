@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -16,20 +18,17 @@ import java.util.List;
 
 public class Registrazione extends AppCompatActivity {
 
-    public static final String USER_EXTRA ="com.example.faber.bonusIum";
-
     EditText nome,cognome,email,password,second_password,username;
     Button registrati;
     TextView alertPass;
     CheckBox terminiServizio;
-
-
+    RadioGroup radioGroupRegistrazione;
+    RadioButton lastRadioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registazione);
-
 
         nome = findViewById(R.id.NomeReg1);
         cognome = findViewById(R.id.CognomeReg2);
@@ -40,7 +39,8 @@ public class Registrazione extends AppCompatActivity {
         registrati = findViewById(R.id.buttonRegistrazione);
         alertPass = findViewById(R.id.alertPass);
         terminiServizio = findViewById(R.id.terminiServizio);
-
+        radioGroupRegistrazione = findViewById(R.id.radiogroup_registrazione);
+        lastRadioButton = findViewById(R.id.undefined_radiobutton);
 
         registrati.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,6 @@ public class Registrazione extends AppCompatActivity {
 
                                 alertPass.setVisibility(View.GONE);
                             } else {
-
                                 alertPass.setError("Le password devono corrispondere");
                             }
 
@@ -81,10 +80,7 @@ public class Registrazione extends AppCompatActivity {
                 }
 
             }
-
-
         });
-
     }
 
     public boolean checkInput() {
@@ -108,6 +104,11 @@ public class Registrazione extends AppCompatActivity {
         if (cognome.getText() == null | cognome.getText().length()==0) {
             errors++;
             cognome.setError("Inserire un Cognome.");
+        }
+        if (radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.male_radiobutton || radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.female_radiobutton ||
+                radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.undefined_radiobutton) {
+            errors++;
+            lastRadioButton.setError("Selezionare il proprio sesso.");
         }
         if (password.getText() == null | second_password.getText().length() == 0) {
             errors++;
@@ -135,7 +136,6 @@ public class Registrazione extends AppCompatActivity {
                 return true;
             }
         }
-
         return false;
 
     }

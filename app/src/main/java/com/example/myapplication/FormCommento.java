@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +36,12 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    View actionView;
+    View actionView, navHeader;
+    ImageView profileImage;
     RatingBar bar;
     EditText feedbackMessage;
     Button feedbackSubmit;
+    TextView welcomeHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +139,24 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
+
+        navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

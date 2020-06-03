@@ -42,7 +42,9 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    View actionView;
+    View actionView, navHeader;
+    ImageView profileImage;
+    TextView welcomeHeader;
     long startTime;
 
     @Override
@@ -143,6 +145,24 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 }
             }
         });
+
+        navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
 

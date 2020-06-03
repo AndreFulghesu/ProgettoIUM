@@ -17,8 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -44,7 +46,9 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     SwitchCompat dmSwitch;
     NavigationView navigationView;
     MaterialSearchView searchView;
-    View actionView;
+    View actionView, navHeader;
+    ImageView profileImage;
+    TextView welcomeHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +134,24 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
         /**Fine gestione switch per il cambio tema**/
+
+        navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
+        profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
 
         /**Gestione dell'ordinamento delle liste di libri in base ad eventuali
          *  cambiamenti di parametri nella activityu FiltroCatalogo**/

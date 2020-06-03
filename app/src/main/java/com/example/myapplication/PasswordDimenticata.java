@@ -109,11 +109,7 @@ public class PasswordDimenticata extends AppCompatActivity {
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finishAffinity();
-                            System.exit(0);
-                            Intent goLogin = new Intent(PasswordDimenticata.this, Login.class);
-                            startActivity(goLogin);
-
+                            finish();
                         }
 
                     })
