@@ -59,7 +59,8 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
             System.out.println("TEMA SCURO");
         }
 
-        setContentView(R.layout.activity_profilo_autore);
+        setContentView(R.layout.drawer_authorprofile);
+        drawer = findViewById(R.id.drawerAuthorProfile);
 
         /**Gestione del layout della Toolbar**/
 
