@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@drawable/gradient3"
     tools:context=".StartActivity">
 
     <ImageView
@@ -25,7 +25,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="292dp"
         android:text="@string/app_name"
-        android:textColor="#FFFFFF"
+        android:textColor="#000"
         android:textSize="30dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginBottom="212dp"
         android:fontFamily="@font/parisienne"
         android:text="Read,Comment,Share"
-        android:textColor="#FFFFFF"
+        android:textColor="#000"
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
         android:fontFamily="@font/parisienne"
         android:padding="5dp"
         android:text="@string/registrazione"
-        android:textColor="#FFFF"
+        android:textColor="#000"
         android:textSize="20dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -80,7 +80,7 @@
             android:fontFamily="cursive"
             android:textStyle="italic"
             android:textSize="25sp"
-            android:textColor="?attr/textColor"/>
+            android:textColor="@color/color_white"/>
         
     </LinearLayout>
 
