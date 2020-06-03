@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +10,12 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +25,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+
 
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -43,7 +50,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     MenuItem menuItem;
     SwitchCompat dmSwitch;
     NavigationView navigationView;
-    View actionView;
+    View actionView,navHeader;
+    ImageView profileImg;
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE = 1000;
+    private static final String urlProfileImg = "image/*";
 
 
     @Override
@@ -71,11 +82,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer = findViewById(R.id.drawerHome);
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.listView);
+        profileImg = findViewById(R.id.profileImg);
+
 
         /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {
@@ -106,8 +119,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView = findViewById(R.id.nav_menu_home);
         navigationView.setNavigationItemSelectedListener(this);
         drawerMenu = navigationView.getMenu();
+
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);
         actionView = MenuItemCompat.getActionView(menuItem);
+        navHeader = navigationView.getHeaderView(0);
+        profileImg = navHeader.findViewById(R.id.profileImg);
+
 
         dmSwitch = actionView.findViewById(R.id.darkmode_switch);
         if (userSession.getTheme()){
@@ -115,6 +132,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         } else {
             dmSwitch.setChecked(false);
         }
+
+
         dmSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +199,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 return true;
             }
         });
+
+
+
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -279,6 +303,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
      * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+
         switch (menuItem.getItemId()) {
             case R.id.nav_report:
                 Intent report = new Intent(getApplicationContext(), Report.class);
@@ -301,7 +327,70 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
+            case R.id.select_img:
+                //permessi
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                        //permessi non garantiti
+                        String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        //mostra popoup per chiedere i permessi
+                        requestPermissions(permissions,PERMISSION_CODE);
+
+
+                    }else{
+                        //permessi esistenti
+                        pickImagreFromGallery();
+
+                    }
+                }else{
+                    //system os is less then marshmellow
+                    pickImagreFromGallery();
+
+                }
+
         }
         return true;
+    }
+
+    private void pickImagreFromGallery (){
+
+        //pick image
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,IMAGE_PICK_CODE);
+
+
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+
+            case PERMISSION_CODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //permessi garantiti
+                    pickImagreFromGallery();
+
+                }else{
+                    Toast.makeText(this,"Non hai i permessi!",Toast.LENGTH_SHORT).show();
+
+                }
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            //set Img on profile
+            if (data!=null) {
+                profileImg.setImageURI(data.getData());
+            }
+
+        }
     }
 }
