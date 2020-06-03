@@ -42,6 +42,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     View actionView, navHeader;
     ImageView profileImage;
     User user;
+    TextView welcomeHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +121,8 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         /**Fine gestione switch per il cambio tema**/
 
         navHeader = navigationView.getHeaderView(0);
+        welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
+        welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
         profileImage = navHeader.findViewById(R.id.headerProfileImg);
         switch (user.getSex()){
             case MALE:
