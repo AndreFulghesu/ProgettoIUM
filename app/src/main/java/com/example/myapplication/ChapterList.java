@@ -41,7 +41,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
     NavigationView navigationView;
     View actionView, navHeader;
     ImageView profileImage;
-    TextView welcomeHeader;
+    TextView welcomeHeader,capitoliVuoti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         }
         setContentView(R.layout.drawer_chapterlist);
         drawer = findViewById(R.id.drawerChapterList);
+        capitoliVuoti = findViewById(R.id.capitoliVuoti);
         plotDialog = new Dialog(this);
 
 
@@ -158,15 +159,20 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
 
         final ListView chapterList = findViewById(R.id.chapterlist);
         getSupportActionBar().setTitle("Capitoli: " + BookFactory.getInstance().getBookById(bookId).getTitle());
+        ArrayList<Chapter> debugging =ChapterFactory.getInstance().getChaptersByBookId(bookId);
 
 
-        CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapters);
-        chapters.clear();
-        chapters = ChapterFactory.getInstance().getChaptersByBookId(bookId);
-        adapter.clear();
-        adapter.addAll(chapters);
-        adapter.notifyDataSetChanged();
-        chapterList.setAdapter(adapter);
+        if (debugging.isEmpty()) {
+            capitoliVuoti.setText("Non ci sono capitoli");
+        }else{
+            CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapters);
+            chapters.clear();
+            chapters = ChapterFactory.getInstance().getChaptersByBookId(bookId);
+            adapter.clear();
+            adapter.addAll(chapters);
+            adapter.notifyDataSetChanged();
+            chapterList.setAdapter(adapter);
+        }
 
         chapterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

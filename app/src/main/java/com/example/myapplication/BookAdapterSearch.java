@@ -49,7 +49,12 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
         viewHolder.bookAuthor.setText(book.getAuthor().getUsername());
 
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.valutationSearch.setText("" +roundDown5(book.getTotalValutation()));
+        if (!Float.isNaN(book.getTotalValutation())) {
+            viewHolder.valutationSearch.setText("" + roundDown5(book.getTotalValutation()));
+        }else{
+            viewHolder.valutationSearch.setText("0.0");
+
+        }
 
 
 
@@ -78,8 +83,10 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getContext().getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getContext().getResources().getColor(R.color.red));
+                        }else {
+                            star.setColorFilter(getContext().getResources().getColor(R.color.grey));
                         }
                     }
                 }

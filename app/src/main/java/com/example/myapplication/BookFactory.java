@@ -18,8 +18,12 @@ class BookFactory {
 
     Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
     Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
-    Book b3 = new Book("Fulghenzio e i 4 Gigi mannari", "Trama riguardo Fulgenzio e i 4 Gigi mannari", Genres.HORROR, 3, UserFactory.getInstance().getUserByUsername("Gio34"),0);
-    Book b4 = new Book("Fabrizio during his sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo",Genres.STORICO,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
+    Book b3 = new Book("La storia della Verità", "La verità è un concetto assai complicato per il nostro tempo. Attraverso un'attenta analisi l'autore si preoccupa di esporre tutte le sue sfaccettature.", Genres.FANTASCIENZA, 3, UserFactory.getInstance().getUserByUsername("Gio34"),4);
+    Book b4 = new Book("Sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo, solo un'entusiasmante scalata verso il processo di sintesi clorofilliala della cellula vegetale.",Genres.NATURE,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
+    Book b5 = new Book("La spada della Congrega","La complessa narrazione del ciclo de La Spada della" +
+            " Congrega vede la guida dei boschi Richard Cypher scoprire di essere in realtà un Cercatore: " +
+            "l’ultimo mago guerriero della sua epoca, che ha il compito di mantenere la pace ed evitare " +
+            "che forze oscure e umani assetati di potere prendano il sopravvento.",Genres.FANTASY,5, UserFactory.getInstance().getUserByUsername("GiaNan66"),10);
 
     private BookFactory(){}
 
@@ -38,6 +42,7 @@ class BookFactory {
         books.add(b2);
         books.add(b3);
         books.add(b4);
+        books.add(b5);
 
         for (int i =0; i<booksModified.size()-1;i++){
             if (books.get(i).getId() == booksModified.get(i).getId()) {

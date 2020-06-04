@@ -39,11 +39,16 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.rateNumber.setText(""+  roundDown5(chap.getValutation()));
-        assert chap != null;
+
         String str = "Capitolo " + chap.getChaptNum();
         viewHolder.cNumber.setText(str);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
+        if (!Float.isNaN(chap.getValutation())) {
+            viewHolder.rateNumber.setText("" + roundDown5(chap.getValutation()));
+        }else{
+            viewHolder.rateNumber.setText("0.0");
+
+        }
         return convertView;
     }
     private class ViewHolder{
@@ -65,8 +70,10 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getContext().getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getContext().getResources().getColor(R.color.red));
+                        }else {
+                            star.setColorFilter(getContext().getResources().getColor(R.color.grey));
                         }
                     }
                 }
