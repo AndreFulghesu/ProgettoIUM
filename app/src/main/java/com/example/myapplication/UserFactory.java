@@ -16,7 +16,7 @@ public class UserFactory {
     User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345", User.Sesso.MALE);
     User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765", User.Sesso.MALE);
     User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234", User.Sesso.UNDEFINED);
-    User user4 = new User ("Gianna", "Nannini", "GiaNan66", "gianna@nan.nini", "13579", User.Sesso.FEMALE);
+    User user4 = new User ("Gianna", "Vincenzini", "GiaNan66", "gianna@nan.nini.dark", "13579", User.Sesso.FEMALE);
 
 
     private UserFactory(){

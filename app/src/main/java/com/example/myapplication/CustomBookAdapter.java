@@ -75,7 +75,12 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
         float totalValutation = book.getTotalValutation();
         System.out.println(totalValutation);
-        viewHolder.averageValutation.setText("" + roundDown5(totalValutation));
+        if (!Float.isNaN(book.getTotalValutation())) {
+            viewHolder.averageValutation.setText("" + roundDown5(book.getTotalValutation()));
+        }else{
+            viewHolder.averageValutation.setText("0.0");
+
+        }
 
         return convertView;
     }
@@ -94,6 +99,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
                 return R.drawable.robot;
             case HORROR:
                 return R.drawable.ghost;
+            case NATURE:
+                return R.drawable.tree;
         }
         return -1;
     }
@@ -118,8 +125,11 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getContext().getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getContext().getResources().getColor(R.color.red));
+                        }else{
+                            star.setColorFilter(getContext().getResources().getColor(R.color.grey));
+
                         }
                     }
                 }

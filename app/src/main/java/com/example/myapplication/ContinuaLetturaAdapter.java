@@ -58,7 +58,12 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         String chapNumber = "Riprendi la lettura dal capitolo " + chap.getChaptNum();
         viewHolder.chapterNum.setText(chapNumber);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
-        viewHolder.valutation.setText("" +roundDown5(book.getTotalValutation()));
+        if (!Float.isNaN(book.getTotalValutation())) {
+            viewHolder.valutation.setText("" + roundDown5(book.getTotalValutation()));
+        }else{
+            viewHolder.valutation.setText("0.0");
+
+        }
 
         return convertView;
     }
@@ -83,8 +88,10 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getContext().getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getContext().getResources().getColor(R.color.red));
+                        }else {
+                            star.setColorFilter(getContext().getResources().getColor(R.color.grey));
                         }
                     }
                 }
