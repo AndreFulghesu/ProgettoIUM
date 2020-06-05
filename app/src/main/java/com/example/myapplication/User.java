@@ -33,7 +33,7 @@ public class User implements Serializable {
         return username;
     }
 
-    public void setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
     }
 
@@ -45,19 +45,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public void setNome (String nome) {this.nome = nome;}
+    private void setNome(String nome) {this.nome = nome;}
 
     public String getNome () { return this.nome; }
 
-    public void setEmail (String email) { this.email = email; }
+    private void setEmail(String email) { this.email = email; }
 
-    public String getEmail () { return this.email; }
+    String getEmail() { return this.email; }
 
-    public void setCognome (String cognome) { this.cognome = cognome; }
+    private void setCognome(String cognome) { this.cognome = cognome; }
 
-    public String getCognome () { return this.cognome; }
+    String getCognome() { return this.cognome; }
 
-    public void addLibroIniziato (Book bk, Chapter chap) {
+    void addLibroIniziato(Book bk, Chapter chap) {
         boolean check = false;
         Pair<Book, Chapter> pair = new Pair<>(bk, chap);
         for (int i = 0; i < continuaLetturaList.size(); i++) {
@@ -72,16 +72,16 @@ public class User implements Serializable {
         }
     }
 
-    public ArrayList<Pair<Book, Chapter>> getListaLibriIziziati(){
+    ArrayList<Pair<Book, Chapter>> getListaLibriIziziati(){
         return continuaLetturaList;
     }
 
-    public void addLikeComments (Comment c, Boolean b){
+    void addLikeComments(Comment c, Boolean b){
         this.commentiLike.put(c,b);
         UserFactory.getInstance().addUserModifiedLike(this);
     }
 
-    public Boolean getLike (Comment c) {
+    Boolean getLike(Comment c) {
         if (!this.commentiLike.isEmpty()) {
             return this.commentiLike.get(c);
         }

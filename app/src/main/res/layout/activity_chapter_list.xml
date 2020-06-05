@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
                 android:background="?attr/spaceColor" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,16 +57,11 @@
                 android:gravity="center"
                 android:id="@+id/capitoliVuoti"/>
 
-
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/chapterlist"/>
 
-
         </LinearLayout>
-
-
     </LinearLayout>
-
 </ScrollView>

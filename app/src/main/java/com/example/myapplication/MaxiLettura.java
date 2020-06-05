@@ -12,8 +12,6 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.io.Serializable;
-
 public class  MaxiLettura extends AppCompatActivity {
 
     /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
@@ -103,7 +101,7 @@ public class  MaxiLettura extends AppCompatActivity {
     }
 
 
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    private static class GestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onDown(MotionEvent e) {
             return true;

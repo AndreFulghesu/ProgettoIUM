@@ -7,7 +7,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,9 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-
 import java.util.ArrayList;
 
 public class ProfiloAutore extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -32,8 +29,6 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     private ArrayList<Book> libri_autore ;
     final int classValue = 2;
     private float valutation;
-    private int num_visual;
-
     DrawerLayout drawer;
     Menu drawerMenu;
     MenuItem menuItem;
@@ -52,12 +47,10 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
 
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
         }
 
         setContentView(R.layout.drawer_authorprofile);
@@ -68,7 +61,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.authorToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Profilo Autore");
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
 
@@ -89,7 +82,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        navigationView = (NavigationView) findViewById(R.id.nav_menu_profilo_autore);
+        navigationView = findViewById(R.id.nav_menu_profilo_autore);
         navigationView.setNavigationItemSelectedListener(this);
         drawerMenu = navigationView.getMenu();
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);
@@ -188,10 +181,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
                 startActivity(readBook);
             }
         });
-
-
     }
-
 
     public static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
@@ -200,7 +190,6 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     public void setStarColor (float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getResources().getColor(R.color.blue));
-
         }else {
             if (valutation > 4.2f) {
                 star.setColorFilter(getResources().getColor(R.color.green));
@@ -228,10 +217,8 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     }
 
     public int sommaView (ArrayList<Book> libri){
-
         int views=0;
         for (Book b: libri){
-
             views = views + b.getViews();
         }
 

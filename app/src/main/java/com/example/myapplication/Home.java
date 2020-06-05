@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,36 +8,22 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowInsets;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
-
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -57,12 +42,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     View actionView,navHeader;
     ImageView profileImage;
     TextView welcomeHeader;
-    private static final int IMAGE_PICK_CODE = 1000;
+    /*private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1000;
-    private static final String urlProfileImg = "image/*";
-
-    /**android:layout_width="match_parent"
-       android:layout_height="123dp"*/
+    private static final String urlProfileImg = "image/*";*/
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -76,13 +58,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
-
         }
-
         setContentView(R.layout.drawer_home);
 
         /**Gestione collegamento tra variabili ed elementi del layot**/
@@ -112,7 +90,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 

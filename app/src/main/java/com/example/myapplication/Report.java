@@ -7,7 +7,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,13 +23,9 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Report extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,7 +60,6 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 
@@ -97,7 +91,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
         /**Gestione layout toolbar*/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.reportbar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {
@@ -291,7 +285,6 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                     } else {
                         BookAdapterSearch adapter = new BookAdapterSearch(getApplicationContext(), R.layout.bookitem, filtered);
                         books.clear();
-                        books = BookFactory.getInstance().getBooks();
                         adapter.notifyDataSetChanged();
                         reportSearched.setAdapter(adapter);
                     }
@@ -311,7 +304,6 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                         } else {
                             CustomUserAdapter adapter = new CustomUserAdapter(getApplicationContext(), R.layout.row_username, filtered);
                             users.clear();
-                            users = UserFactory.getInstance().getUsers();
                             adapter.notifyDataSetChanged();
                             reportSearched.setAdapter(adapter);
                         }

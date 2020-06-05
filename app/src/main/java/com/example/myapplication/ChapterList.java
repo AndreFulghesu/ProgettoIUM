@@ -7,11 +7,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,12 +47,10 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         final UserSession userSession = new UserSession(this);
 
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
 
         }
         setContentView(R.layout.drawer_chapterlist);
@@ -67,22 +62,18 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
-
         try {
             bookId = userSession.getBookId();
-            Book book = BookFactory.getInstance().getBookById(bookId);
         } catch (NullPointerException e) {
-            System.out.println("Errore passaggio bookId in sessione.");
             startActivity(new Intent (getApplicationContext(), Home.class));
         }
 
         /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {
@@ -102,7 +93,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        navigationView = (NavigationView) findViewById(R.id.nav_menu_chapterlist);
+        navigationView = findViewById(R.id.nav_menu_chapterlist);
         navigationView.setNavigationItemSelectedListener(this);
         drawerMenu = navigationView.getMenu();
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);

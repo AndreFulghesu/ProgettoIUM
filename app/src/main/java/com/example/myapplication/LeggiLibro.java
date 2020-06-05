@@ -4,31 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -56,12 +45,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         final UserSession userSession = new UserSession(this);
 
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
         }
         setContentView(R.layout.drawer_leggilibro);
         drawer = findViewById(R.id.drawerLeggiLibro);
@@ -70,7 +57,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
         try {
@@ -115,7 +101,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        navigationView = (NavigationView) findViewById(R.id.nav_menu_leggiibro);
+        navigationView = findViewById(R.id.nav_menu_leggiibro);
         navigationView.setNavigationItemSelectedListener(this);
         drawerMenu = navigationView.getMenu();
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);

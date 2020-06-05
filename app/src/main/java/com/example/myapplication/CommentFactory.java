@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /** Classe di simulazione di un database per il salvataggio dei commenti dei vari capitoli*/
 public class CommentFactory {
@@ -13,24 +12,24 @@ public class CommentFactory {
     private ArrayList<Comment> toDelete = new ArrayList<>();
 
     /**commenti per il libro 1*/
-    Comment com1 = new Comment ("Questo libro e' molto bello", 5, 1,1,UserFactory.getInstance().getUserByUsername("Faber123"),false);
-    Comment com2 = new Comment ("A me invece e' piaciuto poco", 3, 1,1,UserFactory.getInstance().getUserByUsername("Andre97"),false);
-    Comment com3 = new Comment ("Veramente entusiasmante", 4, 2,1,UserFactory.getInstance().getUserByUsername("Faber123"),false);
-    Comment com4 = new Comment ("Circa...",5, 2,1,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com1 = new Comment ("Questo libro e' molto bello", 5, 1,1,UserFactory.getInstance().getUserByUsername("Faber123"),false);
+    private Comment com2 = new Comment ("A me invece e' piaciuto poco", 3, 1,1,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com3 = new Comment ("Veramente entusiasmante", 4, 2,1,UserFactory.getInstance().getUserByUsername("Faber123"),false);
+    private Comment com4 = new Comment ("Circa...",5, 2,1,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
     /**commenti per il libro 2*/
-    Comment com5 = new Comment ("Non male come scrittura", 4, 1,2,UserFactory.getInstance().getUserByUsername("Gio34"),false);
-    Comment com6 = new Comment ("Poteva essere scritto meglio", 2, 1,2,UserFactory.getInstance().getUserByUsername("Faber123"),false);
-    Comment com7 = new Comment ("Mmmmm non mi convince", 1, 2,2,UserFactory.getInstance().getUserByUsername("Gio34"),false);
-    Comment com8 = new Comment ("Circa...",3, 2,2,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com5 = new Comment ("Non male come scrittura", 4, 1,2,UserFactory.getInstance().getUserByUsername("Gio34"),false);
+    private Comment com6 = new Comment ("Poteva essere scritto meglio", 2, 1,2,UserFactory.getInstance().getUserByUsername("Faber123"),false);
+    private Comment com7 = new Comment ("Mmmmm non mi convince", 1, 2,2,UserFactory.getInstance().getUserByUsername("Gio34"),false);
+    private Comment com8 = new Comment ("Circa...",3, 2,2,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
     /**Commenti per il libro 3*/
-    Comment com9 = new Comment ("Mmmmm non mi convince", 1, 1,3,UserFactory.getInstance().getUserByUsername("Gio34"),false);
-    Comment com10 = new Comment ("Circa...",3, 2,3,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com9 = new Comment ("Mmmmm non mi convince", 1, 1,3,UserFactory.getInstance().getUserByUsername("Gio34"),false);
+    private Comment com10 = new Comment ("Circa...",3, 2,3,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
     /**Commenti per il libro 4*/
-    Comment com11 = new Comment ("Mmmmm non mi convince", 1, 1,4,UserFactory.getInstance().getUserByUsername("Gio34"),false);
-    Comment com12 = new Comment ("Circa...",3, 2,4,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com11 = new Comment ("Mmmmm non mi convince", 1, 1,4,UserFactory.getInstance().getUserByUsername("Gio34"),false);
+    private Comment com12 = new Comment ("Circa...",3, 2,4,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
 
     private CommentFactory(){
@@ -47,7 +46,7 @@ public class CommentFactory {
     /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
      *  tutti o una parte degli oggetti salvati nella Factory
      */
-    public ArrayList<Comment> getComments () {
+    ArrayList<Comment> getComments() {
 
         comments.clear();
 
@@ -74,7 +73,7 @@ public class CommentFactory {
         return this.comments;
     }
 
-    public ArrayList<Comment> getCommentById (int idChapter, int idBook){
+    ArrayList<Comment> getCommentById(int idChapter, int idBook){
 
         ArrayList<Comment> commentsChapter = new ArrayList<>();
         ArrayList<Comment> comments = this.getComments();
@@ -92,11 +91,11 @@ public class CommentFactory {
     }
 
     /** Gestione eliminazione commeneto*/
-    public void toDelete (Comment c){
+    void toDelete(Comment c){
         this.toDelete.add(c);
     }
 
-    public void deleteComments (){
+    private void deleteComments(){
         if (!this.toDelete.isEmpty()) {
             for (int i = 0; i < this.toDelete.size(); i++) {
 

@@ -34,7 +34,7 @@ public class Chapter {
         return chaptNum;
     }
 
-    public void setChaptNum(int chaptNum) {
+    private void setChaptNum(int chaptNum) {
         this.chaptNum = chaptNum;
     }
 
@@ -46,43 +46,34 @@ public class Chapter {
         this.text = text;
     }
 
-    public void setValutation (){
+    void setValutation(){
         float valutation = 0;
-        int contatore = 0;
 
         for (Comment c : this.commenti){
             valutation = valutation + c.getVote();
-            System.out.println("Voto commento: " + c.getVote());
-            contatore++;
         }
         valutation =valutation / this.commenti.size();
         this.valutation = valutation;
     }
 
-    public float getValutation (){
+    float getValutation(){
         return this.valutation;}
 
-    public void addComment (Comment nuovo) {
-
+    void addComment(Comment nuovo) {
         this.commenti.add(nuovo);
-
     }
 
     public ArrayList<Comment> getComment (){
-
         return this.commenti;
-
     }
 
-    public void deleteComment (Comment c){
+    void deleteComment(Comment c){
         if(!this.commenti.isEmpty()) {
             for (int i = 0; i < this.commenti.size(); i++) {
                 if(this.commenti.get(i).equals(c)){
                     this.commenti.remove(i);
                 }
-
             }
-
             this.setValutation();
             ChapterFactory.getInstance().addChapterModify(this);
         }

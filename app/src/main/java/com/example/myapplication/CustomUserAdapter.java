@@ -8,20 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 
 public class CustomUserAdapter extends ArrayAdapter<User> {
 
-    /**Gestione del layout della listview per la ricerca nella activity Report attraverso l'apposito adapter*/
-    Context context;
-    ArrayList<User> users;
-
-    public CustomUserAdapter(Context context, int textViewResourceId, ArrayList<User> objects) {
+    CustomUserAdapter(Context context, int textViewResourceId, ArrayList<User> objects) {
         super(context, textViewResourceId, objects);
-        this.context= context;
-        this.users = objects;
+        /**Gestione del layout della listview per la ricerca nella activity Report attraverso l'apposito adapter*/
     }
 
     /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
@@ -32,6 +25,7 @@ public class CustomUserAdapter extends ArrayAdapter<User> {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.row_username, null);
             viewHolder= new ViewHolder();
             viewHolder.profileImage = convertView.findViewById(R.id.image_user_report);

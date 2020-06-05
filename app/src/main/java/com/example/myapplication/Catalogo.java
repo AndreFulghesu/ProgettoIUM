@@ -15,18 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Catalogo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,26 +54,14 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
-            finish();
-        }
-
-        /**Controllo dell'utente salvato in sessione e gestione
-         * in caso di eccezione nel codice*/
-        try {
-            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
-        } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 
         /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
         }
         setContentView(R.layout.drawer_catalogo);
         drawer = findViewById(R.id.drawerCatalogo);
@@ -86,10 +70,9 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catalogo Libri");
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
-
         } else {
             toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
@@ -320,7 +303,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(logOut);
                 break;
             case R.id.nav_aboutus:
-                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Uri uri = Uri.parse("http://www.google.com"); /**missing 'http://' will cause crashed*/
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;

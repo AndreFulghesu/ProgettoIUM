@@ -1,7 +1,6 @@
 package com.example.myapplication;
+
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 public class Book implements Comparable<Book>{
 
@@ -34,19 +33,19 @@ public class Book implements Comparable<Book>{
         this.title = title;
     }
 
-    public String getPlot() {
+    String getPlot() {
         return plot;
     }
 
-    public void setPlot(String plot) {
+    private void setPlot(String plot) {
         this.plot = plot;
     }
 
-    public Genres getGenre() {
+    Genres getGenre() {
         return genre;
     }
 
-    public void setGenre(Genres genre) {
+    private void setGenre(Genres genre) {
         this.genre = genre;
     }
 
@@ -58,19 +57,19 @@ public class Book implements Comparable<Book>{
         this.id = id;
     }
 
-    public User getAuthor() {
+    User getAuthor() {
         return this.author;
     }
 
-    public void setAuthor(User author) {
+    private void setAuthor(User author) {
         this.author = author;
     }
 
-    public ArrayList<Chapter> getChapters() {
+    private ArrayList<Chapter> getChapters() {
         return chapters;
     }
 
-    public Chapter getChapter(int chapId) {
+    Chapter getChapter(int chapId) {
         ArrayList<Chapter> chapters = getChapters();
         for (Chapter c: chapters){
             if (c.getChaptNum() == chapId) {
@@ -80,19 +79,19 @@ public class Book implements Comparable<Book>{
         return null;
     }
 
-    public int getViews() {
+    int getViews() {
         return this.views;
     }
 
-    public void setViews(int views) {
+    private void setViews(int views) {
         this.views = views;
     }
 
-    public void incrementViews () {
+    void incrementViews() {
         this.views++;
     }
 
-    public float getTotalValutation (){
+    float getTotalValutation(){
         float totalValutation=0;
         int counter=0;
         for (Chapter c : this.chapters){
@@ -113,7 +112,6 @@ public class Book implements Comparable<Book>{
                 return 0;
             }
         }
-
         return 1;
     }
 }

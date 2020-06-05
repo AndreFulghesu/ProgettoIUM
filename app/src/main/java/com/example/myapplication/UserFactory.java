@@ -11,12 +11,11 @@ public class UserFactory {
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<User> usersModified = new ArrayList<>();
-    private ArrayList<User> usersLikeSession = new ArrayList<>();
 
-    User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345", User.Sesso.MALE);
-    User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765", User.Sesso.MALE);
-    User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234", User.Sesso.UNDEFINED);
-    User user4 = new User ("Gianna", "Vincenzini", "GiaNan66", "gianna@nan.nini.dark", "13579", User.Sesso.FEMALE);
+    private User user1 = new User ("Faber", "Sau", "Faber123", "fabrizio@gmail.com", "12345", User.Sesso.MALE);
+    private User user2 = new User ("Andre","Fulghesu","Andre97","fulghesu@gmail.it","98765", User.Sesso.MALE);
+    private User user3 = new User ("Giorgio","Fragazzi","Gio34","giorgino@gmail.com","giorgio1234", User.Sesso.UNDEFINED);
+    private User user4 = new User ("Gianna", "Vincenzini", "GiaNan66", "gianna@nan.nini.dark", "13579", User.Sesso.FEMALE);
 
 
     private UserFactory(){
@@ -33,7 +32,7 @@ public class UserFactory {
     /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
      *  tutti o una parte degli oggetti salvati nella Factory
      */
-    public ArrayList<User> getUsers(){
+    ArrayList<User> getUsers(){
         ///User admin = new User ("Admin", null, "Admin", null, null);
         users.clear();
 
@@ -56,7 +55,7 @@ public class UserFactory {
         return this.users;
     }
 
-    public User getUser(String username, String password){
+    User getUser(String username, String password){
         List<User> users = this.getUsers();
         for(User u : users){
             if(u.getUsername().equals(username) && u.getPassword().equals(password)){
@@ -65,7 +64,7 @@ public class UserFactory {
         }
         return null;
     }
-    public boolean findUserByName (String username) {
+    boolean findUserByName(String username) {
         List<User> users = this.getUsers();
         for (User u : users) {
             if (u.getUsername().equals(username)) {
@@ -89,7 +88,7 @@ public class UserFactory {
         this.users.add(user);
     }
 
-    public void addLibroIniziato (User user, Book bk,  Chapter chap) {
+    void addLibroIniziato(User user, Book bk, Chapter chap) {
         boolean check = false;
         /**l'utente passato come parametro aggiunge il nuovo libro nella lista*/
         user.addLibroIniziato(bk, chap);
@@ -108,7 +107,7 @@ public class UserFactory {
         }
     }
 
-    public void addUserModifiedLike (User u){
+    void addUserModifiedLike(User u){
         this.usersModified.add(u);
     }
 }

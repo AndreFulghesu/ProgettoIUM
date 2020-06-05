@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -17,25 +16,23 @@ import java.util.ArrayList;
 public class CustomBookAdapter extends ArrayAdapter<Book> {
 
     /**Gestione del layout della listview nel Catalogo Libri attraverso l'apposito adapter*/
-    Context context;
-    ArrayList<Book> books;
-    final int classValue = 2;
+    private Context context;
+    private final int classValue = 2;
 
-    public CustomBookAdapter(Context context, int textViewResourceId, ArrayList<Book> objects) {
+    CustomBookAdapter(Context context, int textViewResourceId, ArrayList<Book> objects) {
         super(context, textViewResourceId, objects);
         this.context= context;
-        this.books = objects;
     }
 
     /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
         ViewHolder viewHolder;
-        View view;
         final Book book = getItem(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.bookitem, null);
             viewHolder= new ViewHolder();
             viewHolder.bookTitle = convertView.findViewById(R.id.booktitle);
@@ -45,6 +42,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder.views = convertView.findViewById(R.id.viewsTextView);
             viewHolder.star = convertView.findViewById(R.id.starimg);
             viewHolder.averageValutation = convertView.findViewById(R.id.averageValutation);
+            assert book != null;
             setStarColor(book.getTotalValutation(),viewHolder.star);
 
             convertView.setTag(viewHolder);
@@ -52,6 +50,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        assert book != null;
         viewHolder.bookTitle.setText(book.getTitle());
         SpannableString content = new SpannableString(book.getAuthor().getUsername());
         content.setSpan(new UnderlineSpan(), 0, book.getAuthor().getUsername().length(), 0);
@@ -79,13 +78,11 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             viewHolder.averageValutation.setText("" + roundDown5(book.getTotalValutation()));
         }else{
             viewHolder.averageValutation.setText("0.0");
-
         }
-
         return convertView;
     }
 
-    public int findImg(Book book) {
+    private int findImg(Book book) {
         switch(book.getGenre()) {
             case FANTASY:
                 return R.drawable.dragon;
@@ -111,7 +108,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         ImageView bookGenre, eyeImage, star;
     }
 
-    public void setStarColor (float valutation, ImageView star){
+    private void setStarColor(float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getContext().getResources().getColor(R.color.blue));
 
@@ -137,7 +134,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
     }
 
-    public static double roundDown5(float d) {
+    private static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
 

@@ -10,16 +10,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
+/**Gestione del layout della listview nella lista dei capitoli di un libro attraverso l'apposito adapter*/
 
-    /**Gestione del layout della listview nella lista dei capitoli di un libro attraverso l'apposito adapter*/
-    Context context;
-    ArrayList<Chapter> chaps;
+public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
 
     public CustomChapterAdapter(Context context, int resource, ArrayList<Chapter> objects) {
         super(context, resource, objects);
-        this.context = context;
-        this.chaps = objects;
     }
 
     /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
@@ -30,18 +26,20 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.chapteritem, null);
             viewHolder= new ViewHolder();
             viewHolder.cNumber = convertView.findViewById(R.id.stringchapter);
             viewHolder.rateNumber = convertView.findViewById(R.id.ratingNumber);
             viewHolder.star = convertView.findViewById(R.id.star);
+            assert chap != null;
             setStarColor(chap.getValutation(),viewHolder.star);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-
+        assert chap != null;
         String str = "Capitolo " + chap.getChaptNum();
         viewHolder.cNumber.setText(str);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
@@ -60,7 +58,7 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
         ImageView star;
     }
 
-    public void setStarColor (float valutation, ImageView star){
+    private void setStarColor(float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getContext().getResources().getColor(R.color.blue));
 
@@ -83,10 +81,9 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
                 }
             }
         }
-
     }
 
-    public static double roundDown5(float d) {
+    private static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
 }

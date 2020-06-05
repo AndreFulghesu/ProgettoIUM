@@ -11,7 +11,7 @@ public class Comment {
     private boolean like;
 
     /**Definizione costruttore*/
-    public Comment(String text, int vote, int chapterId, int bookId, User author_comment,boolean like) {
+    Comment(String text, int vote, int chapterId, int bookId, User author_comment, boolean like) {
         setText(text);
         setChapterId(chapterId);
         setBookId(bookId);
@@ -21,7 +21,7 @@ public class Comment {
     }
 
     /** Definizione metodi getter e setter dei vari attributi*/
-    public void setLike (boolean b) { this.like = b;}
+    private void setLike(boolean b) { this.like = b;}
 
     public boolean getLike () { return this.like; }
 
@@ -33,11 +33,11 @@ public class Comment {
         return this.text;
     }
 
-    public void setChapterId (int chapterId){
+    private void setChapterId(int chapterId){
         this.chapterId = chapterId;
     }
 
-    public int getChapterId (){
+    int getChapterId(){
         return this.chapterId;
     }
 
@@ -49,19 +49,19 @@ public class Comment {
         return this.bookId;
     }
 
-    public void setUserAuthor (User author_comment){
+    private void setUserAuthor(User author_comment){
         this.author_comment = author_comment;
     }
 
-    public User getUserAuthor (){
+    User getUserAuthor(){
         return this.author_comment;
     }
 
-    public int getVote() {
+    int getVote() {
         return vote;
     }
 
-    public void setVote(int vote) { this.vote = vote;}
+    private void setVote(int vote) { this.vote = vote;}
 
     @Override
     public boolean equals(Object o){
@@ -70,10 +70,6 @@ public class Comment {
         if(!(o instanceof Comment)) return false;
 
         Comment other = (Comment)o;
-        if (this.getText().equals(other.getText()) && this.getUserAuthor().getUsername().equals(other.getUserAuthor().getUsername()) && this.getBookId() == other.getBookId()){
-            return true;
-        }
-
-        return false;
+        return this.getText().equals(other.getText()) && this.getUserAuthor().getUsername().equals(other.getUserAuthor().getUsername()) && this.getBookId() == other.getBookId();
     }
 }

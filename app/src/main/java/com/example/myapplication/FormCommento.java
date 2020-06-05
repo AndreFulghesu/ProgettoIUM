@@ -7,12 +7,10 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +19,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class FormCommento extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -53,13 +47,10 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         final UserSession userSession = new UserSession(this);
 
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
-
         }
         setContentView(R.layout.drawer_formcommento);
         drawer = findViewById(R.id.drawerFormCommento);
@@ -67,10 +58,8 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         /**Gestione del sistema nel caso in cui non esista la sessione**/
         try {
             bookId = userSession.getBookId();
-
             try {
                 chapId = userSession.getChapId();
-
             } catch (NullPointerException e) {
                 Intent goToChapterList = new Intent (getApplicationContext(), ChapterList.class);
                 startActivity(goToChapterList);
@@ -82,7 +71,6 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 

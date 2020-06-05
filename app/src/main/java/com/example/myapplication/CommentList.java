@@ -1,37 +1,23 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CommentList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -63,11 +49,8 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
-
         }
 
         /**Gestione associazione tra variabili d'istanza ed elementi del layout*/
@@ -96,14 +79,13 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 
         /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.commentiToolbar);
         setSupportActionBar(toolbar);
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
         } else {

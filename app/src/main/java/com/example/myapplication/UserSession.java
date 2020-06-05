@@ -3,8 +3,6 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.text.Normalizer;
-
 /**Classe per il salvataggio della sessione, nella quale verranno salvati utente loggato ed
  * altri eventuali dati importanti per il sistema
  */
@@ -28,14 +26,14 @@ public class UserSession {
     }
 
     /**Salvataggio sessione al login*/
-    public void saveUserSession(String username) {
+    void saveUserSession(String username) {
         editor.putString(SESSION_USER, username).commit();
         editor.putBoolean(IS_LOGGED, true).commit();
         editor.putBoolean(DARK_THEME, false).commit();
         setTheme(true);
     }
     /**Controllo status sessione dell'utente*/
-    public Boolean isLogged() {
+    Boolean isLogged() {
         return prefs.getBoolean(IS_LOGGED, false);
     }
 
@@ -58,17 +56,17 @@ public class UserSession {
         return prefs.getInt(BOOK_ID, -1);
     }
 
-    public void setChapId (int chapId) {
+    void setChapId(int chapId) {
         editor.putInt(CHAPTER_ID, chapId).commit();
     }
 
-    public int getChapId() {
+    int getChapId() {
         return prefs.getInt(CHAPTER_ID, -1);
     }
 
-    public void setUserAuthor (String username) {editor.putString(USER_AUTHOR,username).commit();}
+    void setUserAuthor(String username) {editor.putString(USER_AUTHOR,username).commit();}
 
-    public String getUsernameAuthor () { return prefs.getString(USER_AUTHOR,"");}
+    String getUsernameAuthor() { return prefs.getString(USER_AUTHOR,"");}
 
     public void setTheme(Boolean switchTheme) {
         editor.putBoolean(DARK_THEME, switchTheme).commit();
@@ -80,21 +78,21 @@ public class UserSession {
         return prefs.getString(SESSION_USER," ");
     }
 
-    public void setOrdinamento (int ordinamento) {
+    void setOrdinamento(int ordinamento) {
         editor.putInt(ORDINAMENTO, ordinamento).commit();
     }
 
-    public int getOrdinamento(){
+    int getOrdinamento(){
         return prefs.getInt(ORDINAMENTO, -1);
     }
 
     public int getCallingActivityValue() { return prefs.getInt(CALLING_ACTIVITY, -1);}
 
-    public void setCallingActivity(int classValue) {
+    void setCallingActivity(int classValue) {
         editor.putInt(CALLING_ACTIVITY, classValue).commit();
     }
 
-    public Class getActivityFromValue(int enumValue){
+    Class getActivityFromValue(int enumValue){
         ActivitiesEnum actEnum = getEnum(enumValue);
         System.out.println(enumValue);
         switch (actEnum){
@@ -117,7 +115,7 @@ public class UserSession {
         }
     }
 
-    public ActivitiesEnum getEnum (int v) {
+    private ActivitiesEnum getEnum(int v) {
         switch(v) {
             case 1:
                 return ActivitiesEnum.HOME;

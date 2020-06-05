@@ -7,24 +7,18 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
 import java.util.Objects;
 
 public class MyProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -55,7 +49,6 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 
@@ -95,7 +88,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        navigationView = (NavigationView) findViewById(R.id.nav_menu_myprofile);
+        navigationView = findViewById(R.id.nav_menu_myprofile);
         navigationView.setNavigationItemSelectedListener(this);
         drawerMenu = navigationView.getMenu();
         menuItem = drawerMenu.findItem(R.id.nav_darkmode);

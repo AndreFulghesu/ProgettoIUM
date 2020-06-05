@@ -2,36 +2,25 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
-
 import com.like.LikeButton;
 import com.like.OnLikeListener;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
     /**Gestione del layout della listview per la stampa dei commenti di un capitolo attraverso l'apposito adapter*/
-    Context context;
-    ArrayList<Comment> commenti = new ArrayList<Comment>();
+    private Context context;
 
     public CustomCommentAdapter(Context context, int textViewResourceId, ArrayList<Comment> objects) {
         super(context, textViewResourceId, objects);
         this.context= context;
-        this.commenti = objects;
-
     }
 
     /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
@@ -42,9 +31,8 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.commentitem, null);
-
-
             viewHolder= new ViewHolder();
             viewHolder.commento = convertView.findViewById(R.id.commento);
             viewHolder.commentAuthor = convertView.findViewById(R.id.autore_commento);
@@ -57,9 +45,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         final Comment c = getItem(position);
         final User u =UserFactory.getInstance().getUserByUsername(new UserSession(context).getUserSession());
 
-        System.out.println("\nUtente loggato:   "+u.getUsername());
-        System.out.println("\nCommento relativo:   "+c.getUserAuthor().getUsername());
-
+        assert c != null;
         viewHolder.commento.setText(c.getText());
 
         if (u.getUsername().equals(c.getUserAuthor().getUsername())){
@@ -73,7 +59,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         }else{
             viewHolder.like.setLiked(true);
         }
-
         viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +83,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         });
 
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
-
 
         /**Gestione alla pressione del tasto like nel commento*/
         viewHolder.like.setOnLikeListener(new OnLikeListener() {

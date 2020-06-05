@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /** Classe di simulazione di un database per il salvataggio dei capitoli dei vari libri*/
 public class ChapterFactory {
@@ -10,7 +9,8 @@ public class ChapterFactory {
 
     private ArrayList<Chapter> chapters = new ArrayList<>();
     private ArrayList<Chapter> chaptersModified = new ArrayList<>();
-    Chapter chap1= new Chapter(1, 1,
+
+    private Chapter chap1= new Chapter(1, 1,
 
             "L'opera è divisa in sette libri, tanti quanti gli anni di studio a Hogwarts, " +
                     "l'ultimo dei quali non conseguito dai protagonisti della storia (Harry Potter stesso " +
@@ -33,9 +33,9 @@ public class ChapterFactory {
                     "Prosegue i suoi studi di magia per sei anni fino allo scontro finale con Lord Voldemort, " +
                     "responsabile di altre numerose morti oltre a quella dei suoi genitori. ");
 
-    Chapter chap2 = new Chapter(1, 2, "Testo provvisorio per un capitolo che non verrà mai pubblicato.\n");
+    private Chapter chap2 = new Chapter(1, 2, "Testo provvisorio per un capitolo che non verrà mai pubblicato.\n");
 
-    Chapter chap3 = new Chapter(2, 1, "Assassinio sull'Orient Express (Murder on the Orient Express) " +
+    private Chapter chap3 = new Chapter(2, 1, "Assassinio sull'Orient Express (Murder on the Orient Express) " +
             "è un film del 2017 diretto, co-prodotto e interpretato da Kenneth Branagh."+
 
             "Basato sull'omonimo romanzo del 1934 di Agatha Christie, il film è la seconda trasposizione cinematografica " +
@@ -50,7 +50,7 @@ public class ChapterFactory {
             "Assassinio sull'Orient Express è stato distribuito nelle sale cinematografiche statunitensi il 10 novembre 2017 dalla 20th " +
             "Century Fox, mentre in quelle italiane ha esordito il 30 novembre 2017 distribuito da 20th Century Fox Italia.");
 
-    Chapter chap4 = new Chapter(2, 2, "Gerusalemme, 1934. Il detective belga Hercule Poirot risolve un furto alla Basilica" +
+    private Chapter chap4 = new Chapter(2, 2, "Gerusalemme, 1934. Il detective belga Hercule Poirot risolve un furto alla Basilica" +
             " del Santo Sepolcro. Poirot è ossessionato dall'equilibrio e dall'ordine nella vita: in grado di vedere il mondo"+
             "per come dovrebbe essere e non per come è, considera questa sua capacità molto utile nel risolvere i casi specie quando" +
             " si tratta di smascherare una bugia. A seguito del caso a Gerusalemme, "+
@@ -65,10 +65,10 @@ public class ChapterFactory {
             "qualcuno con un kimono rosso correre lungo il corridoio. Durante la medesima notte, una valanga fa deragliare il treno," +
             " costringendolo a fermarsi in attesa di soccorso dalla stazione più vicina.");
 
-    Chapter chap5 = new Chapter(3, 1, "Un giorno Fulghenzio incontrò quattro Gigi ricoperti di filigrane d'oro," +
+    private Chapter chap5 = new Chapter(3, 1, "Un giorno Fulghenzio incontrò quattro Gigi ricoperti di filigrane d'oro," +
             " ma non si fermò a salutarli.\nFine.");
 
-    Chapter chap6 = new Chapter(3, 2, "Specify an optional color filter for the drawable.\n" +
+    private Chapter chap6 = new Chapter(3, 2, "Specify an optional color filter for the drawable.\n" +
             "\n" +
             "If a Drawable has a ColorFilter, each output pixel of the Drawable's drawing contents will be modified " +
             "by the color filter before it is blended onto the render target of a Canvas.\n" +
@@ -76,7 +76,7 @@ public class ChapterFactory {
             "Pass null to remove any existing color filter. " +
             " ma non si fermò a salutarli.\nFine.");
 
-    Chapter chap7 = new Chapter (4,1,"Nel 1765 c'era una specie protetta di foglie chiamata Fabrizio. Faceva la clorofila fotosintosa.\n" +
+    private Chapter chap7 = new Chapter (4,1,"Nel 1765 c'era una specie protetta di foglie chiamata Fabrizio. Faceva la clorofila fotosintosa.\n" +
             "Da allora decise di fermarsi perché era troppo faticoso. Tutto il pianeta morì.");
 
 
@@ -94,7 +94,7 @@ public class ChapterFactory {
     /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
      *  tutti o una parte degli oggetti salvati nella Factory
      */
-    public ArrayList<Chapter> getChapters(){
+    ArrayList<Chapter> getChapters(){
 
         chapters.clear();
 
@@ -118,7 +118,7 @@ public class ChapterFactory {
         return this.chapters;
     }
 
-    public ArrayList<Chapter> getChaptersByBookId (int id) {
+    ArrayList<Chapter> getChaptersByBookId(int id) {
         ArrayList<Chapter> chaptersBook = new ArrayList<>();
         ArrayList<Chapter> chapters = this.getChapters();
         for (Chapter c : chapters) {
@@ -129,7 +129,7 @@ public class ChapterFactory {
         return chaptersBook;
     }
 
-    public Chapter getChapterByChapNum (int chapNum, int bookId) {
+    Chapter getChapterByChapNum(int chapNum, int bookId) {
         ArrayList<Chapter> chapters = this.getChapters();
         for (Chapter c : chapters) {
             if (c.getBookId()==bookId && c.getChaptNum()==chapNum) {
@@ -139,8 +139,7 @@ public class ChapterFactory {
         return null;
     }
 
-public void addChapterModify (Chapter c) {
+    void addChapterModify(Chapter c) {
         this.chaptersModified.add(c);
-
-        }
-        }
+    }
+}

@@ -15,26 +15,15 @@ import java.util.ArrayList;
 
 public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
 
-    /**Gestione del layout della listview della activity continuaLettura attraverso l'apposito adapter*/
-    Context context;
-    ArrayList<Pair<Book, Chapter>> books;
-    String text;
-
-    public ContinuaLetturaAdapter(Context context, int textViewResourceId, ArrayList<Pair<Book, Chapter>> objects) {
+    ContinuaLetturaAdapter(Context context, int textViewResourceId, ArrayList<Pair<Book, Chapter>> objects) {
         super(context, textViewResourceId, objects);
-        this.context= context;
-        this.books = objects;
-    }
-
-    public ContinuaLetturaAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+        /**Gestione del layout della listview della activity continuaLettura attraverso l'apposito adapter*/
     }
 
     /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        View view;
         Pair<Book, Chapter> pair = getItem(position);
         assert pair != null;
         Book book = pair.first;
@@ -42,19 +31,23 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.continua_lettura_item, null);
             viewHolder= new ViewHolder();
             viewHolder.bookTitle = convertView.findViewById(R.id.book_name);
             viewHolder.chapterNum = convertView.findViewById(R.id.chapter_number);
             viewHolder.star = convertView.findViewById(R.id.star);
             viewHolder.valutation = convertView.findViewById(R.id.valutation_continue);
+            assert book != null;
             setStarColor(book.getTotalValutation(),viewHolder.star);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        assert book != null;
         viewHolder.bookTitle.setText(book.getTitle());
+        assert chap != null;
         String chapNumber = "Riprendi la lettura dal capitolo " + chap.getChaptNum();
         viewHolder.chapterNum.setText(chapNumber);
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
@@ -74,7 +67,7 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         ImageView star;
     }
 
-    public void setStarColor (float valutation, ImageView star){
+    private void setStarColor(float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getContext().getResources().getColor(R.color.blue));
 
@@ -100,7 +93,7 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
 
     }
 
-    public static double roundDown5(float d) {
+    private static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
 }

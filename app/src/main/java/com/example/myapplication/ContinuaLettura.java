@@ -5,27 +5,20 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.util.Pair;
-import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContinuaLettura extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,10 +44,8 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
         }
         setContentView(R.layout.drawer_continua_lettura);
 
@@ -78,7 +69,6 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
         /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
@@ -154,7 +144,9 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
                 Pair<Book, Chapter>  element = (Pair<Book, Chapter>) continueLst.getItemAtPosition(position);
                 Intent readBook = new Intent (getApplicationContext(), LeggiLibro.class);
                 userSession.setCallingActivity(classValue);
+                assert element.first != null;
                 userSession.setBookId(element.first.getId());
+                assert element.second != null;
                 userSession.setChapId(element.second.getChaptNum());
                 startActivity(readBook);
             }

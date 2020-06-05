@@ -9,15 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FiltroCatalogo extends AppCompatActivity  {
 
@@ -36,7 +30,6 @@ public class FiltroCatalogo extends AppCompatActivity  {
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
             finish();
         }
 
@@ -90,10 +83,8 @@ public class FiltroCatalogo extends AppCompatActivity  {
                         break;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
