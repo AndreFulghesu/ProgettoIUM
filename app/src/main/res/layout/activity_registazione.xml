@@ -31,11 +31,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
             <ImageView
                 android:id="@+id/logo"
+                android:src="@drawable/logo_final_1"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
+                android:paddingTop="10dp"
                 android:layout_gravity="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <TextView
                 android:id="@+id/text_reg"
@@ -50,24 +60,28 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:layout_height="5dp" />
 
 
             <EditText
                 android:id="@+id/NomeReg1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:ems="10"
+                android:layout_margin="5dp"
                 android:hint="Nome"
                 android:inputType="textPersonName"
                 android:textColorHint="#5F605F" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <EditText
                 android:id="@+id/CognomeReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:ems="10"
                 android:hint="Cognome"
@@ -75,33 +89,39 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
+                android:layout_height="5dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#5F605F"
+                android:layout_marginLeft="5dp"
                 android:text="Sesso: "
                 android:textSize="20sp"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:orientation="horizontal"
                 android:id="@+id/radiogroup_registrazione">
 
                 <RadioButton
                     android:id="@+id/male_radiobutton"
+                    android:textColor="#5F605F"
                     android:layout_marginLeft="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="M"/>
                 <RadioButton
+                    android:textColor="#5F605F"
                     android:id="@+id/female_radiobutton"
                     android:layout_marginLeft="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="F"/>
                 <RadioButton
+                    android:textColor="#5F605F"
                     android:id="@+id/undefined_radiobutton"
                     android:layout_marginLeft="50dp"
                     android:layout_width="wrap_content"
@@ -109,60 +129,77 @@
                     android:text="Preferisco non dirlo"/>
             </RadioGroup>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
             <EditText
                 android:id="@+id/EmailReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textPersonName" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <EditText
                 android:id="@+id/UsernameReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="textPersonName" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <EditText
                 android:id="@+id/PassworReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <EditText
                 android:id="@+id/ConfermaPassworReg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:hint="Conferma Password"
                 android:inputType="textPassword" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
 
             <CheckBox
                 android:id="@+id/terminiServizio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColor="#5F605F"
                 android:text="Accetta i Termini di Servizio" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="50dp" />
 
             <Button
                 android:id="@+id/buttonRegistrazione"
@@ -179,7 +216,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"/>
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -188,11 +224,10 @@
                 android:id="@+id/alertPass"
                 android:textStyle="italic"/>
 
-
-
+            <!--
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="140dp" />
+                android:layout_height="40dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -214,6 +249,7 @@
                     android:textStyle="italic" />
 
             </RelativeLayout>
+            -->
 
 
         </LinearLayout>

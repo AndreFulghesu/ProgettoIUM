@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:src="@drawable/logo_prova"
+        android:src="@drawable/logo_final_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
@@ -20,28 +20,14 @@
         app:layout_constraintVertical_bias="0.209" />
 
     <TextView
-        android:id="@+id/scrittaLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="292dp"
-        android:text="@string/app_name"
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.518" />
-
-    <TextView
         android:id="@+id/sottoscritta"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="212dp"
         android:fontFamily="@font/parisienne"
-        android:text="Read,Comment,Share"
+        android:text="Read, Comment, Share"
         android:textColor="#000"
+        android:gravity="center"
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +38,7 @@
         android:id="@+id/progressBar"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="112dp"
         android:indeterminateDrawable="@drawable/decoration_buffer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,14 +52,15 @@
         android:layout_marginBottom="248dp"
         android:fontFamily="@font/parisienne"
         android:padding="5dp"
-        android:text="@string/registrazione"
+        android:gravity="center"
+        android:text="@string/start"
         android:textColor="#000"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.473" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,8 +28,14 @@
             android:background="@drawable/gradient3"
             android:orientation="vertical">
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
             <ImageView
                 android:id="@+id/logo"
+                android:paddingTop="10dp"
+                android:src="@drawable/logo_final_1"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center" />
@@ -46,8 +52,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
+                android:textColor="@color/color_black"
                 android:drawableLeft="@drawable/ic_person_black_36dp"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:hint="Username"
                 android:inputType="textPersonName" />
@@ -56,16 +63,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-
-
             <EditText
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/color_black"
                 android:ems="10"
                 android:drawableLeft="@drawable/ic_lock_black_36dp"
-                android:layout_marginBottom="5dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#5F605F"
                 android:hint="Password"
                 android:inputType="textPassword" />
@@ -82,7 +88,7 @@
                 android:text="@string/dimenticata"
                 android:textColor="#3D679B"
                 android:gravity="left"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:padding="2dp"
                 android:textSize="15dp" />
 
@@ -127,6 +133,7 @@
                 android:text="@string/registrati"
                 android:textAlignment="center"
                 android:textColor="#3D679B"
+                android:textStyle="italic"
                 android:textSize="20dp" />
 
             <TextView
@@ -149,17 +156,17 @@
                 android:text="@string/benvenuto"
                 android:textAlignment="center"
                 android:textColor="#3D679B"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:padding="5dp"
                 android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="40dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:background="@color/color_button">
 
                 <TextView

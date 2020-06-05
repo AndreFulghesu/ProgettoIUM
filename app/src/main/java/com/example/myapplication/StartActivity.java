@@ -15,7 +15,7 @@ public class StartActivity extends AppCompatActivity {
 
     /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     ImageView logo;
-    TextView scrittaLogo,sottoScritta, scrittaBellina;
+    TextView sottoScritta, scrittaBellina;
     private static int timeOut = 5500;
     Animation topAnim, bottomAnim;
 
@@ -30,7 +30,6 @@ public class StartActivity extends AppCompatActivity {
 
         /**Associazioni variabili con elementi del layout*/
         logo = findViewById(R.id.logo);
-        scrittaLogo = findViewById(R.id.scrittaLogo);
         scrittaBellina = findViewById(R.id.scrittaBellina);
         sottoScritta = findViewById(R.id.sottoscritta);
 
@@ -49,7 +48,6 @@ public class StartActivity extends AppCompatActivity {
 
         /**Selezione animazione per i vari elementi del layout*/
         logo.setAnimation(topAnim);
-        scrittaLogo.setAnimation(bottomAnim);
         sottoScritta.setAnimation(bottomAnim);
         scrittaBellina.setAnimation(bottomAnim);
     }
