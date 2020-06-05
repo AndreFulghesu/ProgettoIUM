@@ -23,8 +23,11 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +61,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private static final int PERMISSION_CODE = 1000;
     private static final String urlProfileImg = "image/*";
 
+    /**android:layout_width="match_parent"
+       android:layout_height="123dp"*/
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         /**Gestione richiesta sessione dalla classe**/
@@ -127,27 +132,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
         profileImage = navHeader.findViewById(R.id.headerProfileImg);
 
-        switch (user.getSex()){
-            case MALE:
-                profileImage.setImageResource(R.drawable.bananaicon);
-                break;
-            case FEMALE:
-                profileImage.setImageResource(R.drawable.peachicon);
-                break;
-            case UNDEFINED:
-                profileImage.setImageResource(R.drawable.blackholeicon);
-                break;
-            default:
-                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
-        }
-
         dmSwitch = actionView.findViewById(R.id.darkmode_switch);
         if (userSession.getTheme()){
             dmSwitch.setChecked(true);
         } else {
             dmSwitch.setChecked(false);
         }
-
 
         dmSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,11 +158,25 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
         /**Fine gestione switch per il cambio tema**/
 
-        /**Gestione della barra di ricerca nel catalogo dei libri**/
+        /**Gestione visualizzazione immagine utente nel drawer*/
+        switch (user.getSex()){
+            case MALE:
+                profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
+
+        /**Gestione della barra di ricerca nella home**/
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-
             }
 
             @Override
@@ -181,14 +185,26 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 BookAdapterSearch adapter = new BookAdapterSearch(Home.this, R.layout.book_searched, books);
                 books.clear();
                 listView.setAdapter(adapter);
-
             }
         });
-         /**Gestione della ricerca e della restituzione dei libri ricercati,
-        * basata sul pattern matching**/
+
+        ImageButton mBackBtn = (ImageButton) searchView.findViewById(R.id.action_up_btn);
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout.LayoutParams mParam = new LinearLayout.LayoutParams((LinearLayout.LayoutParams.MATCH_PARENT), (0));
+                listView.setLayoutParams(mParam);
+                searchView.closeSearch();
+            }
+        });
+
+        /**Gestione della ricerca e della restituzione dei libri ricercati,
+       * basata sul pattern matching**/
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) { return false; }
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -202,6 +218,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                             filtered.add(b);
                         }
                     }
+                    LinearLayout.LayoutParams mParam = new LinearLayout.LayoutParams((LinearLayout.LayoutParams.MATCH_PARENT), (1230));
+                    listView.setLayoutParams(mParam);
                     BookAdapterSearch adapter = new BookAdapterSearch(Home.this, R.layout.book_searched, filtered);
                     listView.setAdapter(adapter);
                 } else {
@@ -215,6 +233,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
+        /**Gestione click utente su un elemento della listView*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -364,26 +383,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent,IMAGE_PICK_CODE);
-
-
-
-
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-
             case PERMISSION_CODE:
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     //permessi garantiti
                     pickImagreFromGallery();
-
                 }else{
                     Toast.makeText(this,"Non hai i permessi!",Toast.LENGTH_SHORT).show();
-
                 }
-
         }
     }
 
@@ -395,7 +406,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             if (data!=null) {
                 profileImg.setImageURI(data.getData());
             }
-
         }
     }*/
 }

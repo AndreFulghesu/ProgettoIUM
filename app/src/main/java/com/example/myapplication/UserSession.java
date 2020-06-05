@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import java.text.Normalizer;
 
+/**Classe per il salvataggio della sessione, nella quale verranno salvati utente loggato ed
+ * altri eventuali dati importanti per il sistema
+ */
 public class UserSession {
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
@@ -18,26 +21,25 @@ public class UserSession {
     private String ORDINAMENTO = "ordinamento";
     private String USER_AUTHOR ="userName_Author";
 
+    /**Richiesta sessione*/
     public UserSession(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = prefs.edit();
     }
 
+    /**Salvataggio sessione al login*/
     public void saveUserSession(String username) {
         editor.putString(SESSION_USER, username).commit();
         editor.putBoolean(IS_LOGGED, true).commit();
-        if (username.equals("Faber123")) {
-            editor.putBoolean(DARK_THEME, true).commit();
-            setTheme(false);
-        } else {
-            editor.putBoolean(DARK_THEME, false).commit();
-            setTheme(true);
-        }
+        editor.putBoolean(DARK_THEME, false).commit();
+        setTheme(true);
     }
+    /**Controllo status sessione dell'utente*/
     public Boolean isLogged() {
         return prefs.getBoolean(IS_LOGGED, false);
     }
 
+    /**Metodo che invalida la sessione in caso di logout*/
     public void invalidateSession() {
         editor.remove(SESSION_USER).commit();
         editor.remove(DARK_THEME).commit();
@@ -45,6 +47,9 @@ public class UserSession {
         editor.putBoolean(IS_LOGGED, false).commit();
     }
 
+    /**Metodi getter e setter per l'accesso e l'eventuale modifica
+     * degli elementi salvati in sessione
+     */
     public void setBookId (int bookId) {
         editor.putInt(BOOK_ID, bookId).commit();
     }

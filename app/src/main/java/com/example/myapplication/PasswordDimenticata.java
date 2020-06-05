@@ -18,24 +18,26 @@ import java.util.List;
 
 public class PasswordDimenticata extends AppCompatActivity {
 
-
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     Button richiestaPass;
     EditText email,telephoneNumber;
     TextView alertPass;
     private boolean permission = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_dimenticata);
 
-
+        /**Associazioni variabili con elementi del layout*/
         richiestaPass = findViewById(R.id.richiestaPassword);
         email = findViewById(R.id.richiestaEmail);
         telephoneNumber = findViewById(R.id.numeroTelefono);
         alertPass = findViewById(R.id.alertPass);
 
+        /**Gestione richiesta nuova password con
+         * controllo sull'input utente
+         */
         richiestaPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +47,6 @@ public class PasswordDimenticata extends AppCompatActivity {
 
                     alertPass.setVisibility(View.GONE);
                 }else{
-
                     if (checkEmail(email.getText().toString())){
 
                         Snackbar.make(v, "La richiesta è stata inoltrata.\nControlla la tua casella email", Snackbar.LENGTH_LONG)
@@ -56,12 +57,12 @@ public class PasswordDimenticata extends AppCompatActivity {
                     }else {
                         email.setError("L'email inserita non corrisponde a nessun utente");
                     }
-
                 }
             }
         });
     }
 
+    /**Metodi ausuliari per il controllo dell'input utente*/
     private Boolean checkInput() {
         int errors = 0;
 
@@ -78,7 +79,6 @@ public class PasswordDimenticata extends AppCompatActivity {
         } else {
             telephoneNumber.setError(null);
         }
-
         return (errors==0);
     }
 
@@ -90,11 +90,8 @@ public class PasswordDimenticata extends AppCompatActivity {
                 return true;
             }
         }
-
         return false;
-
     }
-
 
     /**Gestione dell'uscita dall'applicazione nel caso in cui si torni indietro**/
     @Override

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
 
+    /**Gestione del layout della listview nella lista dei capitoli di un libro attraverso l'apposito adapter*/
     Context context;
     ArrayList<Chapter> chaps;
 
@@ -21,6 +22,7 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
         this.chaps = objects;
     }
 
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
@@ -46,7 +48,9 @@ public class CustomChapterAdapter extends ArrayAdapter<Chapter> {
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         return convertView;
     }
-    private class ViewHolder{
+
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder{
         TextView cNumber, rateNumber;
         ImageView star;
     }

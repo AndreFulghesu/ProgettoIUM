@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class CustomUserAdapter extends ArrayAdapter<User> {
 
+    /**Gestione del layout della listview per la ricerca nella activity Report attraverso l'apposito adapter*/
     Context context;
     ArrayList<User> users;
 
@@ -23,6 +24,7 @@ public class CustomUserAdapter extends ArrayAdapter<User> {
         this.users = objects;
     }
 
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
@@ -41,15 +43,26 @@ public class CustomUserAdapter extends ArrayAdapter<User> {
         }
         assert user != null;
         viewHolder.usernameString.setText(user.getUsername());
-        viewHolder.profileImage.setImageResource(R.drawable.person);
+        switch (user.getSex()){
+            case MALE:
+                viewHolder.profileImage.setImageResource(R.drawable.bananaicon);
+                break;
+            case FEMALE:
+                viewHolder.profileImage.setImageResource(R.drawable.peachicon);
+                break;
+            case UNDEFINED:
+                viewHolder.profileImage.setImageResource(R.drawable.blackholeicon);
+                break;
+            default:
+                viewHolder.profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+        }
         viewHolder.removeItem.setImageResource(R.drawable.ic_close_black_24dp);
 
         return convertView;
     }
 
-
-
-    private class ViewHolder {
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder {
         ImageView profileImage, removeItem;
         TextView usernameString;
     }

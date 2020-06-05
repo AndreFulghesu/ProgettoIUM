@@ -29,6 +29,7 @@ import java.util.List;
 
 public class ContinuaLettura extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     User user;
     static int classValue = 8;
     TextView listaVuota;
@@ -48,7 +49,7 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         final UserSession userSession = new UserSession(this);
 
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
         } else {
@@ -60,13 +61,13 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         drawer = findViewById(R.id.drawerContinuaLettura);
         listaVuota = findViewById(R.id.listaVuota);
 
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.continuaLetturaToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Continua a leggere...");
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             toolbar.setBackground(getResources().getDrawable(R.drawable.gradient2));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_black));
-
         } else {
             toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarGrey));
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
@@ -116,6 +117,7 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
         });
         /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione immagine utente nel drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -134,16 +136,18 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
+        /**Gestione listView per la stampa dei libri iniziati*/
         final ListView continueLst= findViewById(R.id.continuebooklist);
         ArrayList<Pair<Book, Chapter>> books = user.getListaLibriIziziati();
         if(books.isEmpty()){
             listaVuota.setText("Non hai iniziato nessun libro");
         }else {
-
             ContinuaLetturaAdapter adapter = new ContinuaLetturaAdapter(this, R.layout.continua_lettura_item, books);
             continueLst.setAdapter(adapter);
         }
 
+        /**Gestione del sistema alla pressione di uno
+         * degli elementi della listView */
         continueLst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -156,6 +160,9 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
             }
         });
     }
+
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

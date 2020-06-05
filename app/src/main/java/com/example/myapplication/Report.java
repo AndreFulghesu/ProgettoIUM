@@ -34,6 +34,7 @@ import java.util.List;
 
 public class Report extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     DrawerLayout drawer;
     Menu drawerMenu;
     MenuItem menuItem;
@@ -58,13 +59,23 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /**Gestione richiesta sessione dalla classe
+         * ed eventualmente gestione dell'eccezione lanciata**/
         final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
 
+        /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
         } else {
             setTheme(R.style.darkTheme);
         }
+
         setContentView(R.layout.drawer_report);
 
         activities.add("Pagina di Login");
@@ -83,9 +94,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
         spinnerSelected = findViewById(R.id.report_spinner_selected);
         textSopraBarraRicerca = findViewById(R.id.text_sopra_report_search);
 
-        Intent intent = getIntent();
-        Serializable objReport = intent.getSerializableExtra("reportId");
-
+        /**Gestione layout toolbar*/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.reportbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {
@@ -96,6 +105,8 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+
+        /**Gestione apertura manu laterale*/
         drawer = findViewById(R.id.drawerReport);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +159,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
         });
         /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione visualizzazione immagine del profilo nello header del drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -165,6 +177,12 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
+
+        /**Controllo sull'eventuale tipo di problema riscontrato
+         * inviato dalla activity chiamante
+         */
+        Intent intent = getIntent();
+        Serializable objReport = intent.getSerializableExtra("reportId");
 
         if (objReport != null) {
             problemId = (int) objReport;
@@ -184,6 +202,8 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             }
         }
 
+
+        /**Gestione popolazione elementi spinner*/
         ArrayList<String> choices = new ArrayList<>();
         choices.add("Bug o problemi di sistema");
         choices.add("Utente scorretto");
@@ -194,6 +214,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         reportSpinner.setAdapter(adapter);
 
+        /**Gestione spinner per la scelta del tipo di problema riscontrato*/
         reportSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -221,14 +242,15 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                         break;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+
         reportSearched = findViewById(R.id.report_searched);
         searchView = findViewById(R.id.search_report_item);
+
+        /**Gestione della chiusura della barra di ricerca*/
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -241,6 +263,10 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                 return false;
             }
         });
+
+        /**Gestione della ricerca, in base al tipo di report
+         * selezionato precedentemente nello spinner
+         */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -310,6 +336,10 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                 }
         });
 
+        /**Gestione del salvataggio dell'item ricercato
+         * dall'utente, in base al tipo di report selezionato nello spinner
+         * precedentemente gestito
+         */
         reportSearched.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -339,8 +369,9 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
                 }
             }
         });
-        submitButton = findViewById(R.id.reportSubmit);
 
+        /**Gestione pressione bottone per il salvataggio del report*/
+        submitButton = findViewById(R.id.reportSubmit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override

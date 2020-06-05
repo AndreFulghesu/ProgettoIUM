@@ -9,11 +9,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/** Classe di simulazione di un database per il salvataggio dei libri*/
 class BookFactory {
 
     private static BookFactory singleton;
 
     private ArrayList<Book> books = new ArrayList<>();
+
     private ArrayList<Book> booksModified = new ArrayList<>();
 
     Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
@@ -23,12 +25,17 @@ class BookFactory {
 
     private BookFactory(){}
 
+    /** Generazione del token per l'accesso alla Factory */
     public static BookFactory getInstance(){
         if(singleton == null){
             singleton = new BookFactory();
         }
         return singleton;
     }
+
+    /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
+     *  tutti o una parte degli oggetti salvati nella Factory
+     */
 
     public ArrayList<Book> getBooks(){
 
@@ -48,6 +55,7 @@ class BookFactory {
 
         return this.books;
     }
+
     public Book getBookById (int id) {
         ArrayList<Book> books = this.getBooks();
         for (Book b : books) {
@@ -67,9 +75,7 @@ class BookFactory {
                 getBooksUser.add(b);
             }
         }
-
         return getBooksUser;
-
     }
 
     public float getValutationTotalBookUser (User user) {
@@ -82,10 +88,9 @@ class BookFactory {
             average += b.getTotalValutation();
             contatore++;
         }
-
         return average/contatore;
-
     }
+
     public ArrayList<Book> getBooksByGenre(Genres genre) {
         ArrayList<Book> books = this.getBooks();
         ArrayList<Book> booksPerGenre = new ArrayList<>();
@@ -99,13 +104,10 @@ class BookFactory {
 
     public ArrayList<Book> sortBooksByEvaluation(ArrayList<Book> books) {
         Collections.sort(books);
-        System.out.println("Libri ordinati:");
         return books;
     }
 
-
     public void addViewsBook (Book book) {
-
 
         if(booksModified != null) {
             for (int i = 0; i < booksModified.size(); i++) {
@@ -115,18 +117,10 @@ class BookFactory {
                 }
             }
         }
-
         if (!contiene(book,booksModified)){
             booksModified.add(book);
             booksModified.get(booksModified.size()-1).incrementViews();
         }
-
-
-        for(Book b : booksModified){
-            System.out.println("Nome: "+b.getTitle()+ " Numero views libro : "+b.getViews());
-        }
-
-
     }
 
     public boolean contiene (Book book, ArrayList<Book> elenco){
@@ -136,9 +130,6 @@ class BookFactory {
                 return true;
             }
         }
-
         return false;
-
     }
-
 }

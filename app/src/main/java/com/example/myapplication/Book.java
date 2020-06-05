@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Book implements Comparable<Book>{
+
+    /** Definizione attributi della classe */
     private String title;
     private String plot;
     private Genres genre;
@@ -12,6 +14,7 @@ public class Book implements Comparable<Book>{
     private int  views = 0;
     private ArrayList<Chapter> chapters;
 
+    /**Definizione costruttore*/
     public Book(String title, String plot, Genres genre, int id, User author, int views){
         setTitle(title);
         setPlot(plot);
@@ -22,6 +25,7 @@ public class Book implements Comparable<Book>{
         chapters = ChapterFactory.getInstance().getChaptersByBookId(id);
     }
 
+    /** Definizione metodi getter e setter dei vari attributi*/
     public String getTitle() {
         return title;
     }

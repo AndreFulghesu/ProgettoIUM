@@ -28,6 +28,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FormCommento extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 6;
     int bookId, chapId;
     User user;
@@ -46,8 +48,11 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
@@ -59,8 +64,7 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.drawer_formcommento);
         drawer = findViewById(R.id.drawerFormCommento);
 
-        Intent intent = getIntent();
-
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
         try {
             bookId = userSession.getBookId();
 
@@ -82,11 +86,12 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-
+        /**Associazione variabili d'istanza con elementi del layout*/
         bar = findViewById(R.id.ratingBar);
         feedbackMessage = findViewById(R.id.feedbackMessage);
         feedbackSubmit = findViewById(R.id.feedbackSubmit);
 
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.formcommentobar);
         setSupportActionBar(toolbar);
         if (!userSession.getTheme()) {
@@ -106,6 +111,7 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
         });
         getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
 
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -139,7 +145,9 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
+        /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione immagine utente nel drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -158,11 +166,11 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
+        /**Gestione pressione tasto per il salvataggio del commento*/
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int vote = (int)bar.getRating();
-                System.out.println("Voto nel form commentooooooo:   "+vote);
                 String feedback = feedbackMessage.getText().toString();
                 Comment comment = new Comment(feedback, vote, chapId, bookId, user,false);
                 CommentFactory.getInstance().addComment(comment);
@@ -175,6 +183,8 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
+    /**Gestione pressione del tasto Indietro*/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
@@ -183,8 +193,11 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
             startActivity(goBack);
         }
+    }
 
-    }@Override
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_report:

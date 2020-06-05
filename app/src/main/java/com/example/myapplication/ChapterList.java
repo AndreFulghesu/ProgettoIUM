@@ -22,13 +22,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ChapterList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 3;
     Dialog plotDialog;
     ArrayList<Chapter> chapters = ChapterFactory.getInstance().getChapters();
@@ -46,8 +45,11 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
@@ -60,9 +62,8 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         drawer = findViewById(R.id.drawerChapterList);
         plotDialog = new Dialog(this);
 
-
-        Intent intent = getIntent();
-
+        /**Controllo dell'utente salvato in sessione e gestione
+         * in caso di eccezione nel codice*/
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
@@ -70,9 +71,6 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
             finish();
         }
 
-        /***if (obj != null) {
-            bookId = (int) obj;
-        }***/
         try {
             bookId = userSession.getBookId();
             Book book = BookFactory.getInstance().getBookById(bookId);
@@ -80,14 +78,8 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
             System.out.println("Errore passaggio bookId in sessione.");
             startActivity(new Intent (getApplicationContext(), Home.class));
         }
-        System.out.println("Utente Loggato " + user.getNome()+ " " + user.getCognome());
 
-
-
-        //System.out.println("Views del libro sono in chapter list : "+BookFactory.getInstance().getBookById(bookId).getViews());
-
-
-
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.chapterlistbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {
@@ -106,6 +98,8 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_menu_chapterlist);
@@ -138,6 +132,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
             }
         });
 
+        /**Gestione visualizzazione immagine del profilo nello header del drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -156,10 +151,10 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
-        final ListView chapterList = findViewById(R.id.chapterlist);
+        /**Gestione stampa titolo toolbar*/
         getSupportActionBar().setTitle("Capitoli: " + BookFactory.getInstance().getBookById(bookId).getTitle());
 
-
+        final ListView chapterList = findViewById(R.id.chapterlist);
         CustomChapterAdapter adapter = new CustomChapterAdapter(this, R.layout.chapteritem, chapters);
         chapters.clear();
         chapters = ChapterFactory.getInstance().getChaptersByBookId(bookId);
@@ -168,6 +163,8 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         adapter.notifyDataSetChanged();
         chapterList.setAdapter(adapter);
 
+        /**Gestione del comportamento del sistema alla pressione da parte
+         * dell'utente su un elemento della ListView**/
         chapterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -179,6 +176,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         });
     }
 
+    /**Gestione del menu nella toolbar**/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -186,6 +184,8 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         return true;
     }
 
+    /**Gestione del comportamento del sistema alla pressione da parte
+     * dell'utente su un elemento del menu nella toolbar**/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.bookPlot) {
@@ -195,6 +195,7 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
         return super.onOptionsItemSelected(item);
     }
 
+    /**Gestione del cambio di activity quando l'utente preme il tasto indietro**/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
@@ -204,6 +205,9 @@ public class ChapterList extends AppCompatActivity implements NavigationView.OnN
             startActivity(goBack);
         }
     }
+
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

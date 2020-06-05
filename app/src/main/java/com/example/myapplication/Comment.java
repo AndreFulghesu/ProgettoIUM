@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 public class Comment {
 
+    /** Definizione attributi della classe */
     private User author_comment;
     private String text;
     private int chapterId;
@@ -9,7 +10,7 @@ public class Comment {
     private int vote;
     private boolean like;
 
-
+    /**Definizione costruttore*/
     public Comment(String text, int vote, int chapterId, int bookId, User author_comment,boolean like) {
         setText(text);
         setChapterId(chapterId);
@@ -19,6 +20,7 @@ public class Comment {
         setLike(like);
     }
 
+    /** Definizione metodi getter e setter dei vari attributi*/
     public void setLike (boolean b) { this.like = b;}
 
     public boolean getLike () { return this.like; }
@@ -74,6 +76,4 @@ public class Comment {
 
         return false;
     }
-
-
 }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
 
+    /**Gestione del layout della listview della activity continuaLettura attraverso l'apposito adapter*/
     Context context;
     ArrayList<Pair<Book, Chapter>> books;
     String text;
@@ -29,6 +30,7 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         super(context, resource);
     }
 
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
@@ -61,7 +63,8 @@ public class ContinuaLetturaAdapter extends ArrayAdapter<Pair<Book, Chapter>> {
         return convertView;
     }
 
-    private class ViewHolder{
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder{
         TextView bookTitle, chapterNum, valutation;
         ImageView star;
     }

@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 5;
     ListView lista;
     User user;
@@ -54,8 +56,11 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
@@ -64,22 +69,21 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             System.out.println("TEMA SCURO");
 
         }
+
+        /**Gestione associazione tra variabili d'istanza ed elementi del layout*/
         setContentView(R.layout.drawer_commenti);
         drawer = findViewById(R.id.drawerCommenti);
-
         lista = findViewById(R.id.listaCommenti);
         numberCap = findViewById(R.id.testoCapitolo);
         titleBook = findViewById(R.id.testoLibro);
         commentiVuoti = findViewById(R.id.commentiVuoti);
 
-        Intent intent = getIntent();
-
+        /**Controllo dell'utente salvato in sessione e gestione
+         * in caso di eccezione nel codice*/
         try {
             bookId = userSession.getBookId();
-            Book thisBook = BookFactory.getInstance().getBookById(bookId);
             try {
                 chapId = userSession.getChapId();
-                Chapter thisChap = ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId);
             } catch (NullPointerException e) {
                 Intent goToChapterList = new Intent (getApplicationContext(), ChapterList.class);
                 startActivity(goToChapterList);
@@ -96,6 +100,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             finish();
         }
 
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.commentiToolbar);
         setSupportActionBar(toolbar);
         if (userSession.getTheme() == false) {
@@ -106,6 +111,8 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+
+        /**Gestione apertura menu laterale**/
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +122,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
 
         getSupportActionBar().setTitle("Commenti ");
 
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -149,6 +157,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             }
         });
 
+        /**Gestione visualizzazione immagine del profilo nello header del drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -167,7 +176,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
-        //gestione visualizzazione numero capitolo e titolo libro
+        /**Gestione visualizzazione numero capitolo e titolo libro*/
         capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
         numberCap.setText("CAPITOLO " + capitoloCorrente.getChaptNum());
 
@@ -185,11 +194,10 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             adapter.addAll(myComments);
             adapter.notifyDataSetChanged();
             lista.setAdapter(adapter);
-            for (Comment c : debugging) {
-                System.out.println("Debugging: " + c.getText());
-            }
         }
     }
+
+    /**Gestione del cambio di activity quando l'utente preme il tasto indietro**/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
@@ -199,6 +207,9 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             startActivity(goBack);
         }
     }
+
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

@@ -22,9 +22,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CustomCommentAdapter extends ArrayAdapter<Comment> {
+
+    /**Gestione del layout della listview per la stampa dei commenti di un capitolo attraverso l'apposito adapter*/
     Context context;
     ArrayList<Comment> commenti = new ArrayList<Comment>();
-
 
     public CustomCommentAdapter(Context context, int textViewResourceId, ArrayList<Comment> objects) {
         super(context, textViewResourceId, objects);
@@ -32,6 +33,8 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         this.commenti = objects;
 
     }
+
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
          final ViewHolder viewHolder;
@@ -57,10 +60,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
         System.out.println("\nUtente loggato:   "+u.getUsername());
         System.out.println("\nCommento relativo:   "+c.getUserAuthor().getUsername());
 
-
         viewHolder.commento.setText(c.getText());
-
-
 
         if (u.getUsername().equals(c.getUserAuthor().getUsername())){
             viewHolder.delete_button.setVisibility(View.VISIBLE);
@@ -72,19 +72,7 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
             viewHolder.like.setLiked(false);
         }else{
             viewHolder.like.setLiked(true);
-
         }
-
-
-
-
-
-
-        for (Comment a : u.getMapLikes().keySet()){
-            System.out.println("\nchiavi commenti nella tabella: "+a.getUserAuthor());
-            System.out.println("\nvalore commenti nella tabella: "+u.getMapLikes().get(a));
-        }
-
 
         viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +89,6 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
                                 remove(getItem(position));
                                 CommentFactory.getInstance().toDelete(toDelete);
                                 ChapterFactory.getInstance().getChapterByChapNum(c.getChapterId(),c.getBookId()).deleteComment(c);
-
                             }
 
                         })
@@ -112,43 +99,30 @@ public class CustomCommentAdapter extends ArrayAdapter<Comment> {
 
         viewHolder.commentAuthor.setText(c.getUserAuthor().getNome() + " " + c.getUserAuthor().getCognome());
 
+
+        /**Gestione alla pressione del tasto like nel commento*/
         viewHolder.like.setOnLikeListener(new OnLikeListener() {
 
             public void liked(LikeButton likeButton) {
                 UserFactory.getInstance().getUserByUsername(u.getUsername()).addLikeComments(c,true);
-
                 viewHolder.like.setLiked(true);
-
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
                 UserFactory.getInstance().getUserByUsername(u.getUsername()).addLikeComments(c,false);
                 viewHolder.like.setLiked(false);
-
             }
         });
-
         return convertView;
     }
 
-    private class ViewHolder{
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder{
         TextView commento, commentAuthor;
         com.like.LikeButton like;
         ImageView delete_button;
     }
-
-    /*
-    public void setLikeColor (Button b,Comment c){
-
-        if (c.getLike()==false){
-            b.setBackgroundResource(R.drawable.ic_favorite_shadows_36dp);
-        }else{
-            b.setBackgroundResource(R.drawable.ic_favorite_red_36dp);
-        }
-    }
-
-     */
 }
 
 

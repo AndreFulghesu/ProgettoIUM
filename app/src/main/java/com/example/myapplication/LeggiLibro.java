@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     final int classValue = 4;
     private float dimText = 50;
     User user;
@@ -50,27 +51,28 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del tema dell'applicazione**/
         if (userSession.getTheme() == false) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
             System.out.println("TEMA SCURO");
-
         }
         setContentView(R.layout.drawer_leggilibro);
         drawer = findViewById(R.id.drawerLeggiLibro);
 
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
         try {
             user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
         } catch (NullPointerException e) {
             System.out.println("Errore trasmissione sessione");
             finish();
         }
-
-
         try {
             bookId = userSession.getBookId();
             Book thisBook = BookFactory.getInstance().getBookById(bookId);
@@ -85,16 +87,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             startActivity(goToCatalogo);
         }
 
+        /**final ArrayList<Comment> attuali = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getComment();
+        final HashMap<Comment,Boolean> test = user.getMapLikes();*/
 
-        final ArrayList<Comment> attuali = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId).getComment();
-        final HashMap<Comment,Boolean> test = user.getMapLikes();
-
-
-        for (Comment c : attuali) {
-            System.out.println("Valutazione commento "+c.getText() + " "+"Valutazione: "+c.getVote());
-        }
-
-
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.leggilibrobar);
         setSupportActionBar(toolbar);
         if (!userSession.getTheme()) {
@@ -105,6 +101,8 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+
+        /**Gestione apertura menu laterale nella toolbar*/
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +110,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -145,7 +144,9 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 }
             }
         });
+        /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione visualizzazione immagine utente nel drawer*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -166,6 +167,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
 
+        /**Associazione variabili d'istanza con elementi del layout*/
         final TextView textBook = findViewById(R.id.textBook);
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
@@ -176,6 +178,8 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         textBook.setText(textChapter);
         textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, dimText);
         startTime = System.currentTimeMillis();
+
+        /**Gestione dimensione testo in base alla pressione degli appositi bottoni*/
         piu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,6 +194,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 textBook.setTextSize(TypedValue.COMPLEX_UNIT_PX, newDim - 4);
             }
         });
+        /**Gestione passagio alla activity di scrittura del commento*/
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,6 +208,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+        /**Gestione passaggio alla activity per la lettura dei commento*/
         readFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,6 +222,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
             }
         });
+        /**Gestione passaggio alla activity per la lettura a schermo intero*/
         schermo_intero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,12 +235,12 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                     BookFactory.getInstance().getBookById(bookId).incrementViews();
                 }
                 startActivity(maxiSchermo);
-
             }
         });
 
     }
 
+    /**Gestione sistema alla pressione del tasto Indietro*/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());
@@ -250,6 +257,9 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             startActivity(goBack);
         }
     }
+
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

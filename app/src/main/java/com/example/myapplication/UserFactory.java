@@ -3,6 +3,7 @@ package com.example.myapplication;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Classe di simulazione di un database per il salvataggio degli utenti del sistema*/
 public class UserFactory {
 
     private static UserFactory singleton;
@@ -21,6 +22,7 @@ public class UserFactory {
     private UserFactory(){
     }
 
+    /** Generazione del token per l'accesso alla Factory */
     public static UserFactory getInstance(){
         if(singleton == null){
             singleton = new UserFactory();
@@ -28,6 +30,9 @@ public class UserFactory {
         return singleton;
     }
 
+    /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
+     *  tutti o una parte degli oggetti salvati nella Factory
+     */
     public ArrayList<User> getUsers(){
         ///User admin = new User ("Admin", null, "Admin", null, null);
         users.clear();
@@ -81,22 +86,15 @@ public class UserFactory {
     }
 
     public void addUser(User user){
-
         this.users.add(user);
     }
 
-    public void printUsers() {
-
-        for (User u : this.users) {
-            System.out.println(u.getUsername());
-        }
-    }
     public void addLibroIniziato (User user, Book bk,  Chapter chap) {
         boolean check = false;
-        //l'utente passato come parametro aggiunge il nuovo libro nella lista
+        /**l'utente passato come parametro aggiunge il nuovo libro nella lista*/
         user.addLibroIniziato(bk, chap);
 
-        //se l'utente passato come argomento trova riscrontro nella lista allora effettua modifica
+        /**se l'utente passato come argomento trova riscrontro nella lista allora effettua modifica*/
         for (int i =0 ; i<usersModified.size();i++){
             if (user.getUsername().equals(usersModified.get(i).getUsername())){
                 usersModified.remove(i);
@@ -104,17 +102,13 @@ public class UserFactory {
                 check = true;
             }
         }
-
-        //altrimento l'utente semplicemente aggiunto nella lista
+        /**altrimento l'utente semplicemente aggiunto nella lista*/
         if (!check) {
             usersModified.add(user);
         }
     }
 
     public void addUserModifiedLike (User u){
-
         this.usersModified.add(u);
-
     }
-
 }

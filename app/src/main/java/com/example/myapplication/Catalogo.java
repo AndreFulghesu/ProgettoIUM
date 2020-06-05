@@ -7,7 +7,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,11 +20,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,24 +50,39 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
 
+        /**Gestione del sistema nel caso in cui non esista la sessione**/
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+
+        /**Controllo dell'utente salvato in sessione e gestione
+         * in caso di eccezione nel codice*/
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+
         /**Gestione del tema dell'applicazione**/
-        if (userSession.getTheme() == false) {
+        if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
             System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
             System.out.println("TEMA SCURO");
         }
-
         setContentView(R.layout.drawer_catalogo);
-
         drawer = findViewById(R.id.drawerCatalogo);
 
         /**Gestione del layout della Toolbar**/
-
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.catalogoToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catalogo Libri");
@@ -83,6 +95,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
         }
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_36dp);
+
         /**Gestione apertura menu laterale**/
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,13 +105,6 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         });
         final ListView lst= findViewById(R.id.booklist);
 
-        /**Gestione del sistema nel caso in cui non esista la sessione**/
-        try {
-            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
-        } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
-            finish();
-        }
         /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -135,6 +141,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         });
         /**Fine gestione switch per il cambio tema**/
 
+        /**Gestione visualizzazione immagine del profilo nello header del drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -176,34 +183,27 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         adapter.notifyDataSetChanged();
         lst.setAdapter(adapter);
 
-
+        /**Gestione ordinamento lista libri in base ala scelta dell'utente salvata in sessione*/
         if (ordNum == 1) {
             if (genreFilter != null) {
-                System.out.println("Lista modificata per genere");
                 books = BookFactory.getInstance().getBooksByGenre(genreFilter);
                 Collections.sort(books);
                 adapter.clear();
                 adapter.addAll(books);
             } else {
-                System.out.println("Lista non modificata");
                 Collections.sort(books);
                 books = BookFactory.getInstance().getBooks();
                 Collections.sort(books);
             }
         } else {
             if (genreFilter != null) {
-                System.out.println("Lista modificata per genere");
                 books = BookFactory.getInstance().getBooksByGenre(genreFilter);
                 adapter.clear();
                 adapter.addAll(books);
             } else {
-                System.out.println("Lista non modificata");
                 books = BookFactory.getInstance().getBooks();
             }
         }
-
-
-
 
         /**Gestione della barra di ricerca nel catalogo dei libri**/
         searchView = findViewById(R.id.search_view);
@@ -274,6 +274,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         searchView.setMenuItem(searchItem);
         return true;
     }
+
     /**Gestione del comportamento del sistema alla pressione da parte
      * dell'utente su un elemento del menu nella toolbar**/
     @Override
@@ -285,6 +286,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         }
         return super.onOptionsItemSelected(item);
     }
+
     /**Gestione del cambio di activity quando l'utente preme il tasto indietro**/
     @Override
     public void onBackPressed() {

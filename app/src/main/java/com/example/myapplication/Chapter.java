@@ -3,13 +3,15 @@ package com.example.myapplication;
 import java.util.ArrayList;
 
 public class Chapter {
+
+    /** Definizione attributi della classe */
     private int bookId;
     private int chaptNum;
     private String text;
     private float valutation = 0;
     private ArrayList<Comment> commenti;
 
-
+    /**Definizione costruttore*/
     public Chapter(int bookId, int chaptNum, String text){
 
         this.commenti = CommentFactory.getInstance().getCommentById(chaptNum,bookId);
@@ -19,6 +21,7 @@ public class Chapter {
         this.setValutation();
     }
 
+    /** Definizione metodi getter e setter dei vari attributi*/
     public int getBookId() {
         return bookId;
     }

@@ -29,6 +29,7 @@ import java.util.Objects;
 
 public class MyProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     User user;
     TextView nome_cognome,email,username,password,averageUser;
     ImageView starAverageUser, myProfileImage;
@@ -48,20 +49,28 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        /**Gestione richiesta sessione dalla classe
+         * ed eventualmente gestione dell'eccezione lanciata**/
         final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+
+        /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
         } else {
             setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
-
         }
+
         setContentView(R.layout.drawer_profile);
 
         drawer = findViewById(R.id.drawerProfile);
 
+        /**Gestione del layout della Toolbar**/
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.myprofilebar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Il mio Profilo");
@@ -81,12 +90,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
             }
         });
 
-        try {
-            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
-        } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
-            finish();
-        }
+        /**Gestione dello switch per il cambio tema dell'applicazione, presente nel menu laterale**/
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -120,6 +124,9 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 }
             }
         });
+        /**Fine gestione switch per il cambio tema**/
+
+        /**Gestione visualizzazione immagine del profilo nello header del drawerMenu*/
         navHeader = navigationView.getHeaderView(0);
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
@@ -138,6 +145,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
 
+        /**Associazione variabili d'istanza con elementi del layout*/
         nome_cognome = findViewById(R.id.NomeCognome);
         email = findViewById(R.id.Email);
         username = findViewById(R.id.UsernameProfile);
@@ -147,13 +155,15 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         starAverageUser = findViewById(R.id.starAverageUser);
         myProfileImage = findViewById(R.id.myProfileImg);
 
+        /**Popolamento dei form della pagina con gli appositi dati,
+         * prelevati dall'utente salvato in sessione
+         */
         nome_cognome.setText(user.getNome() + " " + user.getCognome());
         username.setText(user.getUsername());
         email.setText(user.getEmail());
         password.setText(user.getPassword());
         float valutation= BookFactory.getInstance().getValutationTotalBookUser(user);
         averageUser.setText(""+roundDown5(valutation));
-
         switch (user.getSex()){
             case MALE:
                 myProfileImage.setImageResource(R.drawable.bananaicon);
@@ -167,9 +177,11 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
             default:
                 myProfileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
-
         setStarColor(valutation,starAverageUser);
 
+        /**Gestione della visibilità della password in base all'input utente
+         * sulla checkBox
+         */
         show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -182,19 +194,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_logout:
-                Intent intent = new Intent (MyProfile.this, Home.class);
-                UserSession uSes = new UserSession(getApplicationContext());
-                uSes.setCallingActivity(classValue);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
+    /**Settaggio colore immagine stella in base al punteggio totale dell'utente*/
     public void setStarColor (float valutation, ImageView star){
         if(valutation==5){
             star.setColorFilter(getResources().getColor(R.color.blue));
@@ -221,6 +221,9 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
     public static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
+
+    /**Gestione del comportamento del sistema alla pressione di uno
+     * degli elementi del menu laterale**/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

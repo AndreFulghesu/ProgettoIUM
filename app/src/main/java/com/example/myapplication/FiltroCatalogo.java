@@ -21,6 +21,7 @@ import java.util.List;
 
 public class FiltroCatalogo extends AppCompatActivity  {
 
+    /**Dichiarazione variabili d'istanza**/
     int ordinamentoId;
     Genres filterGenre;
     User user;
@@ -28,8 +29,18 @@ public class FiltroCatalogo extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final UserSession userSession = new UserSession(this);
 
+        /**Gestione richiesta sessione dalla classe
+         * ed eventualmente gestione dell'eccezione lanciata**/
+        final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+
+        /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
         } else {
@@ -38,32 +49,28 @@ public class FiltroCatalogo extends AppCompatActivity  {
         setContentView(R.layout.activity_filtro_catalogo);
 
         Button salvaFiltri = findViewById(R.id.salvaFiltri);
-        Intent intent = getIntent();
-        Serializable bookObj = intent.getSerializableExtra("bookId");
+
+        /**Associazione variabile d'istanza con spinner nel layout*/
         final Spinner ordSpinner = findViewById(R.id.spinner_ordinamento);
-        try {
-            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
-        } catch (NullPointerException e) {
-            System.out.println("Errore trasmissione sessione");
-            finish();
-        }
 
         ArrayList<String> choices = new ArrayList<>();
         choices.add("Ordina per suggeriti di sistema (default)");
         choices.add("Ordina per valutazione");
         choices.add("Ordina per numero di visualizzazioni");
 
+        /**Gestione dimensione layout*/
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
         int width =dm.widthPixels;
         int height =dm.heightPixels;
         getWindow().setLayout((int) (width*.8), (int)(height*.6));
 
+        /**Gestione spinner con un adapter*/
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_dropdown_item, R.id.testoMenu, choices);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         ordSpinner.setAdapter(adapter);
 
+        /**Gestione del click utente su uno degli elementi dello spinner*/
         ordSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -90,6 +97,7 @@ public class FiltroCatalogo extends AppCompatActivity  {
             }
         });
 
+        /**Gestione comportamento bottone per il salvataggio dei filtri*/
         salvaFiltri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,11 +111,13 @@ public class FiltroCatalogo extends AppCompatActivity  {
         });
     }
 
+    /**Gestione alla pressione del tasto Indietro*/
     @Override
     public void onBackPressed() {
         finish();
     }
 
+    /**Gestione della scelta effettuata dall'utente nel RadioGroup per la scelta del genere*/
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 

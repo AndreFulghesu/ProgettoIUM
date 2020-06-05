@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class BookAdapterSearch extends ArrayAdapter<Book> {
 
+    /**Gestione del layout della listview della searchbar attraverso l'apposito adapter*/
     Context context;
     ArrayList<Book> books;
     String text;
@@ -23,6 +24,8 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
         this.context= context;
         this.books = objects;
     }
+
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
         ViewHolder viewHolder;
@@ -39,7 +42,6 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
             viewHolder.valutationSearch = convertView.findViewById(R.id.valutationSearch);
             setStarColor(book.getTotalValutation(),viewHolder.star);
 
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -51,18 +53,14 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.valutationSearch.setText("" +roundDown5(book.getTotalValutation()));
 
-
-
         return convertView;
     }
 
-
-    private class ViewHolder{
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder{
         TextView bookTitle, bookAuthor, valutationSearch;
-        ImageView bookGenre, goToBook, star;
+        ImageView star;
     }
-
-
 
     public void setStarColor (float valutation, ImageView star){
         if(valutation==5){
@@ -88,13 +86,7 @@ public class BookAdapterSearch extends ArrayAdapter<Book> {
 
     }
 
-
-
     public static double roundDown5(float d) {
         return Math.floor(d * 1e2) / 1e2;
     }
-
-
-
-
 }

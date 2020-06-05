@@ -16,6 +16,7 @@ import java.io.Serializable;
 
 public class  MaxiLettura extends AppCompatActivity {
 
+    /**Dichiarazione elementi del layout ed eventuali variabili d'istanza**/
     TextView testoIntero;
     final int classValue = 6;
     private float mScale = 1f;
@@ -24,13 +25,30 @@ public class  MaxiLettura extends AppCompatActivity {
     Chapter attuale;
     private int bookId,chapId;
     long startTime;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /**Gestione richiesta sessione dalla classe
+         * ed eventualmente gestione dell'eccezione lanciata**/
         final UserSession userSession = new UserSession(this);
+        try {
+            user = UserFactory.getInstance().getUserByUsername(userSession.getUserSession());
+        } catch (NullPointerException e) {
+            System.out.println("Errore trasmissione sessione");
+            finish();
+        }
+        try {
+            bookId = userSession.getBookId();
+            chapId = userSession.getChapId();
+            attuale = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
+        } catch (NullPointerException e) {
+            startActivity(new Intent (getApplicationContext(), Home.class));
+        }
 
+        /**Gestione del tema dell'applicazione**/
         if (!userSession.getTheme()) {
             setTheme(R.style.AppTheme);
         } else {
@@ -39,26 +57,12 @@ public class  MaxiLettura extends AppCompatActivity {
 
         setContentView(R.layout.activity_maxi_lettura);
 
+
+        /**Gestione del layout e della funzionalità per la modifica di
+         * dimensione della View con le gesture
+         */
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         testoIntero = findViewById(R.id.testoIntero);
-
-        if (userSession.getTheme() == false) {
-            setTheme(R.style.AppTheme);
-            System.out.println("TEMA NORMALE");
-        } else {
-            setTheme(R.style.darkTheme);
-            System.out.println("TEMA SCURO");
-
-        }
-
-        try {
-            bookId = userSession.getBookId();
-            chapId = userSession.getChapId();
-            attuale = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);
-        } catch (NullPointerException e) {
-            System.out.println("Errore passaggio bookId in sessione.");
-            startActivity(new Intent (getApplicationContext(), Home.class));
-        }
 
         testoIntero.setText(attuale.getText());
 
@@ -89,8 +93,7 @@ public class  MaxiLettura extends AppCompatActivity {
         });
     }
 
-
-
+    /**Metodi usati per la gestione della dimensione della View con le gesture*/
     @Override
     public boolean dispatchTouchEvent (MotionEvent event){
         super.dispatchTouchEvent(event);
@@ -106,7 +109,6 @@ public class  MaxiLettura extends AppCompatActivity {
             return true;
         }
 
-
         @Override
         public boolean onDoubleTap(MotionEvent e) {
 
@@ -114,6 +116,7 @@ public class  MaxiLettura extends AppCompatActivity {
         }
     }
 
+    /**Gestione pressione tasto Indietro*/
     @Override
     public void onBackPressed() {
         UserSession userSession = new UserSession(getApplicationContext());

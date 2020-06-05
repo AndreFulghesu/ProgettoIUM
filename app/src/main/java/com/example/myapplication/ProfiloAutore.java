@@ -224,12 +224,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     /**Gestione del cambio di activity quando l'utente preme il tasto indietro**/
     @Override
     public void onBackPressed() {
-        UserSession userSession = new UserSession(getApplicationContext());
-        Class callingActivity = userSession.getActivityFromValue(classValue - 1);
-        if (callingActivity != null) {
-            Intent goBack = new Intent(this.getApplicationContext(), callingActivity);
-            startActivity(goBack);
-        }
+        finish();
     }
 
     public int sommaView (ArrayList<Book> libri){

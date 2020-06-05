@@ -3,10 +3,10 @@ package com.example.myapplication;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/** Classe di simulazione di un database per il salvataggio dei capitoli dei vari libri*/
 public class ChapterFactory {
 
     private static ChapterFactory singleton;
-
 
     private ArrayList<Chapter> chapters = new ArrayList<>();
     private ArrayList<Chapter> chaptersModified = new ArrayList<>();
@@ -34,6 +34,7 @@ public class ChapterFactory {
                     "responsabile di altre numerose morti oltre a quella dei suoi genitori. ");
 
     Chapter chap2 = new Chapter(1, 2, "Testo provvisorio per un capitolo che non verrà mai pubblicato.\n");
+
     Chapter chap3 = new Chapter(2, 1, "Assassinio sull'Orient Express (Murder on the Orient Express) " +
             "è un film del 2017 diretto, co-prodotto e interpretato da Kenneth Branagh."+
 
@@ -82,6 +83,7 @@ public class ChapterFactory {
     private ChapterFactory(){
     }
 
+    /** Generazione del token per l'accesso alla Factory */
     public static ChapterFactory getInstance(){
         if(singleton == null){
             singleton = new ChapterFactory();
@@ -89,12 +91,12 @@ public class ChapterFactory {
         return singleton;
     }
 
+    /** Metodi getter per fornire, in caso di richiesta da parte dell'utente,
+     *  tutti o una parte degli oggetti salvati nella Factory
+     */
     public ArrayList<Chapter> getChapters(){
 
-
-
         chapters.clear();
-
 
         chapters.add(chap1);
         chapters.add(chap2);
@@ -137,12 +139,8 @@ public class ChapterFactory {
         return null;
     }
 
-    public void addChapterModify (Chapter c) {
+public void addChapterModify (Chapter c) {
         this.chaptersModified.add(c);
-    }
 
-
-
-
-
-}
+        }
+        }

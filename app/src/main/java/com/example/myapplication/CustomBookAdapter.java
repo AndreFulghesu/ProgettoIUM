@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class CustomBookAdapter extends ArrayAdapter<Book> {
 
+    /**Gestione del layout della listview nel Catalogo Libri attraverso l'apposito adapter*/
     Context context;
     ArrayList<Book> books;
     final int classValue = 2;
@@ -25,6 +26,8 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         this.context= context;
         this.books = objects;
     }
+
+    /**Metodo che associa gli elementi del layout adapter agli elementi della lista*/
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
         ViewHolder viewHolder;
@@ -94,7 +97,9 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
         return -1;
     }
-    private class ViewHolder{
+
+    /**Dichiarazione elementi layout dell'adapter per la listView */
+    private static class ViewHolder{
         TextView bookTitle, bookAuthor, averageValutation, views;
         ImageView bookGenre, eyeImage, star;
     }

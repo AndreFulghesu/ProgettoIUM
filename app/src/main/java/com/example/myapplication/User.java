@@ -8,6 +8,7 @@ import androidx.core.util.Pair;
 
 public class User implements Serializable {
 
+    /** Definizione attributi della classe */
     private String username;
     private String nome;
     private String cognome;
@@ -17,7 +18,7 @@ public class User implements Serializable {
     private ArrayList<Pair<Book, Chapter>> continuaLetturaList = new ArrayList<>();
     private HashMap<Comment,Boolean> commentiLike = new HashMap<>();
 
-
+    /**Definizione costruttore*/
     public User (String nome, String cognome, String username, String email, String password, Sesso sex) {
         this.setUsername(username);
         this.setNome(nome);
@@ -27,7 +28,7 @@ public class User implements Serializable {
         this.sex = sex;
 
     }
-
+    /** Definizione metodi getter e setter dei vari attributi*/
     public String getUsername() {
         return username;
     }
@@ -75,28 +76,16 @@ public class User implements Serializable {
         return continuaLetturaList;
     }
 
-
-    /*
-    public void deleteLike (Comment c){
-        this.commentiLike.remove(c);
-        UserFactory.getInstance().addUserModified(this);
-    }
-
-     */
-
-
-
     public void addLikeComments (Comment c, Boolean b){
-
         this.commentiLike.put(c,b);
         UserFactory.getInstance().addUserModifiedLike(this);
     }
 
     public Boolean getLike (Comment c) {
-            if (!this.commentiLike.isEmpty()) {
-                return this.commentiLike.get(c);
-            }
-            return false;
+        if (!this.commentiLike.isEmpty()) {
+            return this.commentiLike.get(c);
+        }
+        return false;
     }
 
     public HashMap<Comment,Boolean> getMapLikes (){ return this.commentiLike; }
