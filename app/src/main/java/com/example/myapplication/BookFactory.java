@@ -11,7 +11,10 @@ class BookFactory {
 
     private ArrayList<Book> booksModified = new ArrayList<>();
 
-    private Book b1 = new Book("Harry Potter", "Trama generica di Harry Potter", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),0);
+    private Book b1 = new Book("Harry Potter", "Harry Potter scopre nel giorno del suo 11 compleanno di essere " +
+            "il figlio orfano di due potenti maghi e di possedere anch'egli straordinari poteri magici. Nella Scuola di Magia" +
+            " e Stregoneria di Hogwarts, Harry impara a volare praticando il Quidditch e gioca un'emozionante partita a scacchi" +
+            " viventi prima di affrontare un mago malvagio, determinato a distruggerlo.", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),55);
     private Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
     private Book b3 = new Book("La storia della Verità", "La verità è un concetto assai complicato per il nostro tempo. Attraverso un'attenta analisi l'autore si preoccupa di esporre tutte le sue sfaccettature.", Genres.FANTASCIENZA, 3, UserFactory.getInstance().getUserByUsername("Gio34"),4);
     private Book b4 = new Book("Sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo, solo un'entusiasmante scalata verso il processo di sintesi clorofilliala della cellula vegetale.",Genres.NATURE,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);

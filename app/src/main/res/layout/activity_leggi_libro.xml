@@ -26,36 +26,32 @@
             android:layout_height="10dp"/>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+
 
             <Button
                 android:id="@+id/schermoIntero"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:background="@color/color_button"
                 android:text="Schermo intero"
-                android:layout_marginLeft="15dp"
-                android:textSize="13dp"
-                android:textColor="@android:color/white" />
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="@android:color/white"
+                android:layout_gravity="left"
+                android:textSize="13dp" />
 
-            <Button
-                android:id="@+id/dimTextMeno"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="100dp"
-                android:background="@drawable/thirdblue"
-                android:text="-"
-                android:textColor="@color/color_button"
-                android:textSize="20dp" />
+
 
             <Button
                 android:id="@+id/dimTextPiu"
                 android:layout_width="50dp"
+                android:layout_alignParentEnd="true"
                 android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="90dp"
                 android:background="@drawable/thirdblue"
                 android:text="+"
                 android:textColor="@color/color_button"
@@ -63,8 +59,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/dimTextMeno"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/thirdblue"
+                android:text="-"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/color_button"
+                android:textSize="20dp" />
 
-        </LinearLayout>
+
+
+
+        </RelativeLayout>
 
 
         <Space
@@ -111,6 +120,7 @@
                 android:background="@color/color_button"
                 android:text="Lascia un Feedback"
                 android:layout_marginStart="30dp"
+                android:layout_marginBottom="10dp"
                 android:layout_alignParentLeft="true"
                 android:textColor="@android:color/white"
                 android:layout_gravity="left"
@@ -120,6 +130,7 @@
                 android:id="@+id/readFeedback"
                 android:layout_width="150dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@color/color_button"

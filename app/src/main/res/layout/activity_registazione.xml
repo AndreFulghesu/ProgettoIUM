@@ -37,7 +37,7 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:src="@drawable/logo_final_1"
+                android:src="@drawable/logo_color"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:paddingTop="10dp"
@@ -101,7 +101,7 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:orientation="horizontal"
                 android:id="@+id/radiogroup_registrazione">

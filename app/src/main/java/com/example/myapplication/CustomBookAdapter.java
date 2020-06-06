@@ -97,7 +97,7 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
             case HORROR:
                 return R.drawable.ghost;
             case NATURE:
-                return R.drawable.tree;
+                return R.drawable.foglia_libro;
         }
         return -1;
     }

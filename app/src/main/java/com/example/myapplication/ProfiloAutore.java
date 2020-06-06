@@ -35,7 +35,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     SwitchCompat dmSwitch;
     NavigationView navigationView;
     View actionView, navHeader;
-    ImageView profileImage;
+    ImageView profileImage,profile2;
     User user;
     TextView welcomeHeader;
 
@@ -117,19 +117,26 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         welcomeHeader = navHeader.findViewById(R.id.welcomeHeader);
         welcomeHeader.setText("Ciao, "+ user.getNome() + "!");
         profileImage = navHeader.findViewById(R.id.headerProfileImg);
+        profile2 = findViewById(R.id.profileImg);
         switch (user.getSex()){
             case MALE:
                 profileImage.setImageResource(R.drawable.bananaicon);
+
+
                 break;
             case FEMALE:
                 profileImage.setImageResource(R.drawable.peachicon);
+
                 break;
             case UNDEFINED:
                 profileImage.setImageResource(R.drawable.blackholeicon);
+
                 break;
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
+
         }
+
 
         nomeCognome = findViewById(R.id.NomeCognome);
         usernameAuthor = findViewById(R.id.UsernameAuthor);
@@ -155,6 +162,25 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         setStarColor(valutation,star);
 
         visiteLibro.setText(""+sommaView(libri_autore));
+
+        switch (user_author.getSex()){
+            case MALE:
+                profile2.setImageResource(R.drawable.bananaicon);
+
+
+                break;
+            case FEMALE:
+                profile2.setImageResource(R.drawable.peachicon);
+
+                break;
+            case UNDEFINED:
+                profile2.setImageResource(R.drawable.blackholeicon);
+
+                break;
+            default:
+                profile2.setImageResource(R.drawable.ic_person_black_24dp);
+
+        }
 
 
 
@@ -200,7 +226,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getResources().getColor(R.color.red));
                         }
                     }

@@ -25,7 +25,7 @@ public class User implements Serializable {
         this.setCognome(cognome);
         this.setEmail(email);
         this.setPassword(password);
-        this.sex = sex;
+        this.setSex(sex);
 
     }
     /** Definizione metodi getter e setter dei vari attributi*/
@@ -52,6 +52,7 @@ public class User implements Serializable {
     private void setEmail(String email) { this.email = email; }
 
     String getEmail() { return this.email; }
+
 
     private void setCognome(String cognome) { this.cognome = cognome; }
 

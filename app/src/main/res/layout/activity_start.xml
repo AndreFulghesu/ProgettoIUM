@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:src="@drawable/logo_final_1"
+        android:src="@drawable/logo_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"

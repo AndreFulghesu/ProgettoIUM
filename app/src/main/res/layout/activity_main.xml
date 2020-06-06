@@ -35,7 +35,7 @@
             <ImageView
                 android:id="@+id/logo"
                 android:paddingTop="10dp"
-                android:src="@drawable/logo_final_1"
+                android:src="@drawable/logo_color"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center" />
