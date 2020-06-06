@@ -28,6 +28,7 @@
         <activity android:name=".PasswordDimenticata" />
         <activity android:name=".FiltroCatalogo" />
         <activity android:name=".MaxiLettura" />
+        <activity android:name=".NewMaxiLettura"/>
         <activity
             android:name=".PlotPopUp"
             android:theme="@style/AppTheme.PlotPopUp" />

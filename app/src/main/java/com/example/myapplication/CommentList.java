@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
     View actionView, navHeader;
     ImageView profileImage;
     TextView welcomeHeader;
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +160,30 @@ public class CommentList extends AppCompatActivity implements NavigationView.OnN
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
+
+        /**Gestione menu footer*/
+        bottomNavigationMenu = findViewById(R.id.commentiFooter);
+
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuContinuaLettura:
+                        Intent contLettura = new Intent(getApplicationContext(), ContinuaLettura.class);
+                        startActivity(contLettura);
+                        break;
+                    case R.id.bottomNavMenuHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavMenuProfilo:
+                        Intent profilo = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(profilo);
+                        break;
+                }
+                return false;
+            }
+        });
 
         /**Gestione visualizzazione numero capitolo e titolo libro*/
         capitoloCorrente = ChapterFactory.getInstance().getChapterByChapNum(chapId,bookId);

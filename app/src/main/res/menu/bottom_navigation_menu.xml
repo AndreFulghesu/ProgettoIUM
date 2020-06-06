@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Leggi"
+        android:id="@+id/bottomNavMenuContinuaLettura"
+        android:icon="@drawable/ic_book_black_24dp"/>
+
+    <item android:title="Home"
+        android:id="@+id/bottomNavMenuHome"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item android:title="Profilo"
+        android:id="@+id/bottomNavMenuProfilo"
+        android:icon="@drawable/ic_person_white_24dp"/>
+
+</menu>

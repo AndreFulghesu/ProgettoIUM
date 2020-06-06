@@ -79,6 +79,8 @@ public class ChapterFactory {
     private Chapter chap7 = new Chapter (4,1,"Nel 1765 c'era una specie protetta di foglie chiamata Fabrizio. Faceva la clorofila fotosintosa.\n" +
             "Da allora decise di fermarsi perché era troppo faticoso. Tutto il pianeta morì.");
 
+    private Chapter chap8 = new Chapter (6, 1, "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.");
+
 
     private ChapterFactory(){
     }
@@ -105,6 +107,7 @@ public class ChapterFactory {
         chapters.add(chap5);
         chapters.add(chap6);
         chapters.add(chap7);
+        chapters.add(chap8);
 
         if(!chaptersModified.isEmpty()) {
             for (int i = 0; i < chaptersModified.size(); i++) {

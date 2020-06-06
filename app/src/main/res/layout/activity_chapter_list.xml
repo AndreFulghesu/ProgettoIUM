@@ -1,67 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".Catalogo">
+    tools:context=".Catalogo"
+    android:orientation="vertical"
+    android:background="?attr/backgroundColor">
+
+    <include
+        android:id="@+id/chapterlistbar"
+        layout="@layout/toolbar"
+        android:layout_width="391dp"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="?attr/backgroundColor">
+        android:layout_height="692dp"
+        android:background="?attr/backgroundColor"
+        android:orientation="vertical">
 
-        <include
-            android:id="@+id/chapterlistbar"
-            layout="@layout/toolbar"
-            android:layout_width="391dp"
-            android:layout_height="wrap_content" />
-
-
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="692dp"
-            android:background="?attr/backgroundColor"
-            android:orientation="vertical">
+            android:layout_height="20dp"
+            android:background="?attr/backgroundColor" />
 
+        <ImageView
+            android:id="@+id/homeIcon2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_line_weight_black_24dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="?attr/backgroundColor" />
+        <View
+            android:id="@+id/viewHome"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:background="?attr/spaceColor" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="?attr/textColor"
+            android:gravity="center"
+            android:id="@+id/capitoliVuoti"/>
 
-            <ImageView
-                android:id="@+id/homeIcon2"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_line_weight_black_24dp" />
-
-            <View
-                android:id="@+id/viewHome"
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
-                android:background="?attr/spaceColor" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="?attr/textColor"
-                android:gravity="center"
-                android:id="@+id/capitoliVuoti"/>
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/chapterlist"/>
-
-        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/chapterlist"/>
     </LinearLayout>
-</ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_gravity="bottom"
+        android:id="@+id/chapterlistFooter"
+        app:menu="@menu/bottom_navigation_menu"
+        android:layout_width="match_parent"
+        android:background="?attr/backgroundColor"
+        app:itemRippleColor="@color/color_button"
+        app:itemIconTint="?attr/textColor"
+        app:itemTextColor="?textColor"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

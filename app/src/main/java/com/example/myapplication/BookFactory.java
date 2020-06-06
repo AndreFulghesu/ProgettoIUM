@@ -23,6 +23,7 @@ class BookFactory {
             "l’ultimo mago guerriero della sua epoca, che ha il compito di mantenere la pace ed evitare " +
             "che forze oscure e umani assetati di potere prendano il sopravvento.",Genres.FANTASY,5, UserFactory.getInstance().getUserByUsername("GiaNan66"),10);
 
+    private Book b6 = new Book("Alessandro Magno: Storia di un Impero", "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.", Genres.STORICO, 6, UserFactory.getInstance().getUserByUsername("Faber123"), 0);
     private BookFactory(){}
 
     /** Generazione del token per l'accesso alla Factory */
@@ -46,6 +47,7 @@ class BookFactory {
         books.add(b3);
         books.add(b4);
         books.add(b5);
+        books.add(b6);
 
         for (int i =0; i<booksModified.size()-1;i++){
             if (books.get(i).getId() == booksModified.get(i).getId()) {

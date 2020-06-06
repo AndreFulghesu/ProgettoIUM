@@ -212,7 +212,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
         schermo_intero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent maxiSchermo = new Intent(LeggiLibro.this, MaxiLettura.class);
+                Intent maxiSchermo = new Intent(LeggiLibro.this, NewMaxiLettura.class);
                 userSession.setCallingActivity(classValue);
                 userSession.setBookId(bookId);
                 userSession.setChapId(chapId);
@@ -235,7 +235,6 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             UserFactory.getInstance().addLibroIniziato(user, BookFactory.getInstance().getBookById(bookId),
                     ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId));
             long endTime = System.currentTimeMillis() - startTime;
-            System.out.println("Tempo trascorso: " + endTime);
             if (endTime> 1000) {
                 BookFactory.getInstance().addViewsBook(BookFactory.getInstance().getBookById(bookId));
             }

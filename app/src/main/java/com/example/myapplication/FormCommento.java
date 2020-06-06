@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class FormCommento extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -38,6 +40,7 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
     EditText feedbackMessage;
     Button feedbackSubmit;
     TextView welcomeHeader;
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +156,30 @@ public class FormCommento extends AppCompatActivity implements NavigationView.On
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
+
+        /**Gestione menu footer*/
+        bottomNavigationMenu = findViewById(R.id.formCommentoFooter);
+
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuContinuaLettura:
+                        Intent contLettura = new Intent(getApplicationContext(), ContinuaLettura.class);
+                        startActivity(contLettura);
+                        break;
+                    case R.id.bottomNavMenuHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavMenuProfilo:
+                        Intent profilo = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(profilo);
+                        break;
+                }
+                return false;
+            }
+        });
 
         /**Gestione pressione tasto per il salvataggio del commento*/
         feedbackSubmit.setOnClickListener(new View.OnClickListener() {

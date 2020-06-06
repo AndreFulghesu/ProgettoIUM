@@ -15,9 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.io.Serializable;
@@ -42,6 +46,7 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     View actionView, navHeader;
     ImageView profileImage;
     TextView welcomeHeader;
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +147,31 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
+
+        /**Gestione menu footer*/
+
+        bottomNavigationMenu = findViewById(R.id.catalogoFooter);
+
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuContinuaLettura:
+                        Intent contLettura = new Intent(getApplicationContext(), ContinuaLettura.class);
+                        startActivity(contLettura);
+                        break;
+                    case R.id.bottomNavMenuHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavMenuProfilo:
+                        Intent profilo = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(profilo);
+                        break;
+                }
+                return false;
+            }
+        });
 
         /**Gestione dell'ordinamento delle liste di libri in base ad eventuali
          *  cambiamenti di parametri nella activityu FiltroCatalogo**/
