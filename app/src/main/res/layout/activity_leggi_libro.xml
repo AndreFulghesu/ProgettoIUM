@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="?attr/backgroundColor"
     tools:context=".LeggiLibro">
 
-
-
+    <include
+        android:id="@+id/leggilibrobar"
+        layout="@layout/toolbar"
+        android:layout_width="391dp"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="692dp"
         android:orientation="vertical">
-
-        <include
-            android:id="@+id/leggilibrobar"
-            layout="@layout/toolbar"
-            android:layout_width="391dp"
-            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="match_parent"
@@ -37,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_button"
                 android:text="Schermo intero"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_alignParentLeft="true"
                 android:textColor="@android:color/white"
@@ -51,7 +49,7 @@
                 android:layout_width="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_height="50dp"
-                android:layout_marginEnd="90dp"
+                android:layout_marginEnd="100dp"
                 android:background="@drawable/thirdblue"
                 android:text="+"
                 android:textColor="@color/color_button"
@@ -66,27 +64,24 @@
                 android:background="@drawable/thirdblue"
                 android:text="-"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="20dp"
                 android:textColor="@color/color_button"
                 android:textSize="20dp" />
-
-
-
-
         </RelativeLayout>
-
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-
+            android:layout_height="10dp"/>
 
         <ScrollView
             android:id="@+id/textViewer"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="570dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -104,14 +99,9 @@
 
         </ScrollView>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <Button
                 android:id="@+id/feedback"
@@ -139,8 +129,19 @@
                 android:textSize="13dp" />
 
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_gravity="bottom"
+        android:id="@+id/leggiLibroFooter"
+        app:menu="@menu/bottom_leggilibro_menu"
+        android:layout_width="match_parent"
+        android:background="?attr/toolbarColor"
+        app:itemRippleColor="@color/color_button"
+        app:itemIconTint="?attr/textColor"
+        app:itemTextColor="?textColor"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -121,8 +121,6 @@ public class  MaxiLettura extends AppCompatActivity {
         Class callingActivity = userSession.getActivityFromValue(classValue - 2);
         if (callingActivity != null) {
             Intent goBack = new Intent(getApplicationContext(), callingActivity);
-            goBack.putExtra("bookId", bookId);
-            goBack.putExtra("chapId", chapId);
             long endTime = System.currentTimeMillis() - startTime;
             if (endTime> 30000) {
                 BookFactory.getInstance().getBookById(userSession.getBookId()).incrementViews();

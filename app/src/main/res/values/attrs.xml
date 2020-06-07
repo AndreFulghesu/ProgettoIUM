@@ -7,5 +7,6 @@
         <attr name="backToolbar" format="color"/>
         <attr name="blueWallColor" format="color"/>
         <attr name="boxColor" format="color"/>
+        <attr name="toolbarColor" format="color"/>
     </declare-styleable>
 </resources>

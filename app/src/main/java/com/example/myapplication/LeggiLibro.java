@@ -12,11 +12,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -36,6 +40,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
     ImageView profileImage;
     TextView welcomeHeader;
     long startTime;
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +71,8 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 chapId = userSession.getChapId();
                 textChapter = thisBook.getChapter(chapId).getText();
             } catch (NullPointerException e) {
-                textChapter = thisBook.getChapter(1).getText();
+                chapId = 1;
+                textChapter = thisBook.getChapter(chapId).getText();
             }
         } catch (NullPointerException ex) {
             Intent goToCatalogo = new Intent (LeggiLibro.this, Catalogo.class);
@@ -153,12 +159,37 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         getSupportActionBar().setTitle(BookFactory.getInstance().getBookById(bookId).getTitle());
 
+        /**Gestione menu footer*/
+
+        bottomNavigationMenu = findViewById(R.id.leggiLibroFooter);
+
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuLasciaCommento:
+                        Intent lasciaCommento = new Intent(getApplicationContext(), FormCommento.class);
+                        startActivity(lasciaCommento);
+                        break;
+                    case R.id.bottomNavHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavLeggiCommenti:
+                        Intent commenti = new Intent(getApplicationContext(), CommentList.class);
+                        startActivity(commenti);
+                        break;
+                }
+                return false;
+            }
+        });
+
         /**Associazione variabili d'istanza con elementi del layout*/
         final TextView textBook = findViewById(R.id.textBook);
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
-        Button feedback = findViewById(R.id.feedback);
-        Button readFeedback = findViewById(R.id.readFeedback);
+        /**Button feedback = findViewById(R.id.feedback);
+        Button readFeedback = findViewById(R.id.readFeedback);*/
         Button schermo_intero = findViewById(R.id.schermoIntero);
 
         textBook.setText(textChapter);
@@ -181,7 +212,7 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             }
         });
         /**Gestione passagio alla activity di scrittura del commento*/
-        feedback.setOnClickListener(new View.OnClickListener() {
+        /**feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent writeFeedback = new Intent(LeggiLibro.this, FormCommento.class);
@@ -192,10 +223,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                 }
                 startActivity(writeFeedback);
             }
-        });
+        });*/
 
         /**Gestione passaggio alla activity per la lettura dei commento*/
-        readFeedback.setOnClickListener(new View.OnClickListener() {
+        /**readFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent commenti = new Intent(LeggiLibro.this, CommentList.class);
@@ -205,9 +236,8 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
                     BookFactory.getInstance().getBookById(bookId).incrementViews();
                 }
                 startActivity(commenti);
-
             }
-        });
+        });*/
         /**Gestione passaggio alla activity per la lettura a schermo intero*/
         schermo_intero.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +254,32 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+    }
+
+    /**Gestione del menu nella toolbar**/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.nextchapter_menu, menu);
+        return true;
+    }
+
+    /**Gestione del comportamento del sistema alla pressione da parte
+     * dell'utente su un elemento del menu nella toolbar**/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nextChapterButton) {
+            UserSession userSession = new UserSession(getApplicationContext());
+            if (ChapterFactory.getInstance().getChapterByChapNum(chapId+1, bookId) != null) {
+                userSession.setChapId(chapId + 1);
+                Intent nextChapter = new Intent(getApplicationContext(), LeggiLibro.class);
+                nextChapter.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(nextChapter);
+            } else {
+                Toast.makeText(this, "Il capitolo richiesto non esiste.", Toast.LENGTH_LONG+1).show();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**Gestione sistema alla pressione del tasto Indietro*/

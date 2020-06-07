@@ -23,6 +23,8 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
     Button submitButton;
     User userSelected;
     ArrayList<String> activities = new ArrayList<>();
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +174,30 @@ public class Report extends AppCompatActivity implements NavigationView.OnNaviga
             default:
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
         }
+
+        /**Gestione menu footer*/
+        bottomNavigationMenu = findViewById(R.id.reportFooter);
+
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuContinuaLettura:
+                        Intent contLettura = new Intent(getApplicationContext(), ContinuaLettura.class);
+                        startActivity(contLettura);
+                        break;
+                    case R.id.bottomNavMenuHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavMenuProfilo:
+                        Intent profilo = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(profilo);
+                        break;
+                }
+                return false;
+            }
+        });
 
         /**Controllo sull'eventuale tipo di problema riscontrato
          * inviato dalla activity chiamante

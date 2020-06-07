@@ -67,7 +67,7 @@
         android:id="@+id/continuaLetturaFooter"
         app:menu="@menu/bottom_navigation_menu"
         android:layout_width="match_parent"
-        android:background="?attr/backgroundColor"
+        android:background="?attr/toolbarColor"
         app:itemRippleColor="@color/color_button"
         app:itemIconTint="?attr/textColor"
         app:itemTextColor="?textColor"
