@@ -43,7 +43,7 @@
             android:id="@+id/nextChapter"
             android:clickable="true"
             android:layout_marginLeft="10dp"
-            android:text="Vai al prossimo capitolo..."
+            android:text="@string/next_chapter"
             android:textColor="?attr/textColor"
             android:textSize="15sp"/>
     </LinearLayout>

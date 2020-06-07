@@ -8,6 +8,7 @@
     <string name="benvenuto">Un nuovo modo di vedere la lettura</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="next_chapter"><u>Vai al prossimo capitolo...</u></string>
     <string name="tornaLogin"><u>Torna al login</u></string>
     <string name="nome_autore"><u>Giorgio Armani</u></string>
     <string name="ringraziamento_report">Vi ringraziamo per il contributo che state dando a noi programmatori e alla nostra Community.
