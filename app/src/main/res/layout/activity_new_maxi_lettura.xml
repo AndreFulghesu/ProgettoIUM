@@ -44,7 +44,7 @@
             android:clickable="true"
             android:layout_marginLeft="10dp"
             android:text="@string/next_chapter"
-            android:textColor="?attr/textColor"
+            android:textColor="@color/blue"
             android:textSize="15sp"/>
     </LinearLayout>
 

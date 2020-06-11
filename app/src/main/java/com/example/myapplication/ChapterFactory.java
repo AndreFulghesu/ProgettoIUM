@@ -79,7 +79,32 @@ public class ChapterFactory {
     private Chapter chap7 = new Chapter (4,1,"Nel 1765 c'era una specie protetta di foglie chiamata Fabrizio. Faceva la clorofila fotosintosa.\n" +
             "Da allora decise di fermarsi perché era troppo faticoso. Tutto il pianeta morì.");
 
-    private Chapter chap8 = new Chapter (6, 1, "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.");
+    private Chapter chap8 = new Chapter (6, 1, "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.In soli dodici anni " +
+            "conquistò l'intero Impero persiano, un territorio immenso che si estendeva dall'Asia Minore all'Egitto fino agli attuali Pakistan," +
+            " Afghanistan e India settentrionale. Tale straordinario successo fu dovuto sia a una congiuntura storica eccezionalmente favorevole" +
+            " (le crisi dell'Impero persiano e della Grecia delle poleis, unite all'opera espansionistica già incominciata dal padre) " +
+            "sia a una sua innegabile intelligenza militare e diplomatica. Dotato di grande coraggio e carisma, Alessandro aveva un forte" +
+            " ascendente sui suoi soldati, che spronava anche partecipando personalmente ai combattimenti. Inoltre, egli fu uno dei " +
+            "primi condottieri dell'antichità ad aver capito l'importanza fondamentale della propaganda, sia per guadagnare prestigio " +
+            "nelle proprie file, sia per incutere timore ai nemici.\n" +
+            "\n" +
+            "Per assicurarsi ciò, Alessandro costituì un'imponente macchina mediatica (si fece accompagnare per tutta la durata della sua" +
+            " campagna da una quantità di storici e redattori di diari giornalieri, tra cui il greco Callistene) e diede estrema importanza " +
+            "nel corso di tutta la spedizione a gesti di forte valenza simbolica e alla divulgazione di leggende sulla propria discendenza da" +
+            " eroi mitici (Eracle e Achille) o persino da vere e proprie divinità. Infine si sforzò in ogni modo di fondere e amalgamare le" +
+            " culture delle diverse etnie che abitavano le terre che si trovò a unificare sotto il suo impero, dimostrando una disposizione al" +
+            " sincretismo estremamente inusuale per un greco del suo tempo. Le sue innumerevoli conquiste diedero alla cultura greca una " +
+            "diffusione universale, dando così avvio al cosiddetto periodo ellenistico. ");
+
+    private Chapter chap9 = new Chapter(6,2,"Alcuni dei più evidenti tratti della personalità di Alessandro si erano formati secondo " +
+            "il modello dei suoi genitori. Sua madre, Olimpiade, era enormemente ambiziosa, e lo aveva incoraggiato a credere che fosse" +
+            " il suo destino sconfiggere l'Impero Persiano.[7] L'influenza di Olimpiade instillò la credenza del destino in Alessandro, e Plutarco" +
+            " ci dice che la sua ambizione “mantenne il suo spirito greve e superbo con l'avanzare degli anni”. Tuttavia, suo padre Filippo fu il più" +
+            " immediato e influente modello di Alessandro, il quale sin da bambino l'aveva visto fare campagne militari praticamente ogni anno, " +
+            "vincendo battaglia dopo battaglia, sopravvivendo a gravi ferite. Il rapporto di Alessandro con suo padre forgiò la parte " +
+            "competitiva della sua personalità; egli aveva il bisogno di surclassare suo padre, come si può vedere tramite il suo " +
+            "spericolato comportamento in battaglia.[7] Tuttavia, Alessandro era preoccupato che suo padre non gli avrebbe lasciato" +
+            " “nessuna grande o eccezionale impresa da esibire al mondo”; egli infatti sminuiva le imprese di suo padre davanti ai suoi compagni. ");
 
 
     private ChapterFactory(){
@@ -108,6 +133,7 @@ public class ChapterFactory {
         chapters.add(chap6);
         chapters.add(chap7);
         chapters.add(chap8);
+        chapters.add(chap9);
 
         if(!chaptersModified.isEmpty()) {
             for (int i = 0; i < chaptersModified.size(); i++) {
