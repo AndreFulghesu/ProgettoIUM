@@ -9,7 +9,9 @@ import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -186,6 +188,10 @@ public class LeggiLibro extends AppCompatActivity implements NavigationView.OnNa
 
         /**Associazione variabili d'istanza con elementi del layout*/
         final TextView textBook = findViewById(R.id.textBook);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            textBook.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+            textBook.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
         Button piu = findViewById(R.id.dimTextPiu);
         Button meno = findViewById(R.id.dimTextMeno);
         /**Button feedback = findViewById(R.id.feedback);

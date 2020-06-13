@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -36,6 +38,10 @@ public class NewMaxiLettura extends Activity {
         final int chapId = userSession.getChapId();
         final int bookId = userSession.getBookId();
         chapText = findViewById(R.id.testoIntero);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            chapText.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+            chapText.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
         nextChapter = findViewById(R.id.nextChapter);
         chapText.setText(ChapterFactory.getInstance().getChapterByChapNum(chapId, bookId).getText());
         chapText.setTextSize(ratio + 13);

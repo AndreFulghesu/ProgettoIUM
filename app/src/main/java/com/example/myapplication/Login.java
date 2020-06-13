@@ -27,7 +27,6 @@ public class Login extends AppCompatActivity {
 
         /**Gestione della sessione nel caso in cui l'utente sia ancora loggato**/
 
-
         final UserSession userSession = new UserSession(this);
 
         if (userSession.isLogged() && UserFactory.getInstance().findUserByName(userSession.getUserSession())) {
@@ -55,7 +54,6 @@ public class Login extends AppCompatActivity {
 
                     if (UserFactory.getInstance().findUserByName(formUsername)) {
                         if (UserFactory.getInstance().getUser(formUsername, formPassword) != null) {
-
                             user = UserFactory.getInstance().getUser(formUsername, formPassword);
                             Intent home = new Intent(Login.this, Home.class);
                             userSession.saveUserSession(formUsername);

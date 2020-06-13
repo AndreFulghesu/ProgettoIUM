@@ -47,7 +47,6 @@ public class FiltroCatalogo extends AppCompatActivity  {
         final Spinner ordSpinner = findViewById(R.id.spinner_ordinamento);
 
         ArrayList<String> choices = new ArrayList<>();
-        choices.add("Ordina per suggeriti di sistema (default)");
         choices.add("Ordina per valutazione");
         choices.add("Ordina per numero di visualizzazioni");
 
@@ -69,9 +68,6 @@ public class FiltroCatalogo extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String str = (String) parent.getItemAtPosition(position);
                 switch (str) {
-                    case "Ordina per suggeriti di sistema (default)":
-                        ordinamentoId = 0;
-                        break;
                     case "Ordina per valutazione":
                         ordinamentoId = 1;
                         break;

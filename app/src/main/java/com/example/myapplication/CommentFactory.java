@@ -31,9 +31,9 @@ public class CommentFactory {
     private Comment com11 = new Comment ("Mmmmm non mi convince", 1, 1,4,UserFactory.getInstance().getUserByUsername("Gio34"),false);
     private Comment com12 = new Comment ("Circa...",3, 2,4,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
-    /**Commenti per il libro 5 */
-    private Comment com13 = new Comment ("Mi piace assai",3, 1,5,UserFactory.getInstance().getUserByUsername("Andre97"),false);
-    private Comment com14 = new Comment ("Complimenti",3, 2,5,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    /**Commenti per il libro 6 */
+    private Comment com13 = new Comment ("Mi piace assai",4, 1,6,UserFactory.getInstance().getUserByUsername("Andre97"),false);
+    private Comment com14 = new Comment ("Complimenti",3, 2,6,UserFactory.getInstance().getUserByUsername("Andre97"),false);
 
     private CommentFactory(){
     }

@@ -42,9 +42,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     View actionView,navHeader;
     ImageView profileImage;
     TextView welcomeHeader;
-    /*private static final int IMAGE_PICK_CODE = 1000;
-    private static final int PERMISSION_CODE = 1000;
-    private static final String urlProfileImg = "image/*";*/
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

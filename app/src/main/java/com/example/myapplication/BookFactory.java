@@ -15,15 +15,15 @@ class BookFactory {
             "il figlio orfano di due potenti maghi e di possedere anch'egli straordinari poteri magici. Nella Scuola di Magia" +
             " e Stregoneria di Hogwarts, Harry impara a volare praticando il Quidditch e gioca un'emozionante partita a scacchi" +
             " viventi prima di affrontare un mago malvagio, determinato a distruggerlo.", Genres.FANTASY, 1, UserFactory.getInstance().getUserByUsername("Faber123"),55);
-    private Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),0);
+    private Book b2 = new Book("Agatha Christie", "Trama generica di Agatha Christie", Genres.THRILLER, 2, UserFactory.getInstance().getUserByUsername("Andre97"),10);
     private Book b3 = new Book("La storia della Verità", "La verità è un concetto assai complicato per il nostro tempo. Attraverso un'attenta analisi l'autore si preoccupa di esporre tutte le sue sfaccettature.", Genres.FANTASCIENZA, 3, UserFactory.getInstance().getUserByUsername("Gio34"),4);
     private Book b4 = new Book("Sintesi clorofiliana time", "Beh, effettivamente c'è poco da dire, si capisce da solo, solo un'entusiasmante scalata verso il processo di sintesi clorofilliala della cellula vegetale.",Genres.NATURE,4,UserFactory.getInstance().getUserByUsername("Andre97"),0);
     private Book b5 = new Book("La spada della Congrega","La complessa narrazione del ciclo de La Spada della" +
             " Congrega vede la guida dei boschi Richard Cypher scoprire di essere in realtà un Cercatore: " +
             "l’ultimo mago guerriero della sua epoca, che ha il compito di mantenere la pace ed evitare " +
-            "che forze oscure e umani assetati di potere prendano il sopravvento.",Genres.FANTASY,5, UserFactory.getInstance().getUserByUsername("GiaNan66"),10);
+            "che forze oscure e umani assetati di potere prendano il sopravvento.",Genres.FANTASY,5, UserFactory.getInstance().getUserByUsername("GiaNan66"),0);
 
-    private Book b6 = new Book("Alessandro Magno: Storia di un Impero", "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.", Genres.STORICO, 6, UserFactory.getInstance().getUserByUsername("Faber123"), 0);
+    private Book b6 = new Book("Alessandro Magno: Storia di un Impero", "Pella, 356 a.C. Nasce Alessandro, figlio di Filippo II di Macedonia, uno dei più grandi condottieri della storia dell'umanità.", Genres.STORICO, 6, UserFactory.getInstance().getUserByUsername("Faber123"), 2);
     private BookFactory(){}
 
     /** Generazione del token per l'accesso alla Factory */

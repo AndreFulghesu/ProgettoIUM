@@ -27,6 +27,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Catalogo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,6 +52,32 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Comparator<Book> comparatorVisual = new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o2.getViews() - o1.getViews();
+            }
+        };
+        Comparator<Book> comparatorValutation = new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                if (!Float.isNaN(o1.getTotalValutation()) && !Float.isNaN(o2.getTotalValutation())) {
+                    if (o2.getTotalValutation() - o1.getTotalValutation() > 0f) {
+                        return 1;
+                    } else if (o2.getTotalValutation() - o1.getTotalValutation() < 0f) {
+                        return -1;
+                    }
+                    return 0;
+                } else {
+                    if (Float.isNaN(o1.getTotalValutation())) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                }
+            }
+        };
 
         /**Gestione richiesta sessione dalla classe**/
         final UserSession userSession = new UserSession(this);
@@ -179,7 +206,12 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         Intent intent = getIntent();
         Serializable objGenre = intent.getSerializableExtra("GENERE_FILTRAGGIO");
 
+        /**Gestione richiesta ordinamento e genere selezionati nel
+         * filtro catalogo, salvati nella sessione*/
         ordNum = userSession.getOrdinamento();
+        if (ordNum == - 1) {
+            ordNum = 2;
+        }
 
         if (objGenre != null) {
             genreFilter = (Genres) objGenre;
@@ -200,23 +232,35 @@ public class Catalogo extends AppCompatActivity implements NavigationView.OnNavi
         if (ordNum == 1) {
             if (genreFilter != null) {
                 books = BookFactory.getInstance().getBooksByGenre(genreFilter);
-                Collections.sort(books);
+                Collections.sort(books, comparatorValutation);
                 adapter.clear();
                 adapter.addAll(books);
             } else {
                 Collections.sort(books);
                 books = BookFactory.getInstance().getBooks();
-                Collections.sort(books);
+                Collections.sort(books, comparatorValutation);
             }
-        } else {
-            if (genreFilter != null) {
-                books = BookFactory.getInstance().getBooksByGenre(genreFilter);
-                adapter.clear();
-                adapter.addAll(books);
-            } else {
-                books = BookFactory.getInstance().getBooks();
+        } else
+            if (ordNum == 2) {
+                if (genreFilter != null) {
+                    books = BookFactory.getInstance().getBooksByGenre(genreFilter);
+                    Collections.sort(books, comparatorVisual);
+                    adapter.clear();
+                    adapter.addAll(books);
+                } else {
+                    Collections.sort(books);
+                    books = BookFactory.getInstance().getBooks();
+                    Collections.sort(books, comparatorVisual);
+                }
+            }else {
+                if (genreFilter != null) {
+                    books = BookFactory.getInstance().getBooksByGenre(genreFilter);
+                    adapter.clear();
+                    adapter.addAll(books);
+                } else {
+                    books = BookFactory.getInstance().getBooks();
+                }
             }
-        }
 
         /**Gestione della barra di ricerca nel catalogo dei libri**/
         searchView = findViewById(R.id.search_view);

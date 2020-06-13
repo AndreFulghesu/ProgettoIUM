@@ -72,8 +72,6 @@ public class CustomBookAdapter extends ArrayAdapter<Book> {
         }
         viewHolder.star.setImageResource(R.drawable.ic_star_black_36dp);
         viewHolder.eyeImage.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
-        float totalValutation = book.getTotalValutation();
-        System.out.println(totalValutation);
         if (!Float.isNaN(book.getTotalValutation())) {
             viewHolder.averageValutation.setText("" + roundDown5(book.getTotalValutation()));
         }else{
