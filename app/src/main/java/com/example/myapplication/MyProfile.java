@@ -229,7 +229,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                     if (valutation > 2f && valutation < 3.2f) {
                         star.setColorFilter(getResources().getColor(R.color.orange));
                     } else {
-                        if (valutation > 0f && valutation < 2) {
+                        if (valutation > 0f && valutation <= 2) {
                             star.setColorFilter(getResources().getColor(R.color.red));
                         }
                     }
