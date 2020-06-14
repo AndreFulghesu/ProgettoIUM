@@ -253,10 +253,6 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id. nav_darkmode:
                 break;
-            case R.id.nav_myprofile:
-                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
-                startActivity(myProfile);
-                break;
             case R.id.nav_logout:
                 Intent logOut = new Intent (getApplicationContext(), Login.class);
                 UserSession session = new UserSession(this);

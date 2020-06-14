@@ -69,8 +69,9 @@
 
                 <RadioButton
                     android:id="@+id/fantasy_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:button="@drawable/dragon_radio_button_filtro"
                     android:onClick="onRadioButtonClicked"
                     android:padding="20dp"
                     android:text="FANTASY"
@@ -78,7 +79,8 @@
 
                 <RadioButton
                     android:id="@+id/fantascienza_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:button="@drawable/robot_radio_button_filtro"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
                     android:padding="20dp"
@@ -87,38 +89,52 @@
 
                 <RadioButton
                     android:id="@+id/horror_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
+                    android:button="@drawable/ghost_radio_button_filtro"
                     android:padding="20dp"
                     android:text="HORROR"
                     android:textSize="18dp" />
 
                 <RadioButton
                     android:id="@+id/thriller_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
+                    android:button="@drawable/knife_radio_button_filtro"
                     android:padding="20dp"
                     android:text="THRILLER"
                     android:textSize="18dp" />
 
                 <RadioButton
                     android:id="@+id/storico_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
+                    android:button="@drawable/museum_radio_button_filtro"
                     android:padding="20dp"
                     android:text="STORICO"
                     android:textSize="18dp" />
 
                 <RadioButton
                     android:id="@+id/poliziesco_radiobutton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
+                    android:button="@drawable/policeman_radio_button_filtro"
                     android:padding="20dp"
                     android:text="POLIZIESCO"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/nature_radiobutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:button="@drawable/leaf_radio_button_filtro"
+                    android:padding="20dp"
+                    android:text="NATURA"
                     android:textSize="18dp" />
             </RadioGroup>
 
@@ -132,6 +148,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="18dp" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>

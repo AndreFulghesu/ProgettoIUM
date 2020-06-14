@@ -189,10 +189,6 @@ public class ContinuaLettura extends AppCompatActivity implements NavigationView
                 Intent report = new Intent(getApplicationContext(), Report.class);
                 startActivity(report);
                 break;
-            case R.id.nav_myprofile:
-                Intent myProfile = new Intent(getApplicationContext(), MyProfile.class);
-                startActivity(myProfile);
-                break;
             case R.id. nav_darkmode:
                 break;
             case R.id.nav_logout:
