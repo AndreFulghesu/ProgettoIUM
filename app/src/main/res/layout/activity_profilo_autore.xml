@@ -203,7 +203,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_gravity="bottom"
-        android:id="@+id/reportFooter"
+        android:id="@+id/profiloAutoreFooter"
         app:menu="@menu/bottom_navigation_menu"
         android:layout_width="match_parent"
         android:background="?attr/toolbarColor"

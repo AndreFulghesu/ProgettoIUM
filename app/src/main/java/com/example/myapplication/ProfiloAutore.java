@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
     ImageView profileImage,profile2;
     User user;
     TextView welcomeHeader;
+    BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +125,6 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
             case MALE:
                 profileImage.setImageResource(R.drawable.bananaicon);
 
-
                 break;
             case FEMALE:
                 profileImage.setImageResource(R.drawable.peachicon);
@@ -136,7 +138,6 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
                 profileImage.setImageResource(R.drawable.ic_person_black_24dp);
 
         }
-
 
         nomeCognome = findViewById(R.id.NomeCognome);
         usernameAuthor = findViewById(R.id.UsernameAuthor);
@@ -166,9 +167,8 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
         switch (user_author.getSex()){
             case MALE:
                 profile2.setImageResource(R.drawable.bananaicon);
-
-
                 break;
+
             case FEMALE:
                 profile2.setImageResource(R.drawable.peachicon);
 
@@ -179,10 +179,30 @@ public class ProfiloAutore extends AppCompatActivity implements NavigationView.O
                 break;
             default:
                 profile2.setImageResource(R.drawable.ic_person_black_24dp);
-
         }
 
+        bottomNavigationMenu = findViewById(R.id.profiloAutoreFooter);
 
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.bottomNavMenuContinuaLettura:
+                        Intent contLettura = new Intent(getApplicationContext(), ContinuaLettura.class);
+                        startActivity(contLettura);
+                        break;
+                    case R.id.bottomNavMenuHome:
+                        Intent home = new Intent(getApplicationContext(), Home.class);
+                        startActivity(home);
+                        break;
+                    case R.id.bottomNavMenuProfilo:
+                        Intent profilo = new Intent(getApplicationContext(), MyProfile.class);
+                        startActivity(profilo);
+                        break;
+                }
+                return false;
+            }
+        });
 
         /**Gestione dell'adapter per la ListView dei libri**/
 
