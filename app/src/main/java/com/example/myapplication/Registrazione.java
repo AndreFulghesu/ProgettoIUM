@@ -93,7 +93,7 @@ public class Registrazione extends AppCompatActivity {
             errors++;
             cognome.setError("Inserire un Cognome.");
         }
-        if (radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.male_radiobutton || radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.female_radiobutton ||
+        if (radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.male_radiobutton && radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.female_radiobutton &&
                 radioGroupRegistrazione.getCheckedRadioButtonId() != R.id.undefined_radiobutton) {
             errors++;
             lastRadioButton.setError("Selezionare il proprio sesso.");
